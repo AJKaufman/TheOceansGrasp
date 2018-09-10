@@ -5,18 +5,27 @@ using UnityEngine.UI;
 
 public class SubVariables : MonoBehaviour {
 
-  float health = 100;
-  float energy = 100;
-  public GameObject displayedHealth;
+  float health;
+  float energy;
+  public Slider displayedHealth;
+  public Slider displayedEnergy;
 
   // Use this for initialization
   void Start () {
-    displayedHealth.Slider.Set(health, false);
+    health = 100;
+    energy = 100;
+    displayedHealth.GetComponent<Slider>().value = health;
+    displayedEnergy.GetComponent<Slider>().value = energy;
   }
 
   // Update is called once per frame
   void Update () {
-
+    
+    loseEnergy();
+    
+    // Update health and energy each frame
+    displayedHealth.GetComponent<Slider>().value = health;
+    displayedEnergy.GetComponent<Slider>().value = energy;
   }
 
   // lose the amount of health in the parameter
@@ -26,7 +35,7 @@ public class SubVariables : MonoBehaviour {
   
   // lose 1 health
   void loseHealth() {
-    health -= 1;
+    health -= Time.deltaTime;
   }
   
   // lose the amount of energy in the parameter
@@ -36,7 +45,7 @@ public class SubVariables : MonoBehaviour {
   
   // lose 1 energy
   void loseEnergy() {
-    energy -= 1;
+    energy -= Time.deltaTime;
   }
   
 }
