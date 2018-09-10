@@ -123,8 +123,9 @@ GameObject:
   - component: {fileID: 817825673}
   - component: {fileID: 817825672}
   - component: {fileID: 817825671}
+  - component: {fileID: 817825674}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Fish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +143,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 1
-  maxTurnRate: 10
+  maxTurnRate: 60
+  stopDistance: 0.5
+  canArrive: 1
+  arriveDistance: 10
+  wanderAngle: 180
+  minWanderDistance: 5
+  maxWanderDistance: 20
   targetPosition: {x: 0, y: 0, z: 0}
 --- !u!143 &817825672
 CharacterController:
@@ -175,6 +182,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &817825674
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 817825670}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 6}
+  m_Center: {x: 0, y: 0, z: 3.5}
 --- !u!1 &1124536458
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +349,7 @@ GameObject:
   - component: {fileID: 1559425249}
   - component: {fileID: 1559425248}
   m_Layer: 0
-  m_Name: Fish
+  m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
