@@ -6,11 +6,13 @@ public class PlayerSwim : MonoBehaviour {
 
     public Vector3 position;
     public Vector3 velocity = new Vector3(-1.0f, 0.0f, 0.0f);
+    public Camera playerCamera = new Camera();
 
     public float speed = 0.0f;
     public float speedIncrement = 1.0f;
     public float maxSpeed = 5.0f;
     public float slowDown = 0.97f;
+    public Vector3 forward = new Vector3(-1.0f, 0.0f, 0.0f);
     public Vector2 mousePos = new Vector2(0.0f, 0.0f);
     public Vector3 direction = new Vector3(0.0f, 0.0f, 0.0f);
     public float udAngle = 0.0f;
@@ -70,11 +72,19 @@ public class PlayerSwim : MonoBehaviour {
             {
                 speed = 0.0f;
             }
+            // forward
+            forward = gameObject.transform.forward;
+
+            // set the rotation = to the direction
+            gameObject.transform.rotation = Quaternion.Euler(0.0f, rlAngle, udAngle);
+            direction = Input.mousePosition - gameObject.transform.position;
+
             // apply the rotation and position change
-            transform.rotation = Quaternion.Euler(0.0f, rlAngle, udAngle);
             position += transform.rotation * velocity * speed * Time.deltaTime;
             // assign the new position to the object
             transform.position = position;
+            playerCamera.transform.position = position;
+            playerCamera.transform.rotation = Quaternion.Euler(direction.x, direction.y, direction.z);
         }
     }
 
