@@ -1,9 +1,16 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: 0517e7b2de534e04b9d274483f79cd5d
 =======
 guid: ce4054912c0b516459c8ace05b147e34
 >>>>>>> origin/Mike-Camera
+=======
+guid: 2710ca89f5514bf45acfd2ede6199f7c
+=======
+guid: 0517e7b2de534e04b9d274483f79cd5d
+>>>>>>> master
+>>>>>>> f9c56f3fa4f7316e9c4b11d14c0afe718e582c49
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

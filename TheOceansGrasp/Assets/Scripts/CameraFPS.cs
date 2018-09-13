@@ -6,6 +6,7 @@ public class CameraFPS : MonoBehaviour {
     public float FPS = 5f;
     float elapsed;
     bool highfps = false;
+    bool selected = false;
     public Camera renderCam;
 
 	// Use this for initialization
@@ -24,7 +25,7 @@ public class CameraFPS : MonoBehaviour {
                 elapsed = 0;
                 renderCam.Render();
             }
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetButtonDown("Fire2") && selected == true)
             {
                 highfps = true;
             }
@@ -32,10 +33,22 @@ public class CameraFPS : MonoBehaviour {
         else
         {
             renderCam.Render();
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetButtonDown("Fire2") || selected == false)
             {
                 highfps = false;
             }
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        if (selected == false)
+        {
+            selected = true;
+        }
+        else
+        {
+            selected = false;
         }
     }
 
