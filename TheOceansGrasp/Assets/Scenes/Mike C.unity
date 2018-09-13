@@ -232,7 +232,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 8400000, guid: 8829a218a577226459dfded9263d683d, type: 2}
+  m_Texture: {fileID: 8400000, guid: 745b372432c85bd44bea9e9162ee6ce5, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -375,7 +375,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 8829a218a577226459dfded9263d683d, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 745b372432c85bd44bea9e9162ee6ce5, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -550,7 +550,7 @@ GameObject:
   - component: {fileID: 1170470187}
   - component: {fileID: 1170470191}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Bloop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -583,7 +583,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 491679f4f4d3b404cb34a83ec520f958, type: 2}
+  - {fileID: 2100000, guid: 61e2e501f13e80e469be621d7ed5fc55, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -631,7 +631,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1170470186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 246d9f09d5debce4a859991a2a92fb2d, type: 3}
+  m_Script: {fileID: 11500000, guid: a4005de4f9bac394c8461f1de1a35719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1264264451
