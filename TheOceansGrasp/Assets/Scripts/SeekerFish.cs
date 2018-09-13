@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(SphereCollider))]
 public class SeekerFish : MonoBehaviour {
     // NOTE: Much of this will be moved to a base fish class later
 
@@ -17,6 +17,9 @@ public class SeekerFish : MonoBehaviour {
     public float minWanderDistance = 5;
     public float maxWanderDistance = 20;
 
+    public float stunTime = 0;
+    public int aggroRange = 20;
+
     public Vector3 Velocity { get; private set; }
     // Public for testing
     public Vector3 targetPosition;
@@ -27,7 +30,7 @@ public class SeekerFish : MonoBehaviour {
     };
     private TargetType targetType;
     public GameObject targetObject; //Need to know what to search for first
-    private CharacterController controller;
+    private Rigidbody rb;
 
     private enum FishBehaviour
     {
@@ -39,12 +42,22 @@ public class SeekerFish : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Velocity = Vector3.forward * maxSpeed;
-        controller = GetComponent<CharacterController>();
+        //controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
         targetPosition = GetRandomWanderDestination();
+        GetComponent<SphereCollider>().radius = aggroRange;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if(stunTime > 0)
+        {
+            stunTime -= Time.deltaTime;
+            return;
+        }
+
+        CheckAggroRange();
+
         if (targetObject)
         {
             // TODO: Get target velocity if it is the player, sub, or fish
@@ -79,7 +92,8 @@ public class SeekerFish : MonoBehaviour {
                 }
             }
         }
-        controller.Move(Velocity * Time.deltaTime);
+        //controller.Move(Velocity * Time.deltaTime);
+        rb.velocity = Velocity;
 	}
 
     void OnTriggerEnter(Collider other)
@@ -113,5 +127,46 @@ public class SeekerFish : MonoBehaviour {
         transform.Rotate(-angles);
 
         return wander;
+    }
+
+    void CheckAggroRange()
+    {
+        // Place in game manager and simply add each object to list on their spawn and remove on their despawn?
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        List<KeyValuePair<GameObject, float>> inRange = new List<KeyValuePair<GameObject, float>>();
+        RaycastHit rayData = new RaycastHit();
+        foreach (GameObject g in allObjects)
+        {
+            if (Physics.Raycast(transform.position, g.transform.position - transform.position, out rayData, aggroRange)) {
+                inRange.Add(new KeyValuePair<GameObject, float>(g, rayData.distance));
+            }
+        }
+        CheckTargets(ref inRange);
+    }
+
+    void CheckTargets(ref List<KeyValuePair<GameObject, float>> possibleTargets)
+    {
+        // Check all possible targets (components)
+        // Add a target list with components and the priority
+        // Higher priority will take precedence even if distance is farther
+        // This not needed? I still don't know how fish react to each other
+        float minDistance = aggroRange;
+        foreach (KeyValuePair<GameObject, float> pair in possibleTargets)
+        {
+            if (pair.Key.tag == "Sub")
+            {
+                targetObject = pair.Key;
+                behaviour = FishBehaviour.Seek;
+                return;
+            }
+            else
+            {
+                if(pair.Value < minDistance)
+                {
+                    targetObject = pair.Key;
+                    minDistance = pair.Value;
+                }
+            }
+        }
     }
 }
