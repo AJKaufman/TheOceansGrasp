@@ -34,7 +34,7 @@ public class SeekerFish : MonoBehaviour {
 
     private enum FishBehaviour
     {
-        Wander, Seek
+        Wander, Seek, Flee
     };
     private FishBehaviour behaviour = FishBehaviour.Wander;
 
@@ -50,12 +50,60 @@ public class SeekerFish : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //For debug only
+        if (Input.GetButtonDown("Jump"))
+        {
+            switch (behaviour)
+            {
+                case FishBehaviour.Wander:
+                case FishBehaviour.Seek:
+                    behaviour = FishBehaviour.Flee;
+                    break;
+
+                case FishBehaviour.Flee:
+                    Debug.Log("Fleeing");
+                    behaviour = FishBehaviour.Wander;
+                    break;
+            }
+        }
+
         if(stunTime > 0)
         {
             stunTime -= Time.deltaTime;
             return;
         }
 
+        switch (behaviour)
+        {
+            case FishBehaviour.Wander:
+                CheckAggroRange();
+                break;
+
+            case FishBehaviour.Seek:
+                CheckAggroRange();
+
+                if (targetObject)
+                {
+                    // TODO: Get target velocity if it is the player, sub, or fish
+                    targetPosition = targetObject.transform.position;
+                }
+                break;
+
+            case FishBehaviour.Flee:
+                Vector3 away = transform.forward;
+                if (targetObject)
+                {
+                    away = transform.position - targetObject.transform.position;
+                }
+                targetPosition = transform.position + (away * 10);
+                break;
+
+            default:
+                Debug.LogError(gameObject.name + " has an invalid fish behavior.");
+                break;
+        }
+
+        /*
         CheckAggroRange();
 
         if (targetObject)
@@ -63,7 +111,7 @@ public class SeekerFish : MonoBehaviour {
             // TODO: Get target velocity if it is the player, sub, or fish
             targetPosition = targetObject.transform.position;
         }
-
+        */
         // Rotate the object to face its target
         Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxTurnRate * Time.deltaTime, 1);
         transform.rotation = Quaternion.LookRotation(rotation);
@@ -124,6 +172,7 @@ public class SeekerFish : MonoBehaviour {
         transform.Rotate(angles);
         Vector3 wander = transform.forward;
         wander = wander.normalized * Random.Range(minWanderDistance, maxWanderDistance);
+        wander += transform.position;
         transform.Rotate(-angles);
 
         return wander;
@@ -153,10 +202,10 @@ public class SeekerFish : MonoBehaviour {
         float minDistance = aggroRange;
         foreach (KeyValuePair<GameObject, float> pair in possibleTargets)
         {
+            behaviour = FishBehaviour.Seek;
             if (pair.Key.tag == "Sub")
             {
                 targetObject = pair.Key;
-                behaviour = FishBehaviour.Seek;
                 return;
             }
             else
