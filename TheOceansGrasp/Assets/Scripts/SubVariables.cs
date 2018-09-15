@@ -47,5 +47,19 @@ public class SubVariables : MonoBehaviour {
   void loseEnergy() {
     energy -= Time.deltaTime;
   }
-  
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        Debug.Log("Colliding!");
+
+        if(collision.gameObject.tag == "fish")
+        {
+            loseHealth(5.0f);
+            Debug.Log("Current Health: " + health);
+        }
+    }
+
+
 }

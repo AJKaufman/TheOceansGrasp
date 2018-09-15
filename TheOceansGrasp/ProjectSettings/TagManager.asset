@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sub
   - healthbar
+  - fish
   layers:
   - Default
   - TransparentFX
