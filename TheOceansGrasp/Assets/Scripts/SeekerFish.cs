@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(SphereCollider))]
 public class SeekerFish : MonoBehaviour {
     // NOTE: Much of this will be moved to a base fish class later
 
     public float maxSpeed;
     public float maxTurnRate; // In degrees per second
     public float stopDistance = 0.5f; // Distance at which the object will stop from the target
-    public bool canArrive = false;
+    public bool willArrive = false;
     public float arriveDistance; // Distance from target that the object will start slowing down
+    public float minArriveSpeed; // Minimum speed allowed when arriving
 
     public float wanderAngle = 180; // Angle from straight to get new point
     public float minWanderDistance = 5;
     public float maxWanderDistance = 20;
 
+    // Public for testing
     public float stunTime = 0;
+
     public int aggroRange = 20;
 
     public Vector3 Velocity { get; private set; }
@@ -29,6 +31,7 @@ public class SeekerFish : MonoBehaviour {
         None, Player, Sub, Fish
     };
     private TargetType targetType;
+    // Public for testing
     public GameObject targetObject; //Need to know what to search for first
     private Rigidbody rb;
 
@@ -38,20 +41,28 @@ public class SeekerFish : MonoBehaviour {
     };
     private FishBehaviour behaviour = FishBehaviour.Wander;
 
+    [System.Serializable]
+    public class SeekPriorities
+    {
+        public string tag;
+        public int priority;
+    }
+    public SeekPriorities[] tagPriorities;
+    // Public for testing
+    public int seekPriority = int.MaxValue;
+
 
     // Use this for initialization
     void Start () {
         Velocity = Vector3.forward * maxSpeed;
-        //controller = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
         targetPosition = GetRandomWanderDestination();
-        GetComponent<SphereCollider>().radius = aggroRange;
     }
 	
 	// Update is called once per frame
 	void Update () {
         //For debug only
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown("u"))
         {
             switch (behaviour)
             {
@@ -95,7 +106,7 @@ public class SeekerFish : MonoBehaviour {
                 {
                     away = transform.position - targetObject.transform.position;
                 }
-                targetPosition = transform.position + (away * 10);
+                targetPosition = transform.position + (away.normalized * 10);
                 break;
 
             default:
@@ -116,6 +127,21 @@ public class SeekerFish : MonoBehaviour {
         Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxTurnRate * Time.deltaTime, 1);
         transform.rotation = Quaternion.LookRotation(rotation);
 
+        //Check for obstacles?
+        float tempFishRadius = 0.5f;
+        int framesAhead = 5; // Too far?
+        // May be issue with this if it hits something 
+        RaycastHit[] rayDatas = Physics.SphereCastAll(transform.position, tempFishRadius, transform.forward, maxSpeed * Time.deltaTime * framesAhead); // Use current speed rather than maxSpeed
+        if(rayDatas.Length > 0)
+        {
+            // We hit an obstacle, now see if it actually is an obstacle instead of a fish or sub (sub will be interesting as it is both target and obstacle)
+            // Get obstacle tag list?
+
+            //Options:
+                // 1) redo turn vector
+                // 2) adjust current turn vector (issues with maxTurnRate?)
+        }
+
         float magnitude = Vector3.Magnitude(targetPosition - transform.position);
         if (magnitude <= stopDistance)
         {
@@ -132,29 +158,16 @@ public class SeekerFish : MonoBehaviour {
         else
         {
             Velocity = transform.forward * maxSpeed;
-            if (canArrive && arriveDistance > 0)
+            if (willArrive && arriveDistance > 0)
             {
                 if (magnitude <= arriveDistance)
                 {
-                    Velocity *= magnitude / arriveDistance;
+                    Velocity *= Mathf.Max(magnitude / arriveDistance, minArriveSpeed);
                 }
             }
         }
-        //controller.Move(Velocity * Time.deltaTime);
         rb.velocity = Velocity;
 	}
-
-    void OnTriggerEnter(Collider other)
-    {
-        //TODO: Check for the correct component to be a target (player, sub, certain fish)
-        //There should be a target priority to see what this will go after if given the option
-        if (other.gameObject != gameObject)
-        {
-            Debug.Log(other.gameObject.name + " has entered trigger of " + name);
-            targetObject = other.gameObject;
-            behaviour = FishBehaviour.Seek;
-        }
-    }
 
     Vector3 GetRandomWanderDestination()
     {
@@ -195,27 +208,29 @@ public class SeekerFish : MonoBehaviour {
 
     void CheckTargets(ref List<KeyValuePair<GameObject, float>> possibleTargets)
     {
-        // Check all possible targets (components)
-        // Add a target list with components and the priority
-        // Higher priority will take precedence even if distance is farther
-        // This not needed? I still don't know how fish react to each other
-        float minDistance = aggroRange;
+        // Check all possible targets
+        // Player is higher than sub usually, need to be to flee from
         foreach (KeyValuePair<GameObject, float> pair in possibleTargets)
         {
-            behaviour = FishBehaviour.Seek;
-            if (pair.Key.tag == "Sub")
+            if (IsGreaterPriority(pair.Key.tag))
             {
+                behaviour = FishBehaviour.Seek;
                 targetObject = pair.Key;
-                return;
-            }
-            else
-            {
-                if(pair.Value < minDistance)
-                {
-                    targetObject = pair.Key;
-                    minDistance = pair.Value;
-                }
             }
         }
+    }
+
+    bool IsGreaterPriority(string tag)
+    {
+        foreach (SeekPriorities s in tagPriorities)
+        {
+            if (tag == s.tag && s.priority < seekPriority)
+            {
+                seekPriority = s.priority;
+                return true;
+            }
+        }
+
+        return false;
     }
 }

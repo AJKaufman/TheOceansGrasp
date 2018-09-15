@@ -122,7 +122,6 @@ GameObject:
   m_Component:
   - component: {fileID: 817825673}
   - component: {fileID: 817825671}
-  - component: {fileID: 817825674}
   - component: {fileID: 817825672}
   m_Layer: 0
   m_Name: Fish
@@ -145,8 +144,9 @@ MonoBehaviour:
   maxSpeed: 5
   maxTurnRate: 60
   stopDistance: 0.5
-  canArrive: 1
+  willArrive: 1
   arriveDistance: 10
+  minArriveSpeed: 1
   wanderAngle: 180
   minWanderDistance: 5
   maxWanderDistance: 20
@@ -154,6 +154,10 @@ MonoBehaviour:
   aggroRange: 20
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
+  tagPriorities:
+  - tag: Sub
+    priority: 1
+  seekPriority: 2147483647
 --- !u!54 &817825672
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -184,18 +188,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &817825674
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 817825670}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 20
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1071199533
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +529,7 @@ SphereCollider:
   m_GameObject: {fileID: 1812905384}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
