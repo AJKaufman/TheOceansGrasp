@@ -699,7 +699,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 950224416}
-  - component: {fileID: 950224415}
   - component: {fileID: 950224414}
   - component: {fileID: 950224413}
   m_Layer: 0
@@ -709,18 +708,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &950224413
-BoxCollider:
+--- !u!54 &950224413
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 950224412}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 6}
-  m_Center: {x: 0, y: 0, z: 3.5}
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &950224414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,30 +737,20 @@ MonoBehaviour:
   maxSpeed: 10
   maxTurnRate: 60
   stopDistance: 0.5
-  canArrive: 1
+  willArrive: 0
   arriveDistance: 10
+  minArriveSpeed: 0
   wanderAngle: 180
   minWanderDistance: 5
   maxWanderDistance: 20
+  stunTime: 0
+  aggroRange: 20
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 1226949316}
---- !u!143 &950224415
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 950224412}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  tagPriorities:
+  - tag: Sub
+    priority: 0
+  seekPriority: 2147483647
 --- !u!4 &950224416
 Transform:
   m_ObjectHideFlags: 0
@@ -891,7 +883,7 @@ GameObject:
   - component: {fileID: 1226949320}
   m_Layer: 0
   m_Name: Sub
-  m_TagString: Untagged
+  m_TagString: Sub
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1219,7 +1211,6 @@ GameObject:
   - component: {fileID: 1429455337}
   - component: {fileID: 1429455336}
   - component: {fileID: 1429455335}
-  - component: {fileID: 1429455338}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: fish
@@ -1295,21 +1286,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1429455333}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &1429455338
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1429455333}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1521997307
 GameObject:
   m_ObjectHideFlags: 0
