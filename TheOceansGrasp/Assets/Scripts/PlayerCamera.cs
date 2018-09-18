@@ -21,8 +21,8 @@ public class PlayerCamera : MonoBehaviour {
     void Start ()
     {
         // get the center of the screen
-        screenCenterX = Camera.current.pixelWidth / 2.0f;
-        screenCenterY = Camera.current.pixelHeight / 2.0f;
+        //screenCenterX = Camera.current.pixelWidth / 2.0f;
+        //screenCenterY = Camera.current.pixelHeight / 2.0f;
 
         //screenCenter = new Vector2(Screen.width / 2.0f, Screen.height / 2.0f);
         //playerCamera = GetComponent<Camera>();
