@@ -13,7 +13,7 @@ public class SubVariables : MonoBehaviour {
   // Use this for initialization
   void Start () {
     health = 100;
-    energy = 100;
+    energy = 200;
     displayedHealth.GetComponent<Slider>().value = health;
     displayedEnergy.GetComponent<Slider>().value = energy;
   }
@@ -31,11 +31,15 @@ public class SubVariables : MonoBehaviour {
   // lose the amount of health in the parameter
   void loseHealth(float damage){
     health -= damage;
+    
+    if(health < 0) {
+      Destroy(gameObject);
+    }
   }
   
   // lose 1 health
   void loseHealth() {
-    health -= Time.deltaTime;
+    health -= 1;
   }
   
   // lose the amount of energy in the parameter
