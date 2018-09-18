@@ -233,4 +233,10 @@ public class SeekerFish : MonoBehaviour {
 
         return false;
     }
+
+    public void Flee(GameObject fleeFrom)
+    {
+        targetObject = fleeFrom;
+        behaviour = FishBehaviour.Flee;
+    }
 }
