@@ -32,6 +32,10 @@ public class SubVariables : MonoBehaviour {
   void loseHealth(float damage){
     health -= damage;
     
+    // Call the system break method
+
+
+
     if(health < 0) {
       Destroy(gameObject);
     }
@@ -52,18 +56,22 @@ public class SubVariables : MonoBehaviour {
     energy -= Time.deltaTime;
   }
 
+  // Break a random system on the sub
+  public void SystemBreak()
+  {
+    /* Your code here */
+  }
 
-    private void OnCollisionEnter(Collision collision)
+  // On collision
+  private void OnCollisionEnter(Collision collision)
+  {
+
+
+    if(collision.gameObject.tag == "fish")
     {
-
-        Debug.Log("Colliding!");
-
-        if(collision.gameObject.tag == "fish")
-        {
             loseHealth(5.0f);
-            Debug.Log("Current Health: " + health);
-        }
     }
+  }
 
 
 }
