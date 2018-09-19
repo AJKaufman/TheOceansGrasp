@@ -5,7 +5,7 @@ using UnityEngine;
 public class SubmarineMovement : MonoBehaviour {
 
     public Vector3 position;
-    private Vector3 velocity = new Vector3(0.0f, 1.0f, 0.0f);
+    private Vector3 velocity = new Vector3(0.0f, 0.0f, 1.0f);
 
     public float speed = 0.0f;
     public float speedIncrement = 1.0f;
@@ -64,7 +64,7 @@ public class SubmarineMovement : MonoBehaviour {
                 udAngle -= 90.0f * Time.deltaTime;
             }
             // apply the rotation and position change
-            transform.rotation = Quaternion.Euler(90.0f, rlAngadle, udAngle);
+            transform.rotation = Quaternion.Euler(udAngle, rlAngle, 0.0f);
             position += transform.rotation * velocity * speed * Time.deltaTime;
             // assign the new position to the object
             transform.position = position;
