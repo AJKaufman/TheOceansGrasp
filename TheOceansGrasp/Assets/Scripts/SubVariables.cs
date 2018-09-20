@@ -9,6 +9,9 @@ public class SubVariables : MonoBehaviour {
   float energy;
   public Slider displayedHealth;
   public Slider displayedEnergy;
+    float radius;
+    public List<GameObject> damagedSections = new List<GameObject>();
+    public GameObject damageBlock;
 
   // Use this for initialization
   void Start () {
@@ -16,6 +19,7 @@ public class SubVariables : MonoBehaviour {
     energy = 200;
     displayedHealth.GetComponent<Slider>().value = health;
     displayedEnergy.GetComponent<Slider>().value = energy;
+        radius = gameObject.GetComponent<CapsuleCollider>().radius;
   }
 
   // Update is called once per frame
@@ -33,8 +37,7 @@ public class SubVariables : MonoBehaviour {
     health -= damage;
     
     // Call the system break method
-
-
+    SystemBreak();
 
     if(health < 0) {
       Destroy(gameObject);
@@ -59,19 +62,22 @@ public class SubVariables : MonoBehaviour {
   // Break a random system on the sub
   public void SystemBreak()
   {
-    /* Your code here */
-  }
+        /* Your code here */
+        // create a position for the damage to be spawned at
+        Vector2 randomDirection = Random.insideUnitCircle.normalized * radius;
+        float xLocation = Random.Range(-1.0f, 1.0f);
+        Vector3 damagePosition = new Vector3(xLocation, randomDirection.x, randomDirection.y);
+
+        // create the object
+        GameObject temp = Instantiate(damageBlock, damagePosition, Quaternion.identity);
+    }
 
   // On collision
   private void OnCollisionEnter(Collision collision)
   {
-
-
     if(collision.gameObject.tag == "fish")
     {
             loseHealth(5.0f);
-    }
+        }
   }
-
-
 }
