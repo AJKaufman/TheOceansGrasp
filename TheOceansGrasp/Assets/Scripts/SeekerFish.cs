@@ -57,6 +57,7 @@ public class SeekerFish : MonoBehaviour {
         Velocity = Vector3.forward * maxSpeed;
         rb = GetComponent<Rigidbody>();
         targetPosition = GetRandomWanderDestination();
+        behaviour = FishBehaviour.Wander;
     }
 	
 	// Update is called once per frame
@@ -84,29 +85,21 @@ public class SeekerFish : MonoBehaviour {
             return;
         }
 
+        // This is done in most/all behaviors
+        CheckAggroRange();
+
         switch (behaviour)
         {
             case FishBehaviour.Wander:
-                CheckAggroRange();
+                WanderBehavior();
                 break;
 
             case FishBehaviour.Seek:
-                CheckAggroRange();
-
-                if (targetObject)
-                {
-                    // TODO: Get target velocity if it is the player, sub, or fish
-                    targetPosition = targetObject.transform.position;
-                }
+                SeekBehavior();
                 break;
 
             case FishBehaviour.Flee:
-                Vector3 away = transform.forward;
-                if (targetObject)
-                {
-                    away = transform.position - targetObject.transform.position;
-                }
-                targetPosition = transform.position + (away.normalized * 10);
+                FleeBehavior();
                 break;
 
             default:
@@ -140,6 +133,7 @@ public class SeekerFish : MonoBehaviour {
             //Options:
                 // 1) redo turn vector
                 // 2) adjust current turn vector (issues with maxTurnRate?)
+                // 3) remove maxTurnRate and use flocker things only
         }
 
         float magnitude = Vector3.Magnitude(targetPosition - transform.position);
@@ -148,6 +142,7 @@ public class SeekerFish : MonoBehaviour {
             if (behaviour == FishBehaviour.Wander)
             {
                 targetObject = null;
+                seekPriority = int.MaxValue;
                 targetPosition = GetRandomWanderDestination();
             }
             else
@@ -238,5 +233,29 @@ public class SeekerFish : MonoBehaviour {
     {
         targetObject = fleeFrom;
         behaviour = FishBehaviour.Flee;
+    }
+
+    protected void WanderBehavior()
+    {
+
+    }
+
+    protected void SeekBehavior()
+    {
+        if (targetObject)
+        {
+            // TODO: Get target velocity if it is the player, sub, or fish
+            targetPosition = targetObject.transform.position;
+        }
+    }
+
+    protected void FleeBehavior()
+    {
+        Vector3 away = transform.forward;
+        if (targetObject)
+        {
+            away = transform.position - targetObject.transform.position;
+        }
+        targetPosition = transform.position + (away.normalized * 10);
     }
 }
