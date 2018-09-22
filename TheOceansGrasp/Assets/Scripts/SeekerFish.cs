@@ -275,7 +275,7 @@ public class SeekerFish : MonoBehaviour {
 
     protected void SeekBehavior()
     {
-        if (targetObject && Vector3.Magnitude(targetObject.transform.position, transform.position) < maxSeekDistance)
+        if (targetObject && Vector3.Magnitude(targetObject.transform.position - transform.position) < maxSeekDistance)
         {
             // TODO: Get target velocity if it is the player, sub, or fish
             targetPosition = targetObject.transform.position;
