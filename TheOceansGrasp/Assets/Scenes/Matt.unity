@@ -1071,7 +1071,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1110438932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1084,8 +1084,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 10
+  acceleration: 0
   maxTurnRate: 60
   stopDistance: 0.5
+  removeOnSubCollide: 0
   willArrive: 0
   arriveDistance: 10
   minArriveSpeed: 0
@@ -1098,8 +1100,11 @@ MonoBehaviour:
   targetObject: {fileID: 0}
   tagPriorities:
   - tag: Sub
+    priority: 1
+  - tag: Player
     priority: 0
   seekPriority: 2147483647
+  maxSeekDistance: 100
 --- !u!4 &1110438934
 Transform:
   m_ObjectHideFlags: 0
@@ -1563,7 +1568,7 @@ GameObject:
   - component: {fileID: 1461394301}
   m_Layer: 0
   m_Name: Player Camera
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1579,6 +1584,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c09920911fc74a47b70035d267a6615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MouseLook:
+    XSensitivity: 2
+    YSensitivity: 2
+    clampVerticalRotation: 1
+    MinimumX: -90
+    MaximumX: 90
+    smooth: 0
+    smoothTime: 5
+    lockCursor: 1
   playerCamera: {fileID: 1684776776}
 --- !u!135 &1461394302
 SphereCollider:
@@ -1735,7 +1749,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1489645533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2127,11 +2141,11 @@ GameObject:
   - component: {fileID: 1977632600}
   m_Layer: 0
   m_Name: Submarine
-  m_TagString: Untagged
+  m_TagString: Sub
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1977632596
 MonoBehaviour:
   m_ObjectHideFlags: 0
