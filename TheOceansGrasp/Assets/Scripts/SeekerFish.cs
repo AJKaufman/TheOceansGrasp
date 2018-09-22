@@ -10,6 +10,8 @@ public class SeekerFish : MonoBehaviour {
     public float acceleration;
     public float maxTurnRate; // In degrees per second
     public float stopDistance = 0.5f; // Distance at which the object will stop from the target
+    public bool removeOnSubCollide;
+
     public bool willArrive = false;
     public float arriveDistance; // Distance from target that the object will start slowing down
     public float minArriveSpeed; // Minimum speed allowed when arriving
@@ -27,13 +29,6 @@ public class SeekerFish : MonoBehaviour {
     private float speed = 0;
     // Public for testing
     public Vector3 targetPosition;
-
-    private enum TargetType
-    {
-        None, Player, Sub, Fish
-    };
-    private TargetType targetType;
-    // Public for testing
     public GameObject targetObject; //Need to know what to search for first
     private Rigidbody rb;
 
@@ -52,6 +47,7 @@ public class SeekerFish : MonoBehaviour {
     public SeekPriorities[] tagPriorities;
     // Public for testing
     public int seekPriority = int.MaxValue;
+    public float maxSeekDistance = 100;
 
 
     // Use this for initialization
@@ -121,6 +117,7 @@ public class SeekerFish : MonoBehaviour {
         */
         // Rotate the object to face its target
         Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxTurnRate * Time.deltaTime, 1);
+        Quaternion prevRotation = transform.rotation;
         transform.rotation = Quaternion.LookRotation(rotation);
 
         //Avoidance kinda
@@ -128,6 +125,7 @@ public class SeekerFish : MonoBehaviour {
         int framesAhead = 5; // Too far?
         float tempHalfFishLength = 1;
         RaycastHit[] rayDatas = Physics.SphereCastAll(transform.position + (transform.forward * tempHalfFishLength), tempFishRadius, transform.forward, speed * Time.deltaTime * framesAhead); // Use current speed rather than maxSpeed
+        //Debug.DrawRay(transform.position + (transform.forward * tempHalfFishLength), transform.forward * speed * Time.deltaTime * framesAhead, Color.Red);
         if(rayDatas.Length > 0)
         {
             foreach (RaycastHit r in rayDatas) {
@@ -138,8 +136,13 @@ public class SeekerFish : MonoBehaviour {
 
                     //Edit this more. This is temporary
                     /*
+                    transform.rotation = Quaternion.LookRotation(prevRotation);
                     Vector3 newDestination = r.point + (r.normal * (r.distance + tempFishRadius));
-                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, newDestination, 360, 1));
+                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxTurnRate * Time.deltaTime, 1));
+                    //Compare normal to transform.forward after(?) first obstacle found to determine distance along normal to go to
+                    //Should this follow max turn rate? I think yes. Which means undo the turn and redo towards this instead. What happens if still hitting obstacle as the new destination is too far to turn?
+                    //Could slow down if this happens to allow for more turn?
+                    speed -= 2 * acceleration * Time.deltaTime; // Slow down, later will add 1 acceleration
                     */
                     //Options:
                     // 1) redo turn vector
@@ -272,10 +275,14 @@ public class SeekerFish : MonoBehaviour {
 
     protected void SeekBehavior()
     {
-        if (targetObject)
+        if (targetObject && Vector3.Magnitude(targetObject.transform.position, transform.position) < maxSeekDistance)
         {
             // TODO: Get target velocity if it is the player, sub, or fish
             targetPosition = targetObject.transform.position;
+        }
+        else
+        {
+            behaviour = FishBehaviour.Wander;
         }
     }
 
