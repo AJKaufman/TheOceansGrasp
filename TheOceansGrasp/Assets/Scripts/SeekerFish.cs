@@ -7,6 +7,7 @@ public class SeekerFish : MonoBehaviour {
     // NOTE: Much of this will be moved to a base fish class later
 
     public float maxSpeed;
+    public float acceleration;
     public float maxTurnRate; // In degrees per second
     public float stopDistance = 0.5f; // Distance at which the object will stop from the target
     public bool willArrive = false;
@@ -23,6 +24,7 @@ public class SeekerFish : MonoBehaviour {
     public int aggroRange = 20;
 
     public Vector3 Velocity { get; private set; }
+    private float speed = 0;
     // Public for testing
     public Vector3 targetPosition;
 
@@ -54,7 +56,8 @@ public class SeekerFish : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Velocity = Vector3.forward * maxSpeed;
+        speed = maxSpeed;
+        Velocity = Vector3.forward * speed;
         rb = GetComponent<Rigidbody>();
         targetPosition = GetRandomWanderDestination();
         behaviour = FishBehaviour.Wander;
@@ -120,20 +123,31 @@ public class SeekerFish : MonoBehaviour {
         Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxTurnRate * Time.deltaTime, 1);
         transform.rotation = Quaternion.LookRotation(rotation);
 
-        //Check for obstacles?
+        //Avoidance kinda
         float tempFishRadius = 0.5f;
         int framesAhead = 5; // Too far?
-        // May be issue with this if it hits something 
-        RaycastHit[] rayDatas = Physics.SphereCastAll(transform.position, tempFishRadius, transform.forward, maxSpeed * Time.deltaTime * framesAhead); // Use current speed rather than maxSpeed
+        float tempHalfFishLength = 1;
+        RaycastHit[] rayDatas = Physics.SphereCastAll(transform.position + (transform.forward * tempHalfFishLength), tempFishRadius, transform.forward, speed * Time.deltaTime * framesAhead); // Use current speed rather than maxSpeed
         if(rayDatas.Length > 0)
         {
-            // We hit an obstacle, now see if it actually is an obstacle instead of a fish or sub (sub will be interesting as it is both target and obstacle)
-            // Get obstacle tag list?
+            foreach (RaycastHit r in rayDatas) {
+                // We hit an obstacle, now see if it actually is an obstacle instead of a fish or sub (sub will be interesting as it is both target and obstacle)
+                // Get obstacle tag list?
+                if (!IsTarget(r.collider.tag))
+                {
 
-            //Options:
-                // 1) redo turn vector
-                // 2) adjust current turn vector (issues with maxTurnRate?)
-                // 3) remove maxTurnRate and use flocker things only
+                    //Edit this more. This is temporary
+                    /*
+                    Vector3 newDestination = r.point + (r.normal * (r.distance + tempFishRadius));
+                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, newDestination, 360, 1));
+                    */
+                    //Options:
+                    // 1) redo turn vector
+                    // 2) adjust current turn vector (issues with maxTurnRate?)
+                    // 3) remove maxTurnRate and use flocker things only
+                    break;
+                }
+            }
         }
 
         float magnitude = Vector3.Magnitude(targetPosition - transform.position);
@@ -147,17 +161,20 @@ public class SeekerFish : MonoBehaviour {
             }
             else
             {
+                speed = 0;
                 Velocity = Vector3.zero;
             }
         }
         else
         {
-            Velocity = transform.forward * maxSpeed;
+            speed = Mathf.Min(maxSpeed, speed + (acceleration * Time.deltaTime));
+            Velocity = transform.forward * speed;
             if (willArrive && arriveDistance > 0)
             {
                 if (magnitude <= arriveDistance)
                 {
-                    Velocity *= Mathf.Max(magnitude / arriveDistance, minArriveSpeed);
+                    speed = Mathf.Max(magnitude / arriveDistance, minArriveSpeed);
+                    Velocity *= speed;
                 }
             }
         }
@@ -222,6 +239,19 @@ public class SeekerFish : MonoBehaviour {
             if (tag == s.tag && s.priority < seekPriority)
             {
                 seekPriority = s.priority;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    bool IsTarget(string tag)
+    {
+        foreach (SeekPriorities s in tagPriorities)
+        {
+            if(s.tag == tag)
+            {
                 return true;
             }
         }
