@@ -66,10 +66,19 @@ public class SubVariables : MonoBehaviour {
         // create a position for the damage to be spawned at
         Vector2 randomDirection = Random.insideUnitCircle.normalized * radius;
         float xLocation = Random.Range(-1.0f, 1.0f);
-        Vector3 damagePosition = new Vector3(xLocation, randomDirection.x, randomDirection.y);
+
+        // set the position of the damage in relation to the submarine
+        Vector3 currentSubPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+        Vector3 damagePosition = new Vector3(currentSubPos.x + xLocation, currentSubPos.y + randomDirection.x, currentSubPos.z + randomDirection.y);
 
         // create the object
         GameObject temp = Instantiate(damageBlock, damagePosition, Quaternion.identity);
+
+        // add the object to a list
+        damagedSections.Add(temp);
+
+        // set the parent of the object to be the submarine so that the damage moves with it
+        temp.transform.parent = gameObject.transform;
     }
 
   // On collision
