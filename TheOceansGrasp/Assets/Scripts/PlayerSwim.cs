@@ -8,7 +8,7 @@ public class PlayerSwim : MonoBehaviour
 
     [SerializeField] private MouseLook m_MouseLook;
 
-    public Vector3 position;
+    private Vector3 position;
     public Vector3 velocity = new Vector3(1.0f, 0.0f, 0.0f);
     public Camera playerCamera = new Camera();
 
@@ -21,18 +21,26 @@ public class PlayerSwim : MonoBehaviour
     private Vector3 right;
     public Vector2 mousePos = new Vector2(0.0f, 0.0f);
     public bool useSlowdown = true;
+    public GameObject submarine;
 
     // Use this for initialization
     void Start()
     {
         // set the starting position to the starting position of the gameobject
-        position = new Vector3(0.0f, 1.0f, 0.0f);
+        position = new Vector3(submarine.GetComponent<Transform>().position.x, submarine.GetComponent<Transform>().position.y + 6.5f, submarine.GetComponent<Transform>().position.z + 4.0f);
+        transform.position = position;
         m_MouseLook.Init(transform, playerCamera.transform);
         forward = new Vector3(1.0f, 0.0f, 0.0f);
         up = gameObject.transform.up;
         right = gameObject.transform.right;
     }
 
+    private void OnEnable()
+    {
+        // set the starting position to the starting position of the gameobject
+        position = new Vector3(submarine.GetComponent<Transform>().position.x, submarine.GetComponent<Transform>().position.y + 6.5f, submarine.GetComponent<Transform>().position.z + 4.0f);
+        transform.position = position;
+    }
 
     private void FixedUpdate()
     {
