@@ -16,8 +16,12 @@ public class TerrainLoading : MonoBehaviour {
 		
     if(transform.position.x > previousTerrainSpawnLoc.x + 100)
     {
+
+      Debug.Log("Location: " + previousTerrainSpawnLoc.x);
       // Spawn a new terrain piece
       /* some code goes here */
+      // Chose a random terrain piece
+      // Spawn it at the edge of the last terrain piece
 
       // Then save the most recent spawned terrain
       previousTerrainSpawnLoc = transform.position;

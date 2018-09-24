@@ -86,7 +86,7 @@ public class SubVariables : MonoBehaviour {
   {
     if(collision.gameObject.tag == "fish")
     {
-            loseHealth(5.0f);
+            loseHealth(1.0f);
         }
   }
 }
