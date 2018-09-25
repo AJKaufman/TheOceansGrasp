@@ -114,32 +114,37 @@ public class SeekerFish : MonoBehaviour {
         //Avoidance kinda
         float tempFishRadius = 0.5f;
         int framesAhead = 30; // Too far?
-        float tempHalfFishLength = 1;
-        RaycastHit[] rayDatas = Physics.SphereCastAll(transform.position + (transform.forward * tempHalfFishLength), tempFishRadius, transform.forward, speed * Time.deltaTime * framesAhead); // Use current speed rather than maxSpeed
+        //float tempHalfFishLength = 1;
+        //RaycastHit[] rayDatas = Physics.SphereCastAll(transform.position + (transform.forward * tempHalfFishLength), tempFishRadius, transform.forward, speed * Time.deltaTime * framesAhead); // Use current speed rather than maxSpeed
         Debug.DrawRay(transform.position, transform.forward * speed * Time.deltaTime * framesAhead, Color.red);
-        if(rayDatas.Length > 0)
+        RaycastHit rayData = new RaycastHit();
+        if (Physics.SphereCast(transform.position, tempFishRadius, transform.forward, out rayData, speed * Time.deltaTime * framesAhead))
+        //if (rayDatas.Length > 0)
         {
-            foreach (RaycastHit r in rayDatas) {
+            //foreach (RaycastHit r in rayDatas)
+            { 
                 // We hit an obstacle, now see if it actually is an obstacle instead of a fish or sub (sub will be interesting as it is both target and obstacle)
                 // Get obstacle tag list?
-                if (!IsTarget(r.collider.tag))
+                if (!IsTarget(rayData.collider.tag))
                 {
 
                     //Edit this more. This is temporary
-                    /**/
+                    /*
+                    //Gets stuck if head on
+                    //Use dot product to tell and exaggerate the  difference?
                     transform.rotation = prevRotation;
-                    Vector3 newDestination = r.point + (r.normal * (r.distance + tempFishRadius));
+                    Vector3 newDestination = rayData.point + (rayData.normal * (rayData.distance + tempFishRadius));
                     transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, newDestination - transform.position, Mathf.Deg2Rad * maxTurnRate * Time.deltaTime, 1));
                     //Compare normal to transform.forward after(?) first obstacle found to determine distance along normal to go to
                     //Should this follow max turn rate? I think yes. Which means undo the turn and redo towards this instead. What happens if still hitting obstacle as the new destination is too far to turn?
                     //Could slow down if this happens to allow for more turn?
-                    speed -= 2 * acceleration * Time.deltaTime; // Slow down, later will add 1 acceleration
+                    //speed -= 2 * acceleration * Time.deltaTime; // Slow down, later will add 1 acceleration
                     /**/
                     //Options:
                     // 1) redo turn vector
                     // 2) adjust current turn vector (issues with maxTurnRate?)
                     // 3) remove maxTurnRate and use flocker things only
-                    break;
+                    //break;
                 }
             }
         }
