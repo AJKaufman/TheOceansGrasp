@@ -4,28 +4,57 @@ using UnityEngine;
 
 public class TerrainLoading : MonoBehaviour {
 
-  private Vector3 previousTerrainSpawnLoc;
 
-	// Use this for initialization
-	void Start () {
-    previousTerrainSpawnLoc = transform.position;
-	}
+    public GameObject terrain1;
+    public GameObject terrain2;
+    public GameObject terrain3;
+
+    private int randomlySelectedTerrain = 0;
+    private Vector3 previousTerrainSpawnLoc = new Vector3(-100, -30, 100);
+
+    // Use this for initialization
+    void Start () {
+    }
 	
 	// Update is called once per frame
 	void Update () {
 		
-    if(transform.position.x > previousTerrainSpawnLoc.x + 100)
-    {
+        // If you've passed the previous spawn area
+        if(transform.position.z > previousTerrainSpawnLoc.z)
+        {
 
-      Debug.Log("Location: " + previousTerrainSpawnLoc.x);
-      // Spawn a new terrain piece
-      /* some code goes here */
-      // Chose a random terrain piece
-      // Spawn it at the edge of the last terrain piece
+            // Spawn the next spawn area.
 
-      // Then save the most recent spawned terrain
-      previousTerrainSpawnLoc = transform.position;
-    }
+            Debug.Log("Location: " + previousTerrainSpawnLoc.z);
+
+            // Choose which terrain to spawn next
+            //randomlySelectedTerrain = (int)Random.Range(1.0f, 4.0f);
+
+            randomlySelectedTerrain++;
+            if (randomlySelectedTerrain > 3) randomlySelectedTerrain = 1;
+
+
+
+            switch(randomlySelectedTerrain)
+            {
+                case 1:
+                    terrain1.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 400);
+                    previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 200);
+                    break;
+                case 2:
+                    terrain2.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 400);
+                    previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 200);
+                    break;
+                case 3:
+                    terrain3.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 400);
+                    previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 200);
+                    break;
+                default:
+                    terrain3.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 400);
+                    previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 200);
+                    break;
+            }
+        }
 
 	}
 }
