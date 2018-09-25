@@ -10,7 +10,8 @@ public class SeekerFish : MonoBehaviour {
     public float acceleration;
     public float maxTurnRate; // In degrees per second
     public float stopDistance = 0.5f; // Distance at which the object will stop from the target
-    public bool removeOnSubCollide;
+
+    public float damage = 1;
 
     public bool willArrive = false;
     public float arriveDistance; // Distance from target that the object will start slowing down
@@ -25,7 +26,7 @@ public class SeekerFish : MonoBehaviour {
 
     public int aggroRange = 20;
 
-    public Vector3 Velocity { get; private set; }
+    public Vector3 Velocity;// { get; private set; }
     private float speed = 0;
     // Public for testing
     public Vector3 targetPosition;
@@ -84,16 +85,15 @@ public class SeekerFish : MonoBehaviour {
             return;
         }
 
-        // This is done in most/all behaviors
-        CheckAggroRange();
-
         switch (behaviour)
         {
             case FishBehaviour.Wander:
+                CheckAggroRange();
                 WanderBehavior();
                 break;
 
             case FishBehaviour.Seek:
+                CheckAggroRange();
                 SeekBehavior();
                 break;
 
@@ -106,15 +106,6 @@ public class SeekerFish : MonoBehaviour {
                 break;
         }
 
-        /*
-        CheckAggroRange();
-
-        if (targetObject)
-        {
-            // TODO: Get target velocity if it is the player, sub, or fish
-            targetPosition = targetObject.transform.position;
-        }
-        */
         // Rotate the object to face its target
         Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxTurnRate * Time.deltaTime, 1);
         Quaternion prevRotation = transform.rotation;
@@ -122,10 +113,10 @@ public class SeekerFish : MonoBehaviour {
 
         //Avoidance kinda
         float tempFishRadius = 0.5f;
-        int framesAhead = 5; // Too far?
+        int framesAhead = 30; // Too far?
         float tempHalfFishLength = 1;
         RaycastHit[] rayDatas = Physics.SphereCastAll(transform.position + (transform.forward * tempHalfFishLength), tempFishRadius, transform.forward, speed * Time.deltaTime * framesAhead); // Use current speed rather than maxSpeed
-        //Debug.DrawRay(transform.position + (transform.forward * tempHalfFishLength), transform.forward * speed * Time.deltaTime * framesAhead, Color.Red);
+        Debug.DrawRay(transform.position, transform.forward * speed * Time.deltaTime * framesAhead, Color.red);
         if(rayDatas.Length > 0)
         {
             foreach (RaycastHit r in rayDatas) {
@@ -135,15 +126,15 @@ public class SeekerFish : MonoBehaviour {
                 {
 
                     //Edit this more. This is temporary
-                    /*
-                    transform.rotation = Quaternion.LookRotation(prevRotation);
+                    /**/
+                    transform.rotation = prevRotation;
                     Vector3 newDestination = r.point + (r.normal * (r.distance + tempFishRadius));
-                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxTurnRate * Time.deltaTime, 1));
+                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, newDestination - transform.position, Mathf.Deg2Rad * maxTurnRate * Time.deltaTime, 1));
                     //Compare normal to transform.forward after(?) first obstacle found to determine distance along normal to go to
                     //Should this follow max turn rate? I think yes. Which means undo the turn and redo towards this instead. What happens if still hitting obstacle as the new destination is too far to turn?
                     //Could slow down if this happens to allow for more turn?
                     speed -= 2 * acceleration * Time.deltaTime; // Slow down, later will add 1 acceleration
-                    */
+                    /**/
                     //Options:
                     // 1) redo turn vector
                     // 2) adjust current turn vector (issues with maxTurnRate?)
@@ -158,13 +149,10 @@ public class SeekerFish : MonoBehaviour {
         {
             if (behaviour == FishBehaviour.Wander)
             {
-                targetObject = null;
-                seekPriority = int.MaxValue;
                 targetPosition = GetRandomWanderDestination();
             }
             else
             {
-                speed = 0;
                 Velocity = Vector3.zero;
             }
         }
@@ -214,7 +202,7 @@ public class SeekerFish : MonoBehaviour {
         RaycastHit rayData = new RaycastHit();
         foreach (GameObject g in allObjects)
         {
-            if (Physics.Raycast(transform.position, g.transform.position - transform.position, out rayData, aggroRange)) {
+            if (Physics.Raycast(transform.position, g.transform.position - transform.position, out rayData, aggroRange) && rayData.collider.gameObject == g) {
                 inRange.Add(new KeyValuePair<GameObject, float>(g, rayData.distance));
             }
         }
@@ -270,7 +258,8 @@ public class SeekerFish : MonoBehaviour {
 
     protected void WanderBehavior()
     {
-
+        targetObject = null;
+        seekPriority = int.MaxValue;
     }
 
     protected void SeekBehavior()
@@ -283,6 +272,7 @@ public class SeekerFish : MonoBehaviour {
         else
         {
             behaviour = FishBehaviour.Wander;
+            targetPosition = GetRandomWanderDestination();
         }
     }
 
@@ -291,8 +281,31 @@ public class SeekerFish : MonoBehaviour {
         Vector3 away = transform.forward;
         if (targetObject)
         {
-            away = transform.position - targetObject.transform.position;
+            if (Vector3.Magnitude(targetObject.transform.position - transform.position) > maxSeekDistance)
+            {
+                // Remove fish after certain distance away from flee target
+                Destroy(gameObject);
+            }
+            else
+            {
+                away = transform.position - targetObject.transform.position;
+            }
         }
         targetPosition = transform.position + (away.normalized * 10);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Kamikaze fish - destroy on contact with a target object, not necessarily the one that is being sought 
+        if(IsTarget(collision.gameObject.tag))
+        {
+            SubVariables subVar = collision.gameObject.GetComponent<SubVariables>();
+            if (subVar){
+                subVar.loseHealth(damage);
+            }
+            // Do similar for player
+
+            Destroy(gameObject);
+        }
     }
 }

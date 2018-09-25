@@ -33,7 +33,7 @@ public class SubVariables : MonoBehaviour {
   }
 
   // lose the amount of health in the parameter
-  void loseHealth(float damage){
+  public void loseHealth(float damage){
     health -= damage;
     
     // Call the system break method
@@ -84,9 +84,6 @@ public class SubVariables : MonoBehaviour {
   // On collision
   private void OnCollisionEnter(Collision collision)
   {
-    if(collision.gameObject.tag == "fish")
-    {
-            loseHealth(1.0f);
-        }
+    
   }
 }
