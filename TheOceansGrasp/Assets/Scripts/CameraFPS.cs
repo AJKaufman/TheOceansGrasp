@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class CameraFPS : MonoBehaviour {
     public float FPS = 5f;
     float elapsed;
+    public Texture stat;
+    public RenderTexture camTex;
+    public bool damaged = false;
+    public bool broken = false;
+    bool stactive = false;
     bool highfps = false;
     bool selected = false;
     public Camera renderCam;
@@ -17,30 +23,43 @@ public class CameraFPS : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (highfps == false)
+        if (damaged == false && stactive == false)
         {
-            elapsed += Time.deltaTime;
-            if (elapsed > 1 / FPS)
+            if (highfps == false)
             {
-                elapsed = 0;
+                elapsed += Time.deltaTime;
+                if (elapsed > 1 / FPS)
+                {
+                    elapsed = 0;
+                    renderCam.Render();
+                }
+                if (Input.GetButtonDown("Fire2") && selected == true)
+                {
+                    highfps = true;
+                }
+            }
+            else
+            {
                 renderCam.Render();
+                if (Input.GetButtonDown("Fire2") || selected == false)
+                {
+                    highfps = false;
+                }
             }
-            if (Input.GetButtonDown("Fire2") && selected == true)
-            {
-                highfps = true;
-            }
+        }
+        else if (stactive == false)
+        {
+                GetComponent<RawImage>().texture = stat;
+                stactive = true;
         }
         else
         {
-            renderCam.Render();
-            if (Input.GetButtonDown("Fire2") || selected == false)
-            {
-                highfps = false;
-            }
+            stactive = false;
+            GetComponent<RawImage>().texture = camTex;
         }
     }
 
-    private void OnMouseDown()
+    void OnMouseDown()
     {
         if (selected == false)
         {
@@ -52,4 +71,23 @@ public class CameraFPS : MonoBehaviour {
         }
     }
 
+    void Damage()
+    {
+        if (damaged == false)
+        {
+            damaged = true;
+        }
+        else if (broken == false)
+        {
+            broken = true;
+        }
+    }
+
+    void Repair()
+    {
+        if (broken == false)
+        {
+            damaged = false;
+        }
+    }
 }
