@@ -25,14 +25,15 @@ public class SubmarineMovement : MonoBehaviour {
 	void Update () {
         if (gameObject.tag == "Sub")
         {
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetButton("Vertical"))
             {
                 speed += speedIncrement * Time.deltaTime;
             }
-            else if(Input.GetKey(KeyCode.S))
+            /*
+            else if(Input.GetButtonDown("Vertical"))
             {
                 //velocity *= -1.0f;
-            }
+            }*/
             else if (useSlowdown)
             {
                 speed *= slowDown;
@@ -47,22 +48,24 @@ public class SubmarineMovement : MonoBehaviour {
                 speed = 0.0f;
             }
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetButton("Horizontal"))
             {
                 rlAngle -= 90.0f * Time.deltaTime;
             }
-            else if (Input.GetKey(KeyCode.D))
+            /*
+            else if (!Input.GetButton("Horizontal"))
             {
                 rlAngle += 90.0f * Time.deltaTime;
-            }
-            if(Input.GetKey(KeyCode.LeftShift))
+            }*/
+            if(Input.GetButton("Ascend"))
             {
                 udAngle += 90.0f * Time.deltaTime;
             }
-            else if (Input.GetKey(KeyCode.Space))
+            /*
+            else if (!Input.GetButtonDown("Ascend"))
             {
                 udAngle -= 90.0f * Time.deltaTime;
-            }
+            }*/
             // apply the rotation and position change
             transform.rotation = Quaternion.Euler(udAngle, rlAngle, 0.0f);
             position += transform.rotation * velocity * speed * Time.deltaTime;
