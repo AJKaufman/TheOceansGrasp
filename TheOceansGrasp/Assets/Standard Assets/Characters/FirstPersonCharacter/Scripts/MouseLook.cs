@@ -36,8 +36,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
             m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
 
-            if(clampVerticalRotation)
-                m_CameraTargetRot = ClampRotationAroundXAxis (m_CameraTargetRot);
+            //if(clampVerticalRotation)
+                //m_CameraTargetRot = ClampRotationAroundXAxis (m_CameraTargetRot);
 
             if(smooth)
             {

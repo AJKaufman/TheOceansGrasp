@@ -25,46 +25,71 @@ public class SubmarineMovement : MonoBehaviour {
 	void Update () {
         if (gameObject.tag == "Sub")
         {
-            if (Input.GetButton("Vertical"))
+            // move forward
+            if (Input.GetButton("Forward"))
             {
-                speed += speedIncrement * Time.deltaTime;
+                //speed += speedIncrement * Time.deltaTime;
+                speed *= speed + (speedIncrement * Time.deltaTime);
             }
-            /*
-            else if(Input.GetButtonDown("Vertical"))
+            // move backwards
+            else if(Input.GetButton("Backward"))
             {
-                //velocity *= -1.0f;
-            }*/
+                //speed -= speedIncrement * Time.deltaTime;
+                speed *= speed - (speedIncrement * Time.deltaTime);
+            }
+            // friction
             else if (useSlowdown)
             {
                 speed *= slowDown;
             }
-
+            // clamp speed
             if (speed > maxSpeed)
             {
                 speed = maxSpeed;
             }
-            else if (speed < 0.01f)
+            else if (speed < 0.01f && !Input.GetButton("Forward") && !Input.GetButton("Backward"))
             {
                 speed = 0.0f;
             }
-
+            
+            // rotate right
             if (Input.GetButton("RotateRight"))
             {
-                rlAngle -= 90.0f * Time.deltaTime;
+                rlAngle -= 30.0f * Time.deltaTime;
             }
-            else if (!Input.GetButton("RotateLeft"))
+            // rotate left
+            else if (Input.GetButton("RotateLeft"))
             {
-                rlAngle += 90.0f * Time.deltaTime;
+                rlAngle += 30.0f * Time.deltaTime;
             }
+            // rotate up
             if(Input.GetButton("Ascend"))
             {
-                udAngle += 90.0f * Time.deltaTime;
+                udAngle -= 30.0f * Time.deltaTime;
             }
-            /*
-            else if (!Input.GetButtonDown("Ascend"))
+            // rotate down
+            else if (Input.GetButton("Descend"))
             {
-                udAngle -= 90.0f * Time.deltaTime;
+                udAngle += 30.0f * Time.deltaTime;
+            }
+            // clamp angles -- just up and down for now, not left and right
+            /*
+            if(rlAngle > 45.0f)
+            {
+                rlAngle = 45.0f;
+            }
+            else if(rlAngle < -45.0f)
+            {
+                rlAngle = -45.0f;
             }*/
+            if(udAngle > 30.0f)
+            {
+                udAngle = 30.0f;
+            }
+            else if(udAngle < -30.0f)
+            {
+                udAngle = -30.0f;
+            }
             // apply the rotation and position change
             transform.rotation = Quaternion.Euler(udAngle, rlAngle, 0.0f);
             position += transform.rotation * velocity * speed * Time.deltaTime;
