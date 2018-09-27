@@ -8,7 +8,8 @@ public class SeekerFish : MonoBehaviour {
 
     public float maxSpeed;
     public float acceleration;
-    public float maxTurnRate; // In degrees per second
+    public float maxSpeedTurnRate; // In degrees per second
+    public float stoppedTurnRate;// In degrees per second
     public float stopDistance = 0.5f; // Distance at which the object will stop from the target
 
     public float damage = 1;
@@ -20,9 +21,6 @@ public class SeekerFish : MonoBehaviour {
     public float wanderAngle = 180; // Angle from straight to get new point
     public float minWanderDistance = 5;
     public float maxWanderDistance = 20;
-
-    // Public for testing
-    public float stunTime = 0;
 
     public int aggroRange = 20;
 
@@ -53,7 +51,7 @@ public class SeekerFish : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        speed = maxSpeed;
+        speed = 0;
         Velocity = Vector3.forward * speed;
         rb = GetComponent<Rigidbody>();
         targetPosition = GetRandomWanderDestination();
@@ -79,12 +77,6 @@ public class SeekerFish : MonoBehaviour {
             }
         }
 
-        if(stunTime > 0)
-        {
-            stunTime -= Time.deltaTime;
-            return;
-        }
-
         switch (behaviour)
         {
             case FishBehaviour.Wander:
@@ -106,75 +98,7 @@ public class SeekerFish : MonoBehaviour {
                 break;
         }
 
-        // Rotate the object to face its target
-        Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxTurnRate * Time.deltaTime, 1);
-        Quaternion prevRotation = transform.rotation;
-        transform.rotation = Quaternion.LookRotation(rotation);
-
-        //Avoidance kinda
-        float tempFishRadius = 0.5f;
-        int framesAhead = 30; // Too far?
-        //float tempHalfFishLength = 1;
-        //RaycastHit[] rayDatas = Physics.SphereCastAll(transform.position + (transform.forward * tempHalfFishLength), tempFishRadius, transform.forward, speed * Time.deltaTime * framesAhead); // Use current speed rather than maxSpeed
-        Debug.DrawRay(transform.position, transform.forward * speed * Time.deltaTime * framesAhead, Color.red);
-        RaycastHit rayData = new RaycastHit();
-        if (Physics.SphereCast(transform.position, tempFishRadius, transform.forward, out rayData, speed * Time.deltaTime * framesAhead))
-        //if (rayDatas.Length > 0)
-        {
-            //foreach (RaycastHit r in rayDatas)
-            { 
-                // We hit an obstacle, now see if it actually is an obstacle instead of a fish or sub (sub will be interesting as it is both target and obstacle)
-                // Get obstacle tag list?
-                if (!IsTarget(rayData.collider.tag))
-                {
-
-                    //Edit this more. This is temporary
-                    /**/
-                    //Gets stuck if head on
-                    //Use dot product to tell and exaggerate the  difference?
-                    transform.rotation = prevRotation;
-                    Vector3 newDestination = rayData.point + (rayData.normal * (rayData.distance + tempFishRadius));
-                    transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, newDestination - transform.position, Mathf.Deg2Rad * maxTurnRate * Time.deltaTime, 1));
-                    //Compare normal to transform.forward after(?) first obstacle found to determine distance along normal to go to
-                    //Should this follow max turn rate? I think yes. Which means undo the turn and redo towards this instead. What happens if still hitting obstacle as the new destination is too far to turn?
-                    //Could slow down if this happens to allow for more turn?
-                    //speed -= 2 * acceleration * Time.deltaTime; // Slow down, later will add 1 acceleration
-                    /**/
-                    //Options:
-                    // 1) redo turn vector
-                    // 2) adjust current turn vector (issues with maxTurnRate?)
-                    // 3) remove maxTurnRate and use flocker things only
-                    //break;
-                }
-            }
-        }
-
-        float magnitude = Vector3.Magnitude(targetPosition - transform.position);
-        if (magnitude <= stopDistance)
-        {
-            if (behaviour == FishBehaviour.Wander)
-            {
-                targetPosition = GetRandomWanderDestination();
-            }
-            else
-            {
-                Velocity = Vector3.zero;
-            }
-        }
-        else
-        {
-            speed = Mathf.Min(maxSpeed, speed + (acceleration * Time.deltaTime));
-            Velocity = transform.forward * speed;
-            if (willArrive && arriveDistance > 0)
-            {
-                if (magnitude <= arriveDistance)
-                {
-                    speed = Mathf.Max(magnitude / arriveDistance, minArriveSpeed);
-                    Velocity *= speed;
-                }
-            }
-        }
-        rb.velocity = Velocity;
+        Move();
 	}
 
     Vector3 GetRandomWanderDestination()
@@ -297,6 +221,66 @@ public class SeekerFish : MonoBehaviour {
             }
         }
         targetPosition = transform.position + (away.normalized * 10);
+    }
+
+    protected void Move()
+    {
+        // Rotate the object to face its target
+        Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
+        Quaternion prevRotation = transform.rotation;
+        transform.rotation = Quaternion.LookRotation(rotation);
+
+        //Avoidance kinda
+        float tempFishRadius = 0.5f;
+        float halfFishLength = 1;
+        int framesAhead = 30; // Too far?
+        // Make sure the start of the check is in the fish so that it will not be inside the obstacle
+        Debug.DrawRay(transform.position - (transform.forward * halfFishLength), transform.forward * speed * Time.deltaTime * framesAhead, Color.red);
+        RaycastHit rayData = new RaycastHit();
+        if (Physics.SphereCast(transform.position - (transform.forward * halfFishLength), tempFishRadius, transform.forward, out rayData, speed * Time.deltaTime * framesAhead))
+        {
+            // We hit an obstacle, now see if it actually is an obstacle instead of a fish or sub (sub will be interesting as it is both target and obstacle)
+            // Get obstacle tag list?
+            if (!IsTarget(rayData.collider.tag))
+            {
+                /**/
+                speed -= acceleration * Time.deltaTime; // Slow down
+                Mathf.Max(speed, 0);
+                transform.rotation = prevRotation;
+                Vector3 newDestination = rayData.point + (rayData.normal * (rayData.distance + tempFishRadius));
+                float turnRate = Mathf.Deg2Rad * Mathf.Max(maxSpeedTurnRate, stoppedTurnRate * (maxSpeed / (speed + maxSpeed))) * Time.deltaTime;
+                transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, newDestination - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1));
+                speed -= acceleration * Time.deltaTime; // Slow down, later will add 1 acceleration
+                /**/
+            }
+        }
+
+        float magnitude = Vector3.Magnitude(targetPosition - transform.position);
+        if (magnitude <= stopDistance)
+        {
+            if (behaviour == FishBehaviour.Wander)
+            {
+                targetPosition = GetRandomWanderDestination();
+            }
+            else
+            {
+                Velocity = Vector3.zero;
+            }
+        }
+        else
+        {
+            speed = Mathf.Min(maxSpeed, speed + (acceleration * Time.deltaTime));
+            Velocity = transform.forward * speed;
+            if (willArrive && arriveDistance > 0)
+            {
+                if (magnitude <= arriveDistance)
+                {
+                    speed = Mathf.Max(magnitude / arriveDistance, minArriveSpeed);
+                    Velocity *= speed;
+                }
+            }
+        }
+        rb.velocity = Velocity;
     }
 
     private void OnCollisionEnter(Collision collision)

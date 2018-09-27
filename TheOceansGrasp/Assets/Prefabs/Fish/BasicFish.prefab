@@ -216,8 +216,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 5
-  acceleration: 0
-  maxTurnRate: 120
+  acceleration: 1
+  maxSpeedTurnRate: 120
+  stoppedTurnRate: 600
   stopDistance: 0.5
   damage: 1
   willArrive: 0
@@ -226,7 +227,6 @@ MonoBehaviour:
   wanderAngle: 20
   minWanderDistance: 15
   maxWanderDistance: 20
-  stunTime: 0
   aggroRange: 100
   Velocity: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
