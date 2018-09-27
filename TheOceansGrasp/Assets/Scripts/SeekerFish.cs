@@ -129,7 +129,7 @@ public class SeekerFish : MonoBehaviour {
                 {
 
                     //Edit this more. This is temporary
-                    /*
+                    /**/
                     //Gets stuck if head on
                     //Use dot product to tell and exaggerate the  difference?
                     transform.rotation = prevRotation;

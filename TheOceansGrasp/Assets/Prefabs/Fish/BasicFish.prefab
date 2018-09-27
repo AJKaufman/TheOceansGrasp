@@ -219,7 +219,7 @@ MonoBehaviour:
   acceleration: 0
   maxTurnRate: 120
   stopDistance: 0.5
-  removeOnSubCollide: 0
+  damage: 1
   willArrive: 0
   arriveDistance: 10
   minArriveSpeed: 1
@@ -232,6 +232,8 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
   tagPriorities:
+  - tag: Player
+    priority: 0
   - tag: Sub
     priority: 1
   seekPriority: 2147483647
