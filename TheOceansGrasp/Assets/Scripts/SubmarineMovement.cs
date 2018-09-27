@@ -48,15 +48,14 @@ public class SubmarineMovement : MonoBehaviour {
                 speed = 0.0f;
             }
 
-            if (Input.GetButton("Horizontal"))
+            if (Input.GetButton("RotateRight"))
             {
                 rlAngle -= 90.0f * Time.deltaTime;
             }
-            /*
-            else if (!Input.GetButton("Horizontal"))
+            else if (!Input.GetButton("RotateLeft"))
             {
                 rlAngle += 90.0f * Time.deltaTime;
-            }*/
+            }
             if(Input.GetButton("Ascend"))
             {
                 udAngle += 90.0f * Time.deltaTime;

@@ -207,9 +207,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 99806522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55edf1713876b3a409fef2b2f1416bee, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b3751407b534414897327931be11551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inside: 1
+  submarine: {fileID: 2050764014}
+  player: {fileID: 641548811}
 --- !u!1 &117327770
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +541,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPS: 5
+  stat: {fileID: 0}
+  camTex: {fileID: 0}
+  damaged: 0
+  broken: 0
   renderCam: {fileID: 771923054}
 --- !u!114 &300966642
 MonoBehaviour:
@@ -1383,6 +1390,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPS: 5
+  stat: {fileID: 0}
+  camTex: {fileID: 0}
+  damaged: 0
+  broken: 0
   renderCam: {fileID: 1724184571}
 --- !u!114 &778665665
 MonoBehaviour:
@@ -1534,9 +1545,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 856459065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55edf1713876b3a409fef2b2f1416bee, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b3751407b534414897327931be11551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inside: 1
+  submarine: {fileID: 2050764014}
+  player: {fileID: 641548811}
 --- !u!136 &856459068
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1705,6 +1719,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPS: 5
+  stat: {fileID: 0}
+  camTex: {fileID: 0}
+  damaged: 0
+  broken: 0
   renderCam: {fileID: 1628116424}
 --- !u!114 &1027794149
 MonoBehaviour:
@@ -3717,6 +3735,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPS: 5
+  stat: {fileID: 0}
+  camTex: {fileID: 0}
+  damaged: 0
+  broken: 0
   renderCam: {fileID: 892645777}
 --- !u!114 &2027665131
 MonoBehaviour:
@@ -4180,6 +4202,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPS: 5
+  stat: {fileID: 0}
+  camTex: {fileID: 0}
+  damaged: 0
+  broken: 0
   renderCam: {fileID: 249045967}
 --- !u!114 &2134227674
 MonoBehaviour:
