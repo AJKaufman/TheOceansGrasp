@@ -1914,7 +1914,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 5
   acceleration: 0
-  maxTurnRate: 120
+  maxSpeedTurnRate: 0
+  stoppedTurnRate: 0
   stopDistance: 0.5
   damage: 1
   willArrive: 0
@@ -1923,7 +1924,6 @@ MonoBehaviour:
   wanderAngle: 100
   minWanderDistance: 10
   maxWanderDistance: 20
-  stunTime: 0
   aggroRange: 100
   Velocity: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
@@ -2281,7 +2281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1335711303
 MonoBehaviour:
   m_ObjectHideFlags: 0

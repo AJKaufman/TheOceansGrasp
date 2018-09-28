@@ -59,7 +59,7 @@ public class PlayerSwim : MonoBehaviour
             //forward = GetDirection();
             forward = Vector3.forward;
             forward = forward.normalized;
-            up = up.normalized;
+            up = Vector3.up;
             right = Vector3.right;
             // cross product of up and forward to get right
             /*
