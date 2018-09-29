@@ -8,6 +8,7 @@ public class SubmarineMovement : MonoBehaviour {
     private Vector3 velocity = new Vector3(0.0f, 0.0f, 1.0f);
 
     public float speed = 0.0f;
+    private float maxBackSpeed = 0.0f;
     public float speedIncrement = 1.0f;
     public float maxSpeed = 5.0f;
     public float slowDown = 0.97f;
@@ -19,6 +20,7 @@ public class SubmarineMovement : MonoBehaviour {
 	void Start () {
         // set the starting position to the starting position of the gameobject
         position = transform.position;
+        maxBackSpeed = maxSpeed * -1.0f;
 	}
 	
 	// Update is called once per frame
@@ -29,13 +31,15 @@ public class SubmarineMovement : MonoBehaviour {
             if (Input.GetButton("Forward"))
             {
                 //speed += speedIncrement * Time.deltaTime;
-                speed += speed + (speedIncrement * Time.deltaTime);
+                speed += speedIncrement * speedIncrement * Time.deltaTime;
+                //speed *= speed + (speedIncrement * Time.deltaTime);
             }
             // move backwards
             else if(Input.GetButton("Backward"))
             {
                 //speed -= speedIncrement * Time.deltaTime;
-                speed -= speed - (speedIncrement * Time.deltaTime);
+                //speed *= speed - (speedIncrement * Time.deltaTime);
+                speed -= speedIncrement * speedIncrement * Time.deltaTime;
             }
             // friction
             else if (useSlowdown)
@@ -46,6 +50,10 @@ public class SubmarineMovement : MonoBehaviour {
             if (speed > maxSpeed)
             {
                 speed = maxSpeed;
+            }
+            if(speed < maxBackSpeed)
+            {
+                speed = maxBackSpeed;
             }
             else if (speed < 0.01f && !Input.GetButton("Forward") && !Input.GetButton("Backward"))
             {
