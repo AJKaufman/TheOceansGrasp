@@ -29,13 +29,13 @@ public class SubmarineMovement : MonoBehaviour {
             if (Input.GetButton("Forward"))
             {
                 //speed += speedIncrement * Time.deltaTime;
-                speed *= speed + (speedIncrement * Time.deltaTime);
+                speed += speed + (speedIncrement * Time.deltaTime);
             }
             // move backwards
             else if(Input.GetButton("Backward"))
             {
                 //speed -= speedIncrement * Time.deltaTime;
-                speed *= speed - (speedIncrement * Time.deltaTime);
+                speed -= speed - (speedIncrement * Time.deltaTime);
             }
             // friction
             else if (useSlowdown)
