@@ -52,7 +52,24 @@ namespace UnityStandardAssets.Characters.FirstPerson
             //    camera.localRotation = m_CameraTargetRot;
             //}
 
-            character.transform.SetPositionAndRotation(character.transform.position, Quaternion.Euler(-xRot + character.transform.rotation.eulerAngles.x, yRot + character.transform.rotation.eulerAngles.y, 0f));
+            Debug.Log("Char Rot: " + character.transform.rotation.eulerAngles.x);
+
+            if (-xRot + character.transform.rotation.eulerAngles.x < 270 && -xRot + character.transform.rotation.eulerAngles.x > 180)
+            {
+                Debug.Log("MAX: XRot: " + -xRot + character.transform.rotation.eulerAngles.x);
+                character.transform.SetPositionAndRotation(character.transform.position, Quaternion.Euler(270, yRot + character.transform.rotation.eulerAngles.y, 0f));
+            }
+            else if(-xRot + character.transform.rotation.eulerAngles.x < 180 && -xRot + character.transform.rotation.eulerAngles.x > 90)
+            {
+                Debug.Log("MIN: XRot: " + -xRot + character.transform.rotation.eulerAngles.x);
+                character.transform.SetPositionAndRotation(character.transform.position, Quaternion.Euler(90, yRot + character.transform.rotation.eulerAngles.y, 0f));
+            }
+            else
+            {
+                character.transform.SetPositionAndRotation(character.transform.position, Quaternion.Euler(-xRot + character.transform.rotation.eulerAngles.x, yRot + character.transform.rotation.eulerAngles.y, 0f));
+            }
+
+            //character.transform.SetPositionAndRotation(character.transform.position, Quaternion.Euler(-xRot + character.transform.rotation.eulerAngles.x, yRot + character.transform.rotation.eulerAngles.y, 0f));
 
             UpdateCursorLock();
         }
