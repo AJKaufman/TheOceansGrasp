@@ -63,22 +63,22 @@ public class SubmarineMovement : MonoBehaviour {
             // rotate right
             if (Input.GetButton("RotateRight"))
             {
-                rlAngle -= 30.0f * Time.deltaTime;
+                rlAngle -= 15.0f * Time.deltaTime;
             }
             // rotate left
             else if (Input.GetButton("RotateLeft"))
             {
-                rlAngle += 30.0f * Time.deltaTime;
+                rlAngle += 15.0f * Time.deltaTime;
             }
             // rotate up
             if(Input.GetButton("Ascend"))
             {
-                udAngle -= 30.0f * Time.deltaTime;
+                udAngle -= 10.0f * Time.deltaTime;
             }
             // rotate down
             else if (Input.GetButton("Descend"))
             {
-                udAngle += 30.0f * Time.deltaTime;
+                udAngle += 10.0f * Time.deltaTime;
             }
             // clamp angles -- just up and down for now, not left and right
             /*

@@ -54,7 +54,7 @@ public class TeleportPlayer : MonoBehaviour {
         else
         {
             // if the player is close enough to the outer hatch for them to make a reasonable jump
-            if(distanceFromHatch <= 3.0f)
+            if(distanceFromHatch <= 2.0f)
             {
                 player.transform.position = new Vector3(3000.0f, 100.0f, 2.3f);
                 player.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
