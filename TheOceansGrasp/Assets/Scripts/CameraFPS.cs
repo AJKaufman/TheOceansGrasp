@@ -10,9 +10,9 @@ public class CameraFPS : MonoBehaviour {
     public RenderTexture camTex;
     public bool damaged = false;
     public bool broken = false;
-    bool stactive = false;
-    bool highfps = false;
-    bool selected = false;
+    public bool stactive = false;
+    public bool highfps = false;
+    public bool selected = false;
     public Camera renderCam;
 
 	// Use this for initialization
@@ -23,8 +23,8 @@ public class CameraFPS : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (damaged == false && stactive == false)
-        {
+        //if (damaged == false && stactive == false)
+        //{
             if (highfps == false)
             {
                 elapsed += Time.deltaTime;
@@ -35,39 +35,41 @@ public class CameraFPS : MonoBehaviour {
                 }
                 if (Input.GetButtonDown("Fire2") && selected == true)
                 {
+                print("oof");
                     highfps = true;
                 }
             }
             else
             {
                 renderCam.Render();
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    selected = false;
+                }
                 if (Input.GetButtonDown("Fire2") || selected == false)
                 {
                     highfps = false;
                 }
             }
-        }
-        else if (stactive == false)
-        {
-                GetComponent<RawImage>().texture = stat;
-                stactive = true;
-        }
-        else
-        {
-            stactive = false;
-            GetComponent<RawImage>().texture = camTex;
-        }
+        //}
+        //else if (stactive == false)
+        //{
+        //        GetComponent<RawImage>().texture = stat;
+        //        stactive = true;
+        //}
+        //else
+        //{
+          //  stactive = false;
+          //  GetComponent<RawImage>().texture = camTex;
+        //}
     }
 
     void OnMouseDown()
     {
+        print("selected");
         if (selected == false)
         {
             selected = true;
-        }
-        else
-        {
-            selected = false;
         }
     }
 

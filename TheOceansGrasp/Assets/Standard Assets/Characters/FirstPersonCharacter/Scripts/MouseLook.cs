@@ -52,11 +52,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
             //    camera.localRotation = m_CameraTargetRot;
             //}
 
-            Debug.Log("Char Rot: " + character.transform.rotation.eulerAngles.x);
+
 
             if (-xRot + character.transform.rotation.eulerAngles.x < 270 && -xRot + character.transform.rotation.eulerAngles.x > 180)
             {
-                Debug.Log("MAX: XRot: " + -xRot + character.transform.rotation.eulerAngles.x);
                 character.transform.SetPositionAndRotation(character.transform.position, Quaternion.Euler(270, yRot + character.transform.rotation.eulerAngles.y, 0f));
             }
             else if(-xRot + character.transform.rotation.eulerAngles.x < 180 && -xRot + character.transform.rotation.eulerAngles.x > 90)
