@@ -63,12 +63,12 @@ public class SubmarineMovement : MonoBehaviour {
             // rotate right
             if (Input.GetButton("RotateRight"))
             {
-                rlAngle -= 15.0f * Time.deltaTime;
+                rlAngle += 15.0f * Time.deltaTime;
             }
             // rotate left
             else if (Input.GetButton("RotateLeft"))
             {
-                rlAngle += 15.0f * Time.deltaTime;
+                rlAngle -= 15.0f * Time.deltaTime;
             }
             // rotate up
             if(Input.GetButton("Ascend"))
