@@ -21,27 +21,31 @@ public class SeekerFish : MonoBehaviour {
     public float wanderAngle = 180; // Angle from straight to get new point
     public float minWanderDistance = 5;
     public float maxWanderDistance = 20;
+    public float wanderTargetTime = 5; // How long to seek the wander target
+    private float wanderTimer; // When zero, find new target
 
-    public int aggroRange = 20;
+    // Max range to check for targets (length of the raycast)
+    private float maxAggroRange = 0;
 
     public Vector3 Velocity;// { get; private set; }
-    private float speed = 0;
+    protected float speed = 0;
     // Public for testing
     public Vector3 targetPosition;
     public GameObject targetObject; //Need to know what to search for first
-    private Rigidbody rb;
+    protected Rigidbody rb;
 
-    private enum FishBehaviour
+    protected enum FishBehaviour
     {
         Wander, Seek, Flee
     };
-    private FishBehaviour behaviour = FishBehaviour.Wander;
+    protected FishBehaviour behaviour = FishBehaviour.Wander;
 
     [System.Serializable]
     public class SeekPriorities
     {
         public string tag;
         public int priority;
+        public float aggroRange;
     }
     public SeekPriorities[] tagPriorities;
     // Public for testing
@@ -50,16 +54,25 @@ public class SeekerFish : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    virtual protected void Start () {
         speed = 0;
         Velocity = Vector3.forward * speed;
         rb = GetComponent<Rigidbody>();
         targetPosition = GetRandomWanderDestination();
         behaviour = FishBehaviour.Wander;
+        wanderTimer = wanderTargetTime;
+
+        foreach (SeekPriorities s in tagPriorities)
+        {
+            if (s.aggroRange > maxAggroRange)
+            {
+                maxAggroRange = s.aggroRange;
+            }
+        }
     }
 	
 	// Update is called once per frame
-	void Update () {
+	virtual protected void Update () {
         //For debug only
         if (Input.GetKeyDown("u"))
         {
@@ -101,7 +114,7 @@ public class SeekerFish : MonoBehaviour {
         Move();
 	}
 
-    Vector3 GetRandomWanderDestination()
+    protected Vector3 GetRandomWanderDestination()
     {
         int sign = Random.Range(0, 2) - 1;
         if (sign == 0)
@@ -131,7 +144,7 @@ public class SeekerFish : MonoBehaviour {
         RaycastHit rayData = new RaycastHit();
         foreach (GameObject g in allObjects)
         {
-            if (Physics.Raycast(transform.position, g.transform.position - transform.position, out rayData, aggroRange) && rayData.collider.gameObject == g) {
+            if (Physics.Raycast(transform.position, g.transform.position - transform.position, out rayData, maxAggroRange) && rayData.collider.gameObject == g) {
                 inRange.Add(new KeyValuePair<GameObject, float>(g, rayData.distance));
             }
         }
@@ -144,7 +157,7 @@ public class SeekerFish : MonoBehaviour {
         // Player is higher than sub usually, need to be to flee from
         foreach (KeyValuePair<GameObject, float> pair in possibleTargets)
         {
-            if (IsGreaterPriority(pair.Key.tag))
+            if (IsGreaterPriorityInRange(pair.Key.tag, pair.Value))
             {
                 behaviour = FishBehaviour.Seek;
                 targetObject = pair.Key;
@@ -152,11 +165,11 @@ public class SeekerFish : MonoBehaviour {
         }
     }
 
-    bool IsGreaterPriority(string tag)
+    bool IsGreaterPriorityInRange(string tag, float distance)
     {
         foreach (SeekPriorities s in tagPriorities)
         {
-            if (tag == s.tag && s.priority < seekPriority)
+            if (tag == s.tag && s.priority < seekPriority && distance <= s.aggroRange)
             {
                 seekPriority = s.priority;
                 return true;
@@ -166,7 +179,7 @@ public class SeekerFish : MonoBehaviour {
         return false;
     }
 
-    bool IsTarget(string tag)
+    virtual protected bool IsTarget(string tag)
     {
         foreach (SeekPriorities s in tagPriorities)
         {
@@ -179,19 +192,25 @@ public class SeekerFish : MonoBehaviour {
         return false;
     }
 
-    public void Flee(GameObject fleeFrom)
+    virtual public void Flee(GameObject fleeFrom)
     {
         targetObject = fleeFrom;
         behaviour = FishBehaviour.Flee;
     }
 
-    protected void WanderBehavior()
+    virtual protected void WanderBehavior()
     {
+        wanderTimer -= Time.deltaTime;
+        if(wanderTimer < 0)
+        {
+            targetPosition = GetRandomWanderDestination();
+            wanderTimer = wanderTargetTime;
+        }
         targetObject = null;
         seekPriority = int.MaxValue;
     }
 
-    protected void SeekBehavior()
+    virtual protected void SeekBehavior()
     {
         if (targetObject && Vector3.Magnitude(targetObject.transform.position - transform.position) < maxSeekDistance)
         {
@@ -205,7 +224,7 @@ public class SeekerFish : MonoBehaviour {
         }
     }
 
-    protected void FleeBehavior()
+    virtual protected void FleeBehavior()
     {
         Vector3 away = transform.forward;
         if (targetObject)
@@ -223,7 +242,7 @@ public class SeekerFish : MonoBehaviour {
         targetPosition = transform.position + (away.normalized * 10);
     }
 
-    protected void Move()
+    virtual protected void Move()
     {
         // Rotate the object to face its target
         Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
@@ -249,7 +268,7 @@ public class SeekerFish : MonoBehaviour {
                 transform.rotation = prevRotation;
                 Vector3 newDestination = rayData.point + (rayData.normal * (rayData.distance + tempFishRadius));
                 float turnRate = Mathf.Deg2Rad * Mathf.Max(maxSpeedTurnRate, stoppedTurnRate * (maxSpeed / (speed + maxSpeed))) * Time.deltaTime;
-                transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, newDestination - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1));
+                transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, newDestination - transform.position, Mathf.Deg2Rad * turnRate * Time.deltaTime, 1));
                 speed -= acceleration * Time.deltaTime; // Slow down, later will add 1 acceleration
                 /**/
             }
@@ -283,7 +302,7 @@ public class SeekerFish : MonoBehaviour {
         rb.velocity = Velocity;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    virtual protected void OnCollisionEnter(Collision collision)
     {
         // Kamikaze fish - destroy on contact with a target object, not necessarily the one that is being sought 
         if(IsTarget(collision.gameObject.tag))

@@ -15,6 +15,9 @@ public class CameraFPS : MonoBehaviour {
     public bool selected = false;
     public Camera renderCam;
 
+    // For fish
+    public bool targeted = false;
+
 	// Use this for initialization
 	void Start () {
         renderCam.enabled = false;
@@ -73,7 +76,7 @@ public class CameraFPS : MonoBehaviour {
         }
     }
 
-    void Damage()
+    public void Damage()
     {
         if (damaged == false)
         {

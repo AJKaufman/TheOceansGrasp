@@ -227,15 +227,17 @@ MonoBehaviour:
   wanderAngle: 20
   minWanderDistance: 15
   maxWanderDistance: 20
-  aggroRange: 100
+  wanderTargetTime: 5
   Velocity: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
   tagPriorities:
   - tag: Player
     priority: 0
+    aggroRange: 20
   - tag: Sub
     priority: 1
+    aggroRange: 20
   seekPriority: 2147483647
   maxSeekDistance: 100
 --- !u!136 &136099927834189540
