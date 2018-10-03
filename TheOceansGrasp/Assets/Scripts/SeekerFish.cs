@@ -24,6 +24,8 @@ public class SeekerFish : MonoBehaviour {
     public float wanderTargetTime = 5; // How long to seek the wander target
     private float wanderTimer; // When zero, find new target
 
+    public float lifetime = 120; // Time in seconds for the fish to last when wandering, does not reset
+
     // Max range to check for targets (length of the raycast)
     private float maxAggroRange = 0;
 
@@ -208,6 +210,13 @@ public class SeekerFish : MonoBehaviour {
         }
         targetObject = null;
         seekPriority = int.MaxValue;
+
+        lifetime -= Time.deltaTime;
+        if(lifetime < 0)
+        {
+            // This may crash
+            Flee(FindObjectOfType<SubmarineMovement>().gameObject);
+        }
     }
 
     virtual protected void SeekBehavior()
@@ -237,6 +246,14 @@ public class SeekerFish : MonoBehaviour {
             else
             {
                 away = transform.position - targetObject.transform.position;
+            }
+        }
+        else
+        {
+            lifetime -= Time.deltaTime;
+            if (lifetime < 0)
+            {
+                Destroy(gameObject);
             }
         }
         targetPosition = transform.position + (away.normalized * 10);

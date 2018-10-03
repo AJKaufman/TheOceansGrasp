@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FlatFish : SeekerFish {
 
+    [Header("Flat Fish")]
     public float cameraAttackRange = 2;
     public float intoHoverSpeed = 2;
 
@@ -12,13 +13,14 @@ public class FlatFish : SeekerFish {
     public float ontoCameraSpeed = 1;
 
     // Should these all be audio sources?
+    [Header("Audio")]
     public AudioClip randomSwimmingAudio;
     public AudioClip inAttackRangeAudio;
     public AudioClip attackAudio;
     public AudioClip fleeAudio;
     private AudioSource audioPlayer;
 
-    public GameObject sub;
+    private GameObject sub;
     private bool isCamera = false;
     private enum CameraAttackBehavior
     {
@@ -26,15 +28,20 @@ public class FlatFish : SeekerFish {
     };
     private CameraAttackBehavior camBehavior = CameraAttackBehavior.Seek;
 
+    [Header("Timers")]
     public float attackDelay = 5;
     private float attackTimer;
+    public float randomAudioTime;
+    public float randomTimeAdded;
+    private float randomAudioTimer;
 
-	// Use this for initialization
-	override protected void Start () {
+    // Use this for initialization
+    override protected void Start () {
         base.Start();
 
         audioPlayer = GetComponent<AudioSource>();
         attackTimer = attackDelay;
+        randomAudioTimer = randomAudioTime + Random.Range(0, randomTimeAdded);
     }
 
     // Update is called once per frame
@@ -42,13 +49,20 @@ public class FlatFish : SeekerFish {
         base.Update();
 	}
 
+    protected override void WanderBehavior()
+    {
+        base.WanderBehavior();
+        randomAudioTimer -= Time.deltaTime;
+        if (randomAudioTimer < 0)
+        {
+            audioPlayer.clip = randomSwimmingAudio;
+            audioPlayer.Play();
+            randomAudioTimer = randomAudioTime + Random.Range(0, randomTimeAdded);
+        }
+    }
+
     override protected void SeekBehavior()
     {
-        if (!targetObject)
-        {
-            return;
-        }
-
         if (targetObject.tag == "Sub")
         {
             sub = targetObject;
@@ -56,6 +70,10 @@ public class FlatFish : SeekerFish {
             if (!targetObject)
             {
                 behaviour = FishBehaviour.Wander;
+            }
+            else
+            {
+                targetPosition = targetObject.transform.position;
             }
         }
         else if(targetObject.tag == "Player")
@@ -73,7 +91,6 @@ public class FlatFish : SeekerFish {
                 case CameraAttackBehavior.Seek:
                     if (Vector3.SqrMagnitude(targetPosition - transform.position) <= cameraAttackRange * cameraAttackRange)
                     {
-                        transform.SetParent(sub.transform);
                         audioPlayer.clip = inAttackRangeAudio;
                         audioPlayer.Play();
                         camBehavior = CameraAttackBehavior.Above;
@@ -94,6 +111,7 @@ public class FlatFish : SeekerFish {
                 case CameraAttackBehavior.Attach:
                     if (Vector3.SqrMagnitude(targetPosition - transform.position) <= closeAboveCamera * closeAboveCamera)
                     {
+                        transform.SetParent(sub.transform);
                         transform.position = targetPosition;
                         camBehavior = CameraAttackBehavior.Attack;
                     }
