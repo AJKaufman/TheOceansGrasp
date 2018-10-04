@@ -40,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1409114200949960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.09, y: 2.7986188, z: 2.5863276}
-  m_LocalScale: {x: 0.8, y: 0.05, z: 1.3}
+  m_LocalScale: {x: 1.2, y: 0.075, z: 1.95}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -211,8 +211,8 @@ MonoBehaviour:
   maxSpeed: 10
   acceleration: 5
   maxSpeedTurnRate: 200
-  stoppedTurnRate: 600
-  stopDistance: 0.5
+  stoppedTurnRate: 300
+  stopDistance: 0.2
   damage: 1
   willArrive: 0
   arriveDistance: 0
@@ -221,6 +221,7 @@ MonoBehaviour:
   minWanderDistance: 5
   maxWanderDistance: 20
   wanderTargetTime: 5
+  lifetime: 120
   Velocity: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
@@ -233,17 +234,19 @@ MonoBehaviour:
     aggroRange: 50
   seekPriority: 2147483647
   maxSeekDistance: 50
-  cameraAttackRange: 2
+  cameraAttackRange: 8
   intoHoverSpeed: 2
-  farAboveCamera: 2
-  closeAboveCamera: 0.5
-  ontoCameraSpeed: 2
+  farAboveCamera: 4
+  closeAboveCamera: 1
+  ontoCameraSpeed: 1
+  flattenOnCameraRate: 50
   randomSwimmingAudio: {fileID: 0}
   inAttackRangeAudio: {fileID: 0}
   attackAudio: {fileID: 0}
   fleeAudio: {fileID: 0}
-  sub: {fileID: 0}
   attackDelay: 5
+  randomAudioTime: 0
+  randomTimeAdded: 0
 --- !u!136 &136010799713875148
 CapsuleCollider:
   m_ObjectHideFlags: 1

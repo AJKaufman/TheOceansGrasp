@@ -11,6 +11,7 @@ public class FlatFish : SeekerFish {
     public float farAboveCamera = 2;
     public float closeAboveCamera = 0.2f;
     public float ontoCameraSpeed = 1;
+    public float flattenOnCameraRate = 30; // In degrees
 
     // Should these all be audio sources?
     [Header("Audio")]
@@ -100,30 +101,29 @@ public class FlatFish : SeekerFish {
                         audioPlayer.clip = inAttackRangeAudio;
                         audioPlayer.Play();
                         camBehavior = CameraAttackBehavior.Above;
-                        targetPosition = (targetObject.transform.forward * farAboveCamera) + targetObject.transform.position;
                         print("into above");
                     }
                     break;
 
-                case CameraAttackBehavior.Above:                    
-                    if (Vector3.SqrMagnitude((targetObject.transform.forward * farAboveCamera)) <= farAboveCamera * farAboveCamera)
+                case CameraAttackBehavior.Above:
+                    targetPosition = (targetObject.transform.forward * farAboveCamera) + targetObject.transform.position;
+                    if (Vector3.SqrMagnitude(targetPosition - transform.position) <= stopDistance * stopDistance)
                     {
-                        targetPosition = (targetObject.transform.forward * closeAboveCamera) + targetObject.transform.position;
                         camBehavior = CameraAttackBehavior.Attach;
                         print("into attach");
                     }
                     break;
 
                 case CameraAttackBehavior.Attach:
-                    if (Vector3.SqrMagnitude((targetObject.transform.forward * closeAboveCamera)) <= closeAboveCamera * closeAboveCamera)
+                    targetPosition = (targetObject.transform.forward * closeAboveCamera) + targetObject.transform.position;
+                    if (Vector3.SqrMagnitude(targetPosition - transform.position) <= stopDistance * stopDistance)
                     {
-                        transform.SetParent(sub.transform);
-                        transform.position = targetPosition;
                         camBehavior = CameraAttackBehavior.Attack;
                     }
                     break;
 
                 case CameraAttackBehavior.Attack:
+                    targetPosition = (targetObject.transform.forward * closeAboveCamera) + targetObject.transform.position;
                     attackTimer -= Time.deltaTime;
                     if (attackTimer < 0)
                     {
@@ -282,24 +282,30 @@ public class FlatFish : SeekerFish {
                     break;
 
                 case CameraAttackBehavior.Above:
-                    Vector3 newUp = Vector3.RotateTowards(transform.up, targetObject.transform.forward, stoppedTurnRate * Time.deltaTime, 1);
-                    transform.rotation = Quaternion.LookRotation(newUp);
+                    Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
+                    Quaternion prevRotation = transform.rotation;
+                    transform.rotation = Quaternion.LookRotation(rotation);
+
                     Velocity = (targetPosition - transform.position).normalized * intoHoverSpeed;
                     break;
 
                 case CameraAttackBehavior.Attach:
+                    Vector3 rot = Vector3.RotateTowards(transform.up, targetObject.transform.forward, flattenOnCameraRate * Mathf.Deg2Rad * Time.deltaTime, 1);
+                    transform.up = rot;
                     Velocity = (targetPosition - transform.position).normalized * ontoCameraSpeed;
                     break;
 
                 case CameraAttackBehavior.Attack:
                     Velocity = Vector3.zero;
                     transform.position = targetPosition;
+                    transform.up = targetObject.transform.forward;
                     break;
 
                 default: print("Unrecognized FlatFish behavior");
                     break;
             }
 
+            rb.angularVelocity = Vector3.zero;
             rb.velocity = Velocity;
         }
         else
