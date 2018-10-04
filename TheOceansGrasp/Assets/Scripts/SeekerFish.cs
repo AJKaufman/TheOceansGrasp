@@ -161,8 +161,7 @@ public class SeekerFish : MonoBehaviour {
         {
             if (IsGreaterPriorityInRange(pair.Key.tag, pair.Value))
             {
-                behaviour = FishBehaviour.Seek;
-                targetObject = pair.Key;
+                SetSeekTarget(pair.Key);
             }
         }
     }
@@ -179,6 +178,12 @@ public class SeekerFish : MonoBehaviour {
         }
 
         return false;
+    }
+
+    virtual protected void SetSeekTarget(GameObject seekTarget)
+    {
+        behaviour = FishBehaviour.Seek;
+        targetObject = seekTarget;
     }
 
     virtual protected bool IsTarget(string tag)

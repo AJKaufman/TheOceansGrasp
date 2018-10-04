@@ -63,6 +63,12 @@ public class FlatFish : SeekerFish {
 
     override protected void SeekBehavior()
     {
+        if (!targetObject)
+        {
+            behaviour = FishBehaviour.Wander;
+            return;
+        }
+
         if (targetObject.tag == "Sub")
         {
             sub = targetObject;
@@ -100,7 +106,7 @@ public class FlatFish : SeekerFish {
                     break;
 
                 case CameraAttackBehavior.Above:                    
-                    if (Vector3.SqrMagnitude(targetPosition - transform.position) <= farAboveCamera * farAboveCamera)
+                    if (Vector3.SqrMagnitude((targetObject.transform.forward * farAboveCamera)) <= farAboveCamera * farAboveCamera)
                     {
                         targetPosition = (targetObject.transform.forward * closeAboveCamera) + targetObject.transform.position;
                         camBehavior = CameraAttackBehavior.Attach;
@@ -109,7 +115,7 @@ public class FlatFish : SeekerFish {
                     break;
 
                 case CameraAttackBehavior.Attach:
-                    if (Vector3.SqrMagnitude(targetPosition - transform.position) <= closeAboveCamera * closeAboveCamera)
+                    if (Vector3.SqrMagnitude((targetObject.transform.forward * closeAboveCamera)) <= closeAboveCamera * closeAboveCamera)
                     {
                         transform.SetParent(sub.transform);
                         transform.position = targetPosition;
@@ -316,6 +322,20 @@ public class FlatFish : SeekerFish {
         }
         base.Flee(fleeFrom);
         isCamera = false;
+    }
+
+    protected override void SetSeekTarget(GameObject seekTarget)
+    {
+        if (seekTarget.tag == "Player")
+        {
+            Camera cam = targetObject.GetComponent<Camera>();
+            if (cam)
+            {
+                CameraFPS fps = GetCameraFPS(cam);
+                fps.targeted = false;
+            }
+        }
+        base.SetSeekTarget(seekTarget);
     }
 
     protected override bool IsTarget(string tag)
