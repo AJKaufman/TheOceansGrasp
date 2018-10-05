@@ -19,7 +19,7 @@ public class SubVariables : MonoBehaviour {
     energy = 200;
     displayedHealth.GetComponent<Slider>().value = health;
     displayedEnergy.GetComponent<Slider>().value = energy;
-        radius = gameObject.GetComponent<CapsuleCollider>().radius;
+        radius = gameObject.GetComponent<CapsuleCollider>().radius * 10.0f; // because the sub is scale 10
   }
 
   // Update is called once per frame
@@ -64,12 +64,12 @@ public class SubVariables : MonoBehaviour {
   {
         /* Your code here */
         // create a position for the damage to be spawned at
-        Vector2 randomDirection = Random.insideUnitCircle.normalized * radius;
-        float xLocation = Random.Range(-1.0f, 1.0f);
+        Vector2 randomDirection = Random.insideUnitCircle.normalized * radius; // at which point around the circular part of the hull
+        float zLocation = Random.Range(-5.0f, 5.0f); // length of the sub
 
         // set the position of the damage in relation to the submarine
         Vector3 currentSubPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        Vector3 damagePosition = new Vector3(currentSubPos.x + xLocation, currentSubPos.y + randomDirection.x, currentSubPos.z + randomDirection.y);
+        Vector3 damagePosition = new Vector3(currentSubPos.x + randomDirection.x, currentSubPos.y + randomDirection.y, currentSubPos.z + zLocation);
 
         // create the object
         GameObject temp = Instantiate(damageBlock, damagePosition, Quaternion.identity);

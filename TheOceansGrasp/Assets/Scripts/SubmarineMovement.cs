@@ -55,7 +55,7 @@ public class SubmarineMovement : MonoBehaviour {
             {
                 speed = maxBackSpeed;
             }
-            else if (speed < 0.01f && !Input.GetButton("Forward") && !Input.GetButton("Backward"))
+            else if (speed < 0.01f && speed > -0.01 && !Input.GetButton("Forward") && !Input.GetButton("Backward"))
             {
                 speed = 0.0f;
             }
