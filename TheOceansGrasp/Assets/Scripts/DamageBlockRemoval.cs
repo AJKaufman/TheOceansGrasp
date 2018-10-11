@@ -54,6 +54,17 @@ public class DamageBlockRemoval : MonoBehaviour {
                         Destroy(this.gameObject);
                     }
                 }
+                else
+                {
+                    // enable the canvas so that it's elements can be seen
+                    canvas.GetComponent<Canvas>().enabled = false;
+
+                    // reset timer
+                    repairTimer = 0.0f;
+
+                    // resets the progress bar
+                    slider.value = 0.0f;
+                }
             }
         }
 	}
@@ -61,22 +72,8 @@ public class DamageBlockRemoval : MonoBehaviour {
     private void OnMouseDown()
     {
         isClicked = true;
-        /*
-        // calculate the distance between the player and the damage block
-        distance = Vector3.Magnitude(player.GetComponent<Transform>().position - gameObject.transform.position);
-
-        // if it is within 2 meters
-        if(distance <= 2.0f)
-        {
-            // start incrementing the timer
-            repairTimer += Time.deltaTime;
-            // if the mouse has been held down for 2 seconds
-            if(repairTimer >= 2.0f)
-            {
-                Destroy(this.gameObject);
-            }
-        }*/
     }
+
 
     // resets the repair timer if they released early
     private void OnMouseUp()
