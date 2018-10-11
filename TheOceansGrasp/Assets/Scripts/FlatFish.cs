@@ -355,4 +355,9 @@ public class FlatFish : SeekerFish {
             return base.IsTarget(tag);
         }
     }
+
+    public bool IsAttached()
+    {
+        return camBehavior == CameraAttackBehavior.Attack;
+    }
 }

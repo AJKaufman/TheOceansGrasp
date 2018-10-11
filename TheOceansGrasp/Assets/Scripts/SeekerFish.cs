@@ -24,6 +24,8 @@ public class SeekerFish : MonoBehaviour {
     public float wanderTargetTime = 5; // How long to seek the wander target
     private float wanderTimer; // When zero, find new target
 
+    private float stunTimer = 0;
+
     public float lifetime = 120; // Time in seconds for the fish to last when wandering, does not reset
 
     // Max range to check for targets (length of the raycast)
@@ -75,21 +77,10 @@ public class SeekerFish : MonoBehaviour {
 	
 	// Update is called once per frame
 	virtual protected void Update () {
-        //For debug only
-        if (Input.GetKeyDown("u"))
+        if(stunTimer > 0)
         {
-            switch (behaviour)
-            {
-                case FishBehaviour.Wander:
-                case FishBehaviour.Seek:
-                    behaviour = FishBehaviour.Flee;
-                    break;
-
-                case FishBehaviour.Flee:
-                    Debug.Log("Fleeing");
-                    behaviour = FishBehaviour.Wander;
-                    break;
-            }
+            stunTimer -= Time.deltaTime;
+            return;
         }
 
         switch (behaviour)
@@ -322,6 +313,11 @@ public class SeekerFish : MonoBehaviour {
             }
         }
         rb.velocity = Velocity;
+    }
+
+    public void Stun(float time)
+    {
+        stunTimer = time;
     }
 
     virtual protected void OnCollisionEnter(Collision collision)
