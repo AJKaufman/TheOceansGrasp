@@ -54,7 +54,6 @@ public class SeekerFish : MonoBehaviour {
     public SeekPriorities[] tagPriorities;
     // Public for testing
     public int seekPriority = int.MaxValue;
-    public float maxSeekDistance = 100;
 
 
     // Use this for initialization
@@ -217,7 +216,7 @@ public class SeekerFish : MonoBehaviour {
 
     virtual protected void SeekBehavior()
     {
-        if (targetObject && Vector3.Magnitude(targetObject.transform.position - transform.position) < maxSeekDistance)
+        if (targetObject && Vector3.Magnitude(targetObject.transform.position - transform.position) < maxAggroRange)
         {
             // TODO: Get target velocity if it is the player, sub, or fish
             targetPosition = targetObject.transform.position;
@@ -234,7 +233,7 @@ public class SeekerFish : MonoBehaviour {
         Vector3 away = transform.forward;
         if (targetObject)
         {
-            if (Vector3.Magnitude(targetObject.transform.position - transform.position) > maxSeekDistance)
+            if (Vector3.Magnitude(targetObject.transform.position - transform.position) > maxAggroRange)
             {
                 // Remove fish after certain distance away from flee target
                 Destroy(gameObject);

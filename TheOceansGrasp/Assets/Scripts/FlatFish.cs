@@ -286,13 +286,13 @@ public class FlatFish : SeekerFish {
                     Quaternion prevRotation = transform.rotation;
                     transform.rotation = Quaternion.LookRotation(rotation);
 
-                    Velocity = (targetPosition - transform.position).normalized * intoHoverSpeed;
+                    Velocity = (targetPosition - transform.position).normalized * (intoHoverSpeed + sub.GetComponent<SubmarineMovement>().speed);
                     break;
 
                 case CameraAttackBehavior.Attach:
                     Vector3 rot = Vector3.RotateTowards(transform.up, targetObject.transform.forward, flattenOnCameraRate * Mathf.Deg2Rad * Time.deltaTime, 1);
                     transform.up = rot;
-                    Velocity = (targetPosition - transform.position).normalized * ontoCameraSpeed;
+                    Velocity = (targetPosition - transform.position).normalized * (ontoCameraSpeed + sub.GetComponent<SubmarineMovement>().speed);
                     break;
 
                 case CameraAttackBehavior.Attack:
@@ -321,10 +321,13 @@ public class FlatFish : SeekerFish {
 
     public override void Flee(GameObject fleeFrom)
     {
-        Camera cam = targetObject.GetComponent<Camera>();
-        if (cam)
+        if (targetObject)
         {
-            GetCameraFPS(cam).targeted = false;
+            Camera cam = targetObject.GetComponent<Camera>();
+            if (cam)
+            {
+                GetCameraFPS(cam).targeted = false;
+            }
         }
         base.Flee(fleeFrom);
         isCamera = false;
