@@ -21,6 +21,7 @@ public class CameraFPS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         renderCam.enabled = false;
+        
 	}
     
 
