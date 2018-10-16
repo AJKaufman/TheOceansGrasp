@@ -21,7 +21,7 @@ public class TeleportPlayer : MonoBehaviour {
         swim = player.GetComponent<PlayerSwim>();
         playerCamera = player.GetComponent<PlayerCamera>();
         subTransform = submarine.GetComponent<Transform>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update ()

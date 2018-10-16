@@ -35,7 +35,7 @@ public class FlatFish : SeekerFish {
     public float randomAudioTime;
     public float randomTimeAdded;
     private float randomAudioTimer;
-
+    private bool ignore = false;
     // Use this for initialization
     override protected void Start () {
         base.Start();
@@ -74,6 +74,11 @@ public class FlatFish : SeekerFish {
         {
             sub = targetObject;
             targetObject = GetNearestCamera(sub);
+            if(ignore == false)
+            {
+                Physics.IgnoreCollision(gameObject.GetComponent<CapsuleCollider>(), sub.GetComponent<BoxCollider>());
+                ignore = true;
+            }
             if (!targetObject)
             {
                 behaviour = FishBehaviour.Wander;
