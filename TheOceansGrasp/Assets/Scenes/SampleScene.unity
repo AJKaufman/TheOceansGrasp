@@ -8419,7 +8419,7 @@ MonoBehaviour:
   position: {x: 0, y: 0, z: 0}
   speed: 0
   speedIncrement: 3
-  maxSpeed: 10
+  maxSpeed: 5
   slowDown: 0.97
   udAngle: 0
   rlAngle: 0
