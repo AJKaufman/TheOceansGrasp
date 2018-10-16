@@ -44,9 +44,9 @@ public class SubmarineMovement : MonoBehaviour
             // otherwise convert it back to the normal settings
             else
             {
-                maxSpeed = 5.0f;
-                maxBackSpeed = -5.0f;
-                speedIncrement = 1.0f;
+                //maxSpeed = 5.0f;
+                //maxBackSpeed = -5.0f;
+                //speedIncrement = 1.0f;
             }
 
             // move forward
