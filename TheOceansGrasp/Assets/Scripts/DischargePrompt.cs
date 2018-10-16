@@ -52,6 +52,7 @@ public class DischargePrompt : MonoBehaviour
     // method to enable the emergency discharge prompt
     public void EmergencyPromptEnable()
     {
+        Debug.Log("Clicked Emergency Button On");
         panel.gameObject.GetComponent<Image>().enabled = true;
         panel.gameObject.GetComponentInChildren<Button>().enabled = true;
     }
@@ -59,6 +60,7 @@ public class DischargePrompt : MonoBehaviour
     // method to disable the emergency discharge prompt
     public void EmergencyPromptDisable()
     {
+        Debug.Log("Clicked Emergency Button Off");
         panel.gameObject.GetComponent<Image>().enabled = false;
         panel.gameObject.GetComponentInChildren<Button>().enabled = false;
     }
@@ -66,8 +68,9 @@ public class DischargePrompt : MonoBehaviour
     // method to toggle turbo
     public void ToggleTurbo()
     {
+        Debug.Log("Turbo Toggled");
         // toggle the boolean
-        if(isBoosting)
+        if (isBoosting)
         {
             isBoosting = false;
         }
