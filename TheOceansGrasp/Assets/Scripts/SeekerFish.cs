@@ -33,6 +33,7 @@ public class SeekerFish : MonoBehaviour {
 
     public Vector3 Velocity;// { get; private set; }
     protected float speed = 0;
+    public float avoidanceScale = 1;
     // Public for testing
     public Vector3 targetPosition;
     public GameObject targetObject; //Need to know what to search for first
@@ -276,7 +277,11 @@ public class SeekerFish : MonoBehaviour {
             {
                 /**/
                 speed -= acceleration * Time.deltaTime; // Slow down
-                Mathf.Max(speed, 0);
+                speed = Mathf.Max(speed, 0);
+                //float right = Vector3.Dot(transform.right, rayData.point);
+                //float up = Vector3.Dot(transform.up, rayData.point);
+                //Vector3 newDir = transform.forward + (transform.right * -right * avoidanceScale) + (transform.up * -up * avoidanceScale);
+                //transform.rotation = Quaternion.LookRotation(newDir);
                 transform.rotation = prevRotation;
                 Vector3 newDestination = rayData.point + (rayData.normal * (rayData.distance + tempFishRadius));
                 float turnRate = Mathf.Deg2Rad * Mathf.Max(maxSpeedTurnRate, stoppedTurnRate * (maxSpeed / (speed + maxSpeed))) * Time.deltaTime;
