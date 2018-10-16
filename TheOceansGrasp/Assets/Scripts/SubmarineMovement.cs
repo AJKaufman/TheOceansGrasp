@@ -17,6 +17,7 @@ public class SubmarineMovement : MonoBehaviour
     public float udAngle = 0.0f;
     public float rlAngle = 0.0f;
     public bool useSlowdown = true;
+    public bool boosting = false;
 
     // Use this for initialization
     void Start()
@@ -33,6 +34,21 @@ public class SubmarineMovement : MonoBehaviour
     {
         if (gameObject.tag == "Sub")
         {
+            // if boost is toggled, double some values to speed it up
+            if(boosting)
+            {
+                maxBackSpeed *= 2.0f;
+                maxSpeed *= 2.0f;
+                speedIncrement *= 2.0f;
+            }
+            // otherwise convert it back to the normal settings
+            else
+            {
+                maxSpeed = 5.0f;
+                maxBackSpeed = -5.0f;
+                speedIncrement = 1.0f;
+            }
+
             // move forward
             if (Input.GetButton("Forward"))
             {
