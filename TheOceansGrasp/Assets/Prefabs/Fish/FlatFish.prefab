@@ -98,7 +98,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -221,8 +221,12 @@ MonoBehaviour:
   minWanderDistance: 5
   maxWanderDistance: 20
   wanderTargetTime: 5
+  wanderDeviation: 4
+  wanderDistance: 0.5
+  prevWanderWeight: 30
   lifetime: 120
   Velocity: {x: 0, y: 0, z: 0}
+  avoidanceScale: 1
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
   tagPriorities:
@@ -233,7 +237,6 @@ MonoBehaviour:
     priority: 1
     aggroRange: 50
   seekPriority: 2147483647
-  maxSeekDistance: 50
   cameraAttackRange: 8
   intoHoverSpeed: 2
   farAboveCamera: 4

@@ -23,6 +23,10 @@ public class SeekerFish : MonoBehaviour {
     public float maxWanderDistance = 20;
     public float wanderTargetTime = 5; // How long to seek the wander target
     private float wanderTimer; // When zero, find new target
+    public float wanderDeviation = 2;
+    private Vector3 prevWanderDir = Vector3.zero;
+    public float wanderDistance = 0.5f; // The larger this is, the more the deviation will affect wander
+    public float prevWanderWeight = 8;
 
     private float stunTimer = 0;
 
@@ -65,6 +69,7 @@ public class SeekerFish : MonoBehaviour {
         targetPosition = GetRandomWanderDestination();
         behaviour = FishBehaviour.Wander;
         wanderTimer = wanderTargetTime;
+        prevWanderDir = transform.forward * prevWanderWeight;
 
         foreach (SeekPriorities s in tagPriorities)
         {
@@ -104,8 +109,13 @@ public class SeekerFish : MonoBehaviour {
                 break;
         }
 
-        Move();
+        //Move();
 	}
+
+    protected void FixedUpdate()
+    {
+        Move();
+    }
 
     protected Vector3 GetRandomWanderDestination()
     {
@@ -198,14 +208,20 @@ public class SeekerFish : MonoBehaviour {
 
     virtual protected void WanderBehavior()
     {
+        /*
         wanderTimer -= Time.deltaTime;
         if(wanderTimer < 0)
         {
             targetPosition = GetRandomWanderDestination();
             wanderTimer = wanderTargetTime;
         }
+        /**/
         targetObject = null;
         seekPriority = int.MaxValue;
+
+        Vector3 newDir = new Vector3(Random.Range(-wanderDeviation, wanderDeviation), Random.Range(-wanderDeviation, wanderDeviation), Random.Range(-wanderDeviation, wanderDeviation)).normalized * wanderDistance;
+        targetPosition = transform.position + prevWanderDir + newDir;
+        prevWanderDir = (prevWanderDir + newDir).normalized * prevWanderWeight;
 
         lifetime -= Time.deltaTime;
         if(lifetime < 0)
@@ -257,15 +273,10 @@ public class SeekerFish : MonoBehaviour {
 
     virtual protected void Move()
     {
-        // Rotate the object to face its target
-        Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
-        Quaternion prevRotation = transform.rotation;
-        transform.rotation = Quaternion.LookRotation(rotation);
-
         //Avoidance kinda
         float tempFishRadius = 0.5f;
         float halfFishLength = 1;
-        int framesAhead = 30; // Too far?
+        int framesAhead = 90; // Too far?
         // Make sure the start of the check is in the fish so that it will not be inside the obstacle
         Debug.DrawRay(transform.position - (transform.forward * halfFishLength), transform.forward * speed * Time.deltaTime * framesAhead, Color.red);
         RaycastHit rayData = new RaycastHit();
@@ -275,13 +286,20 @@ public class SeekerFish : MonoBehaviour {
             // Get obstacle tag list?
             if (!IsTarget(rayData.collider.tag))
             {
-                /**/
+                /*
                 speed -= acceleration * Time.deltaTime; // Slow down
                 speed = Mathf.Max(speed, 0);
-                //float right = Vector3.Dot(transform.right, rayData.point);
-                //float up = Vector3.Dot(transform.up, rayData.point);
-                //Vector3 newDir = transform.forward + (transform.right * -right * avoidanceScale) + (transform.up * -up * avoidanceScale);
+                /**/
+                float right = Vector3.Dot(rayData.point - transform.position, transform.right * tempFishRadius);
+                float up = Vector3.Dot(rayData.point - transform.position, transform.up * tempFishRadius);
+                Vector3 newDir = (transform.right * (1-right) * avoidanceScale) + (transform.up * (1-up) * avoidanceScale) + (transform.forward * avoidanceScale);
+                //targetPosition = newDir + transform.position;
+                // Rotate the object to face its target
+                Vector3 rotation = Vector3.RotateTowards(transform.forward, newDir, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
+                //Quaternion prevRotation = transform.rotation;
+                transform.rotation = Quaternion.LookRotation(rotation);
                 //transform.rotation = Quaternion.LookRotation(newDir);
+                /*
                 transform.rotation = prevRotation;
                 Vector3 newDestination = rayData.point + (rayData.normal * (rayData.distance + tempFishRadius));
                 float turnRate = Mathf.Deg2Rad * Mathf.Max(maxSpeedTurnRate, stoppedTurnRate * (maxSpeed / (speed + maxSpeed))) * Time.deltaTime;
@@ -289,6 +307,13 @@ public class SeekerFish : MonoBehaviour {
                 speed -= acceleration * Time.deltaTime; // Slow down, later will add 1 acceleration
                 /**/
             }
+        }
+        else
+        {
+            // Rotate the object to face its target
+            Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
+            //Quaternion prevRotation = transform.rotation;
+            transform.rotation = Quaternion.LookRotation(rotation);
         }
 
         float magnitude = Vector3.Magnitude(targetPosition - transform.position);
@@ -316,7 +341,8 @@ public class SeekerFish : MonoBehaviour {
                 }
             }
         }
-        rb.velocity = Velocity;
+        //rb.velocity = Velocity;
+        rb.MovePosition((Velocity * Time.deltaTime) + transform.position);
     }
 
     public void Stun(float time)

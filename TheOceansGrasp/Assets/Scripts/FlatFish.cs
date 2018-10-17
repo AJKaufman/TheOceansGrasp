@@ -43,6 +43,7 @@ public class FlatFish : SeekerFish {
         audioPlayer = GetComponent<AudioSource>();
         attackTimer = attackDelay;
         randomAudioTimer = randomAudioTime + Random.Range(0, randomTimeAdded);
+        rb.freezeRotation = true;
     }
 
     // Update is called once per frame
@@ -310,8 +311,8 @@ public class FlatFish : SeekerFish {
                     break;
             }
 
-            rb.angularVelocity = Vector3.zero;
-            rb.velocity = Velocity;
+            //rb.velocity = Velocity;
+            rb.MovePosition((Velocity * Time.deltaTime) + transform.position);
         }
         else
         {

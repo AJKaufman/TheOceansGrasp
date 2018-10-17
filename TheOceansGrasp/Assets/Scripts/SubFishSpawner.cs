@@ -8,10 +8,11 @@ using UnityEngine;
  */
 public class SubFishSpawner : MonoBehaviour {
 
-    public static float minDistanceToSpawnAt = 20.0f;
-    public static float maxDistanceToSpawnAt = 60.0f;
-    public static float maxSideDistanceToSpawnAt = 30.0f;
-    public static float maxHeightToSpawnAt = 30.0f;
+    public static SubFishSpawner instance;
+    public float minDistanceToSpawnAt = 20.0f;
+    public float maxDistanceToSpawnAt = 60.0f;
+    public float maxSideDistanceToSpawnAt = 30.0f;
+    public float maxHeightToSpawnAt = 30.0f;
 
     [System.Serializable]
     public class FishSpawn
@@ -42,18 +43,20 @@ public class SubFishSpawner : MonoBehaviour {
 
         void SpawnAhead(ref Transform transform)
         {
-            float spawnDistance = Random.Range(minDistanceToSpawnAt, maxDistanceToSpawnAt);
-            float spawnWidth = Random.Range(0, maxSideDistanceToSpawnAt * 2) - maxSideDistanceToSpawnAt;
-            float spawnHeight = Random.Range(0, maxHeightToSpawnAt * 2) - maxHeightToSpawnAt;
+            float spawnDistance = Random.Range(instance.minDistanceToSpawnAt, instance.maxDistanceToSpawnAt);
+            float spawnWidth = Random.Range(0, instance.maxSideDistanceToSpawnAt * 2) - instance.maxSideDistanceToSpawnAt;
+            float spawnHeight = Random.Range(0, instance.maxHeightToSpawnAt * 2) - instance.maxHeightToSpawnAt;
             Vector3 spawnPosition = (transform.forward * spawnDistance) + (transform.right * spawnWidth) + (transform.up * spawnHeight) + transform.position;
             GameObject fish = Instantiate(fishPrefab);
             fish.transform.position = spawnPosition;
+            fish.transform.rotation = Quaternion.LookRotation(transform.position - fish.transform.position);
         }
     }
     public FishSpawn[] fishToSpawn;
 
 	// Use this for initialization
 	void Start () {
+        instance = this;
         foreach (FishSpawn f in fishToSpawn)
         {
             Debug.Assert(f.fishPrefab);
