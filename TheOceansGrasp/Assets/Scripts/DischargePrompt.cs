@@ -69,6 +69,7 @@ public class DischargePrompt : MonoBehaviour
     public void ToggleTurbo()
     {
         Debug.Log("Turbo Toggled");
+        print("Turbo Toggled");
         // toggle the boolean
         if (isBoosting)
         {
