@@ -27,8 +27,8 @@ public class CameraFPS : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        //if (damaged == false && stactive == false)
-        //{
+        if (damaged == false)
+        {
             if (highfps == false)
             {
                 elapsed += Time.deltaTime;
@@ -37,63 +37,46 @@ public class CameraFPS : MonoBehaviour {
                     elapsed = 0;
                     renderCam.Render();
                 }
-                if (Input.GetButtonDown("Fire2") && selected == true)
-                {
-                print("oof");
-                    highfps = true;
-                }
             }
             else
             {
                 renderCam.Render();
-                if (Input.GetButtonDown("Fire1"))
-                {
-                    selected = false;
-                }
-                if (Input.GetButtonDown("Fire2") || selected == false)
-                {
-                    highfps = false;
-                }
             }
-        //}
-        //else if (stactive == false)
-        //{
-        //        GetComponent<RawImage>().texture = stat;
-        //        stactive = true;
-        //}
-        //else
-        //{
-          //  stactive = false;
-          //  GetComponent<RawImage>().texture = camTex;
-        //}
+        }
     }
 
-    void OnMouseDown()
+    /*void OnMouseDown()
     {
         print("selected");
         if (selected == false)
         {
             selected = true;
         }
-    }
+    }*/
 
     public void Damage()
     {
-        if (damaged == false)
-        {
-            damaged = true;
-        }
-        else if (broken == false)
+        if (damaged)
         {
             broken = true;
         }
+        damaged = true;
+        stactive = true;
+        GetComponent<RawImage>().texture = stat;
     }
 
-    void Repair()
+    public void Repair()
     {
         if (broken == false)
         {
             damaged = false;
+            stactive = false;
+            GetComponent<RawImage>().texture = camTex;
         }
+    }
+
+    public void HighFPS()
+    {
+        highfps = !highfps;
     }
 }
