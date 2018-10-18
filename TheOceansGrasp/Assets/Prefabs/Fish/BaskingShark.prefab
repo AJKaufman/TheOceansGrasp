@@ -39,10 +39,6 @@ GameObject:
   - component: {fileID: 4845009225578218}
   - component: {fileID: 114209475622231062}
   - component: {fileID: 65823380713998406}
-  - component: {fileID: 65536810278775230}
-  - component: {fileID: 65758607264990150}
-  - component: {fileID: 65812035633148774}
-  - component: {fileID: 65708916879481020}
   m_Layer: 0
   m_Name: BaskingShark
   m_TagString: Untagged
@@ -450,54 +446,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1.0000001}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65536810278775230
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1389817137185056}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10, y: 35, z: 20}
-  m_Center: {x: -20, y: 0, z: 12}
---- !u!65 &65708916879481020
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1389817137185056}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 35, y: 10, z: 20}
-  m_Center: {x: 0, y: -20, z: 12}
---- !u!65 &65758607264990150
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1389817137185056}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10, y: 35, z: 20}
-  m_Center: {x: 20, y: 0, z: 12}
---- !u!65 &65812035633148774
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1389817137185056}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 35, y: 10, z: 20}
-  m_Center: {x: 0, y: 20, z: 12}
 --- !u!65 &65823380713998406
 BoxCollider:
   m_ObjectHideFlags: 1
