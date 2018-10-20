@@ -12,9 +12,12 @@ public class DamageBlockRemoval : MonoBehaviour {
     public float distance;
     public float repairTimer;
     public bool isClicked;
+    public bool wrongObject;
+    private Camera playerCam;
 
 	// Use this for initialization
 	void Start () {
+        playerCam = player.GetComponentInChildren<Camera>();
         distance = 100.0f;
         repairTimer = 0.0f;
         isClicked = false;
@@ -27,11 +30,26 @@ public class DamageBlockRemoval : MonoBehaviour {
         {
             if (Input.GetButton("RepairTool"))
             {
+                RaycastHit hit;
+
+                if(Physics.Raycast(playerCam.ScreenPointToRay(Input.mousePosition), out hit))
+                {
+                    if(gameObject != hit.transform.gameObject)
+                    {
+                        wrongObject = true;
+                    }
+                    else
+                    {
+                        wrongObject = false;
+                    }
+                }
+                Debug.DrawRay(Input.mousePosition,new Vector3());
+
                 // calculate the distance between the player and the damage block
                 distance = Vector3.Magnitude(player.GetComponent<Transform>().position - gameObject.transform.position);
 
                 // if it is within 2 meters
-                if (distance <= 2.0f)
+                if (distance <= 2.0f && !wrongObject)
                 {
                     // enable the canvas so that it's elements can be seen
                     canvas.GetComponent<Canvas>().enabled = true;
@@ -68,7 +86,6 @@ public class DamageBlockRemoval : MonoBehaviour {
             }
         }
 	}
-
     private void OnMouseDown()
     {
         isClicked = true;
