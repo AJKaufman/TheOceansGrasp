@@ -37,16 +37,16 @@ public class SubmarineMovement : MonoBehaviour
             // if boost is toggled, double some values to speed it up
             if(boosting)
             {
-                maxBackSpeed *= 2.0f;
-                maxSpeed *= 2.0f;
-                speedIncrement *= 2.0f;
+                maxBackSpeed = -10.0f;
+                maxSpeed = 10.0f;
+                speedIncrement = 2.0f;
             }
             // otherwise convert it back to the normal settings
             else
             {
-                //maxSpeed = 5.0f;
-                //maxBackSpeed = -5.0f;
-                //speedIncrement = 1.0f;
+                maxSpeed = 5.0f;
+                maxBackSpeed = -5.0f;
+                speedIncrement = 1.0f;
             }
 
             // move forward

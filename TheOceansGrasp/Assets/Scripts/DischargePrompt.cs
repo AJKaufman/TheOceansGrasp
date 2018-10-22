@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DischargePrompt : MonoBehaviour
 {
     public Canvas mainScreen; // center of the screens inside the sub
-    private GameObject panel; // panel that holds the emergency prompt
+    public GameObject panel; // panel that holds the emergency prompt
     private GameObject damageRight; // right and left damage panels, corresponding to their screen directions
     private GameObject damageLeft;
     private GameObject brokenRight; // right and left broken camera panels, corresponding to their screen directions
@@ -18,9 +18,13 @@ public class DischargePrompt : MonoBehaviour
     private bool isBoosting; // boolean used to toggle turbo
     public GameObject submarine; // reference to the submarine object
     private SubmarineMovement subMovement; // reference to the submarine movement script
+    // color variable
+    private Color defaultColor;
+    public float radius = 80.0f; // for discharge ability
+    public List<GameObject> fish; // list of all the fish in the scene
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         // get a reference to the script
         subMovement = submarine.GetComponent<SubmarineMovement>();
@@ -29,11 +33,14 @@ public class DischargePrompt : MonoBehaviour
         isBoosting = false;
 
         // get the panel
-        panel = GameObject.Find("EmergencyPrompt");
+        //panel = GameObject.Find("EmergencyPrompt");
         damageLeft = GameObject.Find("DamageScreenLeft");
         damageRight = GameObject.Find("DamageScreenRight");
         brokenLeft = GameObject.Find("BrokenScreenLeft");
         brokenRight = GameObject.Find("BrokenScreenRight");
+
+        // turbo button color
+        defaultColor = turbo.GetComponent<Image>().color;
 
         // add event listeners
         //discharge.GetComponent<Button>().onClick.AddListener(EmergencyPromptEnable);
@@ -53,31 +60,90 @@ public class DischargePrompt : MonoBehaviour
     public void EmergencyPromptEnable()
     {
         Debug.Log("Clicked Emergency Button On");
-        panel.gameObject.GetComponent<Image>().enabled = true;
-        panel.gameObject.GetComponentInChildren<Button>().enabled = true;
+        //panel.gameObject.GetComponent<Image>().enabled = true;
+
+        // enable all of the children's Button components
+        Button[] buttons = { };
+        buttons = panel.gameObject.GetComponentsInChildren<Button>();
+        foreach(Button button in buttons)
+        {
+            button.enabled = true;
+        }
+
+        // enable all of the children's Text components
+        Text[] texts = { };
+        texts = panel.gameObject.GetComponentsInChildren<Text>();
+        foreach (Text text in texts)
+        {
+            text.enabled = true;
+        }
+
+        // enable all of the children's Image components
+        Image[] images = { };
+        images = panel.gameObject.GetComponentsInChildren<Image>();
+        foreach (Image image in images)
+        {
+            image.enabled = true;
+        }
     }
 
     // method to disable the emergency discharge prompt
     public void EmergencyPromptDisable()
     {
         Debug.Log("Clicked Emergency Button Off");
+
+        // disable all of the children's Button components
+        Button[] buttons = { };
+        buttons = panel.gameObject.GetComponentsInChildren<Button>();
+        foreach (Button button in buttons)
+        {
+            button.enabled = false;
+        }
+
+        // disable all of the children's Text components
+        Text[] texts = { };
+        texts = panel.gameObject.GetComponentsInChildren<Text>();
+        foreach (Text text in texts)
+        {
+            text.enabled = false;
+        }
+
+        // disable all of the children's Image components
+        Image[] images = { };
+        images = panel.gameObject.GetComponentsInChildren<Image>();
+        foreach (Image image in images)
+        {
+            image.enabled = false;
+        }
+
+        /*
         panel.gameObject.GetComponent<Image>().enabled = false;
         panel.gameObject.GetComponentInChildren<Button>().enabled = false;
+        panel.gameObject.GetComponentInChildren<Text>().enabled = true;
+        panel.gameObject.GetComponentInChildren<Image>().enabled = true;
+        */
+    }
+
+    // happens if 'yes' is pressed after the emergency prompt pops up
+    public void DischargeActivate()
+    {
+        
     }
 
     // method to toggle turbo
     public void ToggleTurbo()
     {
         Debug.Log("Turbo Toggled");
-        print("Turbo Toggled");
         // toggle the boolean
         if (isBoosting)
         {
             isBoosting = false;
+            turbo.GetComponent<Image>().color = defaultColor;
         }
         else
         {
             isBoosting = true;
+            turbo.GetComponent<Image>().color = Color.grey;
         }
 
         // update the submarineMovement script's corresponding boolean value
