@@ -59,10 +59,13 @@ public class CameraFPS : MonoBehaviour {
         if (damaged)
         {
             broken = true;
+            transform.GetChild(1).gameObject.SetActive(false);
+            transform.GetChild(2).gameObject.SetActive(true);
         }
         damaged = true;
         stactive = true;
         GetComponent<RawImage>().texture = stat;
+        transform.GetChild(1).gameObject.SetActive(true);
     }
 
     public void Repair()
@@ -72,6 +75,7 @@ public class CameraFPS : MonoBehaviour {
             damaged = false;
             stactive = false;
             GetComponent<RawImage>().texture = camTex;
+            transform.GetChild(1).gameObject.SetActive(false);
         }
     }
 

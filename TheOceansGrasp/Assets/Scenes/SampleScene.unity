@@ -3604,11 +3604,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScreen: {fileID: 300966644}
+  panel: {fileID: 0}
   discharge: {fileID: 1616437378}
   turbo: {fileID: 2116207108}
   yes: {fileID: 196129844}
   no: {fileID: 361361812}
   submarine: {fileID: 2050764014}
+  radius: 80
+  fish: []
 --- !u!224 &746744428
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3731,8 +3734,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPS: 5
-  stat: {fileID: 0}
-  camTex: {fileID: 0}
+  stat: {fileID: 2800000, guid: 736e209f77c9ff043ab9adf26eb3b8ab, type: 3}
+  camTex: {fileID: 8400000, guid: a9fb5a1dd9a6d1b40a62b236f5dd9426, type: 2}
   damaged: 0
   broken: 0
   stactive: 0
@@ -8698,6 +8701,8 @@ GameObject:
   - component: {fileID: 1949762439}
   - component: {fileID: 1949762442}
   - component: {fileID: 1949762441}
+  - component: {fileID: 1949762443}
+  - component: {fileID: 1949762444}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -8797,6 +8802,31 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
+--- !u!114 &1949762443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1949762437}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eed1d9cbe64423499f1fefc0ce50417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Resolution: 0
+  DefaultSpotCookie: {fileID: 0}
+--- !u!114 &1949762444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1949762437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: a26a3cae0411e804e8d08f4a62abf86e, type: 2}
 --- !u!1 &1951587369 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1230937884269482, guid: cf17dd24654126b4e82543c60c2eca61,
@@ -9503,8 +9533,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayedHealth: {fileID: 1823659527}
   displayedEnergy: {fileID: 1079056616}
+  progress: {fileID: 0}
   damagedSections: []
   damageBlock: {fileID: 2078959065}
+  goalObject: {fileID: 0}
 --- !u!136 &2050764019
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10227,8 +10259,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPS: 5
-  stat: {fileID: 0}
-  camTex: {fileID: 8400000, guid: a9fb5a1dd9a6d1b40a62b236f5dd9426, type: 2}
+  stat: {fileID: 2800000, guid: 736e209f77c9ff043ab9adf26eb3b8ab, type: 3}
+  camTex: {fileID: 8400000, guid: fbbf9f911cc1f564694c7010612ae342, type: 2}
   damaged: 0
   broken: 0
   stactive: 0

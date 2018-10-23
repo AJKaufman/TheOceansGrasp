@@ -10,6 +10,7 @@ public class TeleportPlayer : MonoBehaviour {
     private SubmarineMovement subMovement;
     private PlayerCamera playerCamera;
     private PlayerSwim swim;
+    private VolumetricLightRenderer lightRen;
     private float distanceFromHatch;
     private Transform subTransform;
     private Vector3 subPosition;
@@ -19,6 +20,7 @@ public class TeleportPlayer : MonoBehaviour {
         subMovement = submarine.GetComponent<SubmarineMovement>();
         subPosition = submarine.transform.position;
         swim = player.GetComponent<PlayerSwim>();
+        lightRen = player.GetComponentInChildren<VolumetricLightRenderer>();
         playerCamera = player.GetComponent<PlayerCamera>();
         subTransform = submarine.GetComponent<Transform>();
     }
@@ -40,7 +42,6 @@ public class TeleportPlayer : MonoBehaviour {
         //subTransform = submarine.GetComponent<Transform>();
         // update the submarine's position to move the hatch effectively
         subPosition = new Vector3(submarine.GetComponent<Transform>().position.x, submarine.GetComponent<Transform>().position.y, submarine.GetComponent<Transform>().position.z);
-
         if (inside)
         {
             // adding to it isn't actually moving the position
@@ -49,6 +50,7 @@ public class TeleportPlayer : MonoBehaviour {
             swim.enabled = true;
             playerCamera.enabled = false;
             subMovement.enabled = false;
+            lightRen.enabled = true;
             //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = false;
         }
         else
@@ -63,6 +65,7 @@ public class TeleportPlayer : MonoBehaviour {
                 playerCamera.enabled = true;
                 subMovement.enabled = true;
                 //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = true;
+                lightRen.enabled = false;
             }
         }
     }
