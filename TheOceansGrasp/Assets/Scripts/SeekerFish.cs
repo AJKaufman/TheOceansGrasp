@@ -147,7 +147,7 @@ public class SeekerFish : MonoBehaviour {
         RaycastHit rayData = new RaycastHit();
         foreach (GameObject g in allObjects)
         {
-            if (Physics.Raycast(transform.position, g.transform.position - transform.position, out rayData, maxAggroRange) && rayData.collider.gameObject == g) {
+            if (Physics.Raycast(transform.position, (g.transform.position - transform.position).normalized, out rayData, maxAggroRange) && rayData.collider.gameObject == g) {
                 inRange.Add(new KeyValuePair<GameObject, float>(g, rayData.distance));
             }
         }
@@ -342,7 +342,9 @@ public class SeekerFish : MonoBehaviour {
             }
         }
         //rb.velocity = Velocity;
-        rb.MovePosition((Velocity * Time.deltaTime) + transform.position);
+        //rb.MovePosition((Velocity * Time.deltaTime) + transform.position);
+        Vector3 vChange = Velocity - rb.velocity;
+        rb.AddForce(vChange, ForceMode.VelocityChange);
     }
 
     public void Stun(float time)

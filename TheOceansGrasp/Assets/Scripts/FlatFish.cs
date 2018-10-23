@@ -99,6 +99,7 @@ public class FlatFish : SeekerFish {
             else
             {
                 targetPosition = targetObject.transform.position;
+                transform.parent = sub.transform;
             }
         }
         else if(targetObject.tag == "Player")
@@ -303,13 +304,13 @@ public class FlatFish : SeekerFish {
                     Quaternion prevRotation = transform.rotation;
                     transform.rotation = Quaternion.LookRotation(rotation);
 
-                    Velocity = (targetPosition - transform.position).normalized * (intoHoverSpeed + sub.GetComponent<SubmarineMovement>().speed);
+                    Velocity = (targetPosition - transform.position).normalized * (intoHoverSpeed);// + sub.GetComponent<SubmarineMovement>().speed);
                     break;
 
                 case CameraAttackBehavior.Attach:
                     Vector3 rot = Vector3.RotateTowards(transform.up, targetObject.transform.forward, flattenOnCameraRate * Mathf.Deg2Rad * Time.deltaTime, 1);
                     transform.up = rot;
-                    Velocity = (targetPosition - transform.position).normalized * (ontoCameraSpeed + sub.GetComponent<SubmarineMovement>().speed);
+                    Velocity = (targetPosition - transform.position).normalized * (ontoCameraSpeed);// + sub.GetComponent<SubmarineMovement>().speed);
                     break;
 
                 case CameraAttackBehavior.Attack:
@@ -323,7 +324,9 @@ public class FlatFish : SeekerFish {
             }
 
             //rb.velocity = Velocity;
-            rb.MovePosition((Velocity * Time.deltaTime) + transform.position);
+            //rb.MovePosition((Velocity * Time.deltaTime) + transform.position);
+            Vector3 vChange = Velocity - rb.velocity;
+            rb.AddForce(vChange, ForceMode.VelocityChange);
         }
         else
         {
@@ -355,6 +358,7 @@ public class FlatFish : SeekerFish {
     {
         if (seekTarget.tag == "Player")
         {
+            transform.parent = null;
             Camera cam = targetObject.GetComponent<Camera>();
             if (cam)
             {
