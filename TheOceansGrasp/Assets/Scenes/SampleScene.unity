@@ -508,7 +508,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 746744427}
-        m_MethodName: EnhanceScreenRightToggle
+        m_MethodName: EnhanceScreenToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1565,7 +1565,6 @@ GameObject:
   - component: {fileID: 300966643}
   - component: {fileID: 300966642}
   - component: {fileID: 300966641}
-  - component: {fileID: 300966646}
   - component: {fileID: 300966647}
   - component: {fileID: 300966649}
   - component: {fileID: 300966648}
@@ -1582,18 +1581,18 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 300966640}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fdccdd02d1519e644a9da11d3dcb2787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   FPS: 5
-  stat: {fileID: 0}
-  camTex: {fileID: 0}
+  stat: {fileID: 2800000, guid: 736e209f77c9ff043ab9adf26eb3b8ab, type: 3}
+  camTex: {fileID: 8400000, guid: bc9d9c0bd004e4540a91873c43a57090, type: 2}
   damaged: 0
   broken: 0
   stactive: 0
-  highfps: 0
+  highfps: 1
   selected: 0
   renderCam: {fileID: 508060030}
   targeted: 0
@@ -1679,18 +1678,6 @@ RectTransform:
   m_AnchoredPosition: {x: 3000, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &300966646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 300966640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7d19ec7952ddf94093b5c830a962164, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Light: {fileID: 1654941420}
 --- !u!65 &300966647
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3494,7 +3481,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 746744427}
-        m_MethodName: EnhanceScreenLeftToggle
+        m_MethodName: EnhanceScreenToggle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7430,7 +7417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1654941421
 Transform:
   m_ObjectHideFlags: 0

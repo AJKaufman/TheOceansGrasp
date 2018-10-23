@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class DischargePrompt : MonoBehaviour
@@ -31,13 +32,6 @@ public class DischargePrompt : MonoBehaviour
 
         // set boolean
         isBoosting = false;
-
-        // get the panel
-        //panel = GameObject.Find("EmergencyPrompt");
-        damageLeft = GameObject.Find("DamageScreenLeft");
-        damageRight = GameObject.Find("DamageScreenRight");
-        brokenLeft = GameObject.Find("BrokenScreenLeft");
-        brokenRight = GameObject.Find("BrokenScreenRight");
 
         // turbo button color
         defaultColor = turbo.GetComponent<Image>().color;
@@ -151,59 +145,11 @@ public class DischargePrompt : MonoBehaviour
     }
 
     // Methods for the side cameras
-    // method to enable the screen damage panel on the right screen
-    public void DamageScreenRightEnable()
+    // method to turn on/off high fps and light
+    public void EnhanceScreenToggle()
     {
-        damageRight.gameObject.GetComponent<Image>().enabled = true;
-    }
-    // method to disable the screen damage panel on the right screen
-    public void DamageScreenRightDisable()
-    {
-        damageRight.gameObject.GetComponent<Image>().enabled = false;
-    }
-    // method to enable the camera broken panel on the right screen
-    public void BrokenScreenRightEnable()
-    {
-        brokenRight.gameObject.GetComponent<Image>().enabled = true;
-        brokenRight.GetComponentInChildren<Text>().enabled = true;
-    }
-    // method to disable the camera broken panel on the right screen
-    public void BrokenScreenRightDisable()
-    {
-        brokenRight.gameObject.GetComponent<Image>().enabled = false;
-        brokenRight.GetComponentInChildren<Text>().enabled = false;
-    }
-    // method to turn on/off high fps and the light for the right screen
-    public void EnhanceScreenRightToggle()
-    {
-        
-    }
-
-    // method to enable the screen damage panel on the left screen
-    public void DamageScreenLeftEnable()
-    {
-        damageLeft.gameObject.GetComponent<Image>().enabled = true;
-    }
-    // method to disable the screen damage panel on the left screen
-    public void DamageScreenLeftDisable()
-    {
-        damageLeft.gameObject.GetComponent<Image>().enabled = false;
-    }
-    // method to enable the camera broken panel on the left screen
-    public void BrokenScreenLeftEnable()
-    {
-        brokenLeft.gameObject.GetComponent<Image>().enabled = true;
-        brokenLeft.GetComponentInChildren<Text>().enabled = true;
-    }
-    // method to disable the camera broken panel on the left screen
-    public void BrokenScreenLeftDisable()
-    {
-        brokenLeft.gameObject.GetComponent<Image>().enabled = false;
-        brokenLeft.GetComponentInChildren<Text>().enabled = false;
-    }
-    // method to turn on/off high fps and the light for the left screen
-    public void EnhanceScreenLeftToggle()
-    {
-
+        GameObject testo = EventSystem.current.currentSelectedGameObject;
+        testo.GetComponentInParent<CameraFPS>().HighFPS();
+        testo.GetComponentInParent<LightsOn>().TurnOn();
     }
 }
