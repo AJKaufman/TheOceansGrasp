@@ -3889,7 +3889,8 @@ MonoBehaviour:
   no: {fileID: 361361812}
   submarine: {fileID: 2050764014}
   radius: 80
-  fish: []
+  seekerScripts: []
+  energySlider: {fileID: 1079056616}
 --- !u!224 &746744428
 RectTransform:
   m_ObjectHideFlags: 0

@@ -22,7 +22,8 @@ public class DischargePrompt : MonoBehaviour
     // color variable
     private Color defaultColor;
     public float radius = 80.0f; // for discharge ability
-    public List<GameObject> fish; // list of all the fish in the scene
+    public SeekerFish[] seekerScripts; // list of all the fish in the scene
+    public Slider energySlider;
 
     // Use this for initialization
     void Start ()
@@ -35,6 +36,9 @@ public class DischargePrompt : MonoBehaviour
 
         // turbo button color
         defaultColor = turbo.GetComponent<Image>().color;
+
+        //fish = new List<GameObject>();
+        seekerScripts = FindObjectsOfType<SeekerFish>();
 
         // add event listeners
         //discharge.GetComponent<Button>().onClick.AddListener(EmergencyPromptEnable);
@@ -121,7 +125,29 @@ public class DischargePrompt : MonoBehaviour
     // happens if 'yes' is pressed after the emergency prompt pops up
     public void DischargeActivate()
     {
-        
+        // check to make sure there is enough energy to use
+        if(energySlider.GetComponent<Slider>().value >= 40.0f)
+        {
+            Debug.Log("DISCHARGING!");
+
+            // find all seekerfish scripts in the scene
+            seekerScripts = FindObjectsOfType<SeekerFish>();
+
+            // loop through all of the fish
+            foreach (SeekerFish seekingFish in seekerScripts)
+            {
+                // stun the fish and then make them flee
+                seekingFish.Stun(5.0f);
+                seekingFish.Flee(submarine);
+
+                // deplete energy
+                energySlider.GetComponent<Slider>().value -= 40.0f; //40%
+            }
+        }
+        else
+        {
+            Debug.Log("Insufficient Energy To Discharge!");
+        }
     }
 
     // method to toggle turbo
