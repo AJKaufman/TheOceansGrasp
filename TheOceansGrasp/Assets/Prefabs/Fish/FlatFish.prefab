@@ -122,7 +122,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 200
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -132,23 +132,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.002
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
-      time: 1
+      time: 0.60046387
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -1.002004
+      outSlope: -1.002004
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -243,13 +243,13 @@ MonoBehaviour:
   closeAboveCamera: 1
   ontoCameraSpeed: 1
   flattenOnCameraRate: 50
-  randomSwimmingAudio: {fileID: 0}
-  inAttackRangeAudio: {fileID: 0}
-  attackAudio: {fileID: 0}
-  fleeAudio: {fileID: 0}
+  randomSwimmingAudio: {fileID: 8300000, guid: 2ea1e4b9d17af414baa2dc722d9c184e, type: 3}
+  inAttackRangeAudio: {fileID: 8300000, guid: f0460f23280744b47bb80252644f0f2c, type: 3}
+  attackAudio: {fileID: 8300000, guid: cdf4fb94d7d6e0b4fb0093b25a112739, type: 3}
+  fleeAudio: {fileID: 8300000, guid: 6b0b76854164ae744ae8d996ef7b5762, type: 3}
   attackDelay: 5
-  randomAudioTime: 0
-  randomTimeAdded: 0
+  randomAudioTime: 3
+  randomTimeAdded: 5
 --- !u!136 &136010799713875148
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -36,6 +36,7 @@ public class FlatFish : SeekerFish {
     public float randomTimeAdded;
     private float randomAudioTimer;
     private bool ignore = false;
+
     // Use this for initialization
     override protected void Start () {
         base.Start();
@@ -60,6 +61,17 @@ public class FlatFish : SeekerFish {
             audioPlayer.clip = randomSwimmingAudio;
             audioPlayer.Play();
             randomAudioTimer = randomAudioTime + Random.Range(0, randomTimeAdded);
+        }
+    }
+
+    protected override void FleeBehavior()
+    {
+        base.FleeBehavior();
+        if (!audioPlayer.isPlaying && audioPlayer.enabled)
+        {
+            audioPlayer.loop = true;
+            audioPlayer.clip = fleeAudio;
+            audioPlayer.Play();
         }
     }
 
@@ -92,8 +104,6 @@ public class FlatFish : SeekerFish {
         else if(targetObject.tag == "Player")
         {
             Flee(targetObject);
-            audioPlayer.clip = fleeAudio;
-            audioPlayer.Play();
             return;
         }
 
@@ -240,8 +250,10 @@ public class FlatFish : SeekerFish {
                     audioPlayer.clip = attackAudio;
                     audioPlayer.Play();
                     cameraFPS.Damage();
-                    print(name + " attacked");
 
+                    Flee(sub);
+
+                    /*
                     GameObject nextCam = GetNextCamera(sub, targetObject);
                     if(nextCam && nextCam != targetObject)
                     {
@@ -254,10 +266,9 @@ public class FlatFish : SeekerFish {
                         //Flee(sub);
                     }
                     return;
+                    */
                 }
         }
-
-        print(name + " unable to attack.");
     }
 
     private CameraFPS GetCameraFPS(Camera cam)
@@ -329,6 +340,7 @@ public class FlatFish : SeekerFish {
     {
         if (targetObject)
         {
+            transform.parent = null;
             Camera cam = targetObject.GetComponent<Camera>();
             if (cam)
             {

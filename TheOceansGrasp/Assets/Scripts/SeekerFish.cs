@@ -22,7 +22,7 @@ public class SeekerFish : MonoBehaviour {
     public float minWanderDistance = 5;
     public float maxWanderDistance = 20;
     public float wanderTargetTime = 5; // How long to seek the wander target
-    private float wanderTimer; // When zero, find new target
+    //private float wanderTimer; // When zero, find new target
     public float wanderDeviation = 2;
     private Vector3 prevWanderDir = Vector3.zero;
     public float wanderDistance = 0.5f; // The larger this is, the more the deviation will affect wander
@@ -68,7 +68,7 @@ public class SeekerFish : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         targetPosition = GetRandomWanderDestination();
         behaviour = FishBehaviour.Wander;
-        wanderTimer = wanderTargetTime;
+        //wanderTimer = wanderTargetTime;
         prevWanderDir = transform.forward * prevWanderWeight;
 
         foreach (SeekPriorities s in tagPriorities)
