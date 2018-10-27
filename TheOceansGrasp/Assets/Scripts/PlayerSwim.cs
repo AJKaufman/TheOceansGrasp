@@ -66,37 +66,44 @@ public class PlayerSwim : MonoBehaviour
             right = Vector3.Cross(gameObject.transform.forward, gameObject.transform.up);
             right = right.normalized;
             */
-
+            velocity = Vector3.zero;
+            bool isGoing = false;
             if (Input.GetKey(KeyCode.W))
             {
                 //velocity = transform.forward;
-                velocity = forward;
-                speed += speedIncrement * Time.deltaTime;
+                velocity += forward;
+                //speed += speedIncrement * Time.deltaTime;
+                isGoing = true;
             }
             else if (Input.GetKey(KeyCode.S))
             {
-                velocity = forward * -1.0f;
-                speed += speedIncrement * Time.deltaTime;
+                velocity += forward * -1.0f;
+                //speed += speedIncrement * Time.deltaTime;
+                isGoing = true;
             }
             if (Input.GetKey(KeyCode.A))
             {
-                velocity = right * -1.0f;
-                speed += speedIncrement * Time.deltaTime;
+                velocity += right * -1.0f;
+                //speed += speedIncrement * Time.deltaTime;
+                isGoing = true;
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                velocity = right;
-                speed += speedIncrement * Time.deltaTime;
+                velocity += right;
+                //speed += speedIncrement * Time.deltaTime;
+                isGoing = true;
             }
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                velocity = up * -1.0f;
-                speed += speedIncrement * Time.deltaTime;
+                velocity += up * -1.0f;
+                //speed += speedIncrement * Time.deltaTime;
+                isGoing = true;
             }
             else if (Input.GetKey(KeyCode.Space))
             {
-                velocity = up;
-                speed += speedIncrement * Time.deltaTime;
+                velocity += up;
+                //speed += speedIncrement * Time.deltaTime;
+                isGoing = true;
             }
             else if (!Input.GetKey(KeyCode.W) &&
                 !Input.GetKey(KeyCode.A) &&
@@ -107,6 +114,11 @@ public class PlayerSwim : MonoBehaviour
                 !Input.GetKey(KeyCode.W) && useSlowdown)
             {
                 speed *= slowDown;
+            }
+
+            if (isGoing)
+            {
+                speed += speedIncrement * Time.deltaTime;
             }
 
             if (speed > maxSpeed)

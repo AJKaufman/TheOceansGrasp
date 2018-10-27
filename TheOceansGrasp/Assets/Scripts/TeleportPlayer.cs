@@ -51,6 +51,7 @@ public class TeleportPlayer : MonoBehaviour {
             playerCamera.enabled = false;
             subMovement.enabled = false;
             lightRen.enabled = true;
+            submarine.GetComponent<Rigidbody>().isKinematic = true;
             //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = false;
         }
         else
