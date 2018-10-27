@@ -17,6 +17,7 @@ public class SubVariables : MonoBehaviour {
     public List<GameObject> damagedSections = new List<GameObject>();
     public GameObject damageBlock;
     public GameObject goalObject;
+    public Camera frontCamera;
     private Vector3 offSetSubmarinePos;
 
   // Use this for initialization
@@ -29,7 +30,7 @@ public class SubVariables : MonoBehaviour {
         radius = gameObject.GetComponent<CapsuleCollider>().radius * 10.0f; // because the sub is scale 10
 
         // calculate starting distance
-        startDistance = Vector3.Distance(gameObject.transform.position, goalObject.transform.position);
+        startDistance = Vector3.Distance(frontCamera.transform.position, goalObject.transform.position);
 
         // create an offset for the position in the submarine that the distance calculation will run against
         //offSetSubmarinePos = new Vector3(0.0f, 0.0f, 10.0f);
@@ -41,7 +42,7 @@ public class SubVariables : MonoBehaviour {
     loseEnergy();
 
    // calculate the distance
-   distance = Vector3.Distance(gameObject.transform.position, goalObject.transform.position);
+   distance = Vector3.Distance(frontCamera.transform.position, goalObject.transform.position);
    //distance = Vector3.Distance(gameObject.transform.position+offSetSubmarinePos, goalObject.transform.position);
     // convert to a percentage
     percent = ((startDistance - distance) / startDistance)*100.0f;
