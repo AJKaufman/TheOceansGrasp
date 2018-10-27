@@ -114,7 +114,10 @@ public class SeekerFish : MonoBehaviour {
 
     protected void FixedUpdate()
     {
-        Move();
+        if(stunTimer <= 0)
+        {
+            Move(maxSpeed);
+        }
     }
 
     protected Vector3 GetRandomWanderDestination()
@@ -271,7 +274,7 @@ public class SeekerFish : MonoBehaviour {
         targetPosition = transform.position + (away.normalized * 10);
     }
 
-    virtual protected void Move()
+    virtual protected void Move(float currentMaxSpeed)
     {
         //Avoidance kinda
         float tempFishRadius = 0.5f;
@@ -330,26 +333,33 @@ public class SeekerFish : MonoBehaviour {
         }
         else
         {
-            speed = Mathf.Min(maxSpeed, speed + (acceleration * Time.deltaTime));
+            speed = Mathf.Min(currentMaxSpeed, speed + (acceleration * Time.deltaTime));
             Velocity = transform.forward * speed;
             if (willArrive && arriveDistance > 0)
             {
                 if (magnitude <= arriveDistance)
                 {
+                    Velocity /= speed;
                     speed = Mathf.Max(magnitude / arriveDistance, minArriveSpeed);
                     Velocity *= speed;
                 }
             }
         }
         //rb.velocity = Velocity;
-        //rb.MovePosition((Velocity * Time.deltaTime) + transform.position);
-        Vector3 vChange = Velocity - rb.velocity;
-        rb.AddForce(vChange, ForceMode.VelocityChange);
+        rb.MovePosition((Velocity * Time.deltaTime) + transform.position);
+        //Vector3 vChange = Velocity - rb.velocity;
+        //rb.AddForce(vChange, ForceMode.VelocityChange);
     }
 
     public void Stun(float time)
     {
         stunTimer = time;
+    }
+
+    public void Stun(float time, GameObject fleeFrom)
+    {
+        stunTimer = time;
+        Flee(fleeFrom);
     }
 
     virtual protected void OnCollisionEnter(Collision collision)

@@ -118,12 +118,21 @@ public class FlatFish : SeekerFish {
                         audioPlayer.clip = inAttackRangeAudio;
                         audioPlayer.Play();
                         camBehavior = CameraAttackBehavior.Above;
+                        rb.isKinematic = true; // Disable rigid body
                         print("into above");
                     }
                     break;
 
                 case CameraAttackBehavior.Above:
                     targetPosition = (targetObject.transform.forward * farAboveCamera) + targetObject.transform.position;
+
+                    Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
+                    Quaternion prevRotation = transform.rotation;
+                    transform.rotation = Quaternion.LookRotation(rotation);
+
+                    Velocity = (targetPosition - transform.position).normalized * (intoHoverSpeed);// + sub.GetComponent<SubmarineMovement>().speed);
+                    transform.position += Velocity * Time.deltaTime;
+
                     if (Vector3.SqrMagnitude(targetPosition - transform.position) <= stopDistance * stopDistance)
                     {
                         camBehavior = CameraAttackBehavior.Attach;
@@ -133,20 +142,33 @@ public class FlatFish : SeekerFish {
 
                 case CameraAttackBehavior.Attach:
                     targetPosition = (targetObject.transform.forward * closeAboveCamera) + targetObject.transform.position;
+
+                    Vector3 rot = Vector3.RotateTowards(transform.up, targetObject.transform.forward, flattenOnCameraRate * Mathf.Deg2Rad * Time.deltaTime, 1);
+                    transform.up = rot;
+
+                    Velocity = (targetPosition - transform.position).normalized * (ontoCameraSpeed);// + sub.GetComponent<SubmarineMovement>().speed);
+                    transform.position += Velocity * Time.deltaTime;
+
                     if (Vector3.SqrMagnitude(targetPosition - transform.position) <= stopDistance * stopDistance)
                     {
                         camBehavior = CameraAttackBehavior.Attack;
+                        targetPosition = (targetObject.transform.forward * closeAboveCamera) + targetObject.transform.position;
+                        transform.position = targetPosition;
+                        print("into stick");
                     }
                     break;
 
                 case CameraAttackBehavior.Attack:
                     targetPosition = (targetObject.transform.forward * closeAboveCamera) + targetObject.transform.position;
+
                     attackTimer -= Time.deltaTime;
                     if (attackTimer < 0)
                     {
                         Attack();
                         attackTimer = attackDelay;
                     }
+                    //transform.position = targetPosition;
+                    //transform.up = targetObject.transform.forward;
                     break;
 
                 default:
@@ -289,34 +311,40 @@ public class FlatFish : SeekerFish {
         return fps;
     }
 
-    protected override void Move()
+    protected override void Move(float currentMaxSpeed)
     {
         if (isCamera)
         {
             switch (camBehavior)
             {
                 case CameraAttackBehavior.Seek:
-                    base.Move();
+                    base.Move(currentMaxSpeed + sub.GetComponent<SubmarineMovement>().speed);
                     break;
 
                 case CameraAttackBehavior.Above:
+                    /*
                     Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
                     Quaternion prevRotation = transform.rotation;
                     transform.rotation = Quaternion.LookRotation(rotation);
 
                     Velocity = (targetPosition - transform.position).normalized * (intoHoverSpeed);// + sub.GetComponent<SubmarineMovement>().speed);
+                    */
                     break;
 
                 case CameraAttackBehavior.Attach:
+                    /*
                     Vector3 rot = Vector3.RotateTowards(transform.up, targetObject.transform.forward, flattenOnCameraRate * Mathf.Deg2Rad * Time.deltaTime, 1);
                     transform.up = rot;
                     Velocity = (targetPosition - transform.position).normalized * (ontoCameraSpeed);// + sub.GetComponent<SubmarineMovement>().speed);
+                    */
                     break;
 
                 case CameraAttackBehavior.Attack:
+                    /*
                     Velocity = Vector3.zero;
                     transform.position = targetPosition;
                     transform.up = targetObject.transform.forward;
+                    */
                     break;
 
                 default: print("Unrecognized FlatFish behavior");
@@ -325,12 +353,13 @@ public class FlatFish : SeekerFish {
 
             //rb.velocity = Velocity;
             //rb.MovePosition((Velocity * Time.deltaTime) + transform.position);
-            Vector3 vChange = Velocity - rb.velocity;
-            rb.AddForce(vChange, ForceMode.VelocityChange);
+            //Vector3 vChange = Velocity - rb.velocity;
+            //rb.AddForce(vChange, ForceMode.VelocityChange);
+            //transform.position += Velocity * Time.deltaTime;
         }
         else
         {
-            base.Move();
+            base.Move(currentMaxSpeed);
         }
     }
 
@@ -344,6 +373,7 @@ public class FlatFish : SeekerFish {
         if (targetObject)
         {
             transform.parent = null;
+            rb.isKinematic = false; // Enable rigid body
             Camera cam = targetObject.GetComponent<Camera>();
             if (cam)
             {
@@ -359,6 +389,7 @@ public class FlatFish : SeekerFish {
         if (seekTarget.tag == "Player")
         {
             transform.parent = null;
+            rb.isKinematic = false; // Enable rigid body
             Camera cam = targetObject.GetComponent<Camera>();
             if (cam)
             {
