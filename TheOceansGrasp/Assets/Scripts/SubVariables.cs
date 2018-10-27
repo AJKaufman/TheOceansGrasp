@@ -67,17 +67,18 @@ public class SubVariables : MonoBehaviour {
   }
   
   // lose 1 health
-  void loseHealth() {
+  public void loseHealth() {
     health -= 1;
   }
   
   // lose the amount of energy in the parameter
-  void loseEnergy(float energyLost) {
+  public void loseEnergy(float energyLost) {
     energy -= energyLost;
+        Debug.Log("Current Energy: " + energy);
   }
   
   // lose 1 energy
-  void loseEnergy() {
+  public void loseEnergy() {
     energy -= Time.deltaTime;
   }
 

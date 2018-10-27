@@ -19,6 +19,7 @@ public class DischargePrompt : MonoBehaviour
     private bool isBoosting; // boolean used to toggle turbo
     public GameObject submarine; // reference to the submarine object
     private SubmarineMovement subMovement; // reference to the submarine movement script
+    private SubVariables subVar; // reference to the submarine variables script
     // color variable
     private Color defaultColor;
     public float radius = 80.0f; // for discharge ability
@@ -28,8 +29,9 @@ public class DischargePrompt : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        // get a reference to the script
+        // get a reference to the scripts
         subMovement = submarine.GetComponent<SubmarineMovement>();
+        subVar = submarine.GetComponent<SubVariables>();
 
         // set boolean
         isBoosting = false;
@@ -139,10 +141,10 @@ public class DischargePrompt : MonoBehaviour
                 // stun the fish and then make them flee
                 seekingFish.Stun(5.0f);
                 seekingFish.Flee(submarine);
-
-                // deplete energy
-                energySlider.GetComponent<Slider>().value -= 40.0f; //40%
             }
+            // deplete energy
+            //energySlider.GetComponent<Slider>().value -= 40.0f; //40%
+            subVar.loseEnergy(20.0f);
         }
         else
         {
