@@ -3280,7 +3280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScreen: {fileID: 300966644}
-  panel: {fileID: 0}
+  panel: {fileID: 669731543}
   discharge: {fileID: 1616437378}
   turbo: {fileID: 2116207108}
   yes: {fileID: 196129844}
@@ -3288,7 +3288,7 @@ MonoBehaviour:
   submarine: {fileID: 2050764014}
   radius: 80
   seekerScripts: []
-  energySlider: {fileID: 0}
+  energySlider: {fileID: 1079056616}
 --- !u!224 &746744428
 RectTransform:
   m_ObjectHideFlags: 0
