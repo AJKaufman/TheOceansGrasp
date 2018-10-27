@@ -8,6 +8,9 @@ public class DischargePrompt : MonoBehaviour
 {
     public Canvas mainScreen; // center of the screens inside the sub
     public GameObject panel; // panel that holds the emergency prompt
+    public GameObject systemBreakPanel1;
+    public GameObject systemBreakPanel2;
+    public GameObject systemBreakPanel3;
     private GameObject damageRight; // right and left damage panels, corresponding to their screen directions
     private GameObject damageLeft;
     private GameObject brokenRight; // right and left broken camera panels, corresponding to their screen directions
@@ -179,5 +182,98 @@ public class DischargePrompt : MonoBehaviour
         GameObject testo = EventSystem.current.currentSelectedGameObject;
         testo.GetComponentInParent<CameraFPS>().HighFPS();
         testo.GetComponentInParent<LightsOn>().TurnOn();
+    }
+
+    // method to enable system break 1
+    public void SystemBreak1Clicked()
+    {
+        Debug.Log("Clicked SystemBreak1 Button On");
+        //panel.gameObject.GetComponent<Image>().enabled = true;
+
+        // enable all of the children's Button components
+        Button[] buttons = { };
+        buttons = systemBreakPanel1.gameObject.GetComponentsInChildren<Button>();
+        foreach (Button button in buttons)
+        {
+            button.enabled = true;
+        }
+
+        // enable all of the children's Text components
+        Text[] texts = { };
+        texts = systemBreakPanel1.gameObject.GetComponentsInChildren<Text>();
+        foreach (Text text in texts)
+        {
+            text.enabled = true;
+        }
+
+        // enable all of the children's Image components
+        Image[] images = { };
+        images = systemBreakPanel1.gameObject.GetComponentsInChildren<Image>();
+        foreach (Image image in images)
+        {
+            image.enabled = true;
+        }
+    }
+
+    // method to enable system break 2
+    public void SystemBreak2Clicked()
+    {
+        Debug.Log("Clicked SystemBreak2 Button On");
+        //panel.gameObject.GetComponent<Image>().enabled = true;
+
+        // enable all of the children's Button components
+        Button[] buttons = { };
+        buttons = systemBreakPanel2.gameObject.GetComponentsInChildren<Button>();
+        foreach (Button button in buttons)
+        {
+            button.enabled = true;
+        }
+
+        // enable all of the children's Text components
+        Text[] texts = { };
+        texts = systemBreakPanel2.gameObject.GetComponentsInChildren<Text>();
+        foreach (Text text in texts)
+        {
+            text.enabled = true;
+        }
+
+        // enable all of the children's Image components
+        Image[] images = { };
+        images = systemBreakPanel2.gameObject.GetComponentsInChildren<Image>();
+        foreach (Image image in images)
+        {
+            image.enabled = true;
+        }
+    }
+
+    // method to enable system break 3
+    public void SystemBreak3Clicked()
+    {
+        Debug.Log("Clicked SystemBreak3 Button On");
+        //panel.gameObject.GetComponent<Image>().enabled = true;
+
+        // enable all of the children's Button components
+        Button[] buttons = { };
+        buttons = systemBreakPanel3.gameObject.GetComponentsInChildren<Button>();
+        foreach (Button button in buttons)
+        {
+            button.enabled = true;
+        }
+
+        // enable all of the children's Text components
+        Text[] texts = { };
+        texts = systemBreakPanel3.gameObject.GetComponentsInChildren<Text>();
+        foreach (Text text in texts)
+        {
+            text.enabled = true;
+        }
+
+        // enable all of the children's Image components
+        Image[] images = { };
+        images = systemBreakPanel3.gameObject.GetComponentsInChildren<Image>();
+        foreach (Image image in images)
+        {
+            image.enabled = true;
+        }
     }
 }
