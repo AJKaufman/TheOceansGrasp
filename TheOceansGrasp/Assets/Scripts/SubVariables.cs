@@ -20,6 +20,13 @@ public class SubVariables : MonoBehaviour {
     public Camera frontCamera;
     private Vector3 offSetSubmarinePos;
 
+    // system break variables
+    public bool systemBreak = false;
+    private float smallDamage = 5.0f;
+    private float largeDamage = 20.0f;
+    private int totalDamageNodes = 0;
+    private int totalRepairsMade = 0;
+
   // Use this for initialization
     void Start () {
     health = 100;

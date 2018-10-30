@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: fe054d34e809328479e55f45e6bccf78
+guid: e86043dfd277c994e9523c4ef1321341
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: __main___polySurface1___submarine_submarine_submarine1
     100002: comp3_submarine_computer1
@@ -2720,6 +2720,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
