@@ -118,20 +118,25 @@ public class FlatFish : SeekerFish {
                         audioPlayer.clip = inAttackRangeAudio;
                         audioPlayer.Play();
                         camBehavior = CameraAttackBehavior.Above;
-                        rb.isKinematic = true; // Disable rigid body
+                        //rb.isKinematic = true; // Disable rigid body
+                        rb.detectCollisions = false;
                         print("into above");
                     }
                     break;
 
                 case CameraAttackBehavior.Above:
                     targetPosition = (targetObject.transform.forward * farAboveCamera) + targetObject.transform.position;
-
+                    /*
                     Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
                     Quaternion prevRotation = transform.rotation;
                     transform.rotation = Quaternion.LookRotation(rotation);
+                    */
+                    base.Move(intoHoverSpeed, false);
 
+                    /*
                     Velocity = (targetPosition - transform.position).normalized * (intoHoverSpeed);// + sub.GetComponent<SubmarineMovement>().speed);
                     transform.position += Velocity * Time.deltaTime;
+                    */
 
                     if (Vector3.SqrMagnitude(targetPosition - transform.position) <= stopDistance * stopDistance)
                     {
@@ -373,7 +378,8 @@ public class FlatFish : SeekerFish {
         if (targetObject)
         {
             transform.parent = null;
-            rb.isKinematic = false; // Enable rigid body
+            //rb.isKinematic = false; // Enable rigid body
+            rb.detectCollisions = true;
             Camera cam = targetObject.GetComponent<Camera>();
             if (cam)
             {
@@ -389,7 +395,8 @@ public class FlatFish : SeekerFish {
         if (seekTarget.tag == "Player")
         {
             transform.parent = null;
-            rb.isKinematic = false; // Enable rigid body
+            //rb.isKinematic = false; // Enable rigid body
+            rb.detectCollisions = true;
             Camera cam = targetObject.GetComponent<Camera>();
             if (cam)
             {
