@@ -11,7 +11,7 @@ public class TeleportPlayer : MonoBehaviour {
     private PlayerCamera playerCamera;
     private PlayerSwim swim;
     private VolumetricLightRenderer lightRen;
-    private float distanceFromHatch;
+    public float distanceFromHatch;
     private Transform subTransform;
     private Vector3 subPosition;
 
@@ -44,6 +44,7 @@ public class TeleportPlayer : MonoBehaviour {
         subPosition = new Vector3(submarine.GetComponent<Transform>().position.x, submarine.GetComponent<Transform>().position.y, submarine.GetComponent<Transform>().position.z);
         if (inside)
         {
+            Debug.Log("yeet");
             // adding to it isn't actually moving the position
             player.transform.position = new Vector3(subPosition.x + 0.0f, subPosition.y + 15.0f, subPosition.z + 5.0f);
             inside = false;
@@ -56,6 +57,7 @@ public class TeleportPlayer : MonoBehaviour {
         }
         else
         {
+            Debug.Log("Doubleyeet");
             // if the player is close enough to the outer hatch for them to make a reasonable jump
             if(distanceFromHatch <= 2.0f)
             {
