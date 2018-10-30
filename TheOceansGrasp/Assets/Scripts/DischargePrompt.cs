@@ -28,6 +28,7 @@ public class DischargePrompt : MonoBehaviour
     public float radius = 80.0f; // for discharge ability
     public SeekerFish[] seekerScripts; // list of all the fish in the scene
     public Slider energySlider;
+    private AudioSource dischargeSound;
 
     // Use this for initialization
     void Start ()
@@ -51,6 +52,7 @@ public class DischargePrompt : MonoBehaviour
         //no.GetComponent<Button>().onClick.AddListener(EmergencyPromptDisable);
 
         //mainScreen.GetComponent<Button>().onClick.AddListener(EmergencyPromptEnable);
+        dischargeSound = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -148,6 +150,9 @@ public class DischargePrompt : MonoBehaviour
             // deplete energy
             //energySlider.GetComponent<Slider>().value -= 40.0f; //40%
             subVar.loseEnergy(20.0f);
+
+            // play sound
+            dischargeSound.Play();
         }
         else
         {
