@@ -19,11 +19,13 @@ public class SubVariables : MonoBehaviour {
     public GameObject goalObject;
     public Camera frontCamera;
     private Vector3 offSetSubmarinePos;
+    private SubmarineMovement submarineMovement;
 
     // system break variables
     public bool systemBreak = false;
     private float smallDamage = 5.0f;
     private float largeDamage = 20.0f;
+    private float damageBeforeSystemBreak = 0.0f;
     private int totalDamageNodes = 0;
     private int totalRepairsMade = 0;
 
@@ -41,6 +43,8 @@ public class SubVariables : MonoBehaviour {
 
         // create an offset for the position in the submarine that the distance calculation will run against
         //offSetSubmarinePos = new Vector3(0.0f, 0.0f, 10.0f);
+
+        submarineMovement = gameObject.GetComponent<SubmarineMovement>();
     }
 
   // Update is called once per frame
@@ -64,7 +68,7 @@ public class SubVariables : MonoBehaviour {
   // lose the amount of health in the parameter
   public void loseHealth(float damage){
     health -= damage;
-    
+        damageBeforeSystemBreak += damage;
     // Call the system break method
     SystemBreak();
 
@@ -109,6 +113,23 @@ public class SubVariables : MonoBehaviour {
 
         // set the parent of the object to be the submarine so that the damage moves with it
         temp.transform.parent = gameObject.transform;
+
+        // keep track of the number of damage nodes
+        if(damageBeforeSystemBreak >= smallDamage)
+        {
+            totalDamageNodes++;
+        }
+        if(damageBeforeSystemBreak >= largeDamage)
+        {
+            systemBreak = true;
+        }
+
+        // if more damage than the value of large damage has been dealt a system break will occur that causes the speed of the submarine to drop
+        if(systemBreak)
+        {
+            // make the sub move at half speed
+            submarineMovement.halfSpeed = true;
+        }
     }
 
   // On collision

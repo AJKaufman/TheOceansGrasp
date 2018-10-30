@@ -18,6 +18,7 @@ public class SubmarineMovement : MonoBehaviour
     public float rlAngle = 0.0f;
     public bool useSlowdown = true;
     public bool boosting = false;
+    public bool halfSpeed = false;
 
     // Use this for initialization
     void Start()
@@ -40,6 +41,12 @@ public class SubmarineMovement : MonoBehaviour
                 maxBackSpeed = -10.0f;
                 maxSpeed = 10.0f;
                 speedIncrement = 2.0f;
+            }
+            else if(halfSpeed)
+            {
+                maxBackSpeed = -2.5f;
+                maxSpeed = 2.5f;
+                speedIncrement = 0.5f;
             }
             // otherwise convert it back to the normal settings
             else
