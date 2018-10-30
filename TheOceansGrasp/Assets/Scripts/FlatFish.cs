@@ -311,14 +311,14 @@ public class FlatFish : SeekerFish {
         return fps;
     }
 
-    protected override void Move(float currentMaxSpeed)
+    protected override void Move(float currentMaxSpeed, bool useRigidBody = true)
     {
         if (isCamera)
         {
             switch (camBehavior)
             {
                 case CameraAttackBehavior.Seek:
-                    base.Move(currentMaxSpeed + sub.GetComponent<SubmarineMovement>().speed);
+                    base.Move(currentMaxSpeed, false);
                     break;
 
                 case CameraAttackBehavior.Above:

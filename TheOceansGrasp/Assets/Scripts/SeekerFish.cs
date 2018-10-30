@@ -274,7 +274,7 @@ public class SeekerFish : MonoBehaviour {
         targetPosition = transform.position + (away.normalized * 10);
     }
 
-    virtual protected void Move(float currentMaxSpeed)
+    virtual protected void Move(float currentMaxSpeed, bool useRigidBody = true)
     {
         //Avoidance kinda
         float tempFishRadius = 0.5f;
@@ -346,9 +346,17 @@ public class SeekerFish : MonoBehaviour {
             }
         }
         //rb.velocity = Velocity;
-        rb.MovePosition((Velocity * Time.deltaTime) + transform.position);
-        //Vector3 vChange = Velocity - rb.velocity;
-        //rb.AddForce(vChange, ForceMode.VelocityChange);
+        if (useRigidBody)
+        {
+            //rb.MovePosition((Velocity * Time.deltaTime) + transform.position);
+            Vector3 vChange = Velocity - rb.velocity;
+            vChange = Vector3.ClampMagnitude(vChange, acceleration * Time.deltaTime);
+            rb.AddForce(vChange, ForceMode.VelocityChange);
+        }
+        else
+        {
+            transform.position += Velocity * Time.deltaTime;
+        }
     }
 
     public void Stun(float time)
