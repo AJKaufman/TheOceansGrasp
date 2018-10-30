@@ -78,6 +78,8 @@ public class SeekerFish : MonoBehaviour {
                 maxAggroRange = s.aggroRange;
             }
         }
+
+        Physics.IgnoreCollision(FindObjectOfType<SubVariables>().GetComponent<BoxCollider>(), GetComponentInChildren<Collider>());
     }
 	
 	// Update is called once per frame
