@@ -7,6 +7,7 @@ public class TeleportPlayer : MonoBehaviour {
     public bool inside = true;
     public GameObject submarine;
     public GameObject player;
+    public TeleportPlayer otherScript;
     private SubmarineMovement subMovement;
     private PlayerCamera playerCamera;
     private PlayerSwim swim;
@@ -38,16 +39,18 @@ public class TeleportPlayer : MonoBehaviour {
     // teleport the player when they click on this object
     void OnMouseDown()
     {
+        Debug.Log("yeet");
         // update the position of the submarine's hatch
         //subTransform = submarine.GetComponent<Transform>();
         // update the submarine's position to move the hatch effectively
         subPosition = new Vector3(submarine.GetComponent<Transform>().position.x, submarine.GetComponent<Transform>().position.y, submarine.GetComponent<Transform>().position.z);
         if (inside)
         {
-            Debug.Log("yeet");
             // adding to it isn't actually moving the position
+            //otherScript.inside = !otherScript.inside;
+            //inside = !inside;
+            otherScript.gameObject.transform.parent = null;
             player.transform.position = new Vector3(subPosition.x + 0.0f, subPosition.y + 15.0f, subPosition.z + 5.0f);
-            inside = false;
             swim.enabled = true;
             playerCamera.enabled = false;
             subMovement.enabled = false;
@@ -57,13 +60,15 @@ public class TeleportPlayer : MonoBehaviour {
         }
         else
         {
+            gameObject.transform.parent = submarine.transform;
             Debug.Log("Doubleyeet");
             // if the player is close enough to the outer hatch for them to make a reasonable jump
-            if(distanceFromHatch <= 2.0f)
+            if(distanceFromHatch <= 4.0f)
             {
+                //otherScript.inside = !otherScript.inside;
+                //inside = !inside;
                 player.transform.position = new Vector3(3000.0f, 100.0f, 2.3f);
                 player.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
-                inside = true;
                 swim.enabled = false;
                 playerCamera.enabled = true;
                 subMovement.enabled = true;
