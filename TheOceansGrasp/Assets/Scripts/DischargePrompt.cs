@@ -11,6 +11,9 @@ public class DischargePrompt : MonoBehaviour
     public GameObject systemBreakPanel1;
     public GameObject systemBreakPanel2;
     public GameObject systemBreakPanel3;
+    //public Button SB1;
+    //public Button SB2;
+    //public Button SB3;
     private GameObject damageRight; // right and left damage panels, corresponding to their screen directions
     private GameObject damageLeft;
     private GameObject brokenRight; // right and left broken camera panels, corresponding to their screen directions

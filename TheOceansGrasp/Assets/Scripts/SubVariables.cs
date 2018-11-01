@@ -28,6 +28,8 @@ public class SubVariables : MonoBehaviour {
     private float damageBeforeSystemBreak = 0.0f;
     private int totalDamageNodes = 0;
     private int totalRepairsMade = 0;
+    public Button systemBreak1Button;
+    public GameObject systemBreak1Panel;
 
   // Use this for initialization
     void Start () {
@@ -129,6 +131,10 @@ public class SubVariables : MonoBehaviour {
         {
             // make the sub move at half speed
             submarineMovement.halfSpeed = true;
+
+            // change the button and panel's text
+            systemBreak1Button.GetComponentInChildren<Text>().text = "Active";
+            systemBreak1Panel.GetComponentInChildren<Text>().text = "Engine Damaged. You are now at half of your regular speed.";
         }
     }
 
