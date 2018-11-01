@@ -1,30 +1,30 @@
 fileFormatVersion: 2
-guid: 5910852fcb6bf0f4080233771b4ed3e8
+guid: 72f2a95b32809cc4da55c142ad163ad1
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: base_rudder
     100002: floor
     100004: main
-    100006: rudder
-    100008: rudder1
-    100010: rudder2
-    100012: rudder3
-    100014: rudder4
-    100016: rudder5
-    100018: submarine
-    100020: //RootNode
+    100006: //RootNode
+    100008: rudder
+    100010: rudder1
+    100012: rudder2
+    100014: rudder3
+    100016: rudder4
+    100018: rudder5
+    100020: submarine
     400000: base_rudder
     400002: floor
     400004: main
-    400006: rudder
-    400008: rudder1
-    400010: rudder2
-    400012: rudder3
-    400014: rudder4
-    400016: rudder5
-    400018: submarine
-    400020: //RootNode
+    400006: //RootNode
+    400008: rudder
+    400010: rudder1
+    400012: rudder2
+    400014: rudder3
+    400016: rudder4
+    400018: rudder5
+    400020: submarine
     2100000: lambert1
     2300000: base_rudder
     2300002: floor
