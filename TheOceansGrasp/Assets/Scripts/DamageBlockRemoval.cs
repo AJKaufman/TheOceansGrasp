@@ -13,11 +13,10 @@ public class DamageBlockRemoval : MonoBehaviour {
     public float repairTimer;
     public bool isClicked;
     public bool wrongObject;
-    private Camera playerCam;
+    public Camera playerCam;
 
 	// Use this for initialization
 	void Start () {
-        playerCam = player.GetComponentInChildren<Camera>();
         distance = 100.0f;
         repairTimer = 0.0f;
         isClicked = false;
@@ -51,8 +50,12 @@ public class DamageBlockRemoval : MonoBehaviour {
                 // if it is within 2 meters
                 if (distance <= 2.0f && !wrongObject)
                 {
-                    // enable the canvas so that it's elements can be seen
-                    canvas.GetComponent<Canvas>().enabled = true;
+                    // enable the slider canvas to show progress bar
+                    Image[] images = slider.GetComponentsInChildren<Image>();
+                    foreach (Image image in images)
+                    {
+                        image.enabled = true;
+                    }
 
                     // start incrementing the timer
                     repairTimer += Time.deltaTime;
@@ -66,7 +69,13 @@ public class DamageBlockRemoval : MonoBehaviour {
                         // reset the canvas and slider first
                         repairTimer = 0.0f;
                         slider.value = 0.0f;
-                        canvas.GetComponent<Canvas>().enabled = false;
+
+                        // disable canvas to stop showing progress bar
+                        Image[] images = slider.GetComponentsInChildren<Image>();
+                        foreach (Image image in images)
+                        {
+                            image.enabled = false;
+                        }
 
                         // then destroy the object after the variables have been reset
                         Destroy(this.gameObject);
@@ -74,8 +83,12 @@ public class DamageBlockRemoval : MonoBehaviour {
                 }
                 else
                 {
-                    // enable the canvas so that it's elements can be seen
-                    canvas.GetComponent<Canvas>().enabled = false;
+                    // disable canvas to stop showing progress bar
+                    Image[] images = slider.GetComponentsInChildren<Image>();
+                    foreach (Image image in images)
+                    {
+                        image.enabled = false;
+                    }
 
                     // reset timer
                     repairTimer = 0.0f;
@@ -99,7 +112,11 @@ public class DamageBlockRemoval : MonoBehaviour {
         repairTimer = 0.0f;
 
         // disable canvas to stop showing progress bar
-        canvas.GetComponent<Canvas>().enabled = false;
+        Image[] images = slider.GetComponentsInChildren<Image>();
+        foreach(Image image in images)
+        {
+            image.enabled = false;
+        }
 
         // resets the progress bar
         slider.value = 0.0f;
