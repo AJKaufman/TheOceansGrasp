@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class LightTrigger : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public bool affectFlatFish = true;
+    public bool affectDogFish = false;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -20,12 +23,18 @@ public class LightTrigger : MonoBehaviour {
         if (enabled)
         {
             FlatFish fish = other.GetComponent<FlatFish>();
-            if (fish)
+            if (fish && affectFlatFish)
             {
                 if (!fish.IsAttached())
                 {
                     fish.Flee(gameObject);
                 }
+            }
+
+            DogFish dog = other.GetComponent<DogFish>();
+            if (dog && affectDogFish)
+            {
+                dog.SetInLight();
             }
         }
     }

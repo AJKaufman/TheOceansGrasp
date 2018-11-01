@@ -8,6 +8,7 @@ TagManager:
   - healthbar
   - fish
   - aura
+  - BackCam
   layers:
   - Default
   - TransparentFX
