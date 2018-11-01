@@ -33,7 +33,7 @@ public class SeekerFish : MonoBehaviour {
     public float lifetime = 120; // Time in seconds for the fish to last when wandering, does not reset
 
     // Max range to check for targets (length of the raycast)
-    private float maxAggroRange = 0;
+    protected float maxAggroRange = 0;
 
     public Vector3 Velocity;// { get; private set; }
     protected float speed = 0;
