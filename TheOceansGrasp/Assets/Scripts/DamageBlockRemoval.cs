@@ -71,7 +71,7 @@ public class DamageBlockRemoval : MonoBehaviour {
                         slider.value = 0.0f;
 
                         // disable canvas to stop showing progress bar
-                        Image[] images = slider.GetComponentsInChildren<Image>();
+                        images = slider.GetComponentsInChildren<Image>();
                         foreach (Image image in images)
                         {
                             image.enabled = false;

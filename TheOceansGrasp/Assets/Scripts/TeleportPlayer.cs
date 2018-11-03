@@ -60,11 +60,11 @@ public class TeleportPlayer : MonoBehaviour {
         }
         else
         {
-            gameObject.transform.parent = submarine.transform;
             Debug.Log("Doubleyeet");
             // if the player is close enough to the outer hatch for them to make a reasonable jump
             if(distanceFromHatch <= 4.0f)
             {
+                gameObject.transform.parent = submarine.transform;
                 //otherScript.inside = !otherScript.inside;
                 //inside = !inside;
                 player.transform.position = new Vector3(3000.0f, 100.0f, 2.3f);
