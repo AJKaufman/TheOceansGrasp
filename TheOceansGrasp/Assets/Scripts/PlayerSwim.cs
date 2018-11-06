@@ -28,14 +28,16 @@ public class PlayerSwim : MonoBehaviour
     void Start()
     {
         // set the starting position to the starting position of the gameobject
-        position = new Vector3(submarine.GetComponent<Transform>().position.x, submarine.GetComponent<Transform>().position.y + 6.5f, submarine.GetComponent<Transform>().position.z + 4.0f);
+        position = new Vector3(submarine.GetComponent<Transform>().position.x, submarine.GetComponent<Transform>().position.y + 6.5f, submarine.GetComponent<Transform>().position.z + 5.0f);
         transform.position = position;
         m_MouseLook.Init(transform, playerCamera.transform);
         forward = new Vector3(1.0f, 0.0f, 0.0f);
         up = gameObject.transform.up;
         right = gameObject.transform.right;
         rb = GetComponent<Rigidbody>();
-        //Physics.IgnoreCollision(gameObject.GetComponent<BoxCollider>(), gameObject.GetComponent<CapsuleCollider>());
+        // Ignore Collisions with the submarine
+        //Physics.IgnoreCollision(gameObject.GetComponent<CapsuleCollider>(), submarine.GetComponent<CapsuleCollider>());
+        Physics.IgnoreCollision(gameObject.GetComponent<CapsuleCollider>(), submarine.GetComponent<BoxCollider>());
     }
 
     private void OnEnable()

@@ -52,7 +52,8 @@ public class TeleportPlayer : MonoBehaviour {
             //otherScript.inside = !otherScript.inside;
             //inside = !inside;
             otherScript.gameObject.transform.parent = null;
-            player.transform.position = new Vector3(subPosition.x + 0.0f, subPosition.y + 15.0f, subPosition.z + 5.0f);
+            player.transform.position = new Vector3(subPosition.x + 0.0f, subPosition.y + 100.0f, subPosition.z + 5.0f);
+            Debug.Log("SubY: " + subPosition.y);
             swim.enabled = true;
             playerCamera.enabled = false;
             subMovement.enabled = false;
@@ -75,6 +76,7 @@ public class TeleportPlayer : MonoBehaviour {
                 swim.enabled = false;
                 playerCamera.enabled = true;
                 subMovement.enabled = true;
+                submarine.GetComponent<Rigidbody>().isKinematic = false;
                 //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = true;
                 lightRen.enabled = false;
             }
