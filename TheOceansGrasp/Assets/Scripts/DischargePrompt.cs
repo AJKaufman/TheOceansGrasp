@@ -190,6 +190,8 @@ public class DischargePrompt : MonoBehaviour
         GameObject testo = EventSystem.current.currentSelectedGameObject;
         testo.GetComponentInParent<CameraFPS>().HighFPS();
         testo.GetComponentInParent<LightsOn>().TurnOn();
+        EventSystem.current = null;
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     // method to enable system break 1

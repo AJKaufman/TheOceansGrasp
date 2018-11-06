@@ -8,7 +8,7 @@ public class Opacity : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Color newColor = new Color(0, 0, 0, howClear);
+        Color newColor = new Color(0f, 0f, 0f, howClear);
         gameObject.GetComponent<Renderer>().material.color = newColor;
 	}
 	
