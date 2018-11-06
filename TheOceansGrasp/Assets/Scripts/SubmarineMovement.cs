@@ -42,11 +42,17 @@ public class SubmarineMovement : MonoBehaviour
                 maxSpeed = 10.0f;
                 speedIncrement = 2.0f;
             }
-            else if(halfSpeed)
+            if(halfSpeed)
             {
                 maxBackSpeed = -2.5f;
                 maxSpeed = 2.5f;
                 speedIncrement = 0.5f;
+            }
+            if (halfSpeed && boosting)
+            {
+                maxBackSpeed = -5.0f;
+                maxSpeed = 5.0f;
+                speedIncrement = 1.0f;
             }
             // otherwise convert it back to the normal settings
             else

@@ -13,6 +13,7 @@ public class PlayerSwim : MonoBehaviour
     public Camera playerCamera = new Camera();
 
     public float speed = 0.0f;
+    private Rigidbody rb;
     private float speedIncrement = 5.0f;
     public float maxSpeed = 3.0f;
     private float slowDown = 0.20f;
@@ -33,6 +34,8 @@ public class PlayerSwim : MonoBehaviour
         forward = new Vector3(1.0f, 0.0f, 0.0f);
         up = gameObject.transform.up;
         right = gameObject.transform.right;
+        rb = GetComponent<Rigidbody>();
+        //Physics.IgnoreCollision(gameObject.GetComponent<BoxCollider>(), gameObject.GetComponent<CapsuleCollider>());
     }
 
     private void OnEnable()
@@ -144,8 +147,9 @@ public class PlayerSwim : MonoBehaviour
             playerCamera.transform.position = position;
             playerCamera.transform.rotation = Quaternion.Euler(direction.x, direction.y, direction.z);
             */
-            position += transform.rotation * velocity * speed * Time.deltaTime;
-            transform.position = position;
+            rb.velocity = rb.transform.forward * speed;
+            //position += transform.rotation * velocity * speed * Time.deltaTime;
+            //transform.position = position;
         }
     }
 

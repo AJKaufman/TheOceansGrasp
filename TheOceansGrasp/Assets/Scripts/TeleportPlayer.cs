@@ -15,6 +15,7 @@ public class TeleportPlayer : MonoBehaviour {
     public float distanceFromHatch;
     private Transform subTransform;
     private Vector3 subPosition;
+    private Rigidbody playerRigidbody;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,7 @@ public class TeleportPlayer : MonoBehaviour {
         lightRen = player.GetComponentInChildren<VolumetricLightRenderer>();
         playerCamera = player.GetComponent<PlayerCamera>();
         subTransform = submarine.GetComponent<Transform>();
+        playerRigidbody = player.GetComponent<Rigidbody>();
     }
 	
 	// Update is called once per frame
@@ -56,6 +58,7 @@ public class TeleportPlayer : MonoBehaviour {
             subMovement.enabled = false;
             lightRen.enabled = true;
             submarine.GetComponent<Rigidbody>().isKinematic = true;
+            playerRigidbody.velocity = Vector3.zero;
             //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = false;
         }
         else
@@ -67,7 +70,7 @@ public class TeleportPlayer : MonoBehaviour {
                 gameObject.transform.parent = submarine.transform;
                 //otherScript.inside = !otherScript.inside;
                 //inside = !inside;
-                player.transform.position = new Vector3(3000.0f, 100.0f, 2.3f);
+                player.transform.position = new Vector3(3000.0f, 100.0f, 1.19f);
                 player.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
                 swim.enabled = false;
                 playerCamera.enabled = true;
