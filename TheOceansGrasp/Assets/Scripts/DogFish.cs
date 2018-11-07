@@ -185,6 +185,11 @@ public class DogFish : SeekerFish {
             if (seekPrevious)
             {
                 targetPosition = prevPosition;
+                if ((transform.position - prevPosition).sqrMagnitude <= stopDistance * stopDistance)
+                {
+                    seekPrevious = false;
+                    targetPosition = targetObject.transform.position;
+                }
             }
             else
             {
