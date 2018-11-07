@@ -48,9 +48,11 @@ public class DogFish : SeekerFish {
     override protected void Start () {
 		base.Start();
 
-        targetObject = FindObjectOfType<SubmarineMovement>().gameObject; // get sub object
+        sub = FindObjectOfType<SubmarineMovement>().gameObject;
+        targetObject = sub; // get sub object
         audioSource = GetComponentInChildren<AudioSource>();
         ResetAudioTimer();
+        FindObjectOfType<SubFishSpawner>().DogSpawned = true;
     }
 	
 	// Update is called once per frame
@@ -85,7 +87,7 @@ public class DogFish : SeekerFish {
         {
             if (targetObject.CompareTag("Sub"))
             {
-                float subSpeed = targetObject.GetComponent<SubmarineMovement>().speed;
+                float subSpeed = Mathf.Abs(targetObject.GetComponent<SubmarineMovement>().speed);
                 bool bored = false;
 
                 if (subSpeed > subMaxSpeed)
@@ -178,7 +180,7 @@ public class DogFish : SeekerFish {
         {
             if (Vector3.SqrMagnitude(targetObject.transform.position - transform.position) > maxAggroRange * maxAggroRange)
             {
-                Destroy(gameObject);
+                Kill();
             }
             if (seekPrevious)
             {
@@ -213,13 +215,16 @@ public class DogFish : SeekerFish {
 
     protected override void SetSeekTarget(GameObject seekTarget)
     {
-        if (targetObject.CompareTag("Sub"))
+        if (targetObject)
         {
-            prevPosition = targetObject.transform.position;
-        }
-        else if (targetObject.CompareTag("Player"))
-        {
-            seekPrevious = true;
+            if (targetObject.CompareTag("Sub"))
+            {
+                prevPosition = targetObject.transform.position;
+            }
+            else if (targetObject.CompareTag("Player"))
+            {
+                seekPrevious = true;
+            }
         }
         base.SetSeekTarget(seekTarget);
     }
@@ -276,6 +281,12 @@ public class DogFish : SeekerFish {
     {
         base.Flee(fleeFrom);
         ResetAudioTimer(true);
+    }
+
+    public override void Kill()
+    {
+        FindObjectOfType<SubFishSpawner>().DogSpawned = false;
+        base.Kill();
     }
 
 }

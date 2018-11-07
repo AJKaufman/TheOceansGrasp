@@ -61,7 +61,7 @@ public class BaskingShark : MonoBehaviour {
             if (fish)
             {
                 //print("kill fish");
-                Destroy(fish.gameObject);
+                fish.Kill();
             }
         }
     }

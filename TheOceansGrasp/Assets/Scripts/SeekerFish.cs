@@ -258,7 +258,7 @@ public class SeekerFish : MonoBehaviour {
             if (Vector3.Magnitude(targetObject.transform.position - transform.position) > maxAggroRange)
             {
                 // Remove fish after certain distance away from flee target
-                Destroy(gameObject);
+                Kill();
             }
             else
             {
@@ -270,7 +270,7 @@ public class SeekerFish : MonoBehaviour {
             lifetime -= Time.deltaTime;
             if (lifetime < 0)
             {
-                Destroy(gameObject);
+                Kill();
             }
         }
         targetPosition = transform.position + (away.normalized * 10);
@@ -383,7 +383,12 @@ public class SeekerFish : MonoBehaviour {
             }
             // Do similar for player
 
-            Destroy(gameObject);
+            Kill();
         }
+    }
+
+    virtual public void Kill()
+    {
+        Destroy(gameObject);
     }
 }
