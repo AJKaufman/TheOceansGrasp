@@ -207,7 +207,7 @@ public class DogFish : SeekerFish {
 
     protected override void FleeBehavior()
     {
-        maxSpeed = targetObject.GetComponent<SubmarineMovement>().maxSpeed * fleeSpeedMultipler;
+        maxSpeed = sub.GetComponent<SubmarineMovement>().maxSpeed * fleeSpeedMultipler;
         base.FleeBehavior();
 
         // Play sad yip
