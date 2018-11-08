@@ -236,7 +236,7 @@ MonoBehaviour:
     aggroRange: 100
   - tag: Player
     priority: 0
-    aggroRange: 100
+    aggroRange: 200
   seekPriority: 2147483647
   attackRange: 2
   damageRange: 1

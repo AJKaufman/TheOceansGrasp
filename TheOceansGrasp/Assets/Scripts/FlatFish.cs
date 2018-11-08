@@ -89,7 +89,7 @@ public class FlatFish : SeekerFish {
             targetObject = GetNearestCamera(sub);
             if(ignore == false)
             {
-                Physics.IgnoreCollision(gameObject.GetComponent<CapsuleCollider>(), sub.GetComponent<BoxCollider>());
+                Physics.IgnoreCollision(gameObject.GetComponent<CapsuleCollider>(), sub.GetComponentInChildren<BoxCollider>());
                 ignore = true;
             }
             if (!targetObject)
@@ -141,6 +141,7 @@ public class FlatFish : SeekerFish {
                     if (Vector3.SqrMagnitude(targetPosition - transform.position) <= stopDistance * stopDistance)
                     {
                         camBehavior = CameraAttackBehavior.Attach;
+                        rb.isKinematic = true;
                         print("into attach");
                     }
                     break;
@@ -388,6 +389,7 @@ public class FlatFish : SeekerFish {
         }
         base.Flee(fleeFrom);
         isCamera = false;
+        rb.isKinematic = false;
     }
 
     protected override void SetSeekTarget(GameObject seekTarget)
@@ -411,7 +413,8 @@ public class FlatFish : SeekerFish {
     {
         if (tag == "Sub")
         {
-            return false;
+            //return false;
+            return true;
         }
         else
         {
