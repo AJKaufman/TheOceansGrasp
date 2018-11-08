@@ -13,6 +13,7 @@ public class DamageBlockRemoval : MonoBehaviour {
     public float repairTimer;
     public bool isClicked;
     public bool wrongObject;
+    public bool isDamaged;
     public Camera playerCam;
 
 	// Use this for initialization
@@ -20,81 +21,87 @@ public class DamageBlockRemoval : MonoBehaviour {
         distance = 100.0f;
         repairTimer = 0.0f;
         isClicked = false;
+        isDamaged = false;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if(isClicked)
+        if(isDamaged)
         {
-            if (Input.GetButton("RepairTool"))
+            if (isClicked)
             {
-                RaycastHit hit;
-
-                if(Physics.Raycast(playerCam.ScreenPointToRay(Input.mousePosition), out hit))
+                if (Input.GetButton("RepairTool"))
                 {
-                    if(gameObject != hit.transform.gameObject)
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(playerCam.ScreenPointToRay(Input.mousePosition), out hit))
                     {
-                        wrongObject = true;
+                        if (gameObject != hit.transform.gameObject)
+                        {
+                            wrongObject = true;
+                        }
+                        else
+                        {
+                            wrongObject = false;
+                        }
+                    }
+                    Debug.DrawRay(Input.mousePosition, new Vector3());
+
+                    // calculate the distance between the player and the damage block
+                    distance = Vector3.Magnitude(player.GetComponent<Transform>().position - gameObject.transform.position);
+
+                    // if it is within 2 meters
+                    if (distance <= 2.0f && !wrongObject)
+                    {
+                        // enable the slider canvas to show progress bar
+                        Image[] images = slider.GetComponentsInChildren<Image>();
+                        foreach (Image image in images)
+                        {
+                            image.enabled = true;
+                        }
+
+                        // start incrementing the timer
+                        repairTimer += Time.deltaTime;
+
+                        // set the slider to equal the timer
+                        slider.value = repairTimer;
+
+                        // if the mouse has been held down for 2 seconds
+                        if (repairTimer >= 2.0f)
+                        {
+                            // reset the canvas and slider first
+                            repairTimer = 0.0f;
+                            slider.value = 0.0f;
+
+                            // disable canvas to stop showing progress bar
+                            images = slider.GetComponentsInChildren<Image>();
+                            foreach (Image image in images)
+                            {
+                                image.enabled = false;
+                            }
+
+                            // then destroy the object after the variables have been reset
+                            isDamaged = false;
+                            gameObject.GetComponent<Material>().color = Color.gray;
+                            // Destroy(this.gameObject);
+                        }
                     }
                     else
                     {
-                        wrongObject = false;
-                    }
-                }
-                Debug.DrawRay(Input.mousePosition,new Vector3());
-
-                // calculate the distance between the player and the damage block
-                distance = Vector3.Magnitude(player.GetComponent<Transform>().position - gameObject.transform.position);
-
-                // if it is within 2 meters
-                if (distance <= 2.0f && !wrongObject)
-                {
-                    // enable the slider canvas to show progress bar
-                    Image[] images = slider.GetComponentsInChildren<Image>();
-                    foreach (Image image in images)
-                    {
-                        image.enabled = true;
-                    }
-
-                    // start incrementing the timer
-                    repairTimer += Time.deltaTime;
-
-                    // set the slider to equal the timer
-                    slider.value = repairTimer;
-
-                    // if the mouse has been held down for 2 seconds
-                    if (repairTimer >= 2.0f)
-                    {
-                        // reset the canvas and slider first
-                        repairTimer = 0.0f;
-                        slider.value = 0.0f;
-
                         // disable canvas to stop showing progress bar
-                        images = slider.GetComponentsInChildren<Image>();
+                        Image[] images = slider.GetComponentsInChildren<Image>();
                         foreach (Image image in images)
                         {
                             image.enabled = false;
                         }
 
-                        // then destroy the object after the variables have been reset
-                        Destroy(this.gameObject);
-                    }
-                }
-                else
-                {
-                    // disable canvas to stop showing progress bar
-                    Image[] images = slider.GetComponentsInChildren<Image>();
-                    foreach (Image image in images)
-                    {
-                        image.enabled = false;
-                    }
+                        // reset timer
+                        repairTimer = 0.0f;
 
-                    // reset timer
-                    repairTimer = 0.0f;
-
-                    // resets the progress bar
-                    slider.value = 0.0f;
+                        // resets the progress bar
+                        slider.value = 0.0f;
+                    }
                 }
             }
         }

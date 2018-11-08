@@ -14,14 +14,15 @@ public class SubVariables : MonoBehaviour {
   public Slider displayedEnergy;
     public Slider progress;
     float radius;
-    public List<GameObject> damagedSections = new List<GameObject>();
     public GameObject damageBlock;
     public GameObject goalObject;
     public Camera frontCamera;
     private Vector3 offSetSubmarinePos;
     private SubmarineMovement submarineMovement;
-
+    public GameObject techNodeParent; // gameobject that holds other tech nodes
+    public List<GameObject> techNodes; // list of tech nodes
     // system break variables
+    private DamageBlockRemoval damageRemoval;
     public bool systemBreak = false;
     private float smallDamage = 5.0f;
     private float largeDamage = 20.0f;
@@ -40,12 +41,20 @@ public class SubVariables : MonoBehaviour {
         progress.GetComponent<Slider>().value = percent;
         radius = gameObject.GetComponent<CapsuleCollider>().radius * 10.0f; // because the sub is scale 10
 
+        // populate the list of tech nodes
+        techNodes = new List<GameObject>();
+        foreach(Transform child in techNodeParent.GetComponent<Transform>())
+        {
+            // add a damage script to it
+            child.gameObject.AddComponent<DamageBlockRemoval>();
+            // add it to the list
+            techNodes.Add(child.gameObject);
+        }
+
         // calculate starting distance
         startDistance = Vector3.Distance(frontCamera.transform.position, goalObject.transform.position);
 
-        // create an offset for the position in the submarine that the distance calculation will run against
-        //offSetSubmarinePos = new Vector3(0.0f, 0.0f, 10.0f);
-
+        // reference to the sub movement script
         submarineMovement = gameObject.GetComponent<SubmarineMovement>();
     }
 
@@ -99,6 +108,17 @@ public class SubVariables : MonoBehaviour {
   public void SystemBreak()
   {
         /* Your code here */
+
+        // create a random number to indicate which tech node breaks
+        int nodeIndex = Random.Range(0, techNodes.Count);
+        // get a reference to the specific node's damage removal script
+        damageRemoval = techNodes[nodeIndex].GetComponent<DamageBlockRemoval>();
+        damageRemoval.isDamaged = true;
+
+        // change the material of it to be red
+        damageRemoval.gameObject.GetComponent<Material>().color = Color.red;
+
+        /*
         // create a position for the damage to be spawned at
         Vector2 randomDirection = Random.insideUnitCircle.normalized * radius; // at which point around the circular part of the hull
         float zLocation = Random.Range(-5.0f, 5.0f); // length of the sub
@@ -115,9 +135,10 @@ public class SubVariables : MonoBehaviour {
 
         // set the parent of the object to be the submarine so that the damage moves with it
         temp.transform.parent = gameObject.transform;
+        */
 
         // keep track of the number of damage nodes
-        if(damageBeforeSystemBreak >= smallDamage)
+        if (damageBeforeSystemBreak >= smallDamage)
         {
             totalDamageNodes++;
         }
