@@ -149,12 +149,30 @@ public class SeekerFish : MonoBehaviour {
         // Place in game manager and simply add each object to list on their spawn and remove on their despawn?
         GameObject[] allObjects = FindObjectsOfType<GameObject>();
         List<KeyValuePair<GameObject, float>> inRange = new List<KeyValuePair<GameObject, float>>();
-        RaycastHit rayData = new RaycastHit();
+        //RaycastHit[] rayData;
         foreach (GameObject g in allObjects)
         {
+            /*
+            rayData = Physics.RaycastAll(transform.position, (g.transform.position - transform.position).normalized, out rayData, maxAggroRange);
+            foreach (RaycastHit hit in rayData)
+            {
+                if(hit.collider.gameObject == g)
+                {
+                */
+            float distance = Vector2.Distance(transform.position, g.transform.position);
+            if (distance <= maxAggroRange)
+            {
+                inRange.Add(new KeyValuePair<GameObject, float>(g, distance));
+            }
+            /*
+                }
+            };
+            */
+            /*
             if (Physics.Raycast(transform.position, (g.transform.position - transform.position).normalized, out rayData, maxAggroRange) && rayData.collider.gameObject == g) {
                 inRange.Add(new KeyValuePair<GameObject, float>(g, rayData.distance));
             }
+            */
         }
         CheckTargets(ref inRange);
     }
@@ -285,7 +303,7 @@ public class SeekerFish : MonoBehaviour {
         // Make sure the start of the check is in the fish so that it will not be inside the obstacle
         Debug.DrawRay(transform.position - (transform.forward * halfFishLength), transform.forward * speed * Time.deltaTime * framesAhead, Color.red);
         RaycastHit rayData = new RaycastHit();
-        if (Physics.SphereCast(transform.position - (transform.forward * halfFishLength), tempFishRadius, transform.forward, out rayData, speed * Time.deltaTime * framesAhead))
+        if (Physics.SphereCast(transform.position - (transform.forward * halfFishLength), tempFishRadius, transform.forward, out rayData, speed * Time.deltaTime * framesAhead, 0, QueryTriggerInteraction.Ignore))
         {
             // We hit an obstacle, now see if it actually is an obstacle instead of a fish or sub (sub will be interesting as it is both target and obstacle)
             // Get obstacle tag list?
