@@ -15,6 +15,8 @@ public class SubFishSpawner : MonoBehaviour {
     public float maxHeightToSpawnAt = 30.0f;
     public bool DogSpawned { get; set; }
     public float dogSpawnDistance = 100;
+    [Range(0,100)]
+    public float spawnChancePerFrame = 0.1f;
     public GameObject dogPrefab;
     private BaskingShark shark;
 
@@ -77,7 +79,7 @@ public class SubFishSpawner : MonoBehaviour {
             f.Tick(dt, transform);
         }
 
-        if(!DogSpawned)
+        if(!DogSpawned && Random.Range(0f, 100f) < spawnChancePerFrame)
         {
             if((shark && (shark.transform.position - transform.position).sqrMagnitude > 4 * dogSpawnDistance * dogSpawnDistance) || !shark)
             {
