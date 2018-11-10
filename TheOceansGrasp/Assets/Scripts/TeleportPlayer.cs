@@ -81,6 +81,7 @@ public class TeleportPlayer : MonoBehaviour {
                 player.transform.position = new Vector3(3000.0f, 100.0f, 1.19f);
                 player.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
                 swim.enabled = false;
+                playerRigidbody.velocity = Vector3.zero;
                 playerCamera.enabled = true;
                 subMovement.enabled = true;
                 submarine.GetComponent<Rigidbody>().isKinematic = false;

@@ -12,7 +12,6 @@ public class PlayerSwim : MonoBehaviour
     public Vector3 velocity = new Vector3(1.0f, 0.0f, 0.0f);
     public Camera playerCamera = new Camera();
 
-    public float speed = 0.0f;
     private Rigidbody rb;
     private float speedIncrement = 5.0f;
     public float maxSpeed = 3.0f;
@@ -35,6 +34,7 @@ public class PlayerSwim : MonoBehaviour
         up = gameObject.transform.up;
         right = gameObject.transform.right;
         rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
         // Ignore Collisions with the submarine
         //Physics.IgnoreCollision(gameObject.GetComponent<CapsuleCollider>(), submarine.GetComponent<CapsuleCollider>());
         Physics.IgnoreCollision(gameObject.GetComponent<CapsuleCollider>(), submarine.GetComponent<BoxCollider>());
@@ -55,6 +55,7 @@ public class PlayerSwim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        velocity = Vector3.zero;
         if (gameObject.tag == "Player")
         {
             Debug.Log("Player");
@@ -63,52 +64,47 @@ public class PlayerSwim : MonoBehaviour
 
             // calculate the forward, right, and up vectors
             //forward = GetDirection();
-            forward = Vector3.forward;
+            forward = transform.forward;
             forward = forward.normalized;
             up = Vector3.up;
-            right = Vector3.right;
+            right = transform.right;
+            
             // cross product of up and forward to get right
             /*
             right = Vector3.Cross(gameObject.transform.forward, gameObject.transform.up);
             right = right.normalized;
             */
-            velocity = Vector3.zero;
+            //velocity = Vector3.zero;
             bool isGoing = false;
             if (Input.GetKey(KeyCode.W))
             {
                 //velocity = transform.forward;
-                velocity += forward;
-                //speed += speedIncrement * Time.deltaTime;
+                velocity += forward * maxSpeed;
                 isGoing = true;
             }
             else if (Input.GetKey(KeyCode.S))
             {
-                velocity += forward * -1.0f;
-                //speed += speedIncrement * Time.deltaTime;
+                velocity += forward * -1.0f * maxSpeed;
                 isGoing = true;
             }
             if (Input.GetKey(KeyCode.A))
             {
-                velocity += right * -1.0f;
-                //speed += speedIncrement * Time.deltaTime;
+                velocity += right * -1.0f * maxSpeed;
                 isGoing = true;
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                velocity += right;
-                //speed += speedIncrement * Time.deltaTime;
+                velocity += right * maxSpeed;
                 isGoing = true;
             }
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                velocity += up * -1.0f;
-                //speed += speedIncrement * Time.deltaTime;
+                velocity += up * -1.0f * maxSpeed;
                 isGoing = true;
             }
             else if (Input.GetKey(KeyCode.Space))
             {
-                velocity += up;
-                //speed += speedIncrement * Time.deltaTime;
+                velocity += up * maxSpeed;
                 isGoing = true;
             }
             else if (!Input.GetKey(KeyCode.W) &&
@@ -119,22 +115,18 @@ public class PlayerSwim : MonoBehaviour
                 !Input.GetKey(KeyCode.Space) &&
                 !Input.GetKey(KeyCode.W) && useSlowdown)
             {
-                speed *= slowDown;
+                
             }
 
             if (isGoing)
             {
-                speed += speedIncrement * Time.deltaTime;
+                //speed += speedIncrement * Time.deltaTime;
             }
 
-            if (speed > maxSpeed)
-            {
-                speed = maxSpeed;
-            }
-            else if (speed < 0.01f)
-            {
-                speed = 0.0f;
-            }
+            //else if (speed < 0.01f)
+            //{
+            //    speed = 0.0f;
+            //}
             /*
             // forward
             forward = gameObject.transform.forward;
@@ -150,8 +142,9 @@ public class PlayerSwim : MonoBehaviour
             playerCamera.transform.position = position;
             playerCamera.transform.rotation = Quaternion.Euler(direction.x, direction.y, direction.z);
             */
-            rb.velocity = velocity.normalized * speed;
-            Debug.Log("x: " + rb.velocity.x + " y: " + rb.velocity.y + " z: " + rb.velocity.z);
+            velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+            rb.velocity = velocity;
+            Debug.Log("x: " + rb.velocity.x + " y: " + rb.velocity.y + "z: " + rb.velocity.z);
 
             //position += transform.rotation * velocity * speed * Time.deltaTime;
             //transform.position = position;

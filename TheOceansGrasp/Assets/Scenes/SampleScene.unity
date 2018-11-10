@@ -791,6 +791,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inside: 1
   submarine: {fileID: 2050764014}
+  light1: {fileID: 2013644486}
+  light2: {fileID: 1396253566}
   player: {fileID: 641548811}
   otherScript: {fileID: 856459067}
   distanceFromHatch: 0.2
@@ -3665,7 +3667,7 @@ Light:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 573824676}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.764151, g: 0.75852835, b: 0.62357605, a: 1}
@@ -4427,11 +4429,11 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 641548811}
   serializedVersion: 2
-  m_Mass: 5000
+  m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 50
+  m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -6111,6 +6113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inside: 0
   submarine: {fileID: 2050764014}
+  light1: {fileID: 2013644486}
+  light2: {fileID: 1396253566}
   player: {fileID: 641548811}
   otherScript: {fileID: 99806527}
   distanceFromHatch: 0
@@ -8662,7 +8666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1396253567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8694,7 +8698,7 @@ Light:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1396253566}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 0.12941177, g: 0.16470589, b: 0.2627451, a: 1}
@@ -11816,7 +11820,7 @@ Light:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1944719961}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.764151, g: 0.75852835, b: 0.62357605, a: 1}
@@ -12705,6 +12709,7 @@ MonoBehaviour:
   maxSideDistanceToSpawnAt: 30
   maxHeightToSpawnAt: 30
   dogSpawnDistance: 100
+  spawnChancePerFrame: 0.1
   dogPrefab: {fileID: 1672424236152692, guid: a431dbe89b8897e4e8583f1432714d9d, type: 2}
   fishToSpawn:
   - fishPrefab: {fileID: 1804599287266656, guid: d2e45a0a5c7a9d2419321eb677091106,
@@ -12729,11 +12734,12 @@ MonoBehaviour:
   displayedHealth: {fileID: 1823659527}
   displayedEnergy: {fileID: 1079056616}
   progress: {fileID: 1063092011}
-  damagedSections: []
   damageBlock: {fileID: 1575646702178752, guid: b15ca5f256cbb0c449ae3b1dcd777222,
     type: 2}
   goalObject: {fileID: 1504701926}
   frontCamera: {fileID: 508060030}
+  techNodeParent: {fileID: 0}
+  techNodes: []
   systemBreak: 0
   systemBreak1Button: {fileID: 1889557853}
   systemBreak1Panel: {fileID: 754873812}
