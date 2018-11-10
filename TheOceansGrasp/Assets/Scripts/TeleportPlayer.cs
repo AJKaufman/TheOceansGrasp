@@ -6,6 +6,8 @@ public class TeleportPlayer : MonoBehaviour {
 
     public bool inside = true;
     public GameObject submarine;
+    public GameObject light1;
+    public GameObject light2;
     public GameObject player;
     public TeleportPlayer otherScript;
     private SubmarineMovement subMovement;
@@ -52,12 +54,15 @@ public class TeleportPlayer : MonoBehaviour {
             //otherScript.inside = !otherScript.inside;
             //inside = !inside;
             otherScript.gameObject.transform.parent = null;
-            player.transform.position = new Vector3(subPosition.x + 0.0f, subPosition.y + 100.0f, subPosition.z + 5.0f);
+            player.transform.position = new Vector3(subPosition.x + 0.0f, subPosition.y + 10.0f, subPosition.z + 5.0f);
             Debug.Log("SubY: " + subPosition.y);
+            Debug.Log("PlayerY: " + player.transform.position.y);
             swim.enabled = true;
             playerCamera.enabled = false;
             subMovement.enabled = false;
             lightRen.enabled = true;
+            light1.GetComponent<Light>().enabled = false;
+            light2.GetComponent<Light>().enabled = true;
             submarine.GetComponent<Rigidbody>().isKinematic = true;
             playerRigidbody.velocity = Vector3.zero;
             //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = false;
@@ -71,6 +76,8 @@ public class TeleportPlayer : MonoBehaviour {
                 gameObject.transform.parent = submarine.transform;
                 //otherScript.inside = !otherScript.inside;
                 //inside = !inside;
+                light1.GetComponent<Light>().enabled = true;
+                light2.GetComponent<Light>().enabled = false;
                 player.transform.position = new Vector3(3000.0f, 100.0f, 1.19f);
                 player.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
                 swim.enabled = false;

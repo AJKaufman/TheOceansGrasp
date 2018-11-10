@@ -29,11 +29,11 @@ public class LightsOn : MonoBehaviour {
         on = !on;
         if (on)
         {
-            Light.SetActive(true);
+            Light.GetComponent<Light>().enabled = true;
         }
         else
         {
-            Light.SetActive(false);
+            Light.GetComponent<Light>().enabled = false;
         }
     }
 }

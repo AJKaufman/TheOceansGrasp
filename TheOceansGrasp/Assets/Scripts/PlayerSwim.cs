@@ -8,7 +8,7 @@ public class PlayerSwim : MonoBehaviour
 
     [SerializeField] private MouseLook m_MouseLook;
 
-    private Vector3 position;
+    //private Vector3 position;
     public Vector3 velocity = new Vector3(1.0f, 0.0f, 0.0f);
     public Camera playerCamera = new Camera();
 
@@ -28,8 +28,8 @@ public class PlayerSwim : MonoBehaviour
     void Start()
     {
         // set the starting position to the starting position of the gameobject
-        position = new Vector3(submarine.GetComponent<Transform>().position.x, submarine.GetComponent<Transform>().position.y + 6.5f, submarine.GetComponent<Transform>().position.z + 5.0f);
-        transform.position = position;
+        //position = new Vector3(submarine.GetComponent<Transform>().position.x, submarine.GetComponent<Transform>().position.y + 6.5f, submarine.GetComponent<Transform>().position.z + 5.0f);
+        //transform.position = position;
         m_MouseLook.Init(transform, playerCamera.transform);
         forward = new Vector3(1.0f, 0.0f, 0.0f);
         up = gameObject.transform.up;
@@ -43,8 +43,8 @@ public class PlayerSwim : MonoBehaviour
     private void OnEnable()
     {
         // set the starting position to the starting position of the gameobject
-        position = new Vector3(submarine.GetComponent<Transform>().position.x, submarine.GetComponent<Transform>().position.y + 6.5f, submarine.GetComponent<Transform>().position.z + 4.0f);
-        transform.position = position;
+        //position = new Vector3(submarine.GetComponent<Transform>().position.x, submarine.GetComponent<Transform>().position.y + 6.5f, submarine.GetComponent<Transform>().position.z + 4.0f);
+        //transform.position = position;
     }
 
     private void FixedUpdate()
@@ -57,6 +57,7 @@ public class PlayerSwim : MonoBehaviour
     {
         if (gameObject.tag == "Player")
         {
+            Debug.Log("Player");
             // call the method to rotate the view
             RotateView();
 
@@ -149,7 +150,9 @@ public class PlayerSwim : MonoBehaviour
             playerCamera.transform.position = position;
             playerCamera.transform.rotation = Quaternion.Euler(direction.x, direction.y, direction.z);
             */
-            rb.velocity = rb.transform.forward * speed;
+            rb.velocity = velocity.normalized * speed;
+            Debug.Log("x: " + rb.velocity.x + " y: " + rb.velocity.y + " z: " + rb.velocity.z);
+
             //position += transform.rotation * velocity * speed * Time.deltaTime;
             //transform.position = position;
         }
