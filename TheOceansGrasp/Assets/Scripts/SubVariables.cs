@@ -21,6 +21,9 @@ public class SubVariables : MonoBehaviour {
     private SubmarineMovement submarineMovement;
     public GameObject techNodeParent; // gameobject that holds other tech nodes
     public List<GameObject> techNodes; // list of tech nodes
+    public GameObject damaged1;
+    public GameObject damaged2;
+    public GameObject damaged3;
     // system break variables
     private DamageBlockRemoval damageRemoval;
     public bool systemBreak = false;
@@ -84,7 +87,7 @@ public class SubVariables : MonoBehaviour {
     SystemBreak();
 
     if(health < 0) {
-      Destroy(gameObject);
+            health = 0;
     }
   }
   
@@ -115,8 +118,22 @@ public class SubVariables : MonoBehaviour {
         damageRemoval = techNodes[nodeIndex].GetComponent<DamageBlockRemoval>();
         damageRemoval.isDamaged = true;
 
-        // change the material of it to be red
-        damageRemoval.gameObject.GetComponent<Material>().color = Color.red;
+        // change the model to be visually different
+        Mesh newDamageAppearance = new Mesh();
+        int randomModel = Random.Range(0, 3);
+        if(randomModel == 0)
+        {
+            newDamageAppearance = damaged1.GetComponent<Mesh>();
+        }
+        if (randomModel == 1)
+        {
+            newDamageAppearance = damaged2.GetComponent<Mesh>();
+        }
+        if (randomModel == 2)
+        {
+            newDamageAppearance = damaged3.GetComponent<Mesh>();
+        }
+        damageRemoval.gameObject.GetComponent<MeshFilter>().mesh = newDamageAppearance;
 
         /*
         // create a position for the damage to be spawned at
