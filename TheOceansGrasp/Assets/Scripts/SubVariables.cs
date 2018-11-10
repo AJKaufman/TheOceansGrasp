@@ -88,7 +88,6 @@ public class SubVariables : MonoBehaviour {
 
     if(health < 0) {
             health = 0;
-      Destroy(gameObject);
     }
   }
   
