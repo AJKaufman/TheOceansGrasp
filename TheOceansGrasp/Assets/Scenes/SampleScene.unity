@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4389391, g: 0.47888976, b: 0.52273834, a: 1}
+  m_IndirectSpecularColor: {r: 0.43893906, g: 0.47888923, b: 0.5227379, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4404,7 +4404,6 @@ MonoBehaviour:
     lockCursor: 1
   velocity: {x: 1, y: 0, z: 0}
   playerCamera: {fileID: 1949762438}
-  speed: 0
   maxSpeed: 3
   mousePos: {x: 0, y: 0}
   useSlowdown: 1
@@ -7879,6 +7878,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1155550321}
   m_CullTransparentMesh: 0
+--- !u!1 &1168552282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1051347926922262, guid: 761895377b9920b4e9d6d70878a7e3bb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1986620049}
 --- !u!1 &1197075350
 GameObject:
   m_ObjectHideFlags: 0
@@ -8282,7 +8286,6 @@ MonoBehaviour:
     lockCursor: 1
   velocity: {x: 1, y: 0, z: 0}
   playerCamera: {fileID: 1717675796}
-  speed: 0
   maxSpeed: 3
   mousePos: {x: 0, y: 0}
   useSlowdown: 1
@@ -12155,6 +12158,11 @@ Prefab:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23381472541854864, guid: 761895377b9920b4e9d6d70878a7e3bb,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 761895377b9920b4e9d6d70878a7e3bb, type: 2}
   m_IsPrefabAsset: 0
@@ -12738,8 +12746,11 @@ MonoBehaviour:
     type: 2}
   goalObject: {fileID: 1504701926}
   frontCamera: {fileID: 508060030}
-  techNodeParent: {fileID: 0}
+  techNodeParent: {fileID: 1168552282}
   techNodes: []
+  damaged1: {fileID: 1365386808342532, guid: 59f8e90633192954790bca73ed977325, type: 2}
+  damaged2: {fileID: 1859749135676804, guid: 43dbe729dfc7f2143b86082e5f8137a5, type: 2}
+  damaged3: {fileID: 1760793698283550, guid: d1e3017b493376048988ebd35c2ba2b6, type: 2}
   systemBreak: 0
   systemBreak1Button: {fileID: 1889557853}
   systemBreak1Panel: {fileID: 754873812}

@@ -123,15 +123,15 @@ public class SubVariables : MonoBehaviour {
         int randomModel = Random.Range(0, 3);
         if(randomModel == 0)
         {
-            newDamageAppearance = damaged1.GetComponent<Mesh>();
+            newDamageAppearance = damaged1.GetComponent<MeshFilter>().sharedMesh;
         }
         if (randomModel == 1)
         {
-            newDamageAppearance = damaged2.GetComponent<Mesh>();
+            newDamageAppearance = damaged2.GetComponent<MeshFilter>().sharedMesh;
         }
         if (randomModel == 2)
         {
-            newDamageAppearance = damaged3.GetComponent<Mesh>();
+            newDamageAppearance = damaged3.GetComponent<MeshFilter>().sharedMesh;
         }
         damageRemoval.gameObject.GetComponent<MeshFilter>().mesh = newDamageAppearance;
 
