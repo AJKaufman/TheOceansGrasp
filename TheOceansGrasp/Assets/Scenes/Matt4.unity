@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4389391, g: 0.47888976, b: 0.52273834, a: 1}
+  m_IndirectSpecularColor: {r: 0.43893906, g: 0.47888923, b: 0.5227379, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -791,6 +791,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inside: 1
   submarine: {fileID: 2050764014}
+  light1: {fileID: 0}
+  light2: {fileID: 0}
   player: {fileID: 641548811}
   otherScript: {fileID: 856459067}
   distanceFromHatch: 0.2
@@ -4402,7 +4404,6 @@ MonoBehaviour:
     lockCursor: 1
   velocity: {x: 1, y: 0, z: 0}
   playerCamera: {fileID: 1949762438}
-  speed: 0
   maxSpeed: 3
   mousePos: {x: 0, y: 0}
   useSlowdown: 1
@@ -6111,6 +6112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inside: 0
   submarine: {fileID: 2050764014}
+  light1: {fileID: 0}
+  light2: {fileID: 0}
   player: {fileID: 641548811}
   otherScript: {fileID: 99806527}
   distanceFromHatch: 0
@@ -8278,7 +8281,6 @@ MonoBehaviour:
     lockCursor: 1
   velocity: {x: 1, y: 0, z: 0}
   playerCamera: {fileID: 1717675796}
-  speed: 0
   maxSpeed: 3
   mousePos: {x: 0, y: 0}
   useSlowdown: 1
@@ -12715,6 +12717,7 @@ MonoBehaviour:
   maxSideDistanceToSpawnAt: 30
   maxHeightToSpawnAt: 30
   dogSpawnDistance: 100
+  spawnChancePerFrame: 0.1
   dogPrefab: {fileID: 1672424236152692, guid: a431dbe89b8897e4e8583f1432714d9d, type: 2}
   fishToSpawn:
   - fishPrefab: {fileID: 1804599287266656, guid: d2e45a0a5c7a9d2419321eb677091106,
@@ -12745,6 +12748,9 @@ MonoBehaviour:
   frontCamera: {fileID: 508060030}
   techNodeParent: {fileID: 1603480546}
   techNodes: []
+  damaged1: {fileID: 1365386808342532, guid: 59f8e90633192954790bca73ed977325, type: 2}
+  damaged2: {fileID: 1859749135676804, guid: 43dbe729dfc7f2143b86082e5f8137a5, type: 2}
+  damaged3: {fileID: 1760793698283550, guid: d1e3017b493376048988ebd35c2ba2b6, type: 2}
   systemBreak: 0
   systemBreak1Button: {fileID: 1889557853}
   systemBreak1Panel: {fileID: 754873812}
