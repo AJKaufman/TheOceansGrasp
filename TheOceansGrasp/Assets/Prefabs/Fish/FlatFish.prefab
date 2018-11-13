@@ -100,7 +100,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!82 &82998096269958912
 AudioSource:
@@ -224,6 +224,8 @@ MonoBehaviour:
   wanderDeviation: 4
   wanderDistance: 0.5
   prevWanderWeight: 30
+  fishRadius: 0.5
+  halfFishLength: 1
   lifetime: 120
   Velocity: {x: 0, y: 0, z: 0}
   avoidanceScale: 1
@@ -233,9 +235,11 @@ MonoBehaviour:
   - tag: Player
     priority: 0
     aggroRange: 2
+    willFlee: 1
   - tag: Sub
     priority: 1
     aggroRange: 50
+    willFlee: 0
   seekPriority: 2147483647
   cameraAttackRange: 8
   intoHoverSpeed: 2

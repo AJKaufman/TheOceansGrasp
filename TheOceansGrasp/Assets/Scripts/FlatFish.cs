@@ -104,8 +104,8 @@ public class FlatFish : SeekerFish {
         }
         else if(targetObject.tag == "Player")
         {
-            Flee(targetObject);
-            return;
+            //Flee(targetObject);
+            //return;
         }
 
         if (isCamera)
@@ -392,7 +392,7 @@ public class FlatFish : SeekerFish {
         rb.isKinematic = false;
     }
 
-    protected override void SetSeekTarget(GameObject seekTarget)
+    protected override void SetSeekTarget(GameObject seekTarget, bool willFlee = false)
     {
         if (seekTarget.tag == "Player")
         {
@@ -406,7 +406,7 @@ public class FlatFish : SeekerFish {
                 fps.targeted = false;
             }
         }
-        base.SetSeekTarget(seekTarget);
+        base.SetSeekTarget(seekTarget, willFlee);
     }
 
     protected override bool IsTarget(string tag)

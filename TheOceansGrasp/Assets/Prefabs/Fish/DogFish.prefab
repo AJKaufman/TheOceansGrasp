@@ -95,13 +95,13 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1672424236152692}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!82 &82938796526350786
 AudioSource:
@@ -225,6 +225,8 @@ MonoBehaviour:
   wanderDeviation: 2
   wanderDistance: 0.5
   prevWanderWeight: 8
+  fishRadius: 0.5
+  halfFishLength: 5
   lifetime: 120
   Velocity: {x: 0, y: 0, z: 0}
   avoidanceScale: 1
@@ -234,9 +236,11 @@ MonoBehaviour:
   - tag: Sub
     priority: 1
     aggroRange: 100
+    willFlee: 0
   - tag: Player
     priority: 0
     aggroRange: 200
+    willFlee: 0
   seekPriority: 2147483647
   attackRange: 2
   damageRange: 1

@@ -28,6 +28,9 @@ public class SeekerFish : MonoBehaviour {
     public float wanderDistance = 0.5f; // The larger this is, the more the deviation will affect wander
     public float prevWanderWeight = 8;
 
+    public float fishRadius = 0.5f;
+    public float halfFishLength = 1;
+
     private float stunTimer = 0;
 
     public float lifetime = 120; // Time in seconds for the fish to last when wandering, does not reset
@@ -55,6 +58,7 @@ public class SeekerFish : MonoBehaviour {
         public string tag;
         public int priority;
         public float aggroRange;
+        public bool willFlee = false;
     }
     public SeekPriorities[] tagPriorities;
     // Public for testing
@@ -181,22 +185,25 @@ public class SeekerFish : MonoBehaviour {
     {
         // Check all possible targets
         // Player is higher than sub usually, need to be to flee from
+        bool willFlee;
         foreach (KeyValuePair<GameObject, float> pair in possibleTargets)
         {
-            if (IsGreaterPriorityInRange(pair.Key.tag, pair.Value))
+            if (IsGreaterPriorityInRange(pair.Key.tag, pair.Value, out willFlee))
             {
-                SetSeekTarget(pair.Key);
+                SetSeekTarget(pair.Key, willFlee);
             }
         }
     }
 
-    bool IsGreaterPriorityInRange(string tag, float distance)
+    bool IsGreaterPriorityInRange(string tag, float distance, out bool willFlee)
     {
+        willFlee = false;
         foreach (SeekPriorities s in tagPriorities)
         {
             if (tag == s.tag && s.priority < seekPriority && distance <= s.aggroRange)
             {
                 seekPriority = s.priority;
+                willFlee = s.willFlee;
                 return true;
             }
         }
@@ -204,9 +211,9 @@ public class SeekerFish : MonoBehaviour {
         return false;
     }
 
-    virtual protected void SetSeekTarget(GameObject seekTarget)
+    virtual protected void SetSeekTarget(GameObject seekTarget, bool willFlee = false)
     {
-        behaviour = FishBehaviour.Seek;
+        behaviour = willFlee ? FishBehaviour.Flee : FishBehaviour.Seek;
         targetObject = seekTarget;
     }
 
@@ -297,13 +304,11 @@ public class SeekerFish : MonoBehaviour {
     virtual protected void Move(float currentMaxSpeed, bool useRigidBody = true)
     {
         //Avoidance kinda
-        float tempFishRadius = 0.5f;
-        float halfFishLength = 1;
         int framesAhead = 90; // Too far?
         // Make sure the start of the check is in the fish so that it will not be inside the obstacle
-        Debug.DrawRay(transform.position - (transform.forward * halfFishLength), transform.forward * speed * Time.deltaTime * framesAhead, Color.red);
+        Debug.DrawRay(transform.position - (transform.forward * halfFishLength), transform.forward * ((speed * Time.deltaTime * framesAhead) + halfFishLength), Color.red);
         RaycastHit rayData = new RaycastHit();
-        if (Physics.SphereCast(transform.position - (transform.forward * halfFishLength), tempFishRadius, transform.forward, out rayData, speed * Time.deltaTime * framesAhead, 0, QueryTriggerInteraction.Ignore))
+        if (Physics.SphereCast(transform.position - (transform.forward * halfFishLength), fishRadius, transform.forward, out rayData, (speed * Time.deltaTime * framesAhead) + halfFishLength, 0, QueryTriggerInteraction.Ignore))
         {
             // We hit an obstacle, now see if it actually is an obstacle instead of a fish or sub (sub will be interesting as it is both target and obstacle)
             // Get obstacle tag list?
@@ -313,8 +318,8 @@ public class SeekerFish : MonoBehaviour {
                 speed -= acceleration * Time.deltaTime; // Slow down
                 speed = Mathf.Max(speed, 0);
                 /**/
-                float right = Vector3.Dot(rayData.point - transform.position, transform.right * tempFishRadius);
-                float up = Vector3.Dot(rayData.point - transform.position, transform.up * tempFishRadius);
+                float right = Vector3.Dot(rayData.point - transform.position, transform.right * fishRadius);
+                float up = Vector3.Dot(rayData.point - transform.position, transform.up * fishRadius);
                 Vector3 newDir = (transform.right * (1-right) * avoidanceScale) + (transform.up * (1-up) * avoidanceScale) + (transform.forward * avoidanceScale);
                 //targetPosition = newDir + transform.position;
                 // Rotate the object to face its target
@@ -324,7 +329,7 @@ public class SeekerFish : MonoBehaviour {
                 //transform.rotation = Quaternion.LookRotation(newDir);
                 /*
                 transform.rotation = prevRotation;
-                Vector3 newDestination = rayData.point + (rayData.normal * (rayData.distance + tempFishRadius));
+                Vector3 newDestination = rayData.point + (rayData.normal * (rayData.distance + fishRadius));
                 float turnRate = Mathf.Deg2Rad * Mathf.Max(maxSpeedTurnRate, stoppedTurnRate * (maxSpeed / (speed + maxSpeed))) * Time.deltaTime;
                 transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, newDestination - transform.position, Mathf.Deg2Rad * turnRate * Time.deltaTime, 1));
                 speed -= acceleration * Time.deltaTime; // Slow down, later will add 1 acceleration

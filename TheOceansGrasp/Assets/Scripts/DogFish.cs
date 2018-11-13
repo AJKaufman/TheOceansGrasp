@@ -53,6 +53,7 @@ public class DogFish : SeekerFish {
         audioSource = GetComponentInChildren<AudioSource>();
         ResetAudioTimer();
         FindObjectOfType<SubFishSpawner>().DogSpawned = true;
+        prevPosition = transform.position;
     }
 	
 	// Update is called once per frame
@@ -180,19 +181,36 @@ public class DogFish : SeekerFish {
         {
             if (Vector3.SqrMagnitude(targetObject.transform.position - transform.position) > maxAggroRange * maxAggroRange)
             {
-                Kill();
+                if (targetObject.CompareTag("Player"))
+                {
+                    seekPriority = int.MaxValue;
+                    print("reset priority");
+                }
+                else
+                {
+                    Kill();
+                }
             }
             if (seekPrevious)
             {
                 targetPosition = prevPosition;
-                if ((transform.position - prevPosition).sqrMagnitude <= stopDistance * stopDistance)
+                if ((transform.position - prevPosition).sqrMagnitude <= stopDistance * stopDistance && !targetObject.CompareTag("Player"))
                 {
                     seekPrevious = false;
+                    targetPosition = targetObject.transform.position;
+                    print("found home while seeking " + targetObject.tag);
+                }
+                else
+                {
                     targetPosition = targetObject.transform.position;
                 }
             }
             else
             {
+                if (!targetObject.CompareTag("Player"))
+                {
+                    prevPosition = transform.position;
+                }
                 targetPosition = targetObject.transform.position;
             }
         }
@@ -218,20 +236,17 @@ public class DogFish : SeekerFish {
         }
     }
 
-    protected override void SetSeekTarget(GameObject seekTarget)
+    protected override void SetSeekTarget(GameObject seekTarget, bool willFlee = false)
     {
-        if (targetObject)
+        base.SetSeekTarget(seekTarget, willFlee);
+        if (seekTarget && targetObject)
         {
-            if (targetObject.CompareTag("Sub"))
-            {
-                prevPosition = targetObject.transform.position;
-            }
-            else if (targetObject.CompareTag("Player"))
+            if (targetObject.CompareTag("Player"))
             {
                 seekPrevious = true;
+                print("return");
             }
         }
-        base.SetSeekTarget(seekTarget);
     }
 
     private CameraFPS GetCameraFPS(Camera cam)
