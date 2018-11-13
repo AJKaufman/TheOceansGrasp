@@ -144,7 +144,7 @@ public class PlayerSwim : MonoBehaviour
             */
             velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
             rb.velocity = velocity;
-            Debug.Log("x: " + rb.velocity.x + " y: " + rb.velocity.y + "z: " + rb.velocity.z);
+            //Debug.Log("x: " + rb.velocity.x + " y: " + rb.velocity.y + "z: " + rb.velocity.z);
 
             //position += transform.rotation * velocity * speed * Time.deltaTime;
             //transform.position = position;

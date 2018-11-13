@@ -52,7 +52,7 @@ public class SubVariables : MonoBehaviour {
         foreach(Transform child in techNodeParent.GetComponent<Transform>())
         {
             // add a damage script to it
-            child.gameObject.AddComponent<DamageBlockRemoval>();
+            //child.gameObject.AddComponent<DamageBlockRemoval>();
             // add it to the list
             techNodes.Add(child.gameObject);
         }
@@ -143,7 +143,10 @@ public class SubVariables : MonoBehaviour {
         {
             newDamageAppearance = damaged3.GetComponent<MeshFilter>().sharedMesh;
         }
-        damageRemoval.gameObject.GetComponent<MeshFilter>().mesh = newDamageAppearance;
+        //damageRemoval.gameObject.GetComponent<MeshFilter>().mesh = newDamageAppearance;
+
+        damageRemoval.GetComponent<MeshRenderer>().material.color = Color.red;
+        damageRemoval.GetComponent<DamageBlockRemoval>().isDamaged = true;
 
         /*
         // create a position for the damage to be spawned at

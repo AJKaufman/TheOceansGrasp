@@ -15,6 +15,7 @@ public class DamageBlockRemoval : MonoBehaviour {
     public bool wrongObject;
     public bool isDamaged;
     public Camera playerCam;
+    public Material gray;
 
 	// Use this for initialization
 	void Start () {
@@ -52,8 +53,9 @@ public class DamageBlockRemoval : MonoBehaviour {
                     distance = Vector3.Magnitude(player.GetComponent<Transform>().position - gameObject.transform.position);
 
                     // if it is within 2 meters
-                    if (distance <= 2.0f && !wrongObject)
+                    if (!wrongObject)
                     {
+                        Debug.Log("yeet");
                         // enable the slider canvas to show progress bar
                         Image[] images = slider.GetComponentsInChildren<Image>();
                         foreach (Image image in images)
@@ -83,7 +85,7 @@ public class DamageBlockRemoval : MonoBehaviour {
 
                             // then destroy the object after the variables have been reset
                             isDamaged = false;
-                            gameObject.GetComponent<Material>().color = Color.gray;
+                            gameObject.GetComponent<MeshRenderer>().material = gray;
                             // Destroy(this.gameObject);
                         }
                     }
@@ -108,6 +110,7 @@ public class DamageBlockRemoval : MonoBehaviour {
 	}
     private void OnMouseDown()
     {
+        Debug.Log("CLICKED");
         isClicked = true;
     }
 
