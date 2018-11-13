@@ -34,6 +34,9 @@ public class SubVariables : MonoBehaviour {
     private int totalRepairsMade = 0;
     public Button systemBreak1Button;
     public GameObject systemBreak1Panel;
+    public GameObject player;
+    public GameObject win;
+    public GameObject lose;
 
   // Use this for initialization
     void Start () {
@@ -72,7 +75,11 @@ public class SubVariables : MonoBehaviour {
     // convert to a percentage
     percent = ((startDistance - distance) / startDistance)*100.0f;
         //Debug.Log("Percent = " + percent);
-
+    if(distance <= 10)
+        {
+            win.SetActive(true);
+            player.SetActive(false);
+        }
     // Update health and energy each frame
     displayedHealth.GetComponent<Slider>().value = health;
     displayedEnergy.GetComponent<Slider>().value = energy;
@@ -86,8 +93,11 @@ public class SubVariables : MonoBehaviour {
     // Call the system break method
     SystemBreak();
 
-    if(health < 0) {
+    if(health <= 0) {
             health = 0;
+            lose.SetActive(true);
+            player.SetActive(false);
+
     }
   }
   

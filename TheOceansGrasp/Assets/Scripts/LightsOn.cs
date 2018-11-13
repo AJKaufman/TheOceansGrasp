@@ -30,10 +30,12 @@ public class LightsOn : MonoBehaviour {
         if (on)
         {
             Light.GetComponent<Light>().enabled = true;
+            Light.GetComponent<BoxCollider>().enabled = true;
         }
         else
         {
             Light.GetComponent<Light>().enabled = false;
+            Light.GetComponent<BoxCollider>().enabled = false;
         }
     }
 }

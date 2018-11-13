@@ -27,21 +27,18 @@ public class CameraFPS : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (damaged == false)
+        if (highfps == false)
         {
-            if (highfps == false)
+            elapsed += Time.deltaTime;
+            if (elapsed > 1 / FPS)
             {
-                elapsed += Time.deltaTime;
-                if (elapsed > 1 / FPS)
-                {
-                    elapsed = 0;
-                    renderCam.Render();
-                }
-            }
-            else
-            {
+                elapsed = 0;
                 renderCam.Render();
             }
+        }
+        else
+        {
+            renderCam.Render();
         }
     }
 
@@ -61,10 +58,14 @@ public class CameraFPS : MonoBehaviour {
             broken = true;
             transform.GetChild(1).gameObject.SetActive(false);
             transform.GetChild(2).gameObject.SetActive(true);
+            GetComponentInChildren<Cycle>().setAlpha(1.0f);
+        }
+        else
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
         }
         damaged = true;
         stactive = true;
-        GetComponent<RawImage>().texture = stat;
         transform.GetChild(1).gameObject.SetActive(true);
     }
 
@@ -74,8 +75,8 @@ public class CameraFPS : MonoBehaviour {
         {
             damaged = false;
             stactive = false;
-            GetComponent<RawImage>().texture = camTex;
             transform.GetChild(1).gameObject.SetActive(false);
+            transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 
