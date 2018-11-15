@@ -219,6 +219,12 @@ public class SeekerFish : MonoBehaviour {
 
     virtual protected bool IsTarget(string tag)
     {
+        if (targetObject)
+        {
+            return targetObject.CompareTag(tag);
+        }
+        return false;
+        /*
         foreach (SeekPriorities s in tagPriorities)
         {
             if(s.tag == tag)
@@ -228,6 +234,7 @@ public class SeekerFish : MonoBehaviour {
         }
 
         return false;
+        */
     }
 
     virtual public void Flee(GameObject fleeFrom)
