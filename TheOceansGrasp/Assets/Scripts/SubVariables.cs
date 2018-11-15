@@ -133,19 +133,19 @@ public class SubVariables : MonoBehaviour {
         int randomModel = Random.Range(0, 3);
         if(randomModel == 0)
         {
-            newDamageAppearance = damaged1.GetComponent<MeshFilter>().sharedMesh;
+            newDamageAppearance = damaged1.GetComponentInChildren<MeshFilter>().sharedMesh;
         }
         if (randomModel == 1)
         {
-            newDamageAppearance = damaged2.GetComponent<MeshFilter>().sharedMesh;
+            newDamageAppearance = damaged2.GetComponentInChildren<MeshFilter>().sharedMesh;
         }
         if (randomModel == 2)
         {
-            newDamageAppearance = damaged3.GetComponent<MeshFilter>().sharedMesh;
+            newDamageAppearance = damaged3.GetComponentInChildren<MeshFilter>().sharedMesh;
         }
-        //damageRemoval.gameObject.GetComponent<MeshFilter>().mesh = newDamageAppearance;
+        damageRemoval.gameObject.GetComponent<MeshFilter>().sharedMesh = newDamageAppearance;
 
-        damageRemoval.GetComponent<MeshRenderer>().material.color = Color.red;
+        //damageRemoval.GetComponent<MeshRenderer>().material.color = Color.red;
         damageRemoval.GetComponent<DamageBlockRemoval>().isDamaged = true;
 
         /*
