@@ -12,8 +12,7 @@ public class DogFish : SeekerFish {
     private float boredomTimer = 0;
     private GameObject sub;
     private bool inLight = false;
-    private bool seekPrevious = false;
-    private Vector3 prevPosition;
+    private bool didAttack = false;
 
 	[Header("Speed")]
 	public float dashSpeedMultiplier = 1.2f; // Of dash speed
@@ -53,7 +52,6 @@ public class DogFish : SeekerFish {
         audioSource = GetComponentInChildren<AudioSource>();
         ResetAudioTimer();
         FindObjectOfType<SubFishSpawner>().DogSpawned = true;
-        prevPosition = transform.position;
     }
 	
 	// Update is called once per frame
@@ -77,101 +75,93 @@ public class DogFish : SeekerFish {
     //TODO: Fix the constant audio playing? This may not be an issue.
     private void DetermineMaxSpeed()
     {
+        bool bored = false;
         float subMaxSpeed = sub.GetComponent<SubmarineMovement>().maxSpeed;
 
-        if (seekPrevious)
+        if (targetObject.CompareTag("Sub"))
         {
-            maxSpeed = subMaxSpeed * returnSpeedMultipler;
-            audioSource.Stop();
-        }
-        else
-        {
-            if (targetObject.CompareTag("Sub"))
+            float subSpeed = Mathf.Abs(targetObject.GetComponent<SubmarineMovement>().speed);
+
+            if (subSpeed > subMaxSpeed)
             {
-                float subSpeed = Mathf.Abs(targetObject.GetComponent<SubmarineMovement>().speed);
-                bool bored = false;
+                maxSpeed = subSpeed * dashSpeedMultiplier;
 
-                if (subSpeed > subMaxSpeed)
+                // Play loud panting and barking
+                if (audioSource.clip != dashSpeedAudio || !audioSource.isPlaying)
                 {
-                    maxSpeed = subSpeed * dashSpeedMultiplier;
-
-                    // Play loud panting and barking
-                    if (audioSource.clip != dashSpeedAudio || !audioSource.isPlaying)
-                    {
-                        audioSource.clip = dashSpeedAudio;
-                        audioSource.Play();
-                    }
-                }
-                else if (subSpeed == subMaxSpeed)
-                {
-                    maxSpeed = subSpeed * maxSpeedMultiplier;
-
-                    // Play panting
-                    if(audioSource.clip != maxSpeedAudio || !audioSource.isPlaying)
-                    {
-                        audioSource.clip = maxSpeedAudio;
-                        audioSource.Play();
-                    }
-                }
-                else if (subSpeed > slowSpeedThreshold * subMaxSpeed)
-                {
-                    maxSpeed = subSpeed * midSpeedMultiplier;
-
-                    //Might need to stop loop audio here
-
-                    // Play quick breath
-                    if (randomAudioTimer < 0)
-                    {
-                        audioSource.PlayOneShot(randomSwimAudio);
-                        ResetAudioTimer();
-                    }
-                }
-                else if (subSpeed <= slowSpeedThreshold * subMaxSpeed && subSpeed > 0)
-                {
-                    maxSpeed = subSpeed * slowSpeedMultiplier;
-                }
-                else
-                {
-                    maxSpeed = 0;
-                    bored = true;
-                    boredomTimer += Time.deltaTime;
-                    if (boredomTimer >= boredomPeriod)
-                    {
-                        // Do not retarget once fleeing
-                        Flee(targetObject);
-                        seekPriority = int.MinValue;
-                    }
-
-                    // Play curious yip
-                    if (randomAudioTimer < 0)
-                    {
-                        audioSource.PlayOneShot(randomStopAudio);
-                        ResetAudioTimer();
-                    }
-                }
-
-                if (!bored)
-                {
-                    boredomTimer = 0;
+                    audioSource.clip = dashSpeedAudio;
+                    audioSource.Play();
                 }
             }
-            else if (targetObject.CompareTag("Player"))
+            else if (subSpeed == subMaxSpeed)
             {
-                audioSource.Stop();
-                if (inLight)
+                maxSpeed = subSpeed * maxSpeedMultiplier;
+
+                // Play panting
+                if (audioSource.clip != maxSpeedAudio || !audioSource.isPlaying)
                 {
-                    maxSpeed = subMaxSpeed * lightSpeedMultipler;
-                    inLight = false;
+                    audioSource.clip = maxSpeedAudio;
+                    audioSource.Play();
                 }
-                else
+            }
+            else if (subSpeed > slowSpeedThreshold * subMaxSpeed)
+            {
+                maxSpeed = subSpeed * midSpeedMultiplier;
+
+                //Might need to stop loop audio here
+
+                // Play quick breath
+                if (randomAudioTimer < 0)
                 {
-                    maxSpeed = subMaxSpeed * outsideSpeedMultipler;
+                    audioSource.PlayOneShot(randomSwimAudio);
+                    ResetAudioTimer();
                 }
+            }
+            else if (subSpeed <= slowSpeedThreshold * subMaxSpeed && subSpeed > 0)
+            {
+                maxSpeed = subSpeed * slowSpeedMultiplier;
             }
             else
             {
-                maxSpeed = subMaxSpeed * fleeSpeedMultipler;
+                maxSpeed = 0;
+                bored = true;
+                boredomTimer += Time.deltaTime;
+                if (boredomTimer >= boredomPeriod)
+                {
+                    // Do not retarget once fleeing
+                    Flee(targetObject);
+                    seekPriority = int.MinValue;
+                }
+
+                // Play curious yip
+                if (randomAudioTimer < 0)
+                {
+                    audioSource.PlayOneShot(randomStopAudio);
+                    ResetAudioTimer();
+                }
             }
+        }
+        else if (targetObject.CompareTag("Player"))
+        {
+            audioSource.Stop();
+            if (inLight)
+            {
+                maxSpeed = subMaxSpeed * lightSpeedMultipler;
+                inLight = false;
+            }
+            else
+            {
+                maxSpeed = subMaxSpeed * outsideSpeedMultipler;
+            }
+        }
+        else
+        {
+            maxSpeed = subMaxSpeed * fleeSpeedMultipler;
+        }
+
+        if (!bored)
+        {
+            boredomTimer = 0;
         }
     }
 
@@ -184,35 +174,14 @@ public class DogFish : SeekerFish {
                 if (targetObject.CompareTag("Player"))
                 {
                     seekPriority = int.MaxValue;
-                    print("reset priority");
                 }
                 else
                 {
                     Kill();
                 }
             }
-            if (seekPrevious)
-            {
-                targetPosition = prevPosition;
-                if ((transform.position - prevPosition).sqrMagnitude <= stopDistance * stopDistance && !targetObject.CompareTag("Player"))
-                {
-                    seekPrevious = false;
-                    targetPosition = targetObject.transform.position;
-                    print("found home while seeking " + targetObject.tag);
-                }
-                else
-                {
-                    targetPosition = targetObject.transform.position;
-                }
-            }
-            else
-            {
-                if (!targetObject.CompareTag("Player"))
-                {
-                    prevPosition = transform.position;
-                }
-                targetPosition = targetObject.transform.position;
-            }
+
+            targetPosition = targetObject.transform.position;
         }
         //base.SeekBehavior();
         DetermineMaxSpeed();
@@ -236,19 +205,6 @@ public class DogFish : SeekerFish {
         }
     }
 
-    protected override void SetSeekTarget(GameObject seekTarget, bool willFlee = false)
-    {
-        base.SetSeekTarget(seekTarget, willFlee);
-        if (seekTarget && targetObject)
-        {
-            if (targetObject.CompareTag("Player"))
-            {
-                seekPrevious = true;
-                print("return");
-            }
-        }
-    }
-
     private CameraFPS GetCameraFPS(Camera cam)
     {
         CameraFPS fps = null;
@@ -269,9 +225,10 @@ public class DogFish : SeekerFish {
     private void OnTriggerEnter(Collider other)
     {
         if (behaviour == FishBehaviour.Seek) {
-            if (other.CompareTag("Sub"))
+            if (other.CompareTag("Sub") && !didAttack)
             {
                 other.GetComponentInChildren<SubVariables>().loseHealth(damage);
+                didAttack = true;
 
                 // Damage nearby cameras
                 Camera[] cams = other.GetComponentsInChildren<Camera>();
@@ -290,6 +247,7 @@ public class DogFish : SeekerFish {
             else if (other.CompareTag("Player"))
             {
                 // End the game somehow
+                FindObjectOfType<WinLose>().LoseGame();
 
                 // Play bark
                 audioSource.PlayOneShot(attackAudio);

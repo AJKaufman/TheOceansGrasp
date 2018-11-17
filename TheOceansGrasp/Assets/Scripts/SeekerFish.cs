@@ -311,11 +311,13 @@ public class SeekerFish : MonoBehaviour {
     virtual protected void Move(float currentMaxSpeed, bool useRigidBody = true)
     {
         //Avoidance kinda
-        int framesAhead = 90; // Too far?
+        int framesAhead = 120; // Too far?
         // Make sure the start of the check is in the fish so that it will not be inside the obstacle
-        Debug.DrawRay(transform.position - (transform.forward * halfFishLength), transform.forward * ((speed * Time.deltaTime * framesAhead) + halfFishLength), Color.red);
+        Debug.DrawRay(transform.position, transform.forward * ((speed * Time.deltaTime * framesAhead) + halfFishLength), Color.red);
         RaycastHit rayData = new RaycastHit();
-        if (Physics.SphereCast(transform.position - (transform.forward * halfFishLength), fishRadius, transform.forward, out rayData, (speed * Time.deltaTime * framesAhead) + halfFishLength, 0, QueryTriggerInteraction.Ignore))
+
+        // TODO: The cast does not return any hit. WHY?
+        if (Physics.SphereCast(transform.position, fishRadius, transform.forward, out rayData, (speed * Time.deltaTime * framesAhead) + halfFishLength, 0, QueryTriggerInteraction.Ignore))
         {
             // We hit an obstacle, now see if it actually is an obstacle instead of a fish or sub (sub will be interesting as it is both target and obstacle)
             // Get obstacle tag list?
