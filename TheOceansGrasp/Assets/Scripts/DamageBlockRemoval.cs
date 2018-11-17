@@ -7,6 +7,7 @@ public class DamageBlockRemoval : MonoBehaviour {
 
     // needs a reference to the player object
     public GameObject player;
+    public GameObject damagedNode;
     public Canvas canvas;
     public Slider slider;
     public float distance;
@@ -16,6 +17,9 @@ public class DamageBlockRemoval : MonoBehaviour {
     public bool isDamaged;
     public Camera playerCam;
     public Material gray;
+    private Transform parent;
+    public LayerMask mask;
+    public GameObject submarine;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +27,10 @@ public class DamageBlockRemoval : MonoBehaviour {
         repairTimer = 0.0f;
         isClicked = false;
         isDamaged = false;
-	}
+        parent = gameObject.transform.parent;
+        Physics.IgnoreCollision(submarine.GetComponent<BoxCollider>(), gameObject.GetComponent<BoxCollider>());
+        Physics.IgnoreCollision(submarine.GetComponent<CapsuleCollider>(), gameObject.GetComponent<BoxCollider>());
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -35,9 +42,10 @@ public class DamageBlockRemoval : MonoBehaviour {
                 if (Input.GetButton("RepairTool"))
                 {
                     RaycastHit hit;
-
-                    if (Physics.Raycast(playerCam.ScreenPointToRay(Input.mousePosition), out hit))
+                    
+                    if (Physics.Raycast(playerCam.ScreenPointToRay(Input.mousePosition), out hit, 5, 1<<mask))
                     {
+                        //Debug.Log("HIT");
                         if (gameObject != hit.transform.gameObject)
                         {
                             wrongObject = true;
@@ -52,10 +60,9 @@ public class DamageBlockRemoval : MonoBehaviour {
                     // calculate the distance between the player and the damage block
                     distance = Vector3.Magnitude(player.GetComponent<Transform>().position - gameObject.transform.position);
 
-                    // if it is within 2 meters
                     if (!wrongObject)
                     {
-                        Debug.Log("yeet");
+                        //Debug.Log("yeet");
                         // enable the slider canvas to show progress bar
                         Image[] images = slider.GetComponentsInChildren<Image>();
                         foreach (Image image in images)
@@ -85,10 +92,13 @@ public class DamageBlockRemoval : MonoBehaviour {
 
                             // then destroy the object after the variables have been reset
                             isDamaged = false;
+                            reParent();
+                            Positions.instance.damagedNodes.Remove(gameObject);
                             gameObject.GetComponent<MeshRenderer>().material = gray;
                             // Destroy(this.gameObject);
                         }
                     }
+
                     else
                     {
                         // disable canvas to stop showing progress bar
@@ -108,9 +118,11 @@ public class DamageBlockRemoval : MonoBehaviour {
             }
         }
 	}
+
+    // this method is a lil' bitch
     private void OnMouseDown()
     {
-        Debug.Log("CLICKED");
+        //Debug.Log("CLICKED");
         isClicked = true;
     }
 
@@ -130,5 +142,10 @@ public class DamageBlockRemoval : MonoBehaviour {
 
         // resets the progress bar
         slider.value = 0.0f;
+    }
+
+    public void reParent()
+    {
+        gameObject.transform.SetParent(parent);
     }
 }

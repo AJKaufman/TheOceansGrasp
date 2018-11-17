@@ -21,9 +21,11 @@ public class SubVariables : MonoBehaviour {
     private SubmarineMovement submarineMovement;
     public GameObject techNodeParent; // gameobject that holds other tech nodes
     public List<GameObject> techNodes; // list of tech nodes
-    public GameObject damaged1;
-    public GameObject damaged2;
-    public GameObject damaged3;
+    //public GameObject damageNode;
+    public Material damage1;
+    public Material damage2;
+    public Material damage3;
+    private Material newDamageAppearance;
     // system break variables
     private DamageBlockRemoval damageRemoval;
     public bool systemBreak = false;
@@ -129,24 +131,29 @@ public class SubVariables : MonoBehaviour {
         damageRemoval.isDamaged = true;
 
         // change the model to be visually different
-        Mesh newDamageAppearance = new Mesh();
         int randomModel = Random.Range(0, 3);
         if(randomModel == 0)
         {
-            newDamageAppearance = damaged1.GetComponentInChildren<MeshFilter>().sharedMesh;
+            newDamageAppearance = damage1;
         }
         if (randomModel == 1)
         {
-            newDamageAppearance = damaged2.GetComponentInChildren<MeshFilter>().sharedMesh;
+            newDamageAppearance = damage2;
         }
         if (randomModel == 2)
         {
-            newDamageAppearance = damaged3.GetComponentInChildren<MeshFilter>().sharedMesh;
+            newDamageAppearance = damage3;
         }
-        damageRemoval.gameObject.GetComponent<MeshFilter>().sharedMesh = newDamageAppearance;
+        //damageRemoval.gameObject.GetComponent<MeshFilter>().sharedMesh = newDamageAppearance;
 
+        damageRemoval.GetComponent<MeshRenderer>().material = newDamageAppearance;
         //damageRemoval.GetComponent<MeshRenderer>().material.color = Color.red;
         damageRemoval.GetComponent<DamageBlockRemoval>().isDamaged = true;
+        Positions.instance.damagedNodes.Add(damageRemoval.gameObject);
+        if (Positions.instance.outside)
+        {
+            damageRemoval.transform.parent = null;
+        }
 
         /*
         // create a position for the damage to be spawned at

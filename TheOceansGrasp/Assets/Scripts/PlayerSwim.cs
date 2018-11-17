@@ -58,7 +58,7 @@ public class PlayerSwim : MonoBehaviour
         velocity = Vector3.zero;
         if (gameObject.tag == "Player")
         {
-            Debug.Log("Player");
+            //Debug.Log("Player");
             // call the method to rotate the view
             RotateView();
 

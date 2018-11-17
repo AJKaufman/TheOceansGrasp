@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeleportPlayer : MonoBehaviour {
+public class TeleportPlayer : MonoBehaviour
+{
 
     public bool inside = true;
     public GameObject submarine;
@@ -18,9 +19,12 @@ public class TeleportPlayer : MonoBehaviour {
     private Transform subTransform;
     private Vector3 subPosition;
     private Rigidbody playerRigidbody;
+    private SubVariables subVar;
+    private List<GameObject> nodes;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         subMovement = submarine.GetComponent<SubmarineMovement>();
         subPosition = submarine.transform.position;
         swim = player.GetComponent<PlayerSwim>();
@@ -28,22 +32,23 @@ public class TeleportPlayer : MonoBehaviour {
         playerCamera = player.GetComponent<PlayerCamera>();
         subTransform = submarine.GetComponent<Transform>();
         playerRigidbody = player.GetComponent<Rigidbody>();
+        subVar = submarine.GetComponent<SubVariables>();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         if (!inside)
         {
             // calculate the distance from the hatch
             distanceFromHatch = Vector3.Magnitude(player.transform.position - gameObject.transform.position);
         }
-	}
+    }
 
     // teleport the player when they click on this object
     void OnMouseDown()
     {
-        Debug.Log("yeet");
+        //Debug.Log("yeet");
         // update the position of the submarine's hatch
         //subTransform = submarine.GetComponent<Transform>();
         // update the submarine's position to move the hatch effectively
@@ -55,8 +60,8 @@ public class TeleportPlayer : MonoBehaviour {
             //inside = !inside;
             otherScript.gameObject.transform.parent = null;
             player.transform.position = new Vector3(subPosition.x + 0.0f, subPosition.y + 10.0f, subPosition.z + 5.0f);
-            Debug.Log("SubY: " + subPosition.y);
-            Debug.Log("PlayerY: " + player.transform.position.y);
+            //Debug.Log("SubY: " + subPosition.y);
+            //Debug.Log("PlayerY: " + player.transform.position.y);
             swim.enabled = true;
             playerCamera.enabled = false;
             subMovement.enabled = false;
@@ -65,14 +70,24 @@ public class TeleportPlayer : MonoBehaviour {
             light2.GetComponent<Light>().enabled = true;
             submarine.GetComponent<Rigidbody>().isKinematic = true;
             playerRigidbody.velocity = Vector3.zero;
+            Positions.instance.outside = true;
+            foreach (GameObject node in Positions.instance.damagedNodes)
+            {
+                node.transform.parent = null;
+            }
             //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = false;
         }
         else
         {
-            Debug.Log("Doubleyeet");
+            //Debug.Log("Doubleyeet");
             // if the player is close enough to the outer hatch for them to make a reasonable jump
-            if(distanceFromHatch <= 4.0f)
+            if (distanceFromHatch <= 4.0f)
             {
+                Positions.instance.outside = false;
+                foreach (GameObject node in Positions.instance.damagedNodes)
+                {
+                    node.transform.parent = Positions.instance.universalParent;
+                }
                 gameObject.transform.parent = submarine.transform;
                 //otherScript.inside = !otherScript.inside;
                 //inside = !inside;

@@ -75,7 +75,7 @@ public class DischargePrompt : MonoBehaviour
     // method to enable the emergency discharge prompt
     public void EmergencyPromptEnable()
     {
-        Debug.Log("Clicked Emergency Button On");
+        //Debug.Log("Clicked Emergency Button On");
         //panel.gameObject.GetComponent<Image>().enabled = true;
 
         // enable all of the children's Button components
@@ -106,7 +106,7 @@ public class DischargePrompt : MonoBehaviour
     // method to disable the emergency discharge prompt
     public void EmergencyPromptDisable()
     {
-        Debug.Log("Clicked Emergency Button Off");
+        //Debug.Log("Clicked Emergency Button Off");
 
         // disable all of the children's Button components
         Button[] buttons = { };
@@ -146,7 +146,7 @@ public class DischargePrompt : MonoBehaviour
         // check to make sure there is enough energy to use
         if(energySlider.GetComponent<Slider>().value >= 40.0f)
         {
-            Debug.Log("DISCHARGING!");
+            //Debug.Log("DISCHARGING!");
 
             // find all seekerfish scripts in the scene
             seekerScripts = FindObjectsOfType<SeekerFish>();
@@ -167,14 +167,14 @@ public class DischargePrompt : MonoBehaviour
         }
         else
         {
-            Debug.Log("Insufficient Energy To Discharge!");
+            //Debug.Log("Insufficient Energy To Discharge!");
         }
     }
 
     // method to toggle turbo
     public void ToggleTurbo()
     {
-        Debug.Log("Turbo Toggled");
+        //Debug.Log("Turbo Toggled");
         // toggle the boolean
         if (isBoosting)
         {
@@ -207,7 +207,7 @@ public class DischargePrompt : MonoBehaviour
     {
         if (!SB1Active)
         {
-            Debug.Log("Clicked SystemBreak1 Button On");
+            //Debug.Log("Clicked SystemBreak1 Button On");
             //panel.gameObject.GetComponent<Image>().enabled = true;
 
             // enable all of the children's Button components
@@ -254,7 +254,7 @@ public class DischargePrompt : MonoBehaviour
     {
         if(!SB2Active)
         {
-            Debug.Log("Clicked SystemBreak2 Button On");
+            //Debug.Log("Clicked SystemBreak2 Button On");
             //panel.gameObject.GetComponent<Image>().enabled = true;
 
             // enable all of the children's Button components
@@ -296,7 +296,7 @@ public class DischargePrompt : MonoBehaviour
     {
         if(!SB3Active)
         {
-            Debug.Log("Clicked SystemBreak3 Button On");
+            //Debug.Log("Clicked SystemBreak3 Button On");
             //panel.gameObject.GetComponent<Image>().enabled = true;
 
             // enable all of the children's Button components
@@ -337,7 +337,7 @@ public class DischargePrompt : MonoBehaviour
     // method to disable system break 1
     public void SystemBreak1Disabled()
     {
-        Debug.Log("Clicked SystemBreak1 Button Off");
+        //Debug.Log("Clicked SystemBreak1 Button Off");
         //panel.gameObject.GetComponent<Image>().enabled = true;
 
         // enable all of the children's Button components
@@ -368,7 +368,7 @@ public class DischargePrompt : MonoBehaviour
     // method to enable system break 2
     public void SystemBreak2Disabled()
     {
-        Debug.Log("Clicked SystemBreak2 Button Off");
+        //Debug.Log("Clicked SystemBreak2 Button Off");
         //panel.gameObject.GetComponent<Image>().enabled = true;
 
         // enable all of the children's Button components
@@ -399,7 +399,7 @@ public class DischargePrompt : MonoBehaviour
     // method to disable system break 3
     public void SystemBreak3Disabled()
     {
-        Debug.Log("Clicked SystemBreak3 Button Off");
+        //Debug.Log("Clicked SystemBreak3 Button Off");
         //panel.gameObject.GetComponent<Image>().enabled = true;
 
         // enable all of the children's Button components
