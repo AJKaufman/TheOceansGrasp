@@ -8,12 +8,16 @@ public class TerrainLoading : MonoBehaviour {
     public GameObject terrain1;
     public GameObject terrain2;
     public GameObject terrain3;
+    
 
     private int randomlySelectedTerrain = 0;
     private Vector3 previousTerrainSpawnLoc = new Vector3(-100, -30, 100);
 
     // Use this for initialization
     void Start () {
+        terrain1.GetComponent<PillarGenerate>().PillarGeneration();
+        terrain2.GetComponent<PillarGenerate>().PillarGeneration();
+        terrain3.GetComponent<PillarGenerate>().PillarGeneration();
     }
 	
 	// Update is called once per frame
