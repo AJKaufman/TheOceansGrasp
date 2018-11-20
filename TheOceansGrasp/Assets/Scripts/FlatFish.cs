@@ -118,8 +118,8 @@ public class FlatFish : SeekerFish {
                         audioPlayer.clip = inAttackRangeAudio;
                         audioPlayer.Play();
                         camBehavior = CameraAttackBehavior.Above;
-                        //rb.isKinematic = true; // Disable rigid body
-                        rb.detectCollisions = false;
+                        rb.isKinematic = true; // Disable rigid body
+                        //rb.detectCollisions = false;
                         print("into above");
                     }
                     break;
@@ -141,7 +141,7 @@ public class FlatFish : SeekerFish {
                     if (Vector3.SqrMagnitude(targetPosition - transform.position) <= stopDistance * stopDistance)
                     {
                         camBehavior = CameraAttackBehavior.Attach;
-                        rb.isKinematic = true;
+                        //rb.isKinematic = true;
                         print("into attach");
                     }
                     break;

@@ -22,7 +22,6 @@ public class SeekerFish : MonoBehaviour {
     public float minWanderDistance = 5;
     public float maxWanderDistance = 20;
     public float wanderTargetTime = 5; // How long to seek the wander target
-    //private float wanderTimer; // When zero, find new target
     public float wanderDeviation = 2;
     private Vector3 prevWanderDir = Vector3.zero;
     public float wanderDistance = 0.5f; // The larger this is, the more the deviation will affect wander
@@ -113,6 +112,15 @@ public class SeekerFish : MonoBehaviour {
             default:
                 Debug.LogError(gameObject.name + " has an invalid fish behavior.");
                 break;
+        }
+
+        if (rb.isKinematic)
+        {
+            transform.rotation = Quaternion.LookRotation(rb.velocity.normalized);
+        }
+        else
+        {
+            transform.rotation = Quaternion.LookRotation(Velocity.normalized);
         }
 
         //Move();
@@ -311,45 +319,40 @@ public class SeekerFish : MonoBehaviour {
     virtual protected void Move(float currentMaxSpeed, bool useRigidBody = true)
     {
         //Avoidance kinda
-        int framesAhead = 120; // Too far?
+        int framesAhead = 90; // Too far?
+        float checkDistance = Mathf.Min((speed * Time.deltaTime * framesAhead) + halfFishLength, Vector3.Distance(transform.position, targetPosition));
+
         // Make sure the start of the check is in the fish so that it will not be inside the obstacle
-        Debug.DrawRay(transform.position, transform.forward * ((speed * Time.deltaTime * framesAhead) + halfFishLength), Color.red);
+        Debug.DrawRay(transform.position + (transform.forward * (halfFishLength * 2 + fishRadius)), transform.forward * checkDistance, Color.red);
         RaycastHit rayData = new RaycastHit();
+        Vector3 rotation;
 
         // TODO: The cast does not return any hit. WHY?
-        if (Physics.SphereCast(transform.position, fishRadius, transform.forward, out rayData, (speed * Time.deltaTime * framesAhead) + halfFishLength, 0, QueryTriggerInteraction.Ignore))
+        if (Physics.SphereCast(transform.position + (transform.forward * (halfFishLength * 2 + fishRadius)), fishRadius, transform.forward, out rayData, checkDistance, 0, QueryTriggerInteraction.Ignore))
         {
+            print("hitting something");
             // We hit an obstacle, now see if it actually is an obstacle instead of a fish or sub (sub will be interesting as it is both target and obstacle)
-            // Get obstacle tag list?
             if (!IsTarget(rayData.collider.tag))
             {
-                /*
-                speed -= acceleration * Time.deltaTime; // Slow down
-                speed = Mathf.Max(speed, 0);
-                /**/
+                print("obstacle");
                 float right = Vector3.Dot(rayData.point - transform.position, transform.right * fishRadius);
                 float up = Vector3.Dot(rayData.point - transform.position, transform.up * fishRadius);
                 Vector3 newDir = (transform.right * (1-right) * avoidanceScale) + (transform.up * (1-up) * avoidanceScale) + (transform.forward * avoidanceScale);
-                //targetPosition = newDir + transform.position;
-                // Rotate the object to face its target
-                Vector3 rotation = Vector3.RotateTowards(transform.forward, newDir, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
-                //Quaternion prevRotation = transform.rotation;
+                // Rotate the object to face its target - TODO: change this to face velocity direction
+                rotation = Vector3.RotateTowards(transform.forward, newDir, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
                 transform.rotation = Quaternion.LookRotation(rotation);
-                //transform.rotation = Quaternion.LookRotation(newDir);
-                /*
-                transform.rotation = prevRotation;
-                Vector3 newDestination = rayData.point + (rayData.normal * (rayData.distance + fishRadius));
-                float turnRate = Mathf.Deg2Rad * Mathf.Max(maxSpeedTurnRate, stoppedTurnRate * (maxSpeed / (speed + maxSpeed))) * Time.deltaTime;
-                transform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(transform.forward, newDestination - transform.position, Mathf.Deg2Rad * turnRate * Time.deltaTime, 1));
-                speed -= acceleration * Time.deltaTime; // Slow down, later will add 1 acceleration
-                /**/
+            }
+            else
+            {
+                // Rotate the object to face its target
+                rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
+                transform.rotation = Quaternion.LookRotation(rotation);
             }
         }
         else
         {
             // Rotate the object to face its target
-            Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
-            //Quaternion prevRotation = transform.rotation;
+            rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
             transform.rotation = Quaternion.LookRotation(rotation);
         }
 
@@ -379,10 +382,9 @@ public class SeekerFish : MonoBehaviour {
                 }
             }
         }
-        //rb.velocity = Velocity;
+
         if (useRigidBody)
         {
-            //rb.MovePosition((Velocity * Time.deltaTime) + transform.position);
             Vector3 vChange = Velocity - rb.velocity;
             vChange = Vector3.ClampMagnitude(vChange, acceleration * Time.deltaTime);
             rb.AddForce(vChange, ForceMode.VelocityChange);
