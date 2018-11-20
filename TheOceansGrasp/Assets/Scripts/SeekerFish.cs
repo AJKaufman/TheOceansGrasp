@@ -130,7 +130,10 @@ public class SeekerFish : MonoBehaviour {
     {
         if(stunTimer <= 0)
         {
-            Move(maxSpeed);
+            if (!rb.isKinematic)
+            {
+                Move(maxSpeed);
+            }
         }
     }
 
@@ -323,18 +326,15 @@ public class SeekerFish : MonoBehaviour {
         float checkDistance = Mathf.Min((speed * Time.deltaTime * framesAhead) + halfFishLength, Vector3.Distance(transform.position, targetPosition));
 
         // Make sure the start of the check is in the fish so that it will not be inside the obstacle
-        Debug.DrawRay(transform.position + (transform.forward * (halfFishLength * 2 + fishRadius)), transform.forward * checkDistance, Color.red);
+        Debug.DrawRay(transform.position, transform.forward * checkDistance, Color.red);
         RaycastHit rayData = new RaycastHit();
         Vector3 rotation;
 
-        // TODO: The cast does not return any hit. WHY?
-        if (Physics.SphereCast(transform.position + (transform.forward * (halfFishLength * 2 + fishRadius)), fishRadius, transform.forward, out rayData, checkDistance, 0, QueryTriggerInteraction.Ignore))
+        if (Physics.SphereCast(transform.position, fishRadius, transform.forward, out rayData, checkDistance, LayerMask.GetMask("Default", "Ignore Raycast"), QueryTriggerInteraction.Ignore))
         {
-            print("hitting something");
-            // We hit an obstacle, now see if it actually is an obstacle instead of a fish or sub (sub will be interesting as it is both target and obstacle)
+            // We hit something, now see if it actually is an obstacle 
             if (!IsTarget(rayData.collider.tag))
             {
-                print("obstacle");
                 float right = Vector3.Dot(rayData.point - transform.position, transform.right * fishRadius);
                 float up = Vector3.Dot(rayData.point - transform.position, transform.up * fishRadius);
                 Vector3 newDir = (transform.right * (1-right) * avoidanceScale) + (transform.up * (1-up) * avoidanceScale) + (transform.forward * avoidanceScale);

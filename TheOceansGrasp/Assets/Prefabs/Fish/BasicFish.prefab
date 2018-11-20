@@ -306,8 +306,8 @@ MonoBehaviour:
   wanderDeviation: 4
   wanderDistance: 0.5
   prevWanderWeight: 30
-  fishRadius: 0.55
-  halfFishLength: 1.1
+  fishRadius: 0.5
+  halfFishLength: 1
   lifetime: 120
   Velocity: {x: 0, y: 0, z: 0}
   avoidanceScale: 5
