@@ -22,10 +22,10 @@ public class SubVariables : MonoBehaviour {
     public GameObject techNodeParent; // gameobject that holds other tech nodes
     public List<GameObject> techNodes; // list of tech nodes
     //public GameObject damageNode;
-    public Material damage1;
-    public Material damage2;
-    public Material damage3;
-    private Material newDamageAppearance;
+    public GameObject damage1;
+    public GameObject damage2;
+    public GameObject damage3;
+    private GameObject newDamageAppearance;
     // system break variables
     private DamageBlockRemoval damageRemoval;
     public bool systemBreak = false;
@@ -129,8 +129,10 @@ public class SubVariables : MonoBehaviour {
         // get a reference to the specific node's damage removal script
         damageRemoval = techNodes[nodeIndex].GetComponent<DamageBlockRemoval>();
         damageRemoval.isDamaged = true;
-
+        // save the transform data before swapping the mesh
+        Transform tempTransform = damageRemoval.gameObject.GetComponent<Transform>();
         // change the model to be visually different
+        /*
         int randomModel = Random.Range(0, 3);
         if(randomModel == 0)
         {
@@ -143,10 +145,13 @@ public class SubVariables : MonoBehaviour {
         if (randomModel == 2)
         {
             newDamageAppearance = damage3;
-        }
-        //damageRemoval.gameObject.GetComponent<MeshFilter>().sharedMesh = newDamageAppearance;
+        }*/
+        damageRemoval.gameObject.GetComponent<MeshFilter>().sharedMesh = damage1.GetComponent<Transform>().GetChild(0).GetComponent<Mesh>();
+        // re-instantiate the transform data
+        damageRemoval.gameObject.GetComponent<Transform>().position = tempTransform.position;
+        damageRemoval.gameObject.GetComponent<Transform>().rotation = tempTransform.rotation;
 
-        damageRemoval.GetComponent<MeshRenderer>().material = newDamageAppearance;
+        //damageRemoval.GetComponent<MeshRenderer>().material = newDamageAppearance;
         //damageRemoval.GetComponent<MeshRenderer>().material.color = Color.red;
         damageRemoval.GetComponent<DamageBlockRemoval>().isDamaged = true;
         Positions.instance.damagedNodes.Add(damageRemoval.gameObject);

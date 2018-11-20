@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43893906, g: 0.47888923, b: 0.5227379, a: 1}
+  m_IndirectSpecularColor: {r: 0.4389391, g: 0.47888976, b: 0.52273834, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -37329,9 +37329,9 @@ MonoBehaviour:
   frontCamera: {fileID: 508060030}
   techNodeParent: {fileID: 1168552282}
   techNodes: []
-  damage1: {fileID: 2100000, guid: 9be68904b51089e4f8ef7d83a65cb4cf, type: 2}
-  damage2: {fileID: 2100000, guid: b2547a0832806264681b2b7336bfc6a6, type: 2}
-  damage3: {fileID: 2100000, guid: 8315e92417c58a247af13c93bef560ef, type: 2}
+  damage1: {fileID: 100002, guid: 4f88f5ec00da6814f95af877b46b145c, type: 3}
+  damage2: {fileID: 100002, guid: 4f88f5ec00da6814f95af877b46b145c, type: 3}
+  damage3: {fileID: 100002, guid: 4f88f5ec00da6814f95af877b46b145c, type: 3}
   systemBreak: 0
   systemBreak1Button: {fileID: 1889557853}
   systemBreak1Panel: {fileID: 754873812}
