@@ -92,7 +92,10 @@ public class SubFishSpawner : MonoBehaviour {
         {
             if((shark && (shark.transform.position - transform.position).sqrMagnitude > 4 * dogSpawnDistance * dogSpawnDistance) || !shark)
             {
-                SpawnDog(dogPrefab);
+                if (Random.Range(0, 100f) < spawnChancePerCheck)
+                {
+                    SpawnDog(dogPrefab);
+                }
             }
             checkTimer = checkTime;
         }

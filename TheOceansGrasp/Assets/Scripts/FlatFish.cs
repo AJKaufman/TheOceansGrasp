@@ -394,7 +394,7 @@ public class FlatFish : SeekerFish {
 
     protected override void SetSeekTarget(GameObject seekTarget, bool willFlee = false)
     {
-        if (seekTarget.tag == "Player")
+        if (seekTarget.tag == "Player" && targetObject)
         {
             transform.parent = null;
             //rb.isKinematic = false; // Enable rigid body

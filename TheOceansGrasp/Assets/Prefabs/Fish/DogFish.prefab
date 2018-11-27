@@ -211,8 +211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 1
   acceleration: 1
-  maxSpeedTurnRate: 600
-  stoppedTurnRate: 600
+  maxSpeedTurnRate: 700
+  stoppedTurnRate: 700
   stopDistance: 0.5
   damage: 20
   willArrive: 0
@@ -225,11 +225,11 @@ MonoBehaviour:
   wanderDeviation: 2
   wanderDistance: 0.5
   prevWanderWeight: 8
-  fishRadius: 6
+  fishRadius: 5
   halfFishLength: 5
   lifetime: 120
   Velocity: {x: 0, y: 0, z: 0}
-  avoidanceScale: 1
+  avoidanceScale: 2
   targetPosition: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
   tagPriorities:

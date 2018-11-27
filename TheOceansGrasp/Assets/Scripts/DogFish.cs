@@ -225,32 +225,35 @@ public class DogFish : SeekerFish {
     private void OnTriggerEnter(Collider other)
     {
         if (behaviour == FishBehaviour.Seek) {
-            if (other.CompareTag("Sub") && !didAttack)
+            if (other.gameObject == targetObject)
             {
-                other.GetComponentInChildren<SubVariables>().loseHealth(damage);
-                didAttack = true;
-
-                // Damage nearby cameras
-                Camera[] cams = other.GetComponentsInChildren<Camera>();
-                foreach(Camera c in cams)
+                if (other.CompareTag("Sub") && !didAttack)
                 {
-                    if((c.transform.position - other.ClosestPoint(transform.position)).sqrMagnitude < damageRange * damageRange)
+                    other.GetComponentInChildren<SubVariables>().loseHealth(damage);
+                    didAttack = true;
+
+                    // Damage nearby cameras
+                    Camera[] cams = other.GetComponentsInChildren<Camera>();
+                    foreach (Camera c in cams)
                     {
-                        GetCameraFPS(c).Damage();
+                        if ((c.transform.position - other.ClosestPoint(transform.position)).sqrMagnitude < damageRange * damageRange)
+                        {
+                            GetCameraFPS(c).Damage();
+                        }
                     }
+
+                    // Play bark
+                    audioSource.PlayOneShot(attackAudio);
+                    Flee(targetObject);
                 }
+                else if (other.CompareTag("Player"))
+                {
+                    // End the game somehow
+                    //FindObjectOfType<WinLose>().LoseGame();
 
-                // Play bark
-                audioSource.PlayOneShot(attackAudio);
-                Flee(targetObject);
-            }
-            else if (other.CompareTag("Player"))
-            {
-                // End the game somehow
-                FindObjectOfType<WinLose>().LoseGame();
-
-                // Play bark
-                audioSource.PlayOneShot(attackAudio);
+                    // Play bark
+                    audioSource.PlayOneShot(attackAudio);
+                }
             }
         }
     }
@@ -265,6 +268,18 @@ public class DogFish : SeekerFish {
     {
         FindObjectOfType<SubFishSpawner>().DogSpawned = false;
         base.Kill();
+    }
+
+    protected override bool IsTarget(string tag)
+    {
+        if (tag == "fish")
+        {
+            return true;
+        }
+        else
+        {
+            return base.IsTarget(tag);
+        }
     }
 
 }
