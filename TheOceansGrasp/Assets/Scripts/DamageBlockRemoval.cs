@@ -43,8 +43,9 @@ public class DamageBlockRemoval : MonoBehaviour {
                 {
                     RaycastHit hit;
                     
-                    if (Physics.Raycast(playerCam.ScreenPointToRay(Input.mousePosition), out hit, 5, 1<<mask))
+                    if (Physics.Raycast(playerCam.ScreenPointToRay(Input.mousePosition), out hit, 200, 1<<mask))
                     {
+                        distance = hit.distance;
                         //Debug.Log("HIT");
                         if (gameObject != hit.transform.gameObject)
                         {
@@ -58,44 +59,50 @@ public class DamageBlockRemoval : MonoBehaviour {
                     Debug.DrawRay(Input.mousePosition, new Vector3());
 
                     // calculate the distance between the player and the damage block
-                    distance = Vector3.Magnitude(player.GetComponent<Transform>().position - gameObject.transform.position);
-
-                    if (!wrongObject)
+                    // distance = Vector3.Magnitude(player.GetComponent<Transform>().position - gameObject.transform.position);
+                    if(distance <= 5.0f)
                     {
-                        //Debug.Log("yeet");
-                        // enable the slider canvas to show progress bar
-                        Image[] images = slider.GetComponentsInChildren<Image>();
-                        foreach (Image image in images)
+                        if (!wrongObject)
                         {
-                            image.enabled = true;
-                        }
-
-                        // start incrementing the timer
-                        repairTimer += Time.deltaTime;
-
-                        // set the slider to equal the timer
-                        slider.value = repairTimer;
-
-                        // if the mouse has been held down for 2 seconds
-                        if (repairTimer >= 2.0f)
-                        {
-                            // reset the canvas and slider first
-                            repairTimer = 0.0f;
-                            slider.value = 0.0f;
-
-                            // disable canvas to stop showing progress bar
-                            images = slider.GetComponentsInChildren<Image>();
+                            //Debug.Log("yeet");
+                            // enable the slider canvas to show progress bar
+                            Image[] images = slider.GetComponentsInChildren<Image>();
                             foreach (Image image in images)
                             {
-                                image.enabled = false;
+                                image.enabled = true;
                             }
 
-                            // then destroy the object after the variables have been reset
-                            isDamaged = false;
-                            reParent();
-                            Positions.instance.damagedNodes.Remove(gameObject);
-                            gameObject.GetComponent<MeshRenderer>().material = gray;
-                            // Destroy(this.gameObject);
+                            // start incrementing the timer
+                            repairTimer += Time.deltaTime;
+
+                            // set the slider to equal the timer
+                            slider.value = repairTimer;
+
+                            if (distance <= 2.0f)
+                            {
+                                // if the mouse has been held down for 2 seconds
+                                if (repairTimer >= 2.0f)
+                                {
+                                    // reset the canvas and slider first
+                                    repairTimer = 0.0f;
+                                    slider.value = 0.0f;
+
+                                    // disable canvas to stop showing progress bar
+                                    images = slider.GetComponentsInChildren<Image>();
+                                    foreach (Image image in images)
+                                    {
+                                        image.enabled = false;
+                                    }
+
+                                    Debug.Log("Slider Disabled");
+                                    // then destroy the object after the variables have been reset
+                                    isDamaged = false;
+                                    reParent();
+                                    Positions.instance.damagedNodes.Remove(gameObject);
+                                    gameObject.GetComponent<MeshRenderer>().material = gray;
+                                    // Destroy(this.gameObject);
+                                }
+                            }
                         }
                     }
 
@@ -126,6 +133,23 @@ public class DamageBlockRemoval : MonoBehaviour {
         isClicked = true;
     }
 
+    private void OnMouseExit()
+    {
+        isClicked = false;
+
+        // disable canvas to stop showing progress bar
+        Image[] images = slider.GetComponentsInChildren<Image>();
+        foreach (Image image in images)
+        {
+            image.enabled = false;
+        }
+
+        // reset timer
+        repairTimer = 0.0f;
+
+        // resets the progress bar
+        slider.value = 0.0f;
+    }
 
     // resets the repair timer if they released early
     private void OnMouseUp()

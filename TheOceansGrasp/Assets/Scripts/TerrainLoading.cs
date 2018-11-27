@@ -15,7 +15,8 @@ public class TerrainLoading : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        terrain1.GetComponent<PillarGenerate>().PillarGeneration();
+        //terrain1.GetComponent<PillarGenerate>().PillarGeneration();
+        Positions.instance.whatTile++;
         terrain2.GetComponent<PillarGenerate>().PillarGeneration();
         terrain3.GetComponent<PillarGenerate>().PillarGeneration();
     }
@@ -43,18 +44,26 @@ public class TerrainLoading : MonoBehaviour {
             {
                 case 1:
                     terrain1.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 400);
+                    terrain1.GetComponent<PillarGenerate>().PillarDeletion();
+                    terrain1.GetComponent<PillarGenerate>().PillarGeneration();
                     previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 200);
                     break;
                 case 2:
                     terrain2.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 400);
+                    terrain2.GetComponent<PillarGenerate>().PillarDeletion();
+                    terrain2.GetComponent<PillarGenerate>().PillarGeneration();
                     previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 200);
                     break;
                 case 3:
                     terrain3.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 400);
+                    terrain3.GetComponent<PillarGenerate>().PillarDeletion();
+                    terrain3.GetComponent<PillarGenerate>().PillarGeneration();
                     previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 200);
                     break;
                 default:
                     terrain3.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 400);
+                    terrain3.GetComponent<PillarGenerate>().PillarDeletion();
+                    terrain3.GetComponent<PillarGenerate>().PillarGeneration();
                     previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 200);
                     break;
             }
