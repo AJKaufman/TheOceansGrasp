@@ -1,0 +1,172 @@
+fileFormatVersion: 2
+guid: 7cfa9c1f7f0c5ca4992551782575e086
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: CenterPiece
+    100002: Dial
+    100004: DialFrame
+    100006: HandleAndFlashlight
+    100008: Nozzles
+    100010: Pipes
+    100012: //RootNode
+    100014: SnakePipe1
+    100016: SnakePipe2
+    100018: Tank
+    100020: Trigger
+    400000: CenterPiece
+    400002: Dial
+    400004: DialFrame
+    400006: HandleAndFlashlight
+    400008: Nozzles
+    400010: Pipes
+    400012: //RootNode
+    400014: SnakePipe1
+    400016: SnakePipe2
+    400018: Tank
+    400020: Trigger
+    2100000: FuelTank
+    2100002: Piping
+    2100004: BackHalf
+    2100006: Handle
+    2100008: FrontHalf
+    2300000: CenterPiece
+    2300002: Dial
+    2300004: DialFrame
+    2300006: HandleAndFlashlight
+    2300008: Nozzles
+    2300010: Pipes
+    2300012: SnakePipe1
+    2300014: SnakePipe2
+    2300016: Tank
+    2300018: Trigger
+    3300000: CenterPiece
+    3300002: Dial
+    3300004: DialFrame
+    3300006: HandleAndFlashlight
+    3300008: Nozzles
+    3300010: Pipes
+    3300012: SnakePipe1
+    3300014: SnakePipe2
+    3300016: Tank
+    3300018: Trigger
+    4300000: Tank
+    4300002: DialFrame
+    4300004: Dial
+    4300006: Pipes
+    4300008: SnakePipe2
+    4300010: SnakePipe1
+    4300012: HandleAndFlashlight
+    4300014: Trigger
+    4300016: CenterPiece
+    4300018: Nozzles
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackHalf
+    second: {fileID: 2100000, guid: 3d230b7511975df4d8c56d1941e8477e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrontHalf
+    second: {fileID: 2100000, guid: bf9f7638e7009a4408d7678f2d729377, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FuelTank
+    second: {fileID: 2100000, guid: 99928e317225410419ff8184a66b4dfc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Handle
+    second: {fileID: 2100000, guid: 117a911f530ef3648bbfcc77ecdaab51, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Piping
+    second: {fileID: 2100000, guid: 0946697eab05d444689eaf31675d8a6e, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
