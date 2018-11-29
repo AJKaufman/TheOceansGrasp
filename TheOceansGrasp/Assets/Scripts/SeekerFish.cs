@@ -33,6 +33,8 @@ public class SeekerFish : MonoBehaviour {
     private float stunTimer = 0;
 
     public float lifetime = 120; // Time in seconds for the fish to last when wandering, does not reset
+    public float despawnDistance;
+    public Vector3 despawnAxis = new Vector3(0, 0, 1);
 
     // Max range to check for targets (length of the raycast)
     protected float maxAggroRange = 0;
@@ -298,7 +300,8 @@ public class SeekerFish : MonoBehaviour {
         Vector3 away = transform.forward;
         if (targetObject)
         {
-            if (Vector3.Magnitude(targetObject.transform.position - transform.position) > maxAggroRange)
+            if(Vector3.SqrMagnitude(Vector3.Project((targetObject.transform.position - transform.position), despawnAxis)) > despawnDistance * despawnDistance)
+            //if (Vector3.SqrMagnitude(targetObject.transform.position - transform.position) > despawnDistance * despawnDistance)
             {
                 // Remove fish after certain distance away from flee target
                 Kill();

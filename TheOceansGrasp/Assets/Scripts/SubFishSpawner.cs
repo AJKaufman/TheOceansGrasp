@@ -14,10 +14,10 @@ public class SubFishSpawner : MonoBehaviour {
     public float maxSideDistanceToSpawnAt = 30.0f;
     public float maxHeightToSpawnAt = 30.0f;
 
-    public Vector3 forwardAxis;
-    public Vector3 rightAxis;
-    public Vector3 upAxis;
-    public Vector3 middlePosition;
+    public Vector3 forwardAxis = new Vector3(0, 0, 1);
+    public Vector3 rightAxis = new Vector3(1, 0, 0);
+    public Vector3 upAxis = new Vector3(0, 1, 0);
+    public Vector3 middlePosition = new Vector3(0, 0, 0);
 
     public bool DogSpawned { get; set; }
     public float dogSpawnDistance = 100;
