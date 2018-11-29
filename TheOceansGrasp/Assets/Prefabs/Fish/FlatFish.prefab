@@ -227,6 +227,8 @@ MonoBehaviour:
   fishRadius: 0.5
   halfFishLength: 1
   lifetime: 120
+  despawnDistance: 100
+  despawnAxis: {x: 0, y: 0, z: 1}
   Velocity: {x: 0, y: 0, z: 0}
   avoidanceScale: 1
   targetPosition: {x: 0, y: 0, z: 0}

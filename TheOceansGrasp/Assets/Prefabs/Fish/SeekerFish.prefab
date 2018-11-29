@@ -160,6 +160,8 @@ MonoBehaviour:
   fishRadius: 0.5
   halfFishLength: 1
   lifetime: 120
+  despawnDistance: 100
+  despawnAxis: {x: 0, y: 0, z: 1}
   Velocity: {x: 0, y: 0, z: 0}
   avoidanceScale: 1
   targetPosition: {x: 0, y: 0, z: 0}
@@ -167,22 +169,25 @@ MonoBehaviour:
   tagPriorities:
   - tag: Shark
     priority: 2
-    aggroRange: 2000
+    aggroRange: 0
     willFlee: 0
   - tag: Shark
-    priority: 1
-    aggroRange: 200
+    priority: 0
+    aggroRange: 50
     willFlee: 1
   - tag: Player
-    priority: 0
+    priority: 1
     aggroRange: 60
     willFlee: 0
   seekPriority: 2147483647
   attackWait: 3
   attackDistance: 5
-  seekSpeed: 5
-  attackSpeed: 10
-  fleeSpeed: 6
+  seekSpeedModifier: 0.5
+  huntSpeedModifier: 0.5
+  attackSpeedModifier: 1
+  fleeSpeedModifier: 1.5
+  weakAvoidance: 0
+  strongAvoidance: 0
 --- !u!136 &136777769322818760
 CapsuleCollider:
   m_ObjectHideFlags: 1
