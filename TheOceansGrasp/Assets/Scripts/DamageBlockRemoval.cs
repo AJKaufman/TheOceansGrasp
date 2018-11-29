@@ -15,6 +15,7 @@ public class DamageBlockRemoval : MonoBehaviour {
     public bool isClicked;
     public bool wrongObject;
     public bool isDamaged;
+    public bool isCloseEnough;
     public Camera playerCam;
     public Material gray;
     private Transform parent;
@@ -43,10 +44,11 @@ public class DamageBlockRemoval : MonoBehaviour {
                 {
                     RaycastHit hit;
                     
-                    if (Physics.Raycast(playerCam.ScreenPointToRay(Input.mousePosition), out hit, 200, 1<<mask))
+                    if (Physics.Raycast(playerCam.ScreenPointToRay(Input.mousePosition), out hit, 5, 1<<mask))
                     {
                         distance = hit.distance;
                         //Debug.Log("HIT");
+                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
                         if (gameObject != hit.transform.gameObject)
                         {
                             wrongObject = true;
@@ -56,11 +58,13 @@ public class DamageBlockRemoval : MonoBehaviour {
                             wrongObject = false;
                         }
                     }
-                    Debug.DrawRay(Input.mousePosition, new Vector3());
+
+                    //GetDistanceToCollider();
 
                     // calculate the distance between the player and the damage block
                     // distance = Vector3.Magnitude(player.GetComponent<Transform>().position - gameObject.transform.position);
-                    if(distance <= 5.0f)
+                    //if(distance <= 5.0f)
+                    if(isCloseEnough)
                     {
                         if (!wrongObject)
                         {
@@ -78,30 +82,27 @@ public class DamageBlockRemoval : MonoBehaviour {
                             // set the slider to equal the timer
                             slider.value = repairTimer;
 
-                            if (distance <= 2.0f)
+                            // if the mouse has been held down for 2 seconds
+                            if (repairTimer >= 2.0f)
                             {
-                                // if the mouse has been held down for 2 seconds
-                                if (repairTimer >= 2.0f)
+                                // reset the canvas and slider first
+                                repairTimer = 0.0f;
+                                slider.value = 0.0f;
+
+                                // disable canvas to stop showing progress bar
+                                images = slider.GetComponentsInChildren<Image>();
+                                foreach (Image image in images)
                                 {
-                                    // reset the canvas and slider first
-                                    repairTimer = 0.0f;
-                                    slider.value = 0.0f;
-
-                                    // disable canvas to stop showing progress bar
-                                    images = slider.GetComponentsInChildren<Image>();
-                                    foreach (Image image in images)
-                                    {
-                                        image.enabled = false;
-                                    }
-
-                                    Debug.Log("Slider Disabled");
-                                    // then destroy the object after the variables have been reset
-                                    isDamaged = false;
-                                    reParent();
-                                    Positions.instance.damagedNodes.Remove(gameObject);
-                                    gameObject.GetComponent<MeshRenderer>().material = gray;
-                                    // Destroy(this.gameObject);
+                                    image.enabled = false;
                                 }
+
+                                Debug.Log("Slider Disabled");
+                                // then destroy the object after the variables have been reset
+                                isDamaged = false;
+                                reParent();
+                                Positions.instance.damagedNodes.Remove(gameObject);
+                                gameObject.GetComponent<MeshRenderer>().material = gray;
+                                // Destroy(this.gameObject);
                             }
                         }
                     }
@@ -125,6 +126,16 @@ public class DamageBlockRemoval : MonoBehaviour {
             }
         }
 	}
+
+    void GetDistanceToCollider()
+    {
+        distance = Vector3.Distance(player.transform.position, gameObject.transform.position) - gameObject.GetComponent<Renderer>().bounds.extents.x;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        isCloseEnough = true;
+    }
 
     // this method is a lil' bitch
     private void OnMouseDown()
