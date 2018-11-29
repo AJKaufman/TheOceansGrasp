@@ -10,8 +10,8 @@ public class TerrainLoading : MonoBehaviour {
     public GameObject terrain3;
     
 
-    private int randomlySelectedTerrain = 0;
-    private Vector3 previousTerrainSpawnLoc = new Vector3(-100, -30, 100);
+    private int currentTerrain = 0;
+    private Vector3 previousTerrainSpawnLoc = new Vector3(-100, -30, 200);
 
     // Use this for initialization
     void Start () {
@@ -33,14 +33,14 @@ public class TerrainLoading : MonoBehaviour {
             Debug.Log("Location: " + previousTerrainSpawnLoc.z);
 
             // Choose which terrain to spawn next
-            //randomlySelectedTerrain = (int)Random.Range(1.0f, 4.0f);
+            //currentTerrain = (int)Random.Range(1.0f, 4.0f);
 
-            randomlySelectedTerrain++;
-            if (randomlySelectedTerrain > 3) randomlySelectedTerrain = 1;
+            currentTerrain++;
+            if (currentTerrain > 3) currentTerrain = 1;
 
 
 
-            switch(randomlySelectedTerrain)
+            switch(currentTerrain)
             {
                 case 1:
                     terrain1.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 400);
