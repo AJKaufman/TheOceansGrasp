@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4389391, g: 0.47888976, b: 0.52273834, a: 1}
+  m_IndirectSpecularColor: {r: 0.43893906, g: 0.47888923, b: 0.5227379, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -37350,12 +37350,12 @@ MonoBehaviour:
   maxDistanceToSpawnAt: 60
   maxSideDistanceToSpawnAt: 30
   maxHeightToSpawnAt: 30
-  forwardAxis: {x: 0, y: 0, z: 0}
-  rightAxis: {x: 0, y: 0, z: 0}
-  upAxis: {x: 0, y: 0, z: 0}
+  forwardAxis: {x: 0, y: 0, z: 1}
+  rightAxis: {x: 1, y: 0, z: 0}
+  upAxis: {x: 0, y: 1, z: 0}
   middlePosition: {x: 0, y: 0, z: 0}
   dogSpawnDistance: 100
-  checkTime: 0
+  checkTime: 3
   spawnChancePerCheck: 0.1
   dogPrefab: {fileID: 1672424236152692, guid: a431dbe89b8897e4e8583f1432714d9d, type: 2}
   fishToSpawn:
