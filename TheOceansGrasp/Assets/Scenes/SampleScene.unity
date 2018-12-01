@@ -470,6 +470,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -2850,6 +2851,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -3526,6 +3528,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -4276,6 +4279,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -5403,6 +5407,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -6311,6 +6316,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -6579,6 +6585,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -7641,6 +7648,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -7791,6 +7799,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -7907,6 +7916,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -8449,6 +8459,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -8830,6 +8841,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -9056,6 +9068,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -9400,6 +9413,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -9645,6 +9659,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -9761,6 +9776,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -10105,6 +10121,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -10903,6 +10920,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -11236,6 +11254,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -11576,6 +11595,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -12193,6 +12213,7 @@ GameObject:
   - component: {fileID: 641548814}
   - component: {fileID: 641548815}
   - component: {fileID: 641548816}
+  - component: {fileID: 641548817}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Player
@@ -12291,6 +12312,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &641548817
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 641548811}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &660192182
 GameObject:
   m_ObjectHideFlags: 0
@@ -14453,6 +14486,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -16616,6 +16650,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -17234,6 +17269,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -17913,6 +17949,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -18488,6 +18525,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -18604,6 +18642,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -18720,6 +18759,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -22979,6 +23019,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -24286,6 +24327,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -24931,6 +24973,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -25192,6 +25235,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -25460,6 +25504,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -27142,6 +27187,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -27334,6 +27380,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -27563,6 +27610,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -28366,6 +28414,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -28482,6 +28531,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -30220,6 +30270,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -31602,6 +31653,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -32541,6 +32593,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -32851,6 +32904,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -33001,6 +33055,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -33451,6 +33506,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -33924,6 +33980,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -37252,6 +37309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0, z: 0}
   speed: 0
+  maxBackSpeed: 0
   speedIncrement: 3
   maxSpeed: 5
   slowDown: 0.97
@@ -37333,6 +37391,9 @@ MonoBehaviour:
   damage2: {fileID: 2100000, guid: b2547a0832806264681b2b7336bfc6a6, type: 2}
   damage3: {fileID: 2100000, guid: 8315e92417c58a247af13c93bef560ef, type: 2}
   systemBreak: 0
+  damageBeforeSystemBreak: 0
+  totalDamageNodes: 0
+  totalRepairsMade: 0
   systemBreak1Button: {fileID: 1889557853}
   systemBreak1Panel: {fileID: 754873812}
   player: {fileID: 641548811}
@@ -37490,6 +37551,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -37854,6 +37916,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -38615,6 +38678,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:
@@ -39998,6 +40062,7 @@ MonoBehaviour:
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
+  isCloseEnough: 0
   playerCam: {fileID: 1949762438}
   gray: {fileID: 2100000, guid: 2c94966fbc25daa4da0233076b31078b, type: 2}
   mask:

@@ -10,7 +10,7 @@ public class SubmarineMovement : MonoBehaviour
 
     public float speed = 0.0f;
     private Rigidbody rb;
-    private float maxBackSpeed = 0.0f;
+    public float maxBackSpeed = 0.0f;
     public float speedIncrement = 1.0f;
     public float maxSpeed = 5.0f;
     public float slowDown = 0.97f;
@@ -35,6 +35,7 @@ public class SubmarineMovement : MonoBehaviour
     {
         if (gameObject.tag == "Sub")
         {
+            // these conditionals don't actually do anything while the variables are "public"
             // if boost is toggled, double some values to speed it up
             if(boosting)
             {

@@ -21,9 +21,11 @@ public class DamageBlockRemoval : MonoBehaviour {
     private Transform parent;
     public LayerMask mask;
     public GameObject submarine;
+    private SubVariables subVar;
 
 	// Use this for initialization
 	void Start () {
+        subVar = submarine.GetComponent<SubVariables>();
         distance = 100.0f;
         repairTimer = 0.0f;
         isClicked = false;
@@ -85,6 +87,18 @@ public class DamageBlockRemoval : MonoBehaviour {
                             // if the mouse has been held down for 2 seconds
                             if (repairTimer >= 2.0f)
                             {
+                                // increment the repair counter in sub variables
+                                subVar.totalRepairsMade++;
+                                subVar.totalDamageNodes--;
+
+                                // repair/revert system break
+                                if(subVar.totalRepairsMade >= 4)
+                                {
+                                    subVar.systemBreak = false;
+                                    subVar.totalRepairsMade = 0;
+                                    subVar.damageBeforeSystemBreak = 0.0f;
+                                }
+
                                 // reset the canvas and slider first
                                 repairTimer = 0.0f;
                                 slider.value = 0.0f;
@@ -132,10 +146,34 @@ public class DamageBlockRemoval : MonoBehaviour {
         distance = Vector3.Distance(player.transform.position, gameObject.transform.position) - gameObject.GetComponent<Renderer>().bounds.extents.x;
     }
 
+    // Trigger works, not Rigidbody
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            //Debug.Log("IN RANGE");
+            isCloseEnough = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            //Debug.Log("OUT OF RANGE");
+            isCloseEnough = false;
+        }
+    }
+
+    /*
     private void OnCollisionEnter(Collision collision)
     {
-        isCloseEnough = true;
-    }
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("IN RANGE");
+            isCloseEnough = true;
+        }
+    }*/
 
     // this method is a lil' bitch
     private void OnMouseDown()

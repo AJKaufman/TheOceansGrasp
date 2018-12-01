@@ -31,9 +31,9 @@ public class SubVariables : MonoBehaviour {
     public bool systemBreak = false;
     private float smallDamage = 5.0f;
     private float largeDamage = 20.0f;
-    private float damageBeforeSystemBreak = 0.0f;
-    private int totalDamageNodes = 0;
-    private int totalRepairsMade = 0;
+    public float damageBeforeSystemBreak = 0.0f;
+    public int totalDamageNodes = 0;
+    public int totalRepairsMade = 0;
     public Button systemBreak1Button;
     public GameObject systemBreak1Panel;
     public GameObject player;
@@ -69,6 +69,14 @@ public class SubVariables : MonoBehaviour {
   // Update is called once per frame
   void Update () {
     
+        // check for repairs
+        /*
+        if(totalRepairsMade >= 4)
+        {
+            damageBeforeSystemBreak = 0.0f;
+            totalRepairsMade = 0;
+        }*/
+
     loseEnergy();
 
    // calculate the distance
@@ -193,10 +201,22 @@ public class SubVariables : MonoBehaviour {
         {
             // make the sub move at half speed
             submarineMovement.halfSpeed = true;
+            //submarineMovement.maxSpeed = 2.5f;
+            //submarineMovement.maxBackSpeed = -2.5f;
+            //submarineMovement.speedIncrement = 0.5f;
 
             // change the button and panel's text
             systemBreak1Button.GetComponentInChildren<Text>().text = "Active";
             systemBreak1Panel.GetComponentInChildren<Text>().text = "Engine Damaged. You are now at half of your regular speed.";
+        }
+        else
+        {
+            // make the sub move at half speed
+            submarineMovement.halfSpeed = false;
+
+            // change the button and panel's text
+            systemBreak1Button.GetComponentInChildren<Text>().text = "Fixed";
+            systemBreak1Panel.GetComponentInChildren<Text>().text = "Engine Repaired. You are now at your regular speed.";
         }
     }
 

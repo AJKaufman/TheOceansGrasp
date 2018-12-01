@@ -180,15 +180,24 @@ public class DischargePrompt : MonoBehaviour
         {
             isBoosting = false;
             turbo.GetComponent<Image>().color = defaultColor;
+
+            //subMovement.maxSpeed = 10.0f;
+            //subMovement.maxBackSpeed = -10.0f;
+            //subMovement.speedIncrement = 2.0f;
         }
         else
         {
             isBoosting = true;
             turbo.GetComponent<Image>().color = Color.grey;
+
+            //subMovement.maxSpeed = 5.0f;
+            //subMovement.maxBackSpeed = -5.0f;
+            //subMovement.speedIncrement = 1.0f;
         }
 
         // update the submarineMovement script's corresponding boolean value
         subMovement.boosting = isBoosting;
+
     }
 
     // Methods for the side cameras
