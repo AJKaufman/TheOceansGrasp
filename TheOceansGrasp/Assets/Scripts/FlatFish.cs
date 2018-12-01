@@ -125,6 +125,7 @@ public class FlatFish : SeekerFish {
                     break;
 
                 case CameraAttackBehavior.Above:
+                    //Flat fish seek away from sub which is odd
                     targetPosition = (targetObject.transform.forward * farAboveCamera) + targetObject.transform.position;
                     /*
                     Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
@@ -186,6 +187,11 @@ public class FlatFish : SeekerFish {
         {
             base.SeekBehavior();
         }
+    }
+
+    protected override bool UsingRB()
+    {
+        return base.UsingRB() || camBehavior != CameraAttackBehavior.Seek;
     }
 
     // Return the nearest camera that is a child of the sub
@@ -365,7 +371,19 @@ public class FlatFish : SeekerFish {
         }
         else
         {
-            base.Move(currentMaxSpeed);
+            base.Move(currentMaxSpeed, useRigidBody);
+        }
+    }
+
+    protected override void FixedUpdate()
+    {
+        if (camBehavior != CameraAttackBehavior.Seek && behaviour == FishBehaviour.Seek)
+        {
+            return;
+        }
+        else
+        {
+            base.FixedUpdate();
         }
     }
 
@@ -413,8 +431,14 @@ public class FlatFish : SeekerFish {
     {
         if (tag == "Sub")
         {
-            //return false;
-            return true;
+            if (camBehavior != CameraAttackBehavior.Seek)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {

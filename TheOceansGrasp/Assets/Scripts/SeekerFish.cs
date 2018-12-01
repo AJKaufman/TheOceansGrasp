@@ -116,19 +116,24 @@ public class SeekerFish : MonoBehaviour {
                 break;
         }
 
-        if (rb.isKinematic)
+        if (UsingRB())
         {
-            transform.rotation = Quaternion.LookRotation(rb.velocity.normalized);
+            //transform.rotation = Quaternion.LookRotation(rb.velocity.normalized);
         }
         else
         {
-            transform.rotation = Quaternion.LookRotation(Velocity.normalized);
+            //transform.rotation = Quaternion.LookRotation(Velocity.normalized);
         }
 
         //Move();
 	}
 
-    protected void FixedUpdate()
+    virtual protected bool UsingRB()
+    {
+        return rb.isKinematic;
+    }
+
+    protected virtual void FixedUpdate()
     {
         if(stunTimer <= 0)
         {
