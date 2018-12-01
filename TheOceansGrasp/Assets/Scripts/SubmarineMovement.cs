@@ -12,7 +12,7 @@ public class SubmarineMovement : MonoBehaviour
     private Rigidbody rb;
     public float maxBackSpeed = 0.0f;
     public float speedIncrement = 1.0f;
-    public float maxSpeed = 5.0f;
+    public float maxSpeed;
     public float slowDown = 0.97f;
     public float udAngle = 0.0f;
     public float rlAngle = 0.0f;
@@ -25,6 +25,7 @@ public class SubmarineMovement : MonoBehaviour
     {
         // set the starting position to the starting position of the gameobject
         position = transform.position;
+        maxSpeed = 5.0f;
         maxBackSpeed = maxSpeed * -1.0f;
         rb = GetComponent<Rigidbody>();
         Physics.IgnoreCollision(gameObject.GetComponent<BoxCollider>(), gameObject.GetComponent<CapsuleCollider>());
@@ -43,23 +44,23 @@ public class SubmarineMovement : MonoBehaviour
                 maxSpeed = 10.0f;
                 speedIncrement = 2.0f;
             }
-            if(halfSpeed)
+            else if(halfSpeed)
             {
                 maxBackSpeed = -2.5f;
                 maxSpeed = 2.5f;
                 speedIncrement = 0.5f;
-            }
-            if (halfSpeed && boosting)
-            {
-                maxBackSpeed = -5.0f;
-                maxSpeed = 5.0f;
-                speedIncrement = 1.0f;
             }
             // otherwise convert it back to the normal settings
             else
             {
                 maxSpeed = 5.0f;
                 maxBackSpeed = -5.0f;
+                speedIncrement = 1.0f;
+            }
+            if (halfSpeed && boosting)
+            {
+                maxBackSpeed = -5.0f;
+                maxSpeed = 5.0f;
                 speedIncrement = 1.0f;
             }
 
