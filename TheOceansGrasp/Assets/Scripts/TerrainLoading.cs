@@ -11,7 +11,7 @@ public class TerrainLoading : MonoBehaviour {
     
 
     private int currentTerrain = 0;
-    private Vector3 previousTerrainSpawnLoc = new Vector3(-100, -30, 200);
+    private Vector3 previousTerrainSpawnLoc = new Vector3(-100, -30, -200);
 
     // Use this for initialization
     void Start () {
@@ -25,7 +25,7 @@ public class TerrainLoading : MonoBehaviour {
 	void Update () {
 		
         // If you've passed the previous spawn area
-        if(transform.position.z > previousTerrainSpawnLoc.z)
+        if(transform.position.z > previousTerrainSpawnLoc.z + 98 + 195)
         {
 
             // Spawn the next spawn area.
@@ -43,28 +43,28 @@ public class TerrainLoading : MonoBehaviour {
             switch(currentTerrain)
             {
                 case 1:
-                    terrain1.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 400);
+                    terrain1.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 585);
                     terrain1.GetComponent<PillarGenerate>().PillarDeletion();
                     terrain1.GetComponent<PillarGenerate>().PillarGeneration();
-                    previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 200);
+                    previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 195);
                     break;
                 case 2:
-                    terrain2.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 400);
+                    terrain2.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 585);
                     terrain2.GetComponent<PillarGenerate>().PillarDeletion();
                     terrain2.GetComponent<PillarGenerate>().PillarGeneration();
-                    previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 200);
+                    previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 195);
                     break;
                 case 3:
-                    terrain3.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 400);
+                    terrain3.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 585);
                     terrain3.GetComponent<PillarGenerate>().PillarDeletion();
                     terrain3.GetComponent<PillarGenerate>().PillarGeneration();
-                    previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 200);
+                    previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 195);
                     break;
                 default:
-                    terrain3.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 400);
+                    terrain3.transform.position = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 585);
                     terrain3.GetComponent<PillarGenerate>().PillarDeletion();
                     terrain3.GetComponent<PillarGenerate>().PillarGeneration();
-                    previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 200);
+                    previousTerrainSpawnLoc = new Vector3(previousTerrainSpawnLoc.x, previousTerrainSpawnLoc.y, previousTerrainSpawnLoc.z + 195);
                     break;
             }
         }
