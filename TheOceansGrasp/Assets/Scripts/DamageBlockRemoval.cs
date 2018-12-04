@@ -7,7 +7,7 @@ public class DamageBlockRemoval : MonoBehaviour {
 
     // needs a reference to the player object
     public GameObject player;
-    public GameObject damagedNode;
+    //public GameObject damagedNode;
     public Canvas canvas;
     public Slider slider;
     public float distance;
@@ -22,9 +22,12 @@ public class DamageBlockRemoval : MonoBehaviour {
     public LayerMask mask;
     public GameObject submarine;
     private SubVariables subVar;
+    public GameObject cameraFPSObject;
+    private CameraFPS camFPS;
 
 	// Use this for initialization
 	void Start () {
+        camFPS = cameraFPSObject.GetComponent<CameraFPS>();
         subVar = submarine.GetComponent<SubVariables>();
         distance = 100.0f;
         repairTimer = 0.0f;
@@ -38,15 +41,110 @@ public class DamageBlockRemoval : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if(isDamaged)
+        RepairDamagedNode();
+	}
+
+    // this method is for repairing cameras
+    private void RepairCamera()
+    {
+        if(camFPS.damaged)
+        {
+            if(isClicked)
+            {
+                if(Input.GetButton("RepairTool"))
+                {
+                    RaycastHit hit;
+                    if (Physics.Raycast(playerCam.ScreenPointToRay(Input.mousePosition), out hit, 5, 1 << mask))
+                    {
+                        distance = hit.distance;
+                        //Debug.Log("HIT");
+                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+                        if (gameObject != hit.transform.gameObject)
+                        {
+                            wrongObject = true;
+                        }
+                        else
+                        {
+                            wrongObject = false;
+                        }
+                    }
+
+                    if(isCloseEnough)
+                    {
+                        if (!wrongObject)
+                        {
+                            //Debug.Log("yeet");
+                            // enable the slider canvas to show progress bar
+                            Image[] images = slider.GetComponentsInChildren<Image>();
+                            foreach (Image image in images)
+                            {
+                                image.enabled = true;
+                            }
+
+                            // start incrementing the timer
+                            repairTimer += Time.deltaTime;
+
+                            // set the slider to equal the timer
+                            slider.value = repairTimer;
+
+                            // if the mouse has been held down for 2 seconds
+                            if (repairTimer >= 2.0f)
+                            {
+                                camFPS.Repair();
+
+                                // reset the canvas and slider first
+                                repairTimer = 0.0f;
+                                slider.value = 0.0f;
+
+                                // disable canvas to stop showing progress bar
+                                images = slider.GetComponentsInChildren<Image>();
+                                foreach (Image image in images)
+                                {
+                                    image.enabled = false;
+                                }
+
+                                Debug.Log("Slider Disabled");
+                                // then destroy the object after the variables have been reset
+                                isDamaged = false;
+                                reParent();
+                                Positions.instance.damagedNodes.Remove(gameObject);
+                                gameObject.GetComponent<MeshRenderer>().material = gray;
+                                // Destroy(this.gameObject);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // disable canvas to stop showing progress bar
+                        Image[] images = slider.GetComponentsInChildren<Image>();
+                        foreach (Image image in images)
+                        {
+                            image.enabled = false;
+                        }
+
+                        // reset timer
+                        repairTimer = 0.0f;
+
+                        // resets the progress bar
+                        slider.value = 0.0f;
+                    }
+                }
+            }
+        }
+    }
+
+    // this method is for repairing nodes
+    private void RepairDamagedNode()
+    {
+        if (isDamaged)
         {
             if (isClicked)
             {
                 if (Input.GetButton("RepairTool"))
                 {
                     RaycastHit hit;
-                    
-                    if (Physics.Raycast(playerCam.ScreenPointToRay(Input.mousePosition), out hit, 5, 1<<mask))
+
+                    if (Physics.Raycast(playerCam.ScreenPointToRay(Input.mousePosition), out hit, 5, 1 << mask))
                     {
                         distance = hit.distance;
                         //Debug.Log("HIT");
@@ -66,7 +164,7 @@ public class DamageBlockRemoval : MonoBehaviour {
                     // calculate the distance between the player and the damage block
                     // distance = Vector3.Magnitude(player.GetComponent<Transform>().position - gameObject.transform.position);
                     //if(distance <= 5.0f)
-                    if(isCloseEnough)
+                    if (isCloseEnough)
                     {
                         if (!wrongObject)
                         {
@@ -92,7 +190,7 @@ public class DamageBlockRemoval : MonoBehaviour {
                                 subVar.totalDamageNodes--;
 
                                 // repair/revert system break
-                                if(subVar.totalRepairsMade >= 4)
+                                if (subVar.totalRepairsMade >= 4)
                                 {
                                     subVar.systemBreak = false;
                                     subVar.totalRepairsMade = 0;
@@ -139,7 +237,7 @@ public class DamageBlockRemoval : MonoBehaviour {
                 }
             }
         }
-	}
+    }
 
     void GetDistanceToCollider()
     {

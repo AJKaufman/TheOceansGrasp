@@ -462,7 +462,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -477,6 +476,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &7275978
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2843,7 +2843,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -2858,6 +2857,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &164085074
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3520,7 +3520,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -3535,6 +3534,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &187463683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4271,7 +4271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -4286,6 +4285,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &210947118
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5399,7 +5399,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -5414,6 +5413,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &262120714
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6308,7 +6308,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -6323,6 +6322,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &318105124
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6577,7 +6577,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -6592,6 +6591,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &334352467
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7640,7 +7640,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -7655,6 +7654,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &410553246
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7791,7 +7791,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -7806,6 +7805,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &422348799
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7908,7 +7908,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -7923,6 +7922,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &424090842
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8451,7 +8451,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -8466,6 +8465,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &464671320
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8833,7 +8833,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -8848,6 +8847,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &483158697
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9060,7 +9060,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -9075,6 +9074,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &491821619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9405,7 +9405,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -9420,6 +9419,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &501497894
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9651,7 +9651,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -9666,6 +9665,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &512351987
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9768,7 +9768,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -9783,6 +9782,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &517917244
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10113,7 +10113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -10128,6 +10127,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &534072416
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10912,7 +10912,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -10927,6 +10926,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &583231262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11246,7 +11246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -11261,6 +11260,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &599828606
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11587,7 +11587,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -11602,6 +11601,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &612531785
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14159,8 +14159,8 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 810474716}
   - {fileID: 1318539355}
+  - {fileID: 810474716}
   - {fileID: 1889170074}
   - {fileID: 31067979}
   m_Father: {fileID: 1125345855}
@@ -14478,7 +14478,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -14493,6 +14492,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &766688336
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15817,9 +15817,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 810474716}
+  - component: {fileID: 810474717}
+  - component: {fileID: 810474718}
   m_Layer: 0
   m_Name: Front_Left_Camera
-  m_TagString: Untagged
+  m_TagString: SubCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15843,8 +15845,47 @@ Transform:
   - {fileID: 1342035282}
   - {fileID: 116692962}
   m_Father: {fileID: 753459874}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -178.687, y: 37.85399, z: -8.971985}
+--- !u!135 &810474717
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 810474715}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: -0.52}
+--- !u!114 &810474718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 810474715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ada29342529646adfb14f4575489e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 641548811}
+  canvas: {fileID: 0}
+  slider: {fileID: 0}
+  distance: 0
+  repairTimer: 0
+  isClicked: 0
+  wrongObject: 0
+  isDamaged: 0
+  isCloseEnough: 0
+  playerCam: {fileID: 0}
+  gray: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+  submarine: {fileID: 0}
+  cameraFPSObject: {fileID: 0}
 --- !u!1 &824919414
 GameObject:
   m_ObjectHideFlags: 0
@@ -16642,7 +16683,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -16657,6 +16697,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &843356315
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17261,7 +17302,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -17276,6 +17316,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &886425922
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17941,7 +17982,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -17956,6 +17996,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &939033799
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18517,7 +18558,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -18532,6 +18572,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &982854256
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18634,7 +18675,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -18649,6 +18689,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &987027622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18751,7 +18792,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -18766,6 +18806,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &987900116
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23011,7 +23052,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -23026,6 +23066,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1211625885
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24319,7 +24360,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -24334,6 +24374,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1313010724
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24431,9 +24472,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1318539355}
+  - component: {fileID: 1318539356}
   m_Layer: 0
   m_Name: Front_Right_Camera
-  m_TagString: Untagged
+  m_TagString: SubCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24445,9 +24487,9 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1318539354}
-  m_LocalRotation: {x: -0.3241961, y: -0.014563354, z: 0.94268215, w: 0.07768677}
-  m_LocalPosition: {x: -52.78, y: 2.62, z: 11.17}
-  m_LocalScale: {x: 0.94098073, y: 0.9409812, z: 0.9409797}
+  m_LocalRotation: {x: -0.32419616, y: -0.014563369, z: 0.94268215, w: 0.077686764}
+  m_LocalPosition: {x: -52.78002, y: 2.6200004, z: 11.17}
+  m_LocalScale: {x: 0.940982, y: 0.94098216, z: 0.9409816}
   m_Children:
   - {fileID: 1796183869}
   - {fileID: 6578868}
@@ -24457,8 +24499,20 @@ Transform:
   - {fileID: 210809141}
   - {fileID: 185732992}
   m_Father: {fileID: 753459874}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -178.687, y: 142.14601, z: -8.971985}
+--- !u!135 &1318539356
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1318539354}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: -0.52}
 --- !u!1 &1319938272
 GameObject:
   m_ObjectHideFlags: 0
@@ -24965,7 +25019,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -24980,6 +25033,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1342267203
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25227,7 +25281,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -25242,6 +25295,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1353585605
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25496,7 +25550,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -25511,6 +25564,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1369840826
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27179,7 +27233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -27194,6 +27247,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1480226102
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27372,7 +27426,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -27387,6 +27440,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1503021454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27602,7 +27656,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -27617,6 +27670,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1508650622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28406,7 +28460,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -28421,6 +28474,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1534469331
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28523,7 +28577,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -28538,6 +28591,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1537370950
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30262,7 +30316,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -30277,6 +30330,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1619653405
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31645,7 +31699,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -31660,6 +31713,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1707622795
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32585,7 +32639,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -32600,6 +32653,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1786491421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32896,7 +32950,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -32911,6 +32964,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1800247556
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33047,7 +33101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -33062,6 +33115,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1810817311
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33498,7 +33552,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -33513,6 +33566,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1846677320
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33972,7 +34026,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -33987,6 +34040,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &1876545684
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34355,9 +34409,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1889170074}
+  - component: {fileID: 1889170075}
+  - component: {fileID: 1889170076}
   m_Layer: 0
   m_Name: Front_Camera
-  m_TagString: Untagged
+  m_TagString: SubCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34383,6 +34439,45 @@ Transform:
   m_Father: {fileID: 753459874}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -180, y: 90, z: 0}
+--- !u!135 &1889170075
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1889170073}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: -0.52}
+--- !u!114 &1889170076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1889170073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ada29342529646adfb14f4575489e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  canvas: {fileID: 0}
+  slider: {fileID: 0}
+  distance: 0
+  repairTimer: 0
+  isClicked: 0
+  wrongObject: 0
+  isDamaged: 0
+  isCloseEnough: 0
+  playerCam: {fileID: 0}
+  gray: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+  submarine: {fileID: 0}
+  cameraFPSObject: {fileID: 0}
 --- !u!1 &1889432576
 GameObject:
   m_ObjectHideFlags: 0
@@ -37585,7 +37680,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 4300522, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -37600,6 +37694,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &2054890586
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37950,7 +38045,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -37965,6 +38059,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &2070657921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38712,7 +38807,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -38727,6 +38821,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &2091374174
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40096,7 +40191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  damagedNode: {fileID: 0}
   canvas: {fileID: 2062372092}
   slider: {fileID: 627964994}
   distance: 0
@@ -40111,6 +40205,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!65 &2144147891
 BoxCollider:
   m_ObjectHideFlags: 0
