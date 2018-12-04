@@ -46,6 +46,9 @@ public class SeekerFish : MonoBehaviour {
     public Vector3 targetPosition;
     public GameObject targetObject; //Need to know what to search for first
     protected Rigidbody rb;
+    //Timer to use to force re-orient fish
+    private float gimbalCheckTimer = 0;
+    private float gimbalCheckTime = 2;
 
     protected enum FishBehaviour
     {

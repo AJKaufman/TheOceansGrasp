@@ -20,17 +20,30 @@ public class SeekerFish2 : SeekerFish {
     public float attackSpeedModifier = 1.0f; // of swim
     public float fleeSpeedModifier = 1.5f; // of sub
 
-    public float weakAvoidance;
-    public float strongAvoidance;
+    public float weakAvoidance = 0.1f;
+    public float strongAvoidance = 2.0f;
 
     private SubmarineMovement sub;
     private PlayerSwim swimmer;
+
+    [Header("Audio")]
+    private AudioSource audioPlayer;
+
+    [Range(0, 100)]
+    public float randomAudioChancePerFrame = 1;
+
+    public AudioClip randomGrowl;
+    public AudioClip lowGrowl;
+    public AudioClip loudScream;
+    public AudioClip loudGrowl;
 
 
     // Use this for initialization
     override protected void Start () {
         base.Start();
 
+        audioPlayer = GetComponentInChildren<AudioSource>();
+        avoidanceScale = weakAvoidance;
         sub = FindObjectOfType<SubmarineMovement>();
         swimmer = FindObjectOfType<PlayerSwim>();
 	}
@@ -39,6 +52,15 @@ public class SeekerFish2 : SeekerFish {
 	override protected void Update () {
         base.Update();
 	}
+
+    protected override void SetSeekTarget(GameObject seekTarget, bool willFlee = false)
+    {
+        base.SetSeekTarget(seekTarget, willFlee);
+        if(seekTarget == swimmer.gameObject)
+        {
+            audioPlayer.PlayOneShot(lowGrowl);
+        }
+    }
 
     override protected void SeekBehavior()
     {
@@ -52,12 +74,17 @@ public class SeekerFish2 : SeekerFish {
                     if(Vector3.SqrMagnitude(targetObject.transform.position - transform.position) < attackDistance * attackDistance)
                     {
                         playerSeekStatus = PlayerSeek.Wait;
+                        audioPlayer.PlayOneShot(loudScream);
                     }
                     break;
 
                 case PlayerSeek.Wait:
                     attackWait -= Time.deltaTime;
                     maxSpeed = 0;
+                    if(attackWait <= 0)
+                    {
+                        playerSeekStatus = PlayerSeek.Attack;
+                    }
                     break;
 
                 case PlayerSeek.Attack:
@@ -74,12 +101,40 @@ public class SeekerFish2 : SeekerFish {
     protected override void FleeBehavior()
     {
         maxSpeed = fleeSpeedModifier * sub.maxSpeed;
+        targetObject = null;
+        targetPosition = new Vector3(transform.position.x, transform.position.y, sub.transform.position.z + 300);
         base.FleeBehavior();
     }
 
     protected override void WanderBehavior()
     {
         maxSpeed = seekSpeedModifier * sub.maxSpeed;
-        targetPosition = sub.gameObject.transform.position - new Vector3(0, 0, 300);
+        targetPosition = new Vector3(transform.position.x, transform.position.y, sub.transform.position.z - 300);
+        if (!audioPlayer.isPlaying && Random.Range(0, 100f) <= randomAudioChancePerFrame)
+        {
+            audioPlayer.PlayOneShot(randomGrowl);
+        }
+    }
+
+    public override void Flee(GameObject fleeFrom)
+    {
+        avoidanceScale = strongAvoidance;
+        audioPlayer.PlayOneShot(loudGrowl);//Is this supposed to be continuous or not?
+        base.Flee(fleeFrom);
+    }
+
+    protected override void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject == sub.gameObject)
+        {
+            collision.gameObject.GetComponent<SubVariables>().loseHealth(damage);
+            Flee(collision.gameObject);
+        }
+
+        if(collision.gameObject == swimmer.gameObject)
+        {
+            FindObjectOfType<WinLose>().LoseGame();
+            Stun(100);//I just want it to stop
+        }
     }
 }

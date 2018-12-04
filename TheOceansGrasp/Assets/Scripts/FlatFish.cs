@@ -64,6 +64,7 @@ public class FlatFish : SeekerFish {
         }
     }
 
+    /*
     protected override void FleeBehavior()
     {
         base.FleeBehavior();
@@ -74,6 +75,7 @@ public class FlatFish : SeekerFish {
             audioPlayer.Play();
         }
     }
+    */
 
     override protected void SeekBehavior()
     {
@@ -408,6 +410,7 @@ public class FlatFish : SeekerFish {
         base.Flee(fleeFrom);
         isCamera = false;
         rb.isKinematic = false;
+        audioPlayer.PlayOneShot(fleeAudio);
     }
 
     protected override void SetSeekTarget(GameObject seekTarget, bool willFlee = false)
