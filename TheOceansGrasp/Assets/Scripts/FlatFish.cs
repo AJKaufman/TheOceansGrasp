@@ -13,7 +13,6 @@ public class FlatFish : SeekerFish {
     public float ontoCameraSpeed = 1;
     public float flattenOnCameraRate = 30; // In degrees
 
-    // Should these all be audio sources?
     [Header("Audio")]
     public AudioClip randomSwimmingAudio;
     public AudioClip inAttackRangeAudio;
@@ -104,11 +103,6 @@ public class FlatFish : SeekerFish {
                 transform.parent = sub.transform;
             }
         }
-        else if(targetObject.tag == "Player")
-        {
-            //Flee(targetObject);
-            //return;
-        }
 
         if (isCamera)
         {
@@ -121,30 +115,18 @@ public class FlatFish : SeekerFish {
                         audioPlayer.Play();
                         camBehavior = CameraAttackBehavior.Above;
                         rb.isKinematic = true; // Disable rigid body
-                        //rb.detectCollisions = false;
                         print("into above");
                     }
                     break;
 
                 case CameraAttackBehavior.Above:
-                    //Flat fish seek away from sub which is odd
                     targetPosition = (targetObject.transform.forward * farAboveCamera) + targetObject.transform.position;
-                    /*
-                    Vector3 rotation = Vector3.RotateTowards(transform.forward, targetPosition - transform.position, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
-                    Quaternion prevRotation = transform.rotation;
-                    transform.rotation = Quaternion.LookRotation(rotation);
-                    */
-                    base.Move(intoHoverSpeed, false);
 
-                    /*
-                    Velocity = (targetPosition - transform.position).normalized * (intoHoverSpeed);// + sub.GetComponent<SubmarineMovement>().speed);
-                    transform.position += Velocity * Time.deltaTime;
-                    */
+                    base.Move(intoHoverSpeed, false);
 
                     if (Vector3.SqrMagnitude(targetPosition - transform.position) <= stopDistance * stopDistance)
                     {
                         camBehavior = CameraAttackBehavior.Attach;
-                        //rb.isKinematic = true;
                         print("into attach");
                     }
                     break;
@@ -176,8 +158,6 @@ public class FlatFish : SeekerFish {
                         Attack();
                         attackTimer = attackDelay;
                     }
-                    //transform.position = targetPosition;
-                    //transform.up = targetObject.transform.forward;
                     break;
 
                 default:
@@ -289,21 +269,6 @@ public class FlatFish : SeekerFish {
                     cameraFPS.Damage();
 
                     Flee(sub);
-
-                    /*
-                    GameObject nextCam = GetNextCamera(sub, targetObject);
-                    if(nextCam && nextCam != targetObject)
-                    {
-                        targetObject = nextCam;
-                        camBehavior = CameraAttackBehavior.Seek;
-                    }
-                    else
-                    {
-                        // Temp
-                        //Flee(sub);
-                    }
-                    return;
-                    */
                 }
         }
     }
@@ -364,12 +329,6 @@ public class FlatFish : SeekerFish {
                 default: print("Unrecognized FlatFish behavior");
                     break;
             }
-
-            //rb.velocity = Velocity;
-            //rb.MovePosition((Velocity * Time.deltaTime) + transform.position);
-            //Vector3 vChange = Velocity - rb.velocity;
-            //rb.AddForce(vChange, ForceMode.VelocityChange);
-            //transform.position += Velocity * Time.deltaTime;
         }
         else
         {
@@ -399,8 +358,6 @@ public class FlatFish : SeekerFish {
         if (targetObject)
         {
             transform.parent = null;
-            //rb.isKinematic = false; // Enable rigid body
-            rb.detectCollisions = true;
             Camera cam = targetObject.GetComponent<Camera>();
             if (cam)
             {
@@ -415,11 +372,15 @@ public class FlatFish : SeekerFish {
 
     protected override void SetSeekTarget(GameObject seekTarget, bool willFlee = false)
     {
+        if (seekTarget.CompareTag("Sub") && FindObjectOfType<Positions>().outside)
+        {
+            //Do not set the sub as a target when the player is outside the sub
+            return;
+        }
+
         if (seekTarget.tag == "Player" && targetObject)
         {
             transform.parent = null;
-            //rb.isKinematic = false; // Enable rigid body
-            rb.detectCollisions = true;
             Camera cam = targetObject.GetComponent<Camera>();
             if (cam)
             {

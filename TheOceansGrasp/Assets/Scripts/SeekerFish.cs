@@ -234,7 +234,11 @@ public class SeekerFish : MonoBehaviour {
 
     virtual protected void SetSeekTarget(GameObject seekTarget, bool willFlee = false)
     {
-        behaviour = willFlee ? FishBehaviour.Flee : FishBehaviour.Seek;
+        behaviour = FishBehaviour.Seek;
+        if (willFlee)
+        {
+            Flee(seekTarget);
+        }
         targetObject = seekTarget;
     }
 
