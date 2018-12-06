@@ -41,7 +41,16 @@ public class DamageBlockRemoval : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        RepairDamagedNode();
+        // if it is tagged as a camera, call the camera method
+        if(gameObject.tag == "SubCam")
+        {
+            RepairCamera();
+        }
+        // otherwise it is a tech node
+        else
+        {
+            RepairDamagedNode();
+        }
 	}
 
     // this method is for repairing cameras
@@ -49,6 +58,16 @@ public class DamageBlockRemoval : MonoBehaviour {
     {
         if(camFPS.damaged)
         {
+            // try to get the meshes of the camera parts to change color to see if we are even doing damage to the cameras
+            List<MeshRenderer> camModelParts = new List<MeshRenderer>();
+            for(int i = 0; i < 7; i++)
+            {
+                camModelParts.Add(gameObject.transform.GetChild(i).GetComponent<MeshRenderer>());
+            }
+            foreach(MeshRenderer child in camModelParts)
+            {
+                child.material.color = Color.red;
+            }
             if(isClicked)
             {
                 if(Input.GetButton("RepairTool"))
