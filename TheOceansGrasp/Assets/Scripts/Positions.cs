@@ -9,6 +9,7 @@ public class Positions : MonoBehaviour {
     public int whatTile = 0;
     public bool outside = false;
     public List<GameObject> damagedNodes = new List<GameObject>();
+    public List<GameObject> damagedCameras = new List<GameObject>();
     public Transform universalParent;
 
     private void Awake()

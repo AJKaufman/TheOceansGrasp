@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SubmarineMovement : MonoBehaviour
 {
@@ -19,10 +20,13 @@ public class SubmarineMovement : MonoBehaviour
     public bool useSlowdown = true;
     public bool boosting = false;
     public bool halfSpeed = false;
+    private float boostTimer = 0.0f;
+    private SubVariables subVar;
 
     // Use this for initialization
     void Start()
     {
+        subVar = gameObject.GetComponent<SubVariables>();
         // set the starting position to the starting position of the gameobject
         position = transform.position;
         maxSpeed = 5.0f;
@@ -40,6 +44,17 @@ public class SubmarineMovement : MonoBehaviour
             // if boost is toggled, double some values to speed it up
             if(boosting)
             {
+                // drain energy
+                subVar.loseEnergy();
+                subVar.loseEnergy();
+                /*
+                boostTimer += Time.deltaTime;
+                if(boostTimer >= 1.0f)
+                {
+                    boostTimer = 0;
+                    subVar.loseEnergy(2.0f);
+                }*/
+
                 maxBackSpeed = -10.0f;
                 maxSpeed = 10.0f;
                 speedIncrement = 2.0f;
@@ -62,6 +77,16 @@ public class SubmarineMovement : MonoBehaviour
                 maxBackSpeed = -5.0f;
                 maxSpeed = 5.0f;
                 speedIncrement = 1.0f;
+            }
+
+            // determine if the sub is moving or not to gain energy or deplete it
+            if(Input.GetButton("Forward") || Input.GetButton("Backward") || Input.GetButton("RotateLeft") || Input.GetButton("RotateRight") || Input.GetButton("Ascend") || Input.GetButton("Descend"))
+            {
+                subVar.loseEnergy();
+            }
+            else
+            {
+                subVar.gainEnergy();
             }
 
             // move forward

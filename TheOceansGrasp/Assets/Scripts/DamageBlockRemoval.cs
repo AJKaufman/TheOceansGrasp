@@ -34,8 +34,16 @@ public class DamageBlockRemoval : MonoBehaviour {
         isClicked = false;
         isDamaged = false;
         parent = gameObject.transform.parent;
-        Physics.IgnoreCollision(submarine.GetComponent<BoxCollider>(), gameObject.GetComponent<BoxCollider>());
-        Physics.IgnoreCollision(submarine.GetComponent<CapsuleCollider>(), gameObject.GetComponent<BoxCollider>());
+        if(gameObject.tag == "SubCam")
+        {
+            Physics.IgnoreCollision(submarine.GetComponent<BoxCollider>(), gameObject.GetComponent<SphereCollider>());
+            Physics.IgnoreCollision(submarine.GetComponent<CapsuleCollider>(), gameObject.GetComponent<SphereCollider>());
+        }
+        else
+        {
+            Physics.IgnoreCollision(submarine.GetComponent<BoxCollider>(), gameObject.GetComponent<BoxCollider>());
+            Physics.IgnoreCollision(submarine.GetComponent<CapsuleCollider>(), gameObject.GetComponent<BoxCollider>());
+        }
     }
 	
 	// Update is called once per frame
@@ -58,7 +66,11 @@ public class DamageBlockRemoval : MonoBehaviour {
     {
         if(camFPS.damaged)
         {
+            Debug.Log("Camera is damaged");
+            gameObject.transform.GetChild(5).gameObject.SetActive(false);
             // try to get the meshes of the camera parts to change color to see if we are even doing damage to the cameras
+
+            /*
             List<MeshRenderer> camModelParts = new List<MeshRenderer>();
             for(int i = 0; i < 7; i++)
             {
@@ -67,9 +79,13 @@ public class DamageBlockRemoval : MonoBehaviour {
             foreach(MeshRenderer child in camModelParts)
             {
                 child.material.color = Color.red;
-            }
+                Debug.Log("LoopCount");
+            }*/
+
+            //Debug.Log("is Clicked: " + isClicked);
             if(isClicked)
             {
+                Debug.Log("Camera Clicked");
                 if(Input.GetButton("RepairTool"))
                 {
                     RaycastHit hit;
@@ -110,6 +126,7 @@ public class DamageBlockRemoval : MonoBehaviour {
                             if (repairTimer >= 2.0f)
                             {
                                 camFPS.Repair();
+                                gameObject.transform.GetChild(5).gameObject.SetActive(true);
 
                                 // reset the canvas and slider first
                                 repairTimer = 0.0f;
@@ -295,7 +312,7 @@ public class DamageBlockRemoval : MonoBehaviour {
     // this method is a lil' bitch
     private void OnMouseDown()
     {
-        //Debug.Log("CLICKED");
+        Debug.Log("CLICKED");
         isClicked = true;
     }
 

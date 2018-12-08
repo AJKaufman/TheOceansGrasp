@@ -77,8 +77,6 @@ public class SubVariables : MonoBehaviour {
             totalRepairsMade = 0;
         }*/
 
-    loseEnergy();
-
    // calculate the distance
    distance = Vector3.Distance(frontCamera.transform.position, goalObject.transform.position);
    //distance = Vector3.Distance(gameObject.transform.position+offSetSubmarinePos, goalObject.transform.position);
@@ -124,8 +122,27 @@ public class SubVariables : MonoBehaviour {
   
   // lose 1 energy
   public void loseEnergy() {
-    energy -= Time.deltaTime;
+        if (energy > 0.0f)
+        {
+            energy -= Time.deltaTime;
+        }
+        else
+        {
+            energy = 0.0f;
+        }
   }
+
+    public void gainEnergy()
+    {
+        if(energy <= 200.0f)
+        {
+            energy += Time.deltaTime * 3.0f;
+        }
+        else
+        {
+            energy = 200.0f;
+        }
+    }
 
   // Break a random system on the sub
   public void SystemBreak()

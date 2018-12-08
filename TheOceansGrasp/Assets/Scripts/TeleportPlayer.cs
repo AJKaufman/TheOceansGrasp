@@ -76,6 +76,11 @@ public class TeleportPlayer : MonoBehaviour
             {
                 node.transform.parent = null;
             }
+            foreach (GameObject subCamera in Positions.instance.damagedCameras)
+            {
+                subCamera.transform.SetParent(null);
+                Debug.Log("New camera parent: " + subCamera.transform.parent);
+            }
             //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = false;
         }
         else
@@ -88,6 +93,11 @@ public class TeleportPlayer : MonoBehaviour
                 foreach (GameObject node in Positions.instance.damagedNodes)
                 {
                     node.transform.parent = Positions.instance.universalParent;
+                }
+                foreach (GameObject subCamera in Positions.instance.damagedCameras)
+                {
+                    subCamera.transform.SetParent(Positions.instance.universalParent);
+                    Debug.Log("reparented camera");
                 }
                 gameObject.transform.parent = submarine.transform;
                 //otherScript.inside = !otherScript.inside;

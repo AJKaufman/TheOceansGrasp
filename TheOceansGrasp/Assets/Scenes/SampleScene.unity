@@ -859,9 +859,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 31067979}
+  - component: {fileID: 31067980}
+  - component: {fileID: 31067981}
   m_Layer: 0
-  m_Name: Front_Camera (1)
-  m_TagString: Untagged
+  m_Name: Back_Camera
+  m_TagString: SubCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -887,6 +889,45 @@ Transform:
   m_Father: {fileID: 753459874}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -280.343, y: 90.00001, z: 0}
+--- !u!114 &31067980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 31067978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ada29342529646adfb14f4575489e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 641548811}
+  canvas: {fileID: 2062372092}
+  slider: {fileID: 627964994}
+  distance: 0
+  repairTimer: 0
+  isClicked: 0
+  wrongObject: 0
+  isDamaged: 0
+  isCloseEnough: 0
+  playerCam: {fileID: 1949762438}
+  gray: {fileID: 2100000, guid: dacb04df6b13ffd4891ef53c962f5039, type: 2}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+  submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 1046524758}
+--- !u!135 &31067981
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 31067978}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: -0.52}
 --- !u!1 &37476610
 GameObject:
   m_ObjectHideFlags: 0
@@ -5921,6 +5962,7 @@ MonoBehaviour:
   highfps: 0
   selected: 0
   renderCam: {fileID: 508060030}
+  submarine: {fileID: 2050764014}
   targeted: 0
 --- !u!114 &300966642
 MonoBehaviour:
@@ -14997,6 +15039,7 @@ MonoBehaviour:
   highfps: 0
   selected: 0
   renderCam: {fileID: 543217999}
+  submarine: {fileID: 2050764014}
   targeted: 0
 --- !u!114 &778665665
 MonoBehaviour:
@@ -15834,7 +15877,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 810474715}
   m_LocalRotation: {x: 0.94326454, y: 0.07027605, z: -0.32249755, w: -0.036176145}
-  m_LocalPosition: {x: -52.63, y: 2.4, z: 1.74}
+  m_LocalPosition: {x: -52.63, y: 33.530003, z: 1.74}
   m_LocalScale: {x: 0.94098014, y: 0.94098014, z: 0.94098014}
   m_Children:
   - {fileID: 2125978768}
@@ -15871,21 +15914,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 641548811}
-  canvas: {fileID: 0}
-  slider: {fileID: 0}
+  canvas: {fileID: 2062372092}
+  slider: {fileID: 627964994}
   distance: 0
   repairTimer: 0
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
   isCloseEnough: 0
-  playerCam: {fileID: 0}
-  gray: {fileID: 0}
+  playerCam: {fileID: 1949762438}
+  gray: {fileID: 2100000, guid: dacb04df6b13ffd4891ef53c962f5039, type: 2}
   mask:
     serializedVersion: 2
     m_Bits: 0
-  submarine: {fileID: 0}
-  cameraFPSObject: {fileID: 0}
+  submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 778665663}
 --- !u!1 &824919414
 GameObject:
   m_ObjectHideFlags: 0
@@ -19673,6 +19716,7 @@ MonoBehaviour:
   highfps: 0
   selected: 0
   renderCam: {fileID: 1850569058}
+  submarine: {fileID: 2050764014}
   targeted: 0
 --- !u!114 &1046524764
 MonoBehaviour:
@@ -23428,6 +23472,7 @@ MonoBehaviour:
   whatTile: 0
   outside: 0
   damagedNodes: []
+  damagedCameras: []
   universalParent: {fileID: 1168552283}
 --- !u!4 &1256022419
 Transform:
@@ -24473,6 +24518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1318539355}
   - component: {fileID: 1318539356}
+  - component: {fileID: 1318539357}
   m_Layer: 0
   m_Name: Front_Right_Camera
   m_TagString: SubCam
@@ -24488,7 +24534,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1318539354}
   m_LocalRotation: {x: -0.32419616, y: -0.014563369, z: 0.94268215, w: 0.077686764}
-  m_LocalPosition: {x: -52.78002, y: 2.6200004, z: 11.17}
+  m_LocalPosition: {x: -52.78002, y: 33.750004, z: 11.17}
   m_LocalScale: {x: 0.940982, y: 0.94098216, z: 0.9409816}
   m_Children:
   - {fileID: 1796183869}
@@ -24513,6 +24559,33 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: -0.52}
+--- !u!114 &1318539357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1318539354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235ada29342529646adfb14f4575489e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 641548811}
+  canvas: {fileID: 2062372092}
+  slider: {fileID: 627964994}
+  distance: 0
+  repairTimer: 0
+  isClicked: 0
+  wrongObject: 0
+  isDamaged: 0
+  isCloseEnough: 0
+  playerCam: {fileID: 1949762438}
+  gray: {fileID: 2100000, guid: dacb04df6b13ffd4891ef53c962f5039, type: 2}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+  submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 2134227672}
 --- !u!1 &1319938272
 GameObject:
   m_ObjectHideFlags: 0
@@ -30907,6 +30980,7 @@ MonoBehaviour:
   highfps: 0
   selected: 0
   renderCam: {fileID: 135822617}
+  submarine: {fileID: 0}
   targeted: 0
 --- !u!1 &1663498676
 GameObject:
@@ -34426,7 +34500,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1889170073}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -55.66, y: 2.62, z: 6.42}
+  m_LocalPosition: {x: -55.66, y: 33.75, z: 6.42}
   m_LocalScale: {x: 0.9409803, y: 0.94098103, z: 0.9409797}
   m_Children:
   - {fileID: 1189051188}
@@ -34462,22 +34536,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 235ada29342529646adfb14f4575489e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  canvas: {fileID: 0}
-  slider: {fileID: 0}
+  player: {fileID: 641548811}
+  canvas: {fileID: 2062372092}
+  slider: {fileID: 627964994}
   distance: 0
   repairTimer: 0
   isClicked: 0
   wrongObject: 0
   isDamaged: 0
   isCloseEnough: 0
-  playerCam: {fileID: 0}
-  gray: {fileID: 0}
+  playerCam: {fileID: 1949762438}
+  gray: {fileID: 2100000, guid: dacb04df6b13ffd4891ef53c962f5039, type: 2}
   mask:
     serializedVersion: 2
     m_Bits: 0
-  submarine: {fileID: 0}
-  cameraFPSObject: {fileID: 0}
+  submarine: {fileID: 2050764014}
+  cameraFPSObject: {fileID: 300966640}
 --- !u!1 &1889432576
 GameObject:
   m_ObjectHideFlags: 0
@@ -39812,6 +39886,7 @@ MonoBehaviour:
   highfps: 0
   selected: 0
   renderCam: {fileID: 1605979864}
+  submarine: {fileID: 2050764014}
   targeted: 0
 --- !u!114 &2134227674
 MonoBehaviour:

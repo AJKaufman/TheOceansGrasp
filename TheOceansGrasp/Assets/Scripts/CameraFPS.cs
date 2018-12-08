@@ -14,6 +14,8 @@ public class CameraFPS : MonoBehaviour {
     public bool highfps = false;
     public bool selected = false;
     public Camera renderCam;
+    public GameObject submarine;
+    private SubVariables subVar;
 
     // For fish
     public bool targeted = false;
@@ -21,7 +23,7 @@ public class CameraFPS : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         renderCam.enabled = false;
-        
+        subVar = submarine.GetComponent<SubVariables>();
 	}
     
 
@@ -39,6 +41,7 @@ public class CameraFPS : MonoBehaviour {
         else
         {
             renderCam.Render();
+            subVar.loseEnergy();
         }
     }
 
@@ -64,6 +67,8 @@ public class CameraFPS : MonoBehaviour {
         {
             transform.GetChild(0).gameObject.SetActive(true);
         }
+        Debug.Log("Added damaged camera to list");
+        Positions.instance.damagedCameras.Add(gameObject);
         damaged = true;
         stactive = true;
         transform.GetChild(1).gameObject.SetActive(true);
@@ -71,6 +76,8 @@ public class CameraFPS : MonoBehaviour {
 
     public void Repair()
     {
+        Debug.Log("Removed damaged camera from list");
+        Positions.instance.damagedCameras.Remove(gameObject);
         if (broken == false)
         {
             damaged = false;
