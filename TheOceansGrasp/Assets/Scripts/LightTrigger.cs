@@ -5,7 +5,9 @@ using UnityEngine;
 public class LightTrigger : MonoBehaviour {
 
     public bool affectFlatFish = true;
+    public bool alwaysHitFlatFish = false;//Needs affectFlatFish = true to work
     public bool affectDogFish = false;
+    public bool affectSeekerFish = false;
 
     // Use this for initialization
     void Start () {
@@ -22,19 +24,31 @@ public class LightTrigger : MonoBehaviour {
     {
         if (enabled)
         {
-            FlatFish fish = other.GetComponent<FlatFish>();
-            if (fish && affectFlatFish)
+            if (affectFlatFish)
             {
-                if (!fish.IsAttached())
+                FlatFish fish = other.GetComponent<FlatFish>();
+                if (fish && (alwaysHitFlatFish || !fish.IsAttached())
                 {
                     fish.Flee(gameObject);
                 }
             }
 
-            DogFish dog = other.GetComponent<DogFish>();
-            if (dog && affectDogFish)
+            if (affectDogFish)
             {
-                dog.SetInLight();
+                DogFish dog = other.GetComponent<DogFish>();
+                if(dog)
+                {
+                    dog.SetInLight();
+                }
+            }
+
+            if (affectSeekerFish)
+            {
+                SeekerFish2 seeker = other.GetComponent<SeekerFish2>();
+                if(seeker)
+                {
+                    seeker.Flee(gameObject);
+                }
             }
         }
     }

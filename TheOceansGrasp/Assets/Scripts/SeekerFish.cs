@@ -355,6 +355,14 @@ public class SeekerFish : MonoBehaviour {
                 Vector3 newDir = (transform.right * (1-right) * avoidanceScale) + (transform.up * (1-up) * avoidanceScale) + (transform.forward * avoidanceScale);
                 // Rotate the object to face its target - TODO: change this to face velocity direction
                 rotation = Vector3.RotateTowards(transform.forward, newDir, Mathf.Deg2Rad * maxSpeedTurnRate * Time.deltaTime, 1);
+                //Attempt to do quaternion rotation on each axis then add/multiply to get desired
+                //Quaternion xAxis = Quaternion.LookRotation(new Vector3(rotation.x, 0, 0), new Vector3(0, 0, 0));
+                //Quaternion yAxis = Quaternion.LookRotation(new Vector3(0, rotation.y, 0), new Vector3(0, 0 ,0));
+                //Quaternion zAxis = Quaternion.LookRotation(new Vector3(0, 0, rotation.z), new Vector3(0, 0, 0));
+                
+                //Or get the perpendicular vector most up as the up vector for this?
+                
+
                 transform.rotation = Quaternion.LookRotation(rotation);
             }
             else
