@@ -64,9 +64,11 @@ public class TeleportPlayer : MonoBehaviour
             //Debug.Log("PlayerY: " + player.transform.position.y);
             swim.enabled = true;
             playerCamera.enabled = false;
+            player.GetComponentInChildren<Light>().enabled = true;
             subMovement.enabled = false;
             lightRen.enabled = true;
             submarine.GetComponent<CapsuleCollider>().enabled = true;
+            submarine.GetComponent<BoxCollider>().enabled = false;
             light1.GetComponent<Light>().enabled = false;
             light2.GetComponent<Light>().enabled = true;
             submarine.GetComponent<Rigidbody>().isKinematic = true;
@@ -105,9 +107,11 @@ public class TeleportPlayer : MonoBehaviour
                 light1.GetComponent<Light>().enabled = true;
                 light2.GetComponent<Light>().enabled = false;
                 submarine.GetComponent<CapsuleCollider>().enabled = false;
+                submarine.GetComponent<BoxCollider>().enabled = true;
                 player.transform.position = new Vector3(3000.0f, 100.0f, 1.19f);
                 player.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
                 swim.enabled = false;
+                player.GetComponentInChildren<Light>().enabled = false;
                 playerRigidbody.velocity = Vector3.zero;
                 playerCamera.enabled = true;
                 subMovement.enabled = true;

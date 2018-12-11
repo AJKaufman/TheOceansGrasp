@@ -27,7 +27,7 @@ public class LightTrigger : MonoBehaviour {
             if (affectFlatFish)
             {
                 FlatFish fish = other.GetComponent<FlatFish>();
-                if (fish && (alwaysHitFlatFish || !fish.IsAttached())
+                if (fish && (alwaysHitFlatFish || !fish.IsAttached()))
                 {
                     fish.Flee(gameObject);
                 }
