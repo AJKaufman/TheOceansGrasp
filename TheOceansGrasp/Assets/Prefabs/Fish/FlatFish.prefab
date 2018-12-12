@@ -249,10 +249,10 @@ MonoBehaviour:
   closeAboveCamera: 1
   ontoCameraSpeed: 1
   flattenOnCameraRate: 50
-  randomSwimmingAudio: {fileID: 8300000, guid: 2ea1e4b9d17af414baa2dc722d9c184e, type: 3}
-  inAttackRangeAudio: {fileID: 8300000, guid: f0460f23280744b47bb80252644f0f2c, type: 3}
-  attackAudio: {fileID: 8300000, guid: cdf4fb94d7d6e0b4fb0093b25a112739, type: 3}
-  fleeAudio: {fileID: 8300000, guid: 6b0b76854164ae744ae8d996ef7b5762, type: 3}
+  randomSwimmingAudio: {fileID: 8300000, guid: 1a660b11b47993b4fa25c2b10fc6f573, type: 3}
+  inAttackRangeAudio: {fileID: 8300000, guid: 3b37be093ac624a4480bd970a7925135, type: 3}
+  attackAudio: {fileID: 8300000, guid: f573eb854ab24b04ca8bac96be56f321, type: 3}
+  fleeAudio: {fileID: 8300000, guid: 73db72f8ece9f6a478cb34cb66d422ea, type: 3}
   attackDelay: 5
   randomAudioTime: 3
   randomTimeAdded: 5

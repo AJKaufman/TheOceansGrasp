@@ -256,12 +256,12 @@ MonoBehaviour:
   returnSpeedMultipler: 0.2
   fleeSpeedMultipler: 0.5
   slowSpeedThreshold: 0.5
-  randomSwimAudio: {fileID: 0}
-  maxSpeedAudio: {fileID: 0}
-  dashSpeedAudio: {fileID: 0}
-  attackAudio: {fileID: 0}
-  randomStopAudio: {fileID: 0}
-  fleeAudio: {fileID: 0}
+  randomSwimAudio: {fileID: 8300000, guid: e86e1ce777b773a48905ce93149ee35e, type: 3}
+  maxSpeedAudio: {fileID: 8300000, guid: f57ffb8fe3ab58d4abd4f1e7d69fd023, type: 3}
+  dashSpeedAudio: {fileID: 8300000, guid: 667f1d4ff4b4a1d439a629e5bbfee146, type: 3}
+  attackAudio: {fileID: 8300000, guid: 88609488c7df75c46b002513b69528b8, type: 3}
+  randomStopAudio: {fileID: 8300000, guid: e86e1ce777b773a48905ce93149ee35e, type: 3}
+  fleeAudio: {fileID: 8300000, guid: 6d7e561137c575246bfe58accec8e31b, type: 3}
   randomAudioTime: 15
   randomDeviation: 5
   randomOftenAudioTime: 4

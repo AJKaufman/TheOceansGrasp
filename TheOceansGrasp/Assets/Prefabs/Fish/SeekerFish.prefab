@@ -282,10 +282,10 @@ MonoBehaviour:
   weakAvoidance: 0.01
   strongAvoidance: 2
   randomAudioChancePerFrame: 1
-  randomGrowl: {fileID: 0}
-  lowGrowl: {fileID: 0}
-  loudScream: {fileID: 0}
-  loudGrowl: {fileID: 0}
+  randomGrowl: {fileID: 8300000, guid: 5e7f265b4882e7541ab420453482fb22, type: 3}
+  lowGrowl: {fileID: 8300000, guid: 89779303ca1c4f94480150072fea1abe, type: 3}
+  loudScream: {fileID: 8300000, guid: 5a7dd9b8ba5388442a4104b69b7a2c9a, type: 3}
+  loudGrowl: {fileID: 8300000, guid: aa79f2e173d551d43b52e2be8bd57f1a, type: 3}
 --- !u!136 &136074018621424888
 CapsuleCollider:
   m_ObjectHideFlags: 1
