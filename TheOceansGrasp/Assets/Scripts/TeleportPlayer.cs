@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TeleportPlayer : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class TeleportPlayer : MonoBehaviour
     private Rigidbody playerRigidbody;
     private SubVariables subVar;
     private List<GameObject> nodes;
+    public RawImage playerCursor;
 
     // Use this for initialization
     void Start()
@@ -122,5 +124,15 @@ public class TeleportPlayer : MonoBehaviour
                 lightRen.enabled = false;
             }
         }
+    }
+
+    // make the cursor change color on mouse over
+    private void OnMouseOver()
+    {
+        playerCursor.GetComponent<RawImage>().color = Color.green;
+    }
+    private void OnMouseExit()
+    {
+        playerCursor.GetComponent<RawImage>().color = Color.white;
     }
 }

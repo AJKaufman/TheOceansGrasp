@@ -36,6 +36,7 @@ public class DischargePrompt : MonoBehaviour
     public SeekerFish[] seekerScripts; // list of all the fish in the scene
     public Slider energySlider;
     private AudioSource dischargeSound;
+    public RawImage playerCursor;
 
     // Use this for initialization
     void Start ()
@@ -434,5 +435,15 @@ public class DischargePrompt : MonoBehaviour
         {
             image.enabled = false;
         }
+    }
+
+    // make the cursor change color on mouse over
+    public void OnEnter()
+    {
+        playerCursor.GetComponent<RawImage>().color = Color.red;
+    }
+    public void OnExit()
+    {
+        playerCursor.GetComponent<RawImage>().color = Color.white;
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4389391, g: 0.47888976, b: 0.52273834, a: 1}
+  m_IndirectSpecularColor: {r: 0.43893906, g: 0.47888923, b: 0.5227379, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -477,6 +477,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &7275978
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -778,6 +779,7 @@ MonoBehaviour:
     m_Bits: 0
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 1046524758}
+  playerCursor: {fileID: 793695991}
 --- !u!135 &31067981
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1139,6 +1141,7 @@ MonoBehaviour:
   player: {fileID: 641548811}
   otherScript: {fileID: 856459067}
   distanceFromHatch: 0.2
+  playerCursor: {fileID: 793695991}
 --- !u!114 &99806528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2189,6 +2192,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &164085074
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2605,6 +2609,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &187463683
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3052,6 +3057,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &210947118
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3661,6 +3667,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &262120714
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4269,6 +4276,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &318105124
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4420,6 +4428,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &334352467
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5109,6 +5118,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &410553246
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5260,6 +5270,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &422348799
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5377,6 +5388,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &424090842
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5616,6 +5628,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &464671320
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5886,6 +5899,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &483158697
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6037,6 +6051,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &491821619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6154,6 +6169,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &501497894
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6400,6 +6416,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &512351987
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6517,6 +6534,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &517917244
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6634,6 +6652,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &534072416
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7271,6 +7290,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &583231262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7529,6 +7549,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &599828606
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7794,6 +7815,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &612531785
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9179,6 +9201,7 @@ MonoBehaviour:
   radius: 80
   seekerScripts: []
   energySlider: {fileID: 1079056616}
+  playerCursor: {fileID: 793695991}
 --- !u!224 &746744428
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9501,6 +9524,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &766688336
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10403,6 +10427,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 746744427}
+        m_MethodName: OnEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &806281200
@@ -10638,6 +10673,7 @@ MonoBehaviour:
     m_Bits: 0
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 778665663}
+  playerCursor: {fileID: 793695991}
 --- !u!1 &824919414
 GameObject:
   m_ObjectHideFlags: 0
@@ -11070,6 +11106,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &843356315
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11215,6 +11252,7 @@ MonoBehaviour:
   player: {fileID: 641548811}
   otherScript: {fileID: 99806527}
   distanceFromHatch: 0
+  playerCursor: {fileID: 793695991}
 --- !u!136 &856459068
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11461,6 +11499,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &886425922
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11685,6 +11724,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &939033799
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12200,6 +12240,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &982854256
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12317,6 +12358,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &987027622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12434,6 +12476,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &987900116
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14649,6 +14692,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1211625885
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15124,6 +15168,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1313010724
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15214,6 +15259,7 @@ MonoBehaviour:
     m_Bits: 0
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 2134227672}
+  playerCursor: {fileID: 793695991}
 --- !u!1 &1335711302
 GameObject:
   m_ObjectHideFlags: 0
@@ -15508,6 +15554,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1342267203
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15694,6 +15741,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1353585605
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15887,6 +15935,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1369840826
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16734,6 +16783,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1480226102
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16927,6 +16977,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1503021454
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17157,6 +17208,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1508650622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17657,6 +17709,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1534469331
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17774,6 +17827,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1537370950
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18593,6 +18647,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1619653405
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19479,6 +19534,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1707622795
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20191,6 +20247,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1786491421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20430,6 +20487,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1800247556
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20581,6 +20639,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1810817311
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20880,6 +20939,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1846677320
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21202,6 +21262,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &1876545684
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21643,6 +21704,7 @@ MonoBehaviour:
     m_Bits: 0
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!1 &1889557849
 GameObject:
   m_ObjectHideFlags: 0
@@ -23221,6 +23283,8 @@ MonoBehaviour:
   useSlowdown: 1
   boosting: 0
   halfSpeed: 0
+  quadSpeed: 0
+  eightSpeed: 0
 --- !u!4 &2050764016
 Transform:
   m_ObjectHideFlags: 0
@@ -23294,6 +23358,7 @@ MonoBehaviour:
   damage2: {fileID: 2100000, guid: b2547a0832806264681b2b7336bfc6a6, type: 2}
   damage3: {fileID: 2100000, guid: 8315e92417c58a247af13c93bef560ef, type: 2}
   systemBreak: 0
+  systemBreakNum: 0
   damageBeforeSystemBreak: 0
   totalDamageNodes: 0
   totalRepairsMade: 0
@@ -23473,6 +23538,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &2054890586
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23762,6 +23828,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &2070657921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24144,6 +24211,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &2091374174
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25075,6 +25143,7 @@ MonoBehaviour:
     m_Bits: 512
   submarine: {fileID: 2050764014}
   cameraFPSObject: {fileID: 300966640}
+  playerCursor: {fileID: 793695991}
 --- !u!65 &2144147891
 BoxCollider:
   m_ObjectHideFlags: 0

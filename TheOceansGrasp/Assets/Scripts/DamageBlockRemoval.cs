@@ -24,6 +24,7 @@ public class DamageBlockRemoval : MonoBehaviour {
     private SubVariables subVar;
     public GameObject cameraFPSObject;
     private CameraFPS camFPS;
+    public RawImage playerCursor;
 
 	// Use this for initialization
 	void Start () {
@@ -331,6 +332,9 @@ public class DamageBlockRemoval : MonoBehaviour {
 
         // resets the progress bar
         slider.value = 0.0f;
+
+        // reset cursor color
+        playerCursor.GetComponent<RawImage>().color = Color.white;
     }
 
     // resets the repair timer if they released early
@@ -353,5 +357,11 @@ public class DamageBlockRemoval : MonoBehaviour {
     public void reParent()
     {
         gameObject.transform.SetParent(parent);
+    }
+
+    // make the cursor change color on mouse over
+    private void OnMouseOver()
+    {
+        playerCursor.GetComponent<RawImage>().color = Color.red;
     }
 }

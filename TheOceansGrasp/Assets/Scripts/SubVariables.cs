@@ -29,6 +29,7 @@ public class SubVariables : MonoBehaviour {
     // system break variables
     private DamageBlockRemoval damageRemoval;
     public bool systemBreak = false;
+    public int systemBreakNum = 0;
     private float smallDamage = 5.0f;
     private float largeDamage = 20.0f;
     public float damageBeforeSystemBreak = 0.0f;
@@ -82,7 +83,7 @@ public class SubVariables : MonoBehaviour {
    //distance = Vector3.Distance(gameObject.transform.position+offSetSubmarinePos, goalObject.transform.position);
     // convert to a percentage
     percent = ((startDistance - distance) / startDistance)*100.0f;
-        //Debug.Log("Percent = " + percent);
+        Debug.Log("Health = " + health);
     if(distance <= 10)
         {
             win.SetActive(true);
@@ -216,20 +217,41 @@ public class SubVariables : MonoBehaviour {
         // if more damage than the value of large damage has been dealt a system break will occur that causes the speed of the submarine to drop
         if(systemBreak)
         {
-            // make the sub move at half speed
+            // sub speed change
             submarineMovement.halfSpeed = true;
-            //submarineMovement.maxSpeed = 2.5f;
-            //submarineMovement.maxBackSpeed = -2.5f;
-            //submarineMovement.speedIncrement = 0.5f;
+            submarineMovement.quadSpeed = false;
+            submarineMovement.eightSpeed = false;
 
             // change the button and panel's text
-            systemBreak1Button.GetComponentInChildren<Text>().text = "Active";
+            systemBreak1Button.GetComponentInChildren<Text>().text = "Stage 1";
             systemBreak1Panel.GetComponentInChildren<Text>().text = "Engine Damaged. You are now at half of your regular speed.";
+        }
+        else if(submarineMovement.halfSpeed)
+        {
+            // sub speed change
+            submarineMovement.halfSpeed = false;
+            submarineMovement.quadSpeed = true;
+            submarineMovement.eightSpeed = false;
+
+            systemBreak1Button.GetComponentInChildren<Text>().text = "Stage 2";
+            systemBreak1Panel.GetComponentInChildren<Text>().text = "Engine Further Damaged. You are now at 1/4th of your regular speed.";
+        }
+        else if(submarineMovement.quadSpeed)
+        {
+            // sub speed change
+            submarineMovement.halfSpeed = false;
+            submarineMovement.quadSpeed = false;
+            submarineMovement.eightSpeed = true;
+
+            systemBreak1Button.GetComponentInChildren<Text>().text = "Stage 3";
+            systemBreak1Panel.GetComponentInChildren<Text>().text = "Engine Severely Damaged. You are now at 1/8th of your regular speed.";
         }
         else
         {
             // make the sub move at half speed
             submarineMovement.halfSpeed = false;
+            submarineMovement.quadSpeed = false;
+            submarineMovement.eightSpeed = false;
 
             // change the button and panel's text
             systemBreak1Button.GetComponentInChildren<Text>().text = "Fixed";
