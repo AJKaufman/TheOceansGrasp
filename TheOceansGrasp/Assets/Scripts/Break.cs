@@ -37,8 +37,8 @@ public class Break : MonoBehaviour {
 	}
 
     public void CreateChunks() {
-        chunkList.Add(GameObject.Instantiate(prefab1, gameObject.transform.position, gameObject.transform.rotation));
-        Vector3 transfer = gameObject.transform.position;
+        chunkList.Add(GameObject.Instantiate(prefab1, gameObject.transform.position+(sub.transform.forward*3), gameObject.transform.rotation));
+        Vector3 transfer = gameObject.transform.position + (sub.transform.forward * 3);
         transfer.y += 20;
         chunkList.Add(GameObject.Instantiate(prefab2, transfer, gameObject.transform.rotation));
         transfer.y -= 40;
@@ -69,6 +69,7 @@ public class Break : MonoBehaviour {
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             triggered = true;
             player = true;
+            sub.gameObject.GetComponent<SubVariables>().loseHealth(5.0f);
             destroyer = sub.gameObject;
             CreateChunks();
         }
