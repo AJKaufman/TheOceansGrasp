@@ -5,11 +5,15 @@ using UnityEngine;
 public class LightsOn : MonoBehaviour {
 
     public GameObject Light;
-    bool on = false;
+    public bool on = false;
     // Use this for initialization
 	void Start () {
-		
-	}
+        if (on)
+        {
+            Light.GetComponent<Light>().enabled = true;
+            Light.GetComponent<BoxCollider>().enabled = true;
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {

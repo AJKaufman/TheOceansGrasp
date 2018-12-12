@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43893906, g: 0.47888923, b: 0.5227379, a: 1}
+  m_IndirectSpecularColor: {r: 0.4389391, g: 0.47888976, b: 0.52273834, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3440,7 +3440,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 233423025}
-  m_Layer: 0
+  - component: {fileID: 233423026}
+  m_Layer: 2
   m_Name: rudder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3468,6 +3469,18 @@ Transform:
   m_Father: {fileID: 1125345855}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &233423026
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 233423024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 4, z: 3}
+  m_Center: {x: -42.17, y: 6.5, z: 0}
 --- !u!1 &248156989
 GameObject:
   m_ObjectHideFlags: 0
@@ -3842,13 +3855,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdccdd02d1519e644a9da11d3dcb2787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FPS: 5
+  FPS: 6
   stat: {fileID: 2800000, guid: 736e209f77c9ff043ab9adf26eb3b8ab, type: 3}
   camTex: {fileID: 8400000, guid: bc9d9c0bd004e4540a91873c43a57090, type: 2}
   damaged: 0
   broken: 0
   stactive: 0
-  highfps: 0
+  highfps: 1
   selected: 0
   renderCam: {fileID: 508060030}
   camModel: {fileID: 1889170073}
@@ -3954,6 +3967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Light: {fileID: 1654941420}
+  on: 1
 --- !u!65 &300966647
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7075,7 +7089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SampleCount: 12
-  ScatteringCoef: 0.513
+  ScatteringCoef: 0.75
   ExtinctionCoef: 0.01
   SkyboxExtinctionCoef: 0.854
   MieG: 0.1
@@ -7084,7 +7098,7 @@ MonoBehaviour:
   GroundLevel: 0
   Noise: 1
   NoiseScale: 0.015
-  NoiseIntensity: 1
+  NoiseIntensity: 0.3
   NoiseIntensityOffset: 0.3
   NoiseVelocity: {x: 3, y: 3}
   MaxRayLength: 400
@@ -9293,7 +9307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &753459874
 Transform:
   m_ObjectHideFlags: 0
@@ -9754,7 +9768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdccdd02d1519e644a9da11d3dcb2787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FPS: 5
+  FPS: 6
   stat: {fileID: 2800000, guid: 736e209f77c9ff043ab9adf26eb3b8ab, type: 3}
   camTex: {fileID: 8400000, guid: a9fb5a1dd9a6d1b40a62b236f5dd9426, type: 2}
   damaged: 0
@@ -9902,6 +9916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Light: {fileID: 573824676}
+  on: 0
 --- !u!1 &784018289
 GameObject:
   m_ObjectHideFlags: 0
@@ -11176,7 +11191,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 856459065}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.512, z: 0.29}
+  m_LocalPosition: {x: 0, y: 0.449, z: 0.29}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 2050764016}
@@ -12961,6 +12976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Light: {fileID: 1920461146}
+  on: 0
 --- !u!114 &1046524763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12972,7 +12988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdccdd02d1519e644a9da11d3dcb2787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FPS: 5
+  FPS: 6
   stat: {fileID: 0}
   camTex: {fileID: 0}
   damaged: 0
@@ -16138,8 +16154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SampleCount: 24
-  ScatteringCoef: 0.27
-  ExtinctionCoef: 0.05
+  ScatteringCoef: 0.125
+  ExtinctionCoef: 0.085
   SkyboxExtinctionCoef: 1
   MieG: 0
   HeightFog: 0
@@ -18778,7 +18794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SampleCount: 12
-  ScatteringCoef: 0.513
+  ScatteringCoef: 0.75
   ExtinctionCoef: 0.01
   SkyboxExtinctionCoef: 0.854
   MieG: 0.1
@@ -18787,7 +18803,7 @@ MonoBehaviour:
   GroundLevel: 0
   Noise: 1
   NoiseScale: 0.015
-  NoiseIntensity: 1
+  NoiseIntensity: 0.3
   NoiseIntensityOffset: 0.3
   NoiseVelocity: {x: 3, y: 3}
   MaxRayLength: 400
@@ -22054,7 +22070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SampleCount: 12
-  ScatteringCoef: 0.513
+  ScatteringCoef: 0.75
   ExtinctionCoef: 0.01
   SkyboxExtinctionCoef: 0.854
   MieG: 0.1
@@ -22063,7 +22079,7 @@ MonoBehaviour:
   GroundLevel: 0
   Noise: 1
   NoiseScale: 0.015
-  NoiseIntensity: 1
+  NoiseIntensity: 0.3
   NoiseIntensityOffset: 0.3
   NoiseVelocity: {x: 3, y: 3}
   MaxRayLength: 400
@@ -22750,7 +22766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SampleCount: 24
   ScatteringCoef: 0.1
-  ExtinctionCoef: 0.02375
+  ExtinctionCoef: 0.025
   SkyboxExtinctionCoef: 1
   MieG: 0
   HeightFog: 0
@@ -24805,7 +24821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdccdd02d1519e644a9da11d3dcb2787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FPS: 5
+  FPS: 6
   stat: {fileID: 2800000, guid: 736e209f77c9ff043ab9adf26eb3b8ab, type: 3}
   camTex: {fileID: 8400000, guid: fbbf9f911cc1f564694c7010612ae342, type: 2}
   damaged: 0
@@ -24953,6 +24969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Light: {fileID: 1944719961}
+  on: 0
 --- !u!1 &2144147886
 GameObject:
   m_ObjectHideFlags: 0
