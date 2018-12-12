@@ -249,7 +249,7 @@ public class DogFish : SeekerFish {
                 else if (other.CompareTag("Player"))
                 {
                     // End the game somehow
-                    //FindObjectOfType<WinLose>().LoseGame();
+                    FindObjectOfType<Positions>().Lose();
 
                     // Play bark
                     audioSource.PlayOneShot(attackAudio);

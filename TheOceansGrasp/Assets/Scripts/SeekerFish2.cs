@@ -101,8 +101,14 @@ public class SeekerFish2 : SeekerFish {
     protected override void FleeBehavior()
     {
         maxSpeed = fleeSpeedModifier * sub.maxSpeed;
-        targetObject = null;
-        targetPosition = new Vector3(transform.position.x, transform.position.y, sub.transform.position.z + 300);
+        if (targetObject == swimmer)
+        {
+            targetPosition = new Vector3(transform.position.x, transform.position.y, sub.transform.position.z + 300);
+        }
+        else
+        {
+            targetPosition = new Vector3(transform.position.x, transform.position.y, sub.transform.position.z - 300);
+        }
         base.FleeBehavior();
     }
 
@@ -131,10 +137,13 @@ public class SeekerFish2 : SeekerFish {
             Flee(collision.gameObject);
         }
 
-        if(collision.gameObject == swimmer.gameObject)
+        if (targetObject == swimmer)
         {
-            Positions.instance.Lose();
-            Stun(100);//I just want it to stop
+            if (collision.gameObject == swimmer.gameObject)
+            {
+                FindObjectOfType<Positions>().Lose();
+                Stun(100);//I just want it to stop
+            }
         }
     }
 }

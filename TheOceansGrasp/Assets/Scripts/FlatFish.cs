@@ -189,7 +189,7 @@ public class FlatFish : SeekerFish {
             if (newDist < distance)
             {
                 CameraFPS cameraFPS = GetCameraFPS(c);
-                if (cameraFPS && !cameraFPS.targeted)
+                if (cameraFPS && !cameraFPS.targeted && !cameraFPS.broken)
                 {
                     distance = newDist;
                     if (camera)

@@ -63,6 +63,14 @@ public class BaskingShark : MonoBehaviour {
                 //print("kill fish");
                 fish.Kill();
             }
+            else
+            {
+                PlayerSwim player = other.GetComponent<PlayerSwim>();
+                if (player)
+                {
+                    FindObjectOfType<Positions>().Lose();
+                }
+            }
         }
     }
 
