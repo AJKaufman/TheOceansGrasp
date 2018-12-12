@@ -144,7 +144,6 @@ public class DamageBlockRemoval : MonoBehaviour {
                                 isDamaged = false;
                                 reParent();
                                 Positions.instance.damagedNodes.Remove(gameObject);
-                                gameObject.GetComponent<MeshRenderer>().material = gray;
                                 // Destroy(this.gameObject);
                             }
                         }

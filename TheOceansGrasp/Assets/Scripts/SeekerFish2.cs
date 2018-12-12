@@ -133,7 +133,7 @@ public class SeekerFish2 : SeekerFish {
 
         if(collision.gameObject == swimmer.gameObject)
         {
-            FindObjectOfType<WinLose>().LoseGame();
+            Positions.instance.Lose();
             Stun(100);//I just want it to stop
         }
     }

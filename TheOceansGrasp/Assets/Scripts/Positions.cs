@@ -11,6 +11,8 @@ public class Positions : MonoBehaviour {
     public List<GameObject> damagedNodes = new List<GameObject>();
     public List<GameObject> damagedCameras = new List<GameObject>();
     public Transform universalParent;
+    public GameObject lose;
+    public GameObject player;
 
     private void Awake()
     {
@@ -33,4 +35,10 @@ public class Positions : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void Lose()
+    {
+        lose.SetActive(true);
+        player.SetActive(false);
+    }
 }
