@@ -41,6 +41,11 @@ public class FlatFish : SeekerFish {
         base.Start();
 
         audioPlayer = GetComponent<AudioSource>();
+
+        //Mike Addition, might be Temp
+        Physics.IgnoreLayerCollision(2, 10);
+        //
+
         attackTimer = attackDelay;
         randomAudioTimer = randomAudioTime + Random.Range(0, randomTimeAdded);
         rb.freezeRotation = true;
