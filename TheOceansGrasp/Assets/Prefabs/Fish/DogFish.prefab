@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 82909952115628632}
   - component: {fileID: 135489937435071052}
   m_Layer: 0
-  m_Name: DogFish 1
+  m_Name: DogFish
   m_TagString: PillarBreaker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

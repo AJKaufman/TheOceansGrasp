@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class BaskingShark : MonoBehaviour {
 
-    public float speed = 2;
+    public float speed = 3;
     public float viewDistance = 100;
 
     public AudioSource constantAudio;
     public AudioSource roarAudio;
-    public float baseRoarTime = 20;
-    public float addRandomTime = 30;
+    public float baseRoarTime = 200;
+    public float addRandomTime = 300;
     private float timer;
 
 	// Use this for initialization
