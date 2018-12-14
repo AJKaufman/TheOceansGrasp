@@ -120,6 +120,11 @@ public class SeekerFish2 : SeekerFish {
         {
             audioPlayer.PlayOneShot(randomGrowl);
         }
+
+        if(sub.transform.position.z - transform.position.z >= despawnDistance)
+        {
+            Kill();
+        }
     }
 
     public override void Flee(GameObject fleeFrom)
