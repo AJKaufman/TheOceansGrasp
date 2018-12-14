@@ -57,40 +57,43 @@ public class TeleportPlayer : MonoBehaviour
         subPosition = new Vector3(submarine.GetComponent<Transform>().position.x, submarine.GetComponent<Transform>().position.y, submarine.GetComponent<Transform>().position.z);
         if (inside)
         {
-            // adding to it isn't actually moving the position
-            //otherScript.inside = !otherScript.inside;
-            //inside = !inside;
-            otherScript.gameObject.transform.parent = null;
-            player.transform.position = new Vector3(subPosition.x + 0.0f, subPosition.y + 10.0f, subPosition.z + 5.0f);
-            //Debug.Log("SubY: " + subPosition.y);
-            //Debug.Log("PlayerY: " + player.transform.position.y);
-            swim.enabled = true;
-            if (Positions.instance.tooClose == false)
+            if (subMovement.isActiveAndEnabled == true)
             {
-                Positions.instance.ChangeMusic(2);
+                // adding to it isn't actually moving the position
+                //otherScript.inside = !otherScript.inside;
+                //inside = !inside;
+                otherScript.gameObject.transform.parent = null;
+                player.transform.position = new Vector3(subPosition.x + 0.0f, subPosition.y + 10.0f, subPosition.z + 5.0f);
+                //Debug.Log("SubY: " + subPosition.y);
+                //Debug.Log("PlayerY: " + player.transform.position.y);
+                swim.enabled = true;
+                if (Positions.instance.tooClose == false)
+                {
+                    Positions.instance.ChangeMusic(2);
+                }
+                playerCamera.enabled = false;
+                player.GetComponentInChildren<Light>().enabled = true;
+                subMovement.enabled = false;
+                lightRen.enabled = true;
+                submarine.GetComponent<CapsuleCollider>().enabled = true;
+                submarine.GetComponent<SphereCollider>().enabled = true;
+                submarine.GetComponent<BoxCollider>().enabled = false;
+                light1.GetComponent<Light>().enabled = false;
+                light2.GetComponent<Light>().enabled = true;
+                submarine.GetComponent<Rigidbody>().isKinematic = true;
+                playerRigidbody.velocity = Vector3.zero;
+                Positions.instance.outside = true;
+                foreach (GameObject node in Positions.instance.damagedNodes)
+                {
+                    node.transform.parent = null;
+                }
+                foreach (GameObject subCamera in Positions.instance.damagedCameras)
+                {
+                    subCamera.transform.SetParent(null);
+                    Debug.Log("New camera parent: " + subCamera.transform.parent);
+                }
+                //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = false;
             }
-            playerCamera.enabled = false;
-            player.GetComponentInChildren<Light>().enabled = true;
-            subMovement.enabled = false;
-            lightRen.enabled = true;
-            submarine.GetComponent<CapsuleCollider>().enabled = true;
-            submarine.GetComponent<SphereCollider>().enabled = true;
-            submarine.GetComponent<BoxCollider>().enabled = false;
-            light1.GetComponent<Light>().enabled = false;
-            light2.GetComponent<Light>().enabled = true;
-            submarine.GetComponent<Rigidbody>().isKinematic = true;
-            playerRigidbody.velocity = Vector3.zero;
-            Positions.instance.outside = true;
-            foreach (GameObject node in Positions.instance.damagedNodes)
-            {
-                node.transform.parent = null;
-            }
-            foreach (GameObject subCamera in Positions.instance.damagedCameras)
-            {
-                subCamera.transform.SetParent(null);
-                Debug.Log("New camera parent: " + subCamera.transform.parent);
-            }
-            //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = false;
         }
         else
         {

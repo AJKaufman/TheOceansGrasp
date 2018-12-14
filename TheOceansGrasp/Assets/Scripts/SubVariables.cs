@@ -97,22 +97,29 @@ public class SubVariables : MonoBehaviour {
 
   // lose the amount of health in the parameter
   public void loseHealth(float damage){
-    health -= damage;
-        damageBeforeSystemBreak += damage;
-    // Call the system break method
-    SystemBreak();
+        if (Positions.instance.outside == false)
+        {
+            health -= damage;
+            damageBeforeSystemBreak += damage;
+            // Call the system break method
+            SystemBreak();
 
-    if(health <= 0) {
-            health = 0;
-            lose.SetActive(true);
-            player.SetActive(false);
+            if (health <= 0)
+            {
+                health = 0;
+                lose.SetActive(true);
+                player.SetActive(false);
 
-    }
+            }
+        }
   }
   
   // lose 1 health
   public void loseHealth() {
-    health -= 1;
+        if (Positions.instance.outside == false)
+        {
+            health -= 1;
+        }
   }
   
   // lose the amount of energy in the parameter
