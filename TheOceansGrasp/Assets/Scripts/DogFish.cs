@@ -240,7 +240,10 @@ public class DogFish : SeekerFish {
             {
                 if (other.CompareTag("Sub") && !didAttack)
                 {
-                    other.GetComponentInChildren<SubVariables>().loseHealth(damage);
+                    other.GetComponentInChildren<SubVariables>().loseHealth(damage/4);
+                    other.GetComponentInChildren<SubVariables>().loseHealth(damage/4);
+                    other.GetComponentInChildren<SubVariables>().loseHealth(damage/4);
+                    other.GetComponentInChildren<SubVariables>().loseHealth(damage/4);
                     didAttack = true;
 
                     // Damage nearby cameras
