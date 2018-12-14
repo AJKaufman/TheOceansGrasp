@@ -114,15 +114,16 @@ public class TeleportPlayer : MonoBehaviour
                             child2.gameObject.GetComponent<MeshRenderer>().enabled = true;
                             if (child2.transform.childCount > 0)
                             {
+                                /*
                                 foreach (Transform child3 in child2)
                                 {
                                     child3.gameObject.GetComponent<MeshRenderer>().enabled = true;
-                                }
+                                }*/
                             }
                         }
                     }
                 }
-                repairTool.GetComponent<Animator>().enabled = false;
+                repairTool.GetComponent<Animator>().enabled = true;
 
                 // swap the audio listeners
                 if (player.transform.GetChild(1).GetComponent<AudioListener>())
@@ -185,10 +186,11 @@ public class TeleportPlayer : MonoBehaviour
                             child2.gameObject.GetComponent<MeshRenderer>().enabled = false;
                             if(child2.transform.childCount > 0)
                             {
+                                /*
                                 foreach(Transform child3 in child2)
                                 {
                                     child3.gameObject.GetComponent<MeshRenderer>().enabled = false;
-                                }
+                                }*/
                             }
                         }
                     }
@@ -212,7 +214,14 @@ public class TeleportPlayer : MonoBehaviour
     // make the cursor change color on mouse over
     private void OnMouseOver()
     {
-        playerCursor.GetComponent<RawImage>().color = Color.green;
+        if(distanceFromHatch <= 4.0f)
+        {
+            playerCursor.GetComponent<RawImage>().color = Color.green;
+        }
+        else
+        {
+            playerCursor.GetComponent<RawImage>().color = Color.white;
+        }
     }
     private void OnMouseExit()
     {

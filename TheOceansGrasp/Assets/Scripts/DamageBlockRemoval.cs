@@ -27,9 +27,11 @@ public class DamageBlockRemoval : MonoBehaviour {
     public GameObject cameraFPSObject;
     private CameraFPS camFPS;
     public RawImage playerCursor;
+    private bool cursorColorSwap;
 
 	// Use this for initialization
 	void Start () {
+        cursorColorSwap = false;
         camFPS = cameraFPSObject.GetComponent<CameraFPS>();
         subVar = submarine.GetComponent<SubVariables>();
         repairTool = player.transform.GetChild(4).gameObject;
@@ -164,6 +166,8 @@ public class DamageBlockRemoval : MonoBehaviour {
                     }
                     else
                     {
+                        cursorColorSwap = false;
+
                         // disable canvas to stop showing progress bar
                         Image[] images = slider.GetComponentsInChildren<Image>();
                         foreach (Image image in images)
@@ -308,6 +312,7 @@ public class DamageBlockRemoval : MonoBehaviour {
         {
             //Debug.Log("IN RANGE");
             isCloseEnough = true;
+            cursorColorSwap = true;
         }
     }
 
@@ -317,6 +322,7 @@ public class DamageBlockRemoval : MonoBehaviour {
         {
             //Debug.Log("OUT OF RANGE");
             isCloseEnough = false;
+            cursorColorSwap = false;
         }
     }
 
@@ -389,6 +395,13 @@ public class DamageBlockRemoval : MonoBehaviour {
     // make the cursor change color on mouse over
     private void OnMouseOver()
     {
-        playerCursor.GetComponent<RawImage>().color = Color.red;
+        if(cursorColorSwap)
+        {
+            playerCursor.GetComponent<RawImage>().color = Color.red;
+        }
+        else
+        {
+            playerCursor.GetComponent<RawImage>().color = Color.white;
+        }
     }
 }
