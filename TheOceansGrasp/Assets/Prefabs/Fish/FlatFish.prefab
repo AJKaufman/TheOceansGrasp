@@ -1250,7 +1250,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1420,8 +1420,8 @@ MonoBehaviour:
   attackAudio: {fileID: 8300000, guid: f573eb854ab24b04ca8bac96be56f321, type: 3}
   fleeAudio: {fileID: 8300000, guid: 73db72f8ece9f6a478cb34cb66d422ea, type: 3}
   attackDelay: 5
-  randomAudioTime: 3
-  randomTimeAdded: 5
+  randomAudioTime: 5
+  randomTimeAdded: 7
 --- !u!135 &135106327903313136
 SphereCollider:
   m_ObjectHideFlags: 1
