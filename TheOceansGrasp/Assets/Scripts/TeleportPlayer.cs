@@ -104,7 +104,7 @@ public class TeleportPlayer : MonoBehaviour
                 //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = false;
 
                 // enable repair tool
-                foreach(GameObject child in repairToolParts)
+                foreach (GameObject child in repairToolParts)
                 {
                     child.GetComponent<MeshRenderer>().enabled = true;
                     if (child.transform.childCount > 0)
@@ -112,10 +112,17 @@ public class TeleportPlayer : MonoBehaviour
                         foreach (Transform child2 in child.transform)
                         {
                             child2.gameObject.GetComponent<MeshRenderer>().enabled = true;
+                            if (child2.transform.childCount > 0)
+                            {
+                                foreach (Transform child3 in child2)
+                                {
+                                    child3.gameObject.GetComponent<MeshRenderer>().enabled = true;
+                                }
+                            }
                         }
                     }
                 }
-                repairTool.GetComponent<Animator>().enabled = true;
+                repairTool.GetComponent<Animator>().enabled = false;
 
                 // swap the audio listeners
                 if (player.transform.GetChild(1).GetComponent<AudioListener>())
@@ -167,7 +174,7 @@ public class TeleportPlayer : MonoBehaviour
                 //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = true;
                 lightRen.enabled = false;
 
-                // enable repair tool
+                // disable repair tool
                 foreach (GameObject child in repairToolParts)
                 {
                     child.GetComponent<MeshRenderer>().enabled = false;
@@ -176,6 +183,13 @@ public class TeleportPlayer : MonoBehaviour
                         foreach(Transform child2 in child.transform)
                         {
                             child2.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                            if(child2.transform.childCount > 0)
+                            {
+                                foreach(Transform child3 in child2)
+                                {
+                                    child3.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                                }
+                            }
                         }
                     }
                 }

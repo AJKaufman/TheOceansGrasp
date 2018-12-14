@@ -13,8 +13,9 @@ public class DogFish : SeekerFish {
     private GameObject sub;
     private bool inLight = false;
     private bool didAttack = false;
+    private Animator animator;
 
-	[Header("Speed")]
+    [Header("Speed")]
 	public float dashSpeedMultiplier = 1.2f; // Of dash speed
 	public float maxSpeedMultiplier = 1.2f; // Of max speed
 	public float midSpeedMultiplier = 1; // Of current speed
@@ -52,6 +53,7 @@ public class DogFish : SeekerFish {
         audioSource = GetComponentInChildren<AudioSource>();
         ResetAudioTimer();
         FindObjectOfType<SubFishSpawner>().DogSpawned = true;
+        animator = GetComponentInChildren<Animator>();
     }
 	
 	// Update is called once per frame
@@ -123,6 +125,8 @@ public class DogFish : SeekerFish {
             }
             else
             {
+                animator.SetFloat("Swimming", 0.0f);
+                animator.SetFloat("Attacking", 0.0f);
                 maxSpeed = 0;
                 bored = true;
                 boredomTimer += Time.deltaTime;
@@ -162,6 +166,7 @@ public class DogFish : SeekerFish {
         if (!bored)
         {
             boredomTimer = 0;
+            animator.SetFloat("Swimming", 1.0f);
         }
     }
 
@@ -180,6 +185,10 @@ public class DogFish : SeekerFish {
                     Kill();
                 }
             }
+            else if(Vector3.SqrMagnitude(targetObject.transform.position - transform.position) < (5 + attackRange) * (5 + attackRange))
+            {
+                animator.SetFloat("Attacking", 1.0f);
+            }
 
             targetPosition = targetObject.transform.position;
         }
@@ -195,6 +204,8 @@ public class DogFish : SeekerFish {
     protected override void FleeBehavior()
     {
         maxSpeed = sub.GetComponent<SubmarineMovement>().maxSpeed * fleeSpeedMultipler;
+        animator.SetFloat("Swimming", 1.0f);
+        animator.SetFloat("Attacking", 0.0f);
         base.FleeBehavior();
 
         // Play sad yip
