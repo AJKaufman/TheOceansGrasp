@@ -65,6 +65,10 @@ public class TeleportPlayer : MonoBehaviour
             //Debug.Log("SubY: " + subPosition.y);
             //Debug.Log("PlayerY: " + player.transform.position.y);
             swim.enabled = true;
+            if (Positions.instance.tooClose == false)
+            {
+                Positions.instance.ChangeMusic(2);
+            }
             playerCamera.enabled = false;
             player.GetComponentInChildren<Light>().enabled = true;
             subMovement.enabled = false;
@@ -95,6 +99,10 @@ public class TeleportPlayer : MonoBehaviour
             if (distanceFromHatch <= 4.0f)
             {
                 Positions.instance.outside = false;
+                if(Positions.instance.tooClose == false)
+                {
+                    Positions.instance.ChangeMusic(0);
+                }
                 foreach (GameObject node in Positions.instance.damagedNodes)
                 {
                     node.transform.parent = Positions.instance.universalParent;

@@ -13,6 +13,11 @@ public class Positions : MonoBehaviour {
     public Transform universalParent;
     public GameObject lose;
     public GameObject player;
+    public AudioClip[] songs = new AudioClip[3];
+    public bool tooClose = false;
+    private Transform shark;
+    private Transform sub;
+    private AudioSource jukebox;
 
     private void Awake()
     {
@@ -24,21 +29,63 @@ public class Positions : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        jukebox = gameObject.GetComponent<AudioSource>();
     }
 
     // Use this for initialization
     void Start () {
-
+        jukebox.loop = true;
+        jukebox.clip = songs[0];
+        jukebox.Play();
+        sub = FindObjectOfType<SubmarineMovement>().gameObject.transform;
+        shark = FindObjectOfType<BaskingShark>().gameObject.transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        float howClose = 0;
+        if (outside)
+        {
+            howClose = player.transform.position.z - shark.position.z;
+        }
+        else
+        {
+            howClose = sub.transform.position.z - shark.position.z;
+        }
+        if (tooClose)
+        {
+            if (howClose > 150.0f)
+            {
+                tooClose = false;
+                if (outside)
+                {
+                    ChangeMusic(2);
+                }
+                else
+                {
+                    ChangeMusic(0);
+                }
+            }
+        }
+        else
+        {
+            if (howClose < 115.0f)
+            {
+                tooClose = true;
+                ChangeMusic(1);
+            }
+        }
 	}
 
     public void Lose()
     {
         lose.SetActive(true);
         player.SetActive(false);
+    }
+
+    public void ChangeMusic(int whatSong)
+    {
+        jukebox.clip = songs[whatSong];
+        jukebox.Play();
     }
 }
