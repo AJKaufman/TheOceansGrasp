@@ -837,8 +837,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 1
   acceleration: 1
-  maxSpeedTurnRate: 700
-  stoppedTurnRate: 700
+  maxSpeedTurnRate: 100
+  stoppedTurnRate: 100
   stopDistance: 0.5
   damage: 20
   willArrive: 0
