@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43893906, g: 0.47888923, b: 0.5227379, a: 1}
+  m_IndirectSpecularColor: {r: 0.4389391, g: 0.47888976, b: 0.52273834, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7006,7 +7006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SampleCount: 12
-  ScatteringCoef: 0.75
+  ScatteringCoef: 0.65
   ExtinctionCoef: 0.01
   SkyboxExtinctionCoef: 0.854
   MieG: 0.1
@@ -7029,7 +7029,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.764151, g: 0.75852835, b: 0.62357605, a: 1}
-  m_Intensity: 3
+  m_Intensity: 6
   m_Range: 50
   m_SpotAngle: 50
   m_CookieSize: 10
@@ -7082,7 +7082,7 @@ MonoBehaviour:
   affectFlatFish: 1
   alwaysHitFlatFish: 0
   affectDogFish: 0
-  affectSeekerFish: 0
+  affectSeekerFish: 1
 --- !u!1 &583231257
 GameObject:
   m_ObjectHideFlags: 0
@@ -11656,7 +11656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60e65badda2fba49b77f5b6119f49f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1182194082264610, guid: cafa26cf3d9fb3641ad4ebd93fcf9782, type: 2}
+  prefab: {fileID: 1199476175743682, guid: f1908fa76db4b464481395baf965cc18, type: 2}
   pillarList: []
   radius: 2
 --- !u!1 &954498853
@@ -13706,7 +13706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60e65badda2fba49b77f5b6119f49f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1182194082264610, guid: cafa26cf3d9fb3641ad4ebd93fcf9782, type: 2}
+  prefab: {fileID: 1199476175743682, guid: f1908fa76db4b464481395baf965cc18, type: 2}
   pillarList: []
   radius: 2
 --- !u!1 &1135379213
@@ -18962,7 +18962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SampleCount: 12
-  ScatteringCoef: 0.75
+  ScatteringCoef: 0.65
   ExtinctionCoef: 0.01
   SkyboxExtinctionCoef: 0.854
   MieG: 0.1
@@ -18985,7 +18985,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.764151, g: 0.75852835, b: 0.62357605, a: 1}
-  m_Intensity: 3
+  m_Intensity: 6
   m_Range: 50
   m_SpotAngle: 50
   m_CookieSize: 10
@@ -19026,7 +19026,7 @@ MonoBehaviour:
   affectFlatFish: 1
   alwaysHitFlatFish: 0
   affectDogFish: 0
-  affectSeekerFish: 0
+  affectSeekerFish: 1
 --- !u!65 &1654941425
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22155,7 +22155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SampleCount: 12
-  ScatteringCoef: 0.513
+  ScatteringCoef: 0.384
   ExtinctionCoef: 0.01
   SkyboxExtinctionCoef: 0.854
   MieG: 0.1
@@ -22178,7 +22178,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.764151, g: 0.75852835, b: 0.62357605, a: 1}
-  m_Intensity: 3
+  m_Intensity: 6
   m_Range: 100
   m_SpotAngle: 72
   m_CookieSize: 10
@@ -22231,7 +22231,7 @@ MonoBehaviour:
   affectFlatFish: 1
   alwaysHitFlatFish: 0
   affectDogFish: 0
-  affectSeekerFish: 0
+  affectSeekerFish: 1
 --- !u!1 &1944719961
 GameObject:
   m_ObjectHideFlags: 0
@@ -22276,7 +22276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SampleCount: 12
-  ScatteringCoef: 0.75
+  ScatteringCoef: 0.65
   ExtinctionCoef: 0.01
   SkyboxExtinctionCoef: 0.854
   MieG: 0.1
@@ -22299,7 +22299,7 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.764151, g: 0.75852835, b: 0.62357605, a: 1}
-  m_Intensity: 3
+  m_Intensity: 6
   m_Range: 50
   m_SpotAngle: 50
   m_CookieSize: 10
@@ -22340,7 +22340,7 @@ MonoBehaviour:
   affectFlatFish: 1
   alwaysHitFlatFish: 0
   affectDogFish: 0
-  affectSeekerFish: 0
+  affectSeekerFish: 1
 --- !u!65 &1944719966
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22523,7 +22523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60e65badda2fba49b77f5b6119f49f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1182194082264610, guid: cafa26cf3d9fb3641ad4ebd93fcf9782, type: 2}
+  prefab: {fileID: 1199476175743682, guid: f1908fa76db4b464481395baf965cc18, type: 2}
   pillarList: []
   radius: 2
 --- !u!1 &1961324210

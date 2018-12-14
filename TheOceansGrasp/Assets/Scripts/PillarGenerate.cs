@@ -69,7 +69,7 @@ public class PillarGenerate : MonoBehaviour {
                     }
                     mainValid = tempValid;
                 }
-                GameObject newObject = (GameObject)Instantiate(prefab, new Vector3(howWide, 0, howFar),Quaternion.Euler(0,0,0));
+                GameObject newObject = (GameObject)Instantiate(prefab, new Vector3(howWide, 60, howFar),Quaternion.Euler(0,whatAngle,0));
                 pillarList.Add(newObject);
                 Positions.instance.positions.Add(newObject.transform.position);
                 /*if (cluster == 1)

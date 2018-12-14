@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4187427823328016}
   - component: {fileID: 33790779709028912}
   - component: {fileID: 23181128837203224}
+  - component: {fileID: 54288811867705184}
   m_Layer: 0
   m_Name: rock3
   m_TagString: Untagged
@@ -83,3 +84,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1327517775222344}
   m_Mesh: {fileID: 4300000, guid: dd0f29b32cd4d3b4d894b52e8b4a8396, type: 3}
+--- !u!54 &54288811867705184
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1327517775222344}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

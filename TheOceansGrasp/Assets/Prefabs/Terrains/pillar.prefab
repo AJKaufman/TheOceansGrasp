@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4401860389738948}
   - component: {fileID: 33119117361345396}
   - component: {fileID: 23629049329713826}
+  - component: {fileID: 114647986420380978}
+  - component: {fileID: 136471364777575696}
   m_Layer: 0
   m_Name: pillar
   m_TagString: Untagged
@@ -35,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1199476175743682}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -223.5198, y: 29.598064, z: -157.62631}
+  m_LocalPosition: {x: 0, y: 60, z: 0}
   m_LocalScale: {x: 1200, y: 4000, z: 1200}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,3 +85,37 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1199476175743682}
   m_Mesh: {fileID: 4300000, guid: db81eab3951bc5c47962c3be65c8c202, type: 3}
+--- !u!114 &114647986420380978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1199476175743682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9c392e5fbce5e41817b53f7cfb2618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab1: {fileID: 1620714399582944, guid: 2c17281e4fc59004b97ba027278ed41a, type: 2}
+  prefab2: {fileID: 1344946431121796, guid: 4e87aad2eca0f434da7e0f04fd54efc3, type: 2}
+  prefab3: {fileID: 1704085989001540, guid: d901e69719f82b145bc857559bab1f6d, type: 2}
+  prefab4: {fileID: 1327517775222344, guid: 9e291b9e0b5ef894780da82b26f62358, type: 2}
+  triggered: 0
+  player: 0
+  chunkList: []
+  sub: {fileID: 0}
+  destroyer: {fileID: 0}
+  destroyed: 0
+--- !u!136 &136471364777575696
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1199476175743682}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.0035
+  m_Height: 0.10103601
+  m_Direction: 1
+  m_Center: {x: -0.00085230166, y: -0.016067145, z: 0.002}
