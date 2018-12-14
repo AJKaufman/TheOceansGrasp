@@ -7,6 +7,8 @@ public class DamageBlockRemoval : MonoBehaviour {
 
     // needs a reference to the player object
     public GameObject player;
+    private GameObject repairTool;
+    private Animator repairToolAnim;
     //public GameObject damagedNode;
     public Canvas canvas;
     public Slider slider;
@@ -30,6 +32,8 @@ public class DamageBlockRemoval : MonoBehaviour {
 	void Start () {
         camFPS = cameraFPSObject.GetComponent<CameraFPS>();
         subVar = submarine.GetComponent<SubVariables>();
+        repairTool = player.transform.GetChild(4).gameObject;
+        repairToolAnim = repairTool.GetComponent<Animator>();
         distance = 100.0f;
         repairTimer = 0.0f;
         isClicked = false;
@@ -111,6 +115,10 @@ public class DamageBlockRemoval : MonoBehaviour {
                         slider.maxValue = camFPS.repairTimer;
                         if (!wrongObject)
                         {
+
+                            // Play repair animation
+                            repairToolAnim.SetFloat("Repairing", 1.0f);
+
                             //Debug.Log("yeet");
                             // enable the slider canvas to show progress bar
                             Image[] images = slider.GetComponentsInChildren<Image>();
@@ -128,6 +136,10 @@ public class DamageBlockRemoval : MonoBehaviour {
                             // if the mouse has been held down for 2 seconds
                             if (repairTimer >= camFPS.repairTimer)
                             {
+
+                                // End repair animation
+                                repairToolAnim.SetFloat("Repairing", 0.0f);
+
                                 camFPS.Repair();
                                 gameObject.transform.GetChild(5).gameObject.SetActive(true);
                                 // reset the canvas and slider first
@@ -205,6 +217,10 @@ public class DamageBlockRemoval : MonoBehaviour {
                     {
                         if (!wrongObject)
                         {
+
+                            // Play repair animation
+                            repairToolAnim.SetFloat("Repairing", 1.0f);
+
                             //Debug.Log("yeet");
                             // enable the slider canvas to show progress bar
                             Image[] images = slider.GetComponentsInChildren<Image>();
@@ -222,6 +238,10 @@ public class DamageBlockRemoval : MonoBehaviour {
                             // if the mouse has been held down for 2 seconds
                             if (repairTimer >= 2.0f)
                             {
+
+                                // End repair animation
+                                repairToolAnim.SetFloat("Repairing", 0.0f);
+
                                 // increment the repair counter in sub variables
                                 subVar.totalRepairsMade++;
                                 subVar.totalDamageNodes--;
@@ -321,6 +341,9 @@ public class DamageBlockRemoval : MonoBehaviour {
     {
         isClicked = false;
 
+        // End repair animation
+        repairToolAnim.SetFloat("Repairing", 0.0f);
+
         // disable canvas to stop showing progress bar
         Image[] images = slider.GetComponentsInChildren<Image>();
         foreach (Image image in images)
@@ -343,6 +366,9 @@ public class DamageBlockRemoval : MonoBehaviour {
     {
         // reset timer
         repairTimer = 0.0f;
+
+        // End repair animation
+        repairToolAnim.SetFloat("Repairing", 0.0f);
 
         // disable canvas to stop showing progress bar
         Image[] images = slider.GetComponentsInChildren<Image>();
