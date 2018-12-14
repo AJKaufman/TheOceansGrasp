@@ -34,6 +34,7 @@ public class SubmarineMovement : MonoBehaviour
         maxSpeed = 5.0f;
         maxBackSpeed = maxSpeed * -1.0f;
         rb = GetComponent<Rigidbody>();
+        rb.maxDepenetrationVelocity = 0.0f;
         Physics.IgnoreCollision(gameObject.GetComponent<BoxCollider>(), gameObject.GetComponent<CapsuleCollider>());
     }
 
@@ -205,6 +206,11 @@ public class SubmarineMovement : MonoBehaviour
     {
         // get vector of length = 1 unit because we only need direction, not speed or velocity
         return Vector3.Normalize(transform.rotation * velocity);
+    }
+
+    public void DisableRigidbody()
+    {
+
     }
 
 }
