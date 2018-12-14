@@ -185,7 +185,7 @@ public class DogFish : SeekerFish {
                     Kill();
                 }
             }
-            else if(Vector3.SqrMagnitude(targetObject.transform.position - transform.position) < (5 + attackRange) * (5 + attackRange))
+            else if (Vector3.SqrMagnitude(targetObject.transform.position - transform.position) < attackRange * attackRange)
             {
                 animator.SetFloat("Attacking", 1.0f);
             }
@@ -293,4 +293,7 @@ public class DogFish : SeekerFish {
         }
     }
 
+    protected override void OnCollisionEnter(Collision collision)
+    {
+    }
 }

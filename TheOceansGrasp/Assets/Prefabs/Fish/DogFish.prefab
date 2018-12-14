@@ -403,8 +403,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1088590237654508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 124.77141, y: 97.42737, z: -280.54105}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: -21.427368, y: 27.07014, z: -3.265051}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4934545244445400}
   - {fileID: 4221990805298658}
@@ -418,8 +418,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1940602026067748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.143, z: -0.015}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children:
   - {fileID: 4036802203663714}
   - {fileID: 4906517925693176}
@@ -558,7 +558,7 @@ Transform:
   m_GameObject: {fileID: 1083689264247262}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4938903319291766}
   m_Father: {fileID: 4196915069630482}
@@ -571,8 +571,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1594637147255098}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0.42}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 4934545244445400}
   m_RootOrder: 0
@@ -870,7 +870,7 @@ MonoBehaviour:
     aggroRange: 200
     willFlee: 0
   seekPriority: 2147483647
-  attackRange: 2
+  attackRange: 50
   damageRange: 1
   boredomPeriod: 15
   dashSpeedMultiplier: 1.2
@@ -925,8 +925,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 5
+  m_Center: {x: 0, y: -1.5, z: 0}
 --- !u!135 &135489937435071052
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -937,8 +937,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 6
+  m_Center: {x: 0, y: -1.5, z: 0}
 --- !u!136 &136237100482748568
 CapsuleCollider:
   m_ObjectHideFlags: 1
