@@ -391,7 +391,7 @@ MonoBehaviour:
   acceleration: 4
   maxSpeedTurnRate: 600
   stoppedTurnRate: 600
-  stopDistance: 0.5
+  stopDistance: 0.05
   damage: 5
   willArrive: 0
   arriveDistance: 0

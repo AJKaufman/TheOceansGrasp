@@ -131,18 +131,17 @@ public class SeekerFish2 : SeekerFish {
 
     protected override void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject == sub.gameObject)
+        if(collision.gameObject.CompareTag("Sub"))
         {
             collision.gameObject.GetComponent<SubVariables>().loseHealth(damage);
             Flee(collision.gameObject);
         }
 
-        if (targetObject == swimmer)
+        if (targetObject && targetObject.CompareTag("Player"))
         {
-            if (collision.gameObject == swimmer.gameObject)
+            if (collision.gameObject.CompareTag("Player"))
             {
                 FindObjectOfType<Positions>().Lose();
-                Stun(100);//I just want it to stop
             }
         }
     }
