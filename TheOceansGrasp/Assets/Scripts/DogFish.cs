@@ -207,13 +207,6 @@ public class DogFish : SeekerFish {
         animator.SetFloat("Swimming", 1.0f);
         animator.SetFloat("Attacking", 0.0f);
         base.FleeBehavior();
-
-        // Play sad yip
-        if(randomAudioTimer < 0)
-        {
-            audioSource.PlayOneShot(fleeAudio);
-            ResetAudioTimer(true);
-        }
     }
 
     private CameraFPS GetCameraFPS(Camera cam)
@@ -275,6 +268,7 @@ public class DogFish : SeekerFish {
     public override void Flee(GameObject fleeFrom)
     {
         base.Flee(fleeFrom);
+        audioSource.PlayOneShot(fleeAudio);
         ResetAudioTimer(true);
     }
 
