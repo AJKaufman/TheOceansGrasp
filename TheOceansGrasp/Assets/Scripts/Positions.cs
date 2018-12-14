@@ -25,6 +25,7 @@ public class Positions : MonoBehaviour {
     public GameObject rightScreen;
     public GameObject rearScreen;
     public GameObject buttonManager;
+    public GameObject escape;
 
     public bool firstFrame = true;
 
@@ -111,7 +112,7 @@ public class Positions : MonoBehaviour {
         }
         if (tooClose)
         {
-            if (howClose > 150.0f)
+            if (howClose > 250.0f)
             {
                 tooClose = false;
                 if (outside)
@@ -126,7 +127,7 @@ public class Positions : MonoBehaviour {
         }
         else
         {
-            if (howClose < 115.0f)
+            if (howClose < 200.0f)
             {
                 tooClose = true;
                 ChangeMusic(1);
@@ -138,6 +139,7 @@ public class Positions : MonoBehaviour {
     {
         lose.SetActive(true);
         player.SetActive(false);
+        escape.SetActive(true);
     }
 
     public void ChangeMusic(int whatSong)

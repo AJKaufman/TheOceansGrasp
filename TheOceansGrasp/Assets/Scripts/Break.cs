@@ -79,7 +79,7 @@ public class Break : MonoBehaviour {
             gameObject.GetComponent<MeshRenderer>().enabled = false;
             triggered = true;
             player = true;
-            sub.gameObject.GetComponent<SubVariables>().loseHealth(5.0f);
+            sub.gameObject.GetComponent<SubVariables>().loseHealth(10.0f);
             destroyer = sub.gameObject;
             CreateChunks();
         }

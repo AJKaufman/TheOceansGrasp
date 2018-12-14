@@ -275,6 +275,11 @@ public class DischargePrompt : MonoBehaviour
         }*/
     }
 
+    public void EndGame()
+    {
+        Application.Quit();
+    }
+
     // method to enable system break 2
     public void SystemBreak2Clicked()
     {

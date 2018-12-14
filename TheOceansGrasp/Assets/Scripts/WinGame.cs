@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class WinGame : MonoBehaviour
 {
-
-  void OnCollisionEnter(Collision other)
-  {
-    if (other.gameObject.tag == "Sub")
+    GameObject win;
+    GameObject player;
+    GameObject escape;
+    void OnCollisionEnter(Collision other)
     {
-      Destroy(gameObject);
-      Application.Quit();
+        if (other.gameObject.tag == "Sub")
+        {
+            Destroy(gameObject);
+            player.SetActive(false);
+            win.SetActive(true);
+            escape.SetActive(true);
+        }
     }
-  }
 }

@@ -40,6 +40,7 @@ public class SubVariables : MonoBehaviour {
     public GameObject player;
     public GameObject win;
     public GameObject lose;
+    public GameObject escape;
 
   // Use this for initialization
     void Start () {
@@ -88,6 +89,7 @@ public class SubVariables : MonoBehaviour {
         {
             win.SetActive(true);
             player.SetActive(false);
+            escape.SetActive(true);
         }
     // Update health and energy each frame
     displayedHealth.GetComponent<Slider>().value = health;
@@ -109,7 +111,7 @@ public class SubVariables : MonoBehaviour {
                 health = 0;
                 lose.SetActive(true);
                 player.SetActive(false);
-
+                escape.SetActive(true);
             }
         }
   }
