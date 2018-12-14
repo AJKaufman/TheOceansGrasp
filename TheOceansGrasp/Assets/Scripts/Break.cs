@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Break : MonoBehaviour {
-    public GameObject prefab1, prefab2, prefab3;
+    public GameObject prefab1, prefab2, prefab3, prefab4;
     public bool triggered = false;
     public bool player = false;
     public List<GameObject> chunkList = new List<GameObject>();
@@ -44,15 +44,17 @@ public class Break : MonoBehaviour {
         // play sound
         discharge.PlayPillarSound();
         //Debug.Log("Collision Sound Plays");
-
-        chunkList.Add(GameObject.Instantiate(prefab1, gameObject.transform.position+(sub.transform.forward*3), gameObject.transform.rotation));
-        Vector3 transfer = gameObject.transform.position + (sub.transform.forward * 3);
+        Vector3 transfer = transform.position + (sub.transform.forward * 5);
+        transfer.y -= 20;
+        chunkList.Add(GameObject.Instantiate(prefab1, transfer, gameObject.transform.rotation));
         transfer.y += 20;
         chunkList.Add(GameObject.Instantiate(prefab2, transfer, gameObject.transform.rotation));
-        transfer.y -= 40;
+        transfer.y += 20;
         chunkList.Add(GameObject.Instantiate(prefab3, transfer, gameObject.transform.rotation));
-        
-        for(int i = 0; i < 3; i++)
+        transfer.y += 20;
+        chunkList.Add(GameObject.Instantiate(prefab4, transfer, gameObject.transform.rotation));
+
+        for (int i = 0; i < 4; i++)
         {
             transfer = sub.transform.position;
             transfer.y -= 30;
