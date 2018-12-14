@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Positions : MonoBehaviour {
 
@@ -18,6 +19,14 @@ public class Positions : MonoBehaviour {
     private Transform shark;
     private Transform sub;
     private AudioSource jukebox;
+    public Slider energySlider;
+    public GameObject frontScreen;
+    public GameObject leftScreen;
+    public GameObject rightScreen;
+    public GameObject rearScreen;
+    public GameObject buttonManager;
+
+    public bool firstFrame = true;
 
     private void Awake()
     {
@@ -43,6 +52,54 @@ public class Positions : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        // regen energy when the player is outside
+        if(outside)
+        {
+            sub.GetComponent<SubVariables>().gainEnergy();
+        }
+
+        // prevent the submarine moving if the energy hits 0
+        if(energySlider.value <= 0 && firstFrame)
+        {
+            firstFrame = false;
+            // turn off turbo dash
+            if (sub.GetComponent<SubmarineMovement>().boosting)
+            {
+                buttonManager.GetComponent<DischargePrompt>().ToggleTurbo();
+            }
+
+            // shuts down the enhanced screens
+            frontScreen.GetComponent<CameraFPS>().highfps = false;
+            rearScreen.GetComponent<CameraFPS>().highfps = false;
+            leftScreen.GetComponent<CameraFPS>().highfps = false;
+            rightScreen.GetComponent<CameraFPS>().highfps = false;
+
+            // turn off lights
+            if (frontScreen.GetComponent<LightsOn>().on)
+            {
+                frontScreen.GetComponent<LightsOn>().TurnOn();
+            }
+            if (rightScreen.GetComponent<LightsOn>().on)
+            {
+                rightScreen.GetComponent<LightsOn>().TurnOn();
+            }
+            if (leftScreen.GetComponent<LightsOn>().on)
+            {
+                leftScreen.GetComponent<LightsOn>().TurnOn();
+            }
+            if (rearScreen.GetComponent<LightsOn>().on)
+            {
+                rearScreen.GetComponent<LightsOn>().TurnOn();
+            }
+
+            // sub movement is disabled
+            sub.GetComponent<SubmarineMovement>().enabled = false;
+            sub.GetComponent<Rigidbody>().isKinematic = true;
+            Invoke("TurnBackOn", 8.0f);
+        }
+
+
         float howClose = 0;
         if (outside)
         {
@@ -87,5 +144,13 @@ public class Positions : MonoBehaviour {
     {
         jukebox.clip = songs[whatSong];
         jukebox.Play();
+    }
+
+    public void TurnBackOn()
+    {
+        firstFrame = true;
+        sub.GetComponent<SubVariables>().gainEnergy(30.0f);
+        sub.GetComponent<Rigidbody>().isKinematic = false;
+        sub.GetComponent<SubmarineMovement>().enabled = true;
     }
 }

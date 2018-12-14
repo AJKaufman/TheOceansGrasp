@@ -81,6 +81,7 @@ public class CameraFPS : MonoBehaviour {
 
     public void Repair()
     {
+        GetComponentInChildren<Cycle>().setAlpha(0.5f);
         Debug.Log("Removed damaged camera from list");
         Positions.instance.damagedCameras.Remove(camModel);
         if (broken == false)
@@ -99,7 +100,6 @@ public class CameraFPS : MonoBehaviour {
             transform.GetChild(1).gameObject.SetActive(false);
             transform.GetChild(0).gameObject.SetActive(false);
         }
-        GetComponentInChildren<Cycle>().setAlpha(0.5f);
     }
 
     public void HighFPS()

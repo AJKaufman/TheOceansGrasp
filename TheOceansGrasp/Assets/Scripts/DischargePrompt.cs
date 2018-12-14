@@ -145,7 +145,7 @@ public class DischargePrompt : MonoBehaviour
     public void DischargeActivate()
     {
         // check to make sure there is enough energy to use
-        if(energySlider.GetComponent<Slider>().value >= 40.0f)
+        if(energySlider.GetComponent<Slider>().value >= 100.0f)
         {
             //Debug.Log("DISCHARGING!");
 
@@ -161,7 +161,7 @@ public class DischargePrompt : MonoBehaviour
             }
             // deplete energy
             //energySlider.GetComponent<Slider>().value -= 40.0f; //40%
-            subVar.loseEnergy(20.0f);
+            subVar.loseEnergy(100.0f);
 
             // play sound
             dischargeSound.Play();

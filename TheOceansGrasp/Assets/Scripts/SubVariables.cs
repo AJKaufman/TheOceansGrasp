@@ -152,8 +152,13 @@ public class SubVariables : MonoBehaviour {
         }
     }
 
-  // Break a random system on the sub
-  public void SystemBreak()
+    public void gainEnergy(float amount)
+    {
+        energy += amount;
+    }
+
+    // Break a random system on the sub
+    public void SystemBreak()
   {
         /* Your code here */
 

@@ -130,7 +130,6 @@ public class DamageBlockRemoval : MonoBehaviour {
                             {
                                 camFPS.Repair();
                                 gameObject.transform.GetChild(5).gameObject.SetActive(true);
-
                                 // reset the canvas and slider first
                                 repairTimer = 0.0f;
                                 slider.value = 0.0f;
