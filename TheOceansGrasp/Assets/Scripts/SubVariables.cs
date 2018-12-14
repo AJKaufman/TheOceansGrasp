@@ -80,7 +80,7 @@ public class SubVariables : MonoBehaviour {
         }*/
 
    // calculate the distance
-   distance = Vector3.Distance(frontCamera.transform.position, goalObject.transform.position);
+   distance = goalObject.transform.position.z - transform.position.z;
    //distance = Vector3.Distance(gameObject.transform.position+offSetSubmarinePos, goalObject.transform.position);
     // convert to a percentage
     percent = ((startDistance - distance) / startDistance)*100.0f;
