@@ -8,9 +8,12 @@ public class FloorHit : MonoBehaviour {
     public bool hit = false;
     public bool iFrames = false;
     public GameObject sub;
+    public GameObject buttonManager;
+    private DischargePrompt discharge;
+
 	// Use this for initialization
 	void Start () {
-        
+        discharge = buttonManager.GetComponent<DischargePrompt>();
 	}
 	
 	// Update is called once per frame
@@ -21,6 +24,10 @@ public class FloorHit : MonoBehaviour {
             {
                 sub.GetComponent<SubVariables>().loseHealth(5.0f);
                 iFrames = true;
+
+                // play sound
+                discharge.PlayPillarSound();
+
                 Invoke("OnDamage", 2.0f);
             }
         }

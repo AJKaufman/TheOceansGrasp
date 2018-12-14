@@ -43,7 +43,7 @@ public class Break : MonoBehaviour {
     public void CreateChunks() {
         // play sound
         discharge.PlayPillarSound();
-        Debug.Log("Collision Sound Plays");
+        //Debug.Log("Collision Sound Plays");
 
         chunkList.Add(GameObject.Instantiate(prefab1, gameObject.transform.position+(sub.transform.forward*3), gameObject.transform.rotation));
         Vector3 transfer = gameObject.transform.position + (sub.transform.forward * 3);

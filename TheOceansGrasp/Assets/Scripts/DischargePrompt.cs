@@ -457,6 +457,7 @@ public class DischargePrompt : MonoBehaviour
 
     public void PlayPillarSound()
     {
+        //Debug.Log("In Method To Play Collision Sound");
         buttonSoundSource.PlayOneShot(collision, 1.0f);
     }
 

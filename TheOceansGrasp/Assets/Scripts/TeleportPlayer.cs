@@ -95,10 +95,18 @@ public class TeleportPlayer : MonoBehaviour
                     Debug.Log("New camera parent: " + subCamera.transform.parent);
                 }
                 //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = false;
-                // swap the audio listeners
+
                 repairTool.SetActive(true);
-                frontCamera.GetComponent<AudioListener>().enabled = false;
-                player.GetComponent<AudioListener>().enabled = true;
+
+                // swap the audio listeners
+                if (player.transform.GetChild(1).GetComponent<AudioListener>())
+                {
+                    player.transform.GetChild(1).GetComponent<AudioListener>().enabled = true;
+                }
+                if (frontCamera.GetComponent<AudioListener>())
+                {
+                    frontCamera.GetComponent<AudioListener>().enabled = false;
+                }
             }
         }
         else
@@ -140,10 +148,17 @@ public class TeleportPlayer : MonoBehaviour
                 //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = true;
                 lightRen.enabled = false;
 
-                // swap the audio listeners
                 repairTool.SetActive(false);
-                frontCamera.GetComponent<AudioListener>().enabled = true;
-                player.GetComponent<AudioListener>().enabled = false;
+
+                // swap the audio listeners
+                if (frontCamera.GetComponent<AudioListener>())
+                {
+                    frontCamera.GetComponent<AudioListener>().enabled = true;
+                }
+                if (player.transform.GetChild(1).GetComponent<AudioListener>())
+                {
+                    player.transform.GetChild(1).GetComponent<AudioListener>().enabled = false;
+                }
 
             }
         }
