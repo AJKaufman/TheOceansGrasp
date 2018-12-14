@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4389391, g: 0.47888976, b: 0.52273834, a: 1}
+  m_IndirectSpecularColor: {r: 0.43893906, g: 0.47888923, b: 0.5227379, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4480,7 +4480,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4905864010450412, guid: 761895377b9920b4e9d6d70878a7e3bb, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4337247621378592, guid: 761895377b9920b4e9d6d70878a7e3bb, type: 2}
       propertyPath: m_RootOrder
@@ -4488,7 +4488,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4264649076971714, guid: 761895377b9920b4e9d6d70878a7e3bb, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4883249234441802, guid: 761895377b9920b4e9d6d70878a7e3bb, type: 2}
       propertyPath: m_LocalScale.x
@@ -10334,8 +10334,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affectFlatFish: 1
-  alwaysHitFlatFish: 0
-  affectDogFish: 0
+  alwaysHitFlatFish: 1
+  affectDogFish: 1
   affectSeekerFish: 1
 --- !u!65 &808969975
 BoxCollider:
@@ -19228,6 +19228,98 @@ Transform:
   m_Father: {fileID: 2050764016}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &1666682922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1666682923}
+  - component: {fileID: 1666682925}
+  - component: {fileID: 1666682924}
+  m_Layer: 0
+  m_Name: Point Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1666682923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1666682922}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 11.53, z: 78.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1696652969}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1666682924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1666682922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dafc90245bfe9e2408e358f71deace2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SampleCount: 12
+  ScatteringCoef: 0.85
+  ExtinctionCoef: 0.067
+  SkyboxExtinctionCoef: 0.9
+  MieG: 0.1
+  HeightFog: 0
+  HeightScale: 0.1
+  GroundLevel: 0
+  Noise: 1
+  NoiseScale: 0.015
+  NoiseIntensity: 1
+  NoiseIntensityOffset: 0.3
+  NoiseVelocity: {x: 3, y: 3}
+  MaxRayLength: 400
+--- !u!108 &1666682925
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1666682922}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 0.11320752, g: 0.0040431255, b: 0, a: 1}
+  m_Intensity: 3
+  m_Range: 100
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 7735
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &1671503106
 GameObject:
   m_ObjectHideFlags: 0
@@ -19437,6 +19529,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1691822026}
   m_CullTransparentMesh: 0
+--- !u!4 &1696652969 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4100142695014234, guid: b375d903e25b6c648b0122984e33ca30,
+    type: 2}
+  m_PrefabInternal: {fileID: 457828375}
 --- !u!1 &1705137888
 GameObject:
   m_ObjectHideFlags: 0
@@ -23296,7 +23393,7 @@ MonoBehaviour:
   middlePosition: {x: 0, y: 0, z: 0}
   dogSpawnDistance: 100
   checkTime: 3
-  spawnChancePerCheck: 0.1
+  spawnChancePerCheck: 10
   dogPrefab: {fileID: 1088590237654508, guid: 37f1fd41fd6334844ab445610c95a461, type: 2}
   fishToSpawn:
   - fishPrefab: {fileID: 1504002797847486, guid: c8f9251df3ab0714984cd130f277c79d,
