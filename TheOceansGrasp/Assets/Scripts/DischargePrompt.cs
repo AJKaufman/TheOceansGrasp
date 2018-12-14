@@ -35,7 +35,10 @@ public class DischargePrompt : MonoBehaviour
     public float radius = 80.0f; // for discharge ability
     public SeekerFish[] seekerScripts; // list of all the fish in the scene
     public Slider energySlider;
-    private AudioSource dischargeSound;
+    private AudioSource buttonSoundSource;
+    public AudioClip dischargeSound;
+    public AudioClip cancel;
+    public AudioClip select;
     public RawImage playerCursor;
 
     // Use this for initialization
@@ -60,7 +63,7 @@ public class DischargePrompt : MonoBehaviour
         //no.GetComponent<Button>().onClick.AddListener(EmergencyPromptDisable);
 
         //mainScreen.GetComponent<Button>().onClick.AddListener(EmergencyPromptEnable);
-        dischargeSound = gameObject.GetComponent<AudioSource>();
+        buttonSoundSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -78,6 +81,9 @@ public class DischargePrompt : MonoBehaviour
     {
         //Debug.Log("Clicked Emergency Button On");
         //panel.gameObject.GetComponent<Image>().enabled = true;
+
+        // play sound
+        buttonSoundSource.PlayOneShot(select, 1.0f);
 
         // enable all of the children's Button components
         Button[] buttons = { };
@@ -107,8 +113,10 @@ public class DischargePrompt : MonoBehaviour
     // method to disable the emergency discharge prompt
     public void EmergencyPromptDisable()
     {
+        // play sound
+        buttonSoundSource.PlayOneShot(cancel, 3.0f);
         //Debug.Log("Clicked Emergency Button Off");
-
+        
         // disable all of the children's Button components
         Button[] buttons = { };
         buttons = panel.gameObject.GetComponentsInChildren<Button>();
@@ -164,7 +172,7 @@ public class DischargePrompt : MonoBehaviour
             subVar.loseEnergy(100.0f);
 
             // play sound
-            dischargeSound.Play();
+            buttonSoundSource.PlayOneShot(dischargeSound, 1.0f);
         }
         else
         {
@@ -175,6 +183,9 @@ public class DischargePrompt : MonoBehaviour
     // method to toggle turbo
     public void ToggleTurbo()
     {
+        // play sound
+        buttonSoundSource.PlayOneShot(select, 1.0f);
+
         //Debug.Log("Turbo Toggled");
         // toggle the boolean
         if (isBoosting)
@@ -205,6 +216,8 @@ public class DischargePrompt : MonoBehaviour
     // method to turn on/off high fps and light
     public void EnhanceScreenToggle()
     {
+        // play sound
+        buttonSoundSource.PlayOneShot(select, 1.0f);
         GameObject testo = EventSystem.current.currentSelectedGameObject;
         testo.GetComponentInParent<CameraFPS>().HighFPS();
         testo.GetComponentInParent<LightsOn>().TurnOn();
@@ -219,6 +232,8 @@ public class DischargePrompt : MonoBehaviour
         {
             //Debug.Log("Clicked SystemBreak1 Button On");
             //panel.gameObject.GetComponent<Image>().enabled = true;
+            // play sound
+            buttonSoundSource.PlayOneShot(select, 1.0f);
 
             // enable all of the children's Button components
             Button[] buttons = { };
@@ -349,6 +364,8 @@ public class DischargePrompt : MonoBehaviour
     {
         //Debug.Log("Clicked SystemBreak1 Button Off");
         //panel.gameObject.GetComponent<Image>().enabled = true;
+        // play sound
+        buttonSoundSource.PlayOneShot(cancel, 3.0f);
 
         // enable all of the children's Button components
         Button[] buttons = { };

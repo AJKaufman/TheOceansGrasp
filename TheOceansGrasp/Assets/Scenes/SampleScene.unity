@@ -1138,6 +1138,7 @@ MonoBehaviour:
   otherScript: {fileID: 856459067}
   distanceFromHatch: 0.2
   playerCursor: {fileID: 793695991}
+  frontCamera: {fileID: 0}
 --- !u!114 &99806528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4834,7 +4835,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &409099425
 GameObject:
@@ -6237,7 +6238,8 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1.151, z: -0.002}
   m_LocalScale: {x: 0.10000011, y: 0.10000002, z: 0.1000001}
-  m_Children: []
+  m_Children:
+  - {fileID: 746744428}
   m_Father: {fileID: 1663498680}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -6987,7 +6989,7 @@ RectTransform:
   - {fileID: 1710347135}
   - {fileID: 3145747}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 45, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9054,6 +9056,9 @@ MonoBehaviour:
   radius: 80
   seekerScripts: []
   energySlider: {fileID: 1079056616}
+  dischargeSound: {fileID: 8300000, guid: 5b007d6e4faa7744cba0a34dd7536cf1, type: 3}
+  cancel: {fileID: 8300000, guid: 186019f685d660148b5334d1b4da5343, type: 3}
+  select: {fileID: 8300000, guid: 5719846e34d80da409b8ac6b8b724504, type: 3}
   playerCursor: {fileID: 793695991}
 --- !u!224 &746744428
 RectTransform:
@@ -9062,15 +9067,15 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 746744426}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5}
-  m_LocalScale: {x: 0.002, y: 0.002, z: 0.020000001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.0019999978, y: 0.002, z: 0.019999987}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_Father: {fileID: 508060031}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3000.1882, y: 99.58}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &746744429
@@ -11096,6 +11101,7 @@ MonoBehaviour:
   otherScript: {fileID: 99806527}
   distanceFromHatch: 0
   playerCursor: {fileID: 793695991}
+  frontCamera: {fileID: 0}
 --- !u!136 &856459068
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14621,7 +14627,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1256022420
 AudioSource:
@@ -16139,7 +16145,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 62.174004, y: -19.69, z: 0}
 --- !u!1 &1398106178
 GameObject:
@@ -17146,7 +17152,7 @@ RectTransform:
   - {fileID: 248156990}
   - {fileID: 1165189914}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -22884,7 +22890,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2050764014
 GameObject:
@@ -24598,7 +24604,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &2134227672
 GameObject:

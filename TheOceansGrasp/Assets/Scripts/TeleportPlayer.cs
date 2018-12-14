@@ -23,6 +23,7 @@ public class TeleportPlayer : MonoBehaviour
     private SubVariables subVar;
     private List<GameObject> nodes;
     public RawImage playerCursor;
+    public GameObject frontCamera;
 
     // Use this for initialization
     void Start()
@@ -93,6 +94,9 @@ public class TeleportPlayer : MonoBehaviour
                     Debug.Log("New camera parent: " + subCamera.transform.parent);
                 }
                 //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = false;
+                // swap the audio listeners
+                frontCamera.GetComponent<AudioListener>().enabled = false;
+                player.GetComponent<AudioListener>().enabled = true;
             }
         }
         else
@@ -133,6 +137,10 @@ public class TeleportPlayer : MonoBehaviour
                 submarine.GetComponent<Rigidbody>().isKinematic = false;
                 //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = true;
                 lightRen.enabled = false;
+
+                // swap the audio listeners
+                frontCamera.GetComponent<AudioListener>().enabled = true;
+                player.GetComponent<AudioListener>().enabled = false;
             }
         }
     }
