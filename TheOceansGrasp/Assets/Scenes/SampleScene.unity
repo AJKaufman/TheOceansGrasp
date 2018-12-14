@@ -11684,6 +11684,7 @@ MonoBehaviour:
   hit: 0
   iFrames: 0
   sub: {fileID: 2050764014}
+  buttonManager: {fileID: 746744426}
 --- !u!114 &950332220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13733,6 +13734,7 @@ MonoBehaviour:
   hit: 0
   iFrames: 0
   sub: {fileID: 2050764014}
+  buttonManager: {fileID: 746744426}
 --- !u!114 &1133072799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22398,6 +22400,7 @@ MonoBehaviour:
   hit: 0
   iFrames: 0
   sub: {fileID: 2050764014}
+  buttonManager: {fileID: 746744426}
 --- !u!114 &1951587373
 MonoBehaviour:
   m_ObjectHideFlags: 0
