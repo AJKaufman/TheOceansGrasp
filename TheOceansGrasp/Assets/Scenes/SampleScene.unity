@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4389391, g: 0.47888976, b: 0.52273834, a: 1}
+  m_IndirectSpecularColor: {r: 0.43893906, g: 0.47888923, b: 0.5227379, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -132,7 +132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3145747
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3873,6 +3873,7 @@ MonoBehaviour:
   renderCam: {fileID: 508060030}
   camModel: {fileID: 1889170073}
   submarine: {fileID: 2050764014}
+  repairTimer: 2
   targeted: 0
 --- !u!114 &300966642
 MonoBehaviour:
@@ -9890,6 +9891,7 @@ MonoBehaviour:
   renderCam: {fileID: 543217999}
   camModel: {fileID: 810474715}
   submarine: {fileID: 2050764014}
+  repairTimer: 2
   targeted: 0
 --- !u!114 &778665665
 MonoBehaviour:
@@ -10505,17 +10507,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 746744427}
         m_MethodName: EnhanceScreenToggle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 746744427}
-        m_MethodName: OnEnter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13129,6 +13120,7 @@ MonoBehaviour:
   renderCam: {fileID: 1850569058}
   camModel: {fileID: 31067978}
   submarine: {fileID: 2050764014}
+  repairTimer: 2
   targeted: 0
 --- !u!114 &1046524764
 MonoBehaviour:
@@ -17712,10 +17704,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
-    Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
-    Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
-    Text
+  m_Text: Engine is in good condition.
 --- !u!222 &1528573188
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19219,6 +19208,7 @@ MonoBehaviour:
   renderCam: {fileID: 135822617}
   camModel: {fileID: 0}
   submarine: {fileID: 0}
+  repairTimer: 2
   targeted: 0
 --- !u!1 &1663498676
 GameObject:
@@ -19390,7 +19380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1691148733
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19529,7 +19519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1705137889
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19823,7 +19813,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1710347135
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23473,8 +23463,6 @@ MonoBehaviour:
   useSlowdown: 1
   boosting: 0
   halfSpeed: 0
-  quadSpeed: 0
-  eightSpeed: 0
 --- !u!4 &2050764016
 Transform:
   m_ObjectHideFlags: 0
@@ -25262,6 +25250,7 @@ MonoBehaviour:
   renderCam: {fileID: 1605979864}
   camModel: {fileID: 1318539354}
   submarine: {fileID: 2050764014}
+  repairTimer: 2
   targeted: 0
 --- !u!114 &2134227674
 MonoBehaviour:

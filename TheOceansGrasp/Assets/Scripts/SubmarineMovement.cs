@@ -20,8 +20,6 @@ public class SubmarineMovement : MonoBehaviour
     public bool useSlowdown = true;
     public bool boosting = false;
     public bool halfSpeed = false;
-    public bool quadSpeed = false;
-    public bool eightSpeed = false;
     private float boostTimer = 0.0f;
     private SubVariables subVar;
 
@@ -66,21 +64,9 @@ public class SubmarineMovement : MonoBehaviour
                 }
                 else if (halfSpeed)
                 {
-                    maxBackSpeed = -2.5f;
-                    maxSpeed = 2.5f;
-                    speedIncrement = 0.5f;
-                }
-                else if (quadSpeed)
-                {
                     maxBackSpeed = -1.25f;
                     maxSpeed = 1.25f;
                     speedIncrement = 0.25f;
-                }
-                else if (eightSpeed)
-                {
-                    maxBackSpeed = -0.625f;
-                    maxSpeed = 0.625f;
-                    speedIncrement = 0.125f;
                 }
                 // otherwise convert it back to the normal settings
                 else
@@ -90,24 +76,12 @@ public class SubmarineMovement : MonoBehaviour
                     speedIncrement = 1.0f;
                 }
 
-                // when boosting cases
+                // when boosting
                 if (halfSpeed && boosting)
-                {
-                    maxBackSpeed = -5.0f;
-                    maxSpeed = 5.0f;
-                    speedIncrement = 1.0f;
-                }
-                else if (quadSpeed && boosting)
                 {
                     maxBackSpeed = -2.5f;
                     maxSpeed = 2.5f;
                     speedIncrement = 0.5f;
-                }
-                else if (eightSpeed && boosting)
-                {
-                    maxBackSpeed = -1.25f;
-                    maxSpeed = 1.25f;
-                    speedIncrement = 0.25f;
                 }
 
                 // determine if the sub is moving or not to gain energy or deplete it
