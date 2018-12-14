@@ -83,7 +83,7 @@ public class SubVariables : MonoBehaviour {
    //distance = Vector3.Distance(gameObject.transform.position+offSetSubmarinePos, goalObject.transform.position);
     // convert to a percentage
     percent = ((startDistance - distance) / startDistance)*100.0f;
-        Debug.Log("Health = " + health);
+        //Debug.Log("Health = " + health);
     if(distance <= 10)
         {
             win.SetActive(true);

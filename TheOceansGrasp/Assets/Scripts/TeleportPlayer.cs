@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TeleportPlayer : MonoBehaviour
 {
-
+    List<GameObject> repairToolParts;
     public bool inside = true;
     public GameObject submarine;
     public GameObject light1;
@@ -29,6 +29,13 @@ public class TeleportPlayer : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        repairToolParts = new List<GameObject>();
+        repairToolParts.Add(repairTool.transform.GetChild(0).gameObject);
+        repairToolParts.Add(repairTool.transform.GetChild(1).gameObject);
+        repairToolParts.Add(repairTool.transform.GetChild(2).gameObject);
+        repairToolParts.Add(repairTool.transform.GetChild(3).gameObject);
+        repairToolParts.Add(repairTool.transform.GetChild(4).gameObject);
+
         subMovement = submarine.GetComponent<SubmarineMovement>();
         subPosition = submarine.transform.position;
         swim = player.GetComponent<PlayerSwim>();
@@ -96,7 +103,19 @@ public class TeleportPlayer : MonoBehaviour
                 }
                 //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = false;
 
-                repairTool.SetActive(true);
+                // enable repair tool
+                foreach(GameObject child in repairToolParts)
+                {
+                    child.GetComponent<MeshRenderer>().enabled = true;
+                    if (child.transform.childCount > 0)
+                    {
+                        foreach (Transform child2 in child.transform)
+                        {
+                            child2.gameObject.GetComponent<MeshRenderer>().enabled = true;
+                        }
+                    }
+                }
+                repairTool.GetComponent<Animator>().enabled = true;
 
                 // swap the audio listeners
                 if (player.transform.GetChild(1).GetComponent<AudioListener>())
@@ -148,7 +167,19 @@ public class TeleportPlayer : MonoBehaviour
                 //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = true;
                 lightRen.enabled = false;
 
-                repairTool.SetActive(false);
+                // enable repair tool
+                foreach (GameObject child in repairToolParts)
+                {
+                    child.GetComponent<MeshRenderer>().enabled = false;
+                    if(child.transform.childCount > 0)
+                    {
+                        foreach(Transform child2 in child.transform)
+                        {
+                            child2.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                        }
+                    }
+                }
+                repairTool.GetComponent<Animator>().enabled = false;
 
                 // swap the audio listeners
                 if (frontCamera.GetComponent<AudioListener>())

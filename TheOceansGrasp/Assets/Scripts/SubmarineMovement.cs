@@ -83,7 +83,7 @@ public class SubmarineMovement : MonoBehaviour
                 speedIncrement = 0.5f;
             }
 
-            Debug.Log("Made it to check");
+            //Debug.Log("Made it to check");
             // determine if the sub is moving or not to gain energy or deplete it
             if (Input.GetButton("Forward") || Input.GetButton("Backward") || Input.GetButton("RotateLeft") || Input.GetButton("RotateRight") || Input.GetButton("Ascend") || Input.GetButton("Descend"))
             {
@@ -91,7 +91,7 @@ public class SubmarineMovement : MonoBehaviour
             }
             else
             {
-                Debug.Log("Gaining Energy");
+                //Debug.Log("Gaining Energy");
                 subVar.gainEnergy();
             }
 
