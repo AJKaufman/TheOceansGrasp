@@ -171,10 +171,6 @@ public class SubVariables : MonoBehaviour {
         {
             newDamageAppearance = damage3;
         }
-        //damageRemoval.gameObject.GetComponent<MeshFilter>().sharedMesh = damage1.GetComponent<Transform>().GetChild(0).GetComponent<Mesh>();
-        // re-instantiate the transform data
-        //damageRemoval.gameObject.GetComponent<Transform>().position = tempTransform.position;
-        //damageRemoval.gameObject.GetComponent<Transform>().rotation = tempTransform.rotation;
 
         damageRemoval.GetComponent<MeshRenderer>().material = newDamageAppearance;
         //damageRemoval.GetComponent<MeshRenderer>().material.color = Color.red;
@@ -184,25 +180,6 @@ public class SubVariables : MonoBehaviour {
         {
             damageRemoval.transform.parent = null;
         }
-
-        /*
-        // create a position for the damage to be spawned at
-        Vector2 randomDirection = Random.insideUnitCircle.normalized * radius; // at which point around the circular part of the hull
-        float zLocation = Random.Range(-5.0f, 5.0f); // length of the sub
-
-        // set the position of the damage in relation to the submarine
-        Vector3 currentSubPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        Vector3 damagePosition = new Vector3(currentSubPos.x + randomDirection.x, currentSubPos.y + randomDirection.y, currentSubPos.z + zLocation);
-
-        // create the object
-        GameObject temp = Instantiate(damageBlock, damagePosition, Quaternion.identity);
-
-        // add the object to a list
-        damagedSections.Add(temp);
-
-        // set the parent of the object to be the submarine so that the damage moves with it
-        temp.transform.parent = gameObject.transform;
-        */
 
         // keep track of the number of damage nodes
         if (damageBeforeSystemBreak >= smallDamage)
@@ -219,49 +196,16 @@ public class SubVariables : MonoBehaviour {
         {
             // sub speed change
             submarineMovement.halfSpeed = true;
-            submarineMovement.quadSpeed = false;
-            submarineMovement.eightSpeed = false;
 
             // change the button and panel's text
-            systemBreak1Button.GetComponentInChildren<Text>().text = "Stage 1";
-            systemBreak1Panel.GetComponentInChildren<Text>().text = "Engine Damaged. You are now at half of your regular speed.";
-        }
-        else if(submarineMovement.halfSpeed)
-        {
-            // sub speed change
-            submarineMovement.halfSpeed = false;
-            submarineMovement.quadSpeed = true;
-            submarineMovement.eightSpeed = false;
-
-            systemBreak1Button.GetComponentInChildren<Text>().text = "Stage 2";
-            systemBreak1Panel.GetComponentInChildren<Text>().text = "Engine Further Damaged. You are now at 1/4th of your regular speed.";
-        }
-        else if(submarineMovement.quadSpeed)
-        {
-            // sub speed change
-            submarineMovement.halfSpeed = false;
-            submarineMovement.quadSpeed = false;
-            submarineMovement.eightSpeed = true;
-
-            systemBreak1Button.GetComponentInChildren<Text>().text = "Stage 3";
-            systemBreak1Panel.GetComponentInChildren<Text>().text = "Engine Severely Damaged. You are now at 1/8th of your regular speed.";
-        }
-        else
-        {
-            // make the sub move at half speed
-            submarineMovement.halfSpeed = false;
-            submarineMovement.quadSpeed = false;
-            submarineMovement.eightSpeed = false;
-
-            // change the button and panel's text
-            systemBreak1Button.GetComponentInChildren<Text>().text = "Fixed";
-            systemBreak1Panel.GetComponentInChildren<Text>().text = "Engine Repaired. You are now at your regular speed.";
+            systemBreak1Button.GetComponentInChildren<Text>().text = "Warning";
+            systemBreak1Panel.GetComponentInChildren<Text>().text = "Engine Damaged. You are now at 1/4 of your regular speed.";
         }
     }
 
   // On collision
   private void OnCollisionEnter(Collision collision)
   {
-    
-  }
+        Physics.IgnoreLayerCollision(2, 10, true);
+    }
 }

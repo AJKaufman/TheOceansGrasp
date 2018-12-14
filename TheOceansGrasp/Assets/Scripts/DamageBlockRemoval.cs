@@ -107,6 +107,8 @@ public class DamageBlockRemoval : MonoBehaviour {
 
                     if(isCloseEnough)
                     {
+                        // set the maxValue of the slider so that it shows the progress accurately for the new 8 seconds instead of just 2
+                        slider.maxValue = camFPS.repairTimer;
                         if (!wrongObject)
                         {
                             //Debug.Log("yeet");
@@ -124,7 +126,7 @@ public class DamageBlockRemoval : MonoBehaviour {
                             slider.value = repairTimer;
 
                             // if the mouse has been held down for 2 seconds
-                            if (repairTimer >= 2.0f)
+                            if (repairTimer >= camFPS.repairTimer)
                             {
                                 camFPS.Repair();
                                 gameObject.transform.GetChild(5).gameObject.SetActive(true);

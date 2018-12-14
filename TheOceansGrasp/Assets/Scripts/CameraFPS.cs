@@ -17,6 +17,7 @@ public class CameraFPS : MonoBehaviour {
     public GameObject camModel;
     public GameObject submarine;
     private SubVariables subVar;
+    public float repairTimer = 2.0f;
 
     // For fish
     public bool targeted = false;
@@ -57,9 +58,12 @@ public class CameraFPS : MonoBehaviour {
 
     public void Damage()
     {
+        repairTimer = 2.0f;
         if (damaged)
         {
+            repairTimer = 8.0f;
             broken = true;
+            transform.GetChild(0).gameObject.SetActive(true);
             transform.GetChild(1).gameObject.SetActive(false);
             transform.GetChild(2).gameObject.SetActive(true);
             GetComponentInChildren<Cycle>().setAlpha(1.0f);
@@ -95,6 +99,7 @@ public class CameraFPS : MonoBehaviour {
             transform.GetChild(1).gameObject.SetActive(false);
             transform.GetChild(0).gameObject.SetActive(false);
         }
+        GetComponentInChildren<Cycle>().setAlpha(0.5f);
     }
 
     public void HighFPS()
