@@ -24,6 +24,7 @@ public class TeleportPlayer : MonoBehaviour
     private List<GameObject> nodes;
     public RawImage playerCursor;
     public GameObject frontCamera;
+    public GameObject repairTool;
 
     // Use this for initialization
     void Start()
@@ -95,6 +96,7 @@ public class TeleportPlayer : MonoBehaviour
                 }
                 //GameObject.FindGameObjectWithTag("Sub").GetComponent<SubmarineMovement>().enabled = false;
                 // swap the audio listeners
+                repairTool.SetActive(true);
                 frontCamera.GetComponent<AudioListener>().enabled = false;
                 player.GetComponent<AudioListener>().enabled = true;
             }
@@ -139,8 +141,10 @@ public class TeleportPlayer : MonoBehaviour
                 lightRen.enabled = false;
 
                 // swap the audio listeners
+                repairTool.SetActive(false);
                 frontCamera.GetComponent<AudioListener>().enabled = true;
                 player.GetComponent<AudioListener>().enabled = false;
+
             }
         }
     }

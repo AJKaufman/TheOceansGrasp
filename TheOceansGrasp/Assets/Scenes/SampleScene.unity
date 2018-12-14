@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4389391, g: 0.47888976, b: 0.52273834, a: 1}
+  m_IndirectSpecularColor: {r: 0.43893906, g: 0.47888923, b: 0.5227379, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1138,7 +1138,8 @@ MonoBehaviour:
   otherScript: {fileID: 856459067}
   distanceFromHatch: 0.2
   playerCursor: {fileID: 793695991}
-  frontCamera: {fileID: 0}
+  frontCamera: {fileID: 508060024}
+  repairTool: {fileID: 1189055428}
 --- !u!114 &99806528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9024,7 +9025,7 @@ GameObject:
   - component: {fileID: 746744429}
   m_Layer: 5
   m_Name: ButtonManager
-  m_TagString: Untagged
+  m_TagString: ButtonManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9060,6 +9061,7 @@ MonoBehaviour:
   dischargeSound: {fileID: 8300000, guid: 5b007d6e4faa7744cba0a34dd7536cf1, type: 3}
   cancel: {fileID: 8300000, guid: 186019f685d660148b5334d1b4da5343, type: 3}
   select: {fileID: 8300000, guid: 5719846e34d80da409b8ac6b8b724504, type: 3}
+  collision: {fileID: 0}
   playerCursor: {fileID: 793695991}
 --- !u!224 &746744428
 RectTransform:
@@ -11102,7 +11104,8 @@ MonoBehaviour:
   otherScript: {fileID: 99806527}
   distanceFromHatch: 0
   playerCursor: {fileID: 793695991}
-  frontCamera: {fileID: 0}
+  frontCamera: {fileID: 508060024}
+  repairTool: {fileID: 1189055428}
 --- !u!136 &856459068
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11690,6 +11693,7 @@ MonoBehaviour:
   prefab: {fileID: 1182194082264610, guid: cafa26cf3d9fb3641ad4ebd93fcf9782, type: 2}
   pillarList: []
   radius: 2
+  buttonManager: {fileID: 0}
 --- !u!1 &954498853
 GameObject:
   m_ObjectHideFlags: 0
@@ -13694,6 +13698,7 @@ MonoBehaviour:
   prefab: {fileID: 1182194082264610, guid: cafa26cf3d9fb3641ad4ebd93fcf9782, type: 2}
   pillarList: []
   radius: 2
+  buttonManager: {fileID: 0}
 --- !u!1 &1135379213
 GameObject:
   m_ObjectHideFlags: 0
@@ -14219,6 +14224,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1189051187}
   m_Mesh: {fileID: 4300490, guid: fe6b46e1ce24f044b8942583053fdb4e, type: 3}
+--- !u!1 &1189055428 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1815051001402672, guid: 04bb271475e7951498de5c7acc6bb7b9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1445168675}
 --- !u!1 &1197075350
 GameObject:
   m_ObjectHideFlags: 0
@@ -16304,6 +16314,10 @@ Prefab:
     - target: {fileID: 4522727761727264, guid: 04bb271475e7951498de5c7acc6bb7b9, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -18.285002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815051001402672, guid: 04bb271475e7951498de5c7acc6bb7b9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04bb271475e7951498de5c7acc6bb7b9, type: 2}
@@ -22166,6 +22180,7 @@ MonoBehaviour:
   prefab: {fileID: 1182194082264610, guid: cafa26cf3d9fb3641ad4ebd93fcf9782, type: 2}
   pillarList: []
   radius: 2
+  buttonManager: {fileID: 0}
 --- !u!1 &1961324210
 GameObject:
   m_ObjectHideFlags: 0

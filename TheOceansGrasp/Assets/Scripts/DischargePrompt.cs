@@ -39,6 +39,7 @@ public class DischargePrompt : MonoBehaviour
     public AudioClip dischargeSound;
     public AudioClip cancel;
     public AudioClip select;
+    public AudioClip collision;
     public RawImage playerCursor;
 
     // Use this for initialization
@@ -452,6 +453,11 @@ public class DischargePrompt : MonoBehaviour
         {
             image.enabled = false;
         }
+    }
+
+    public void PlayPillarSound()
+    {
+        buttonSoundSource.PlayOneShot(collision, 1.0f);
     }
 
     // make the cursor change color on mouse over

@@ -12,6 +12,7 @@ TagManager:
   - SubCam
   - PillarBreaker
   - Floor
+  - ButtonManager
   layers:
   - Default
   - TransparentFX

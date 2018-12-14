@@ -11,10 +11,14 @@ public class Break : MonoBehaviour {
     public GameObject destroyer;
     int timer = 0;
     public bool destroyed = false;
+    private GameObject buttonManager;
+    private DischargePrompt discharge;
 
     // Use this for initialization
     void Start () {
         sub = GameObject.FindGameObjectWithTag("Sub");
+        buttonManager = GameObject.FindGameObjectWithTag("ButtonManager");
+        discharge = buttonManager.GetComponent<DischargePrompt>();
     }
 	
 	// Update is called once per frame
@@ -37,6 +41,10 @@ public class Break : MonoBehaviour {
 	}
 
     public void CreateChunks() {
+        // play sound
+        discharge.PlayPillarSound();
+        Debug.Log("Collision Sound Plays");
+
         chunkList.Add(GameObject.Instantiate(prefab1, gameObject.transform.position+(sub.transform.forward*3), gameObject.transform.rotation));
         Vector3 transfer = gameObject.transform.position + (sub.transform.forward * 3);
         transfer.y += 20;

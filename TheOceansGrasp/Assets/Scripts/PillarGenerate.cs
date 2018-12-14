@@ -6,9 +6,11 @@ public class PillarGenerate : MonoBehaviour {
     public GameObject prefab;
     public List<GameObject> pillarList = new List<GameObject>();
     public float radius = 2.0f;
+    //public GameObject buttonManager;
+    //private DischargePrompt dischargePrompt;
     // Use this for initialization
 	void Start () {
-        
+        //dischargePrompt = buttonManager.GetComponent<DischargePrompt>();
 	}
 	
 	// Update is called once per frame
