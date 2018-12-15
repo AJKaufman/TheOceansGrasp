@@ -51,7 +51,7 @@ public class BaskingShark : MonoBehaviour {
         if (health)
         {
             // One hit kill
-            health.loseHealth(int.MaxValue);
+            FindObjectOfType<Positions>().Lose();
         }
         else
         {
