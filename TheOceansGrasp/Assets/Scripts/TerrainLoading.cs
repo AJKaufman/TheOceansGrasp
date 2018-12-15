@@ -25,7 +25,7 @@ public class TerrainLoading : MonoBehaviour {
 	void Update () {
 		
         // If you've passed the previous spawn area
-        if(transform.position.z > previousTerrainSpawnLoc.z + 98 + 195)
+        if(transform.position.z > previousTerrainSpawnLoc.z + 98 + 390)
         {
 
             // Spawn the next spawn area.
