@@ -104,7 +104,10 @@ public class SubVariables : MonoBehaviour {
             health -= damage;
             damageBeforeSystemBreak += damage;
             // Call the system break method
-            SystemBreak();
+            for (int i = 0; i < damage / 5; i++)
+            {
+                SystemBreak();
+            }
 
             if (health <= 0)
             {
@@ -163,11 +166,19 @@ public class SubVariables : MonoBehaviour {
     public void SystemBreak()
   {
         /* Your code here */
+        List<GameObject> tempNodeList = new List<GameObject>();
+        foreach (GameObject g in techNodes)
+        {
+            if (!g.GetComponent<DamageBlockRemoval>().isDamaged)
+            {
+                tempNodeList.Add(g);
+            }
+        }
 
         // create a random number to indicate which tech node breaks
-        int nodeIndex = Random.Range(0, techNodes.Count);
+        int nodeIndex = Random.Range(0, tempNodeList.Count);
         // get a reference to the specific node's damage removal script
-        damageRemoval = techNodes[nodeIndex].GetComponent<DamageBlockRemoval>();
+        damageRemoval = tempNodeList[nodeIndex].GetComponent<DamageBlockRemoval>();
         damageRemoval.isDamaged = true;
         // save the transform data before swapping the mesh
         Transform tempTransform = damageRemoval.gameObject.GetComponent<Transform>();

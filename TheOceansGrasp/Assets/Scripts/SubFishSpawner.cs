@@ -103,7 +103,7 @@ public class SubFishSpawner : MonoBehaviour {
 
     void SpawnDog(GameObject prefab)
     {
-        Vector3 start = new Vector3(0, 0, transform.position.z - (dogSpawnDistance - 10));
+        Vector3 start = new Vector3(transform.position.x, transform.position.y, transform.position.z - (dogSpawnDistance - 10));
         Quaternion rot = new Quaternion();
         GameObject dog = Instantiate(prefab, start, rot);
         dog.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
